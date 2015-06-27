@@ -1,0 +1,2169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Chapter 2	Overview of JDF </TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="ChapTitle">
+<A NAME="0_pgfId-998290"></A>Chapter 2	Overview of JDF </H1>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-998322"></A>Introduction</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998325"></A>This chapter explains the basic aspects of JDF. It outlines the terminology that is used and is recognized by the format, and the components of a workflow necessary to execute a printing Job using JDF. Also provided is a brief discussion of JDF Process structure and the role of messaging in a JDF Job.</P>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-998332"></A>2.1	<A NAME="0_29151"></A>System Components</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998335"></A>This section defines unique terminology used in this specification for the Job and workflow components of JDF. Links to additional information is included for some terms.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-998338"></A>2.1.1	<A NAME="0_99983"></A>Job Components</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998341"></A>This terminology describes how JDF is described conceptually and hierarchically.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998344"></A>2.1.1.1	Jobs and Nodes</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998347"></A>A Job is the entirety of a JDF project. Each Job is organized in a tree structure containing all of the information needed to complete the intended project. The information is collected logically into what is called a <SPAN CLASS="Bold">
+Node</SPAN>
+. Each Node in the tree structure represents an aspect of the Job to be executed.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998356"></A>The Nodes in a Job are organized in a hierarchical structure that resembles a pyramid. The Node at the top of the pyramid describes the overall intention of the Job. The intermediate Nodes describe increasingly Process-oriented aspects of the Job, until the Nodes at the bottom of the pyramid each describe a single, simple Process. Depending on where in the Job structure a Node resides, it can represent a portion of the product to be created, one or many Processing steps or other Job Parts. For more information about Jobs and Nodes, see <A HREF="Structure_of_JDF_Nodes.html#0_39098" CLASS="XRef">Section 3, “Structure of JDF Nodes and Jobs”</A>. </P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998628"></A>2.1.1.2	<A NAME="0_35220"></A>Elements<SPAN CLASS="AnchorCalloutRed">
+<IMG SRC="Overview_of_JDF-1.png" ALIGN="RIGHT">
+</SPAN>
+</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1032423"></A>An Element is a standard XML syntactic construct <A HREF="Introduction.html#0_[XML]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XML]</SPAN>
+</A>. (See also: <A HREF="Overview_of_JDF.html#0_98703" CLASS="XRef">Section 2.1.1.3, “Attributes”</A>.) Elements that are subparts of other Elements are often referred to as Subelements. <SPAN CLASS="Enumeration">
+JDF</SPAN>
+ Elements are represented by two kinds of data types: element and text element. The latter is abbreviated as telem. For more information about Elements, see <EM CLASS="crossRef">
+<A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef">Section 3.2, “JDF Node”</A></EM>
+.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1010766"></A>2.1.1.3	<A NAME="0_98703"></A>Attributes</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1007226"></A>An Attribute is a standard XML syntactic construct <A HREF="Introduction.html#0_[XML]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XML]</SPAN>
+</A>. (See also: <A HREF="Overview_of_JDF.html#0_35220" CLASS="XRef">Section 2.1.1.2, “Elements”</A>.) Attributes are defined as various different data types, such as <SPAN CLASS="Bold">
+string</SPAN>
+, <SPAN CLASS="Bold">
+enumeration</SPAN>
+, <SPAN CLASS="Bold">
+dateTime</SPAN>
+ and so on.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1007227"></A>For more information about Attributes, see <EM CLASS="crossRef">
+<A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef">Section 3.2, “JDF Node”</A></EM>
+. Note that an Attribute with an empty (zero length) value string <SPAN CLASS="ConformWord">
+must not</SPAN>
+ be specified except when its data type allows an empty string, (e.g., when not needed, <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Attributes are to be omitted rather than included as empty Attributes.)</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998690"></A>2.1.1.4	Relationships</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1007280"></A>The hierarchical JDF structure implies relationships between <SPAN CLASS="Bold">
+Nodes</SPAN>
+ and <SPAN CLASS="Bold">
+Elements</SPAN>
+ within a JDF tree structure. The terms used in this document to describe these relationships are defined below, and, in some cases, include a brief representation of the encoding that would express them.</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1007281"></A><SPAN CLASS="Bold">
+Parent</SPAN>
+: An Element that directly contains a child Element.</LI>
+</UL>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1007282"></A>&lt;<SPAN CLASS="XML-Tag">
+Parent</SPAN>
+&gt;&lt;<SPAN CLASS="XML-Tag">
+Child</SPAN>
+/&gt;&lt;/<SPAN CLASS="XML-Tag">
+Parent</SPAN>
+&gt;</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998705"></A><SPAN CLASS="Bold">
+Child</SPAN>
+: An Element that resides directly in the parent Element.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998709"></A><SPAN CLASS="Bold">
+Sibling</SPAN>
+: An Element that resides in the same parent Element as another child Element.</LI>
+</UL>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1003675"></A>&lt;<SPAN CLASS="XML-Tag">
+Any</SPAN>
+&gt;&lt;<SPAN CLASS="XML-Tag">
+Sibling</SPAN>
+/&gt;&lt;<SPAN CLASS="XML-Tag">
+Sibling</SPAN>
+/&gt;&lt;/<SPAN CLASS="XML-Tag">
+Any</SPAN>
+&gt;</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998714"></A><SPAN CLASS="Bold">
+Descendent</SPAN>
+: An Element that is a child or a child of a child, etc.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998718"></A><SPAN CLASS="Bold">
+Ancestor</SPAN>
+: An Element that is a parent or a parent’s parent, etc.</LI>
+</UL>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1049069"></A>&lt;<SPAN CLASS="XML-Tag">
+Ancestor</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1049075"></A>&lt;<SPAN CLASS="XML-Tag">
+Any</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1049079"></A>&lt;<SPAN CLASS="XML-Tag">
+Descendent</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1049083"></A>&lt;<SPAN CLASS="XML-Tag">
+MoreAnys</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1049093"></A>&lt;<SPAN CLASS="XML-Tag">
+Descendent</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1049097"></A>&lt;/<SPAN CLASS="XML-Tag">
+MoreAnys</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1049101"></A>&lt;/<SPAN CLASS="XML-Tag">
+Any</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1049105"></A>&lt;/<SPAN CLASS="XML-Tag">
+Ancestor</SPAN>
+&gt;</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998723"></A><SPAN CLASS="Bold">
+Root</SPAN>
+: The single Element that contains all other Elements as descendents.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998727"></A><SPAN CLASS="Bold">
+Leaf</SPAN>
+: Element without further child Elements.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-998731"></A><SPAN CLASS="Bold">
+Branch</SPAN>
+: An intermediate Node in a hierarchy that contains at least one child Node. A branch is never a leaf.</LI>
+</UL>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998735"></A>2.1.1.5	Links</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998738"></A>There are two kinds of links in JDF: internal links and external links. Internal links are pointers to information that is located elsewhere in a JDF document. The data that is referenced by the link is located in a target Element. External links are used to reference objects that are outside of the JDF document itself, such as content files or color profiles. These objects are linked using standard URLs (Uniform Resource Locators).</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998745"></A>JDF makes extensive use of links in order to reuse information that is relevant in more than one context of the Job. The same target can be referenced by multiple links. However, no link references more than one target.</P>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-998748"></A>2.1.2	Workflow Component Roles</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998751"></A>The four components to create, modify, route, interpret and execute a JDF Job are known as Agents, Controllers, Devices and Machines. Overseeing the workflow created by these components is MIS or Management Information Systems. These five aspects of a JDF workflow are described in the sections that follow.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1005513"></A>By defining these terms, this specification does not intend to dictate to manufacturers how to design, build or implement a JDF/JMF system. The intention is to name the component mechanisms needed for the interaction of actual components in a workflow during the course of a JDF Job. In practice, it is very likely that individual system components will include a mixture of the capabilities described in the following sections. For example, many Controllers are also Agents.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1005514"></A>2.1.2.1	Machines<SPAN CLASS="AnchorCalloutTeal">
+<IMG SRC="Overview_of_JDF-2.png" ALIGN="RIGHT">
+</SPAN>
+</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998816"></A>A Machine is any part of the workflow system designed to execute a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. Most often, this term refers to a piece of physical equipment, such as a press or a binder, but it can also refer to the software components used to run a particular Machine. Computerized workstations, whether run through automated batch files or controlled by a human worker, are also considered Machines if they have no JDF interface.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998843"></A>2.1.2.2	Devices</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998846"></A>The most basic function of a <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+ is to execute the information specified by an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> and routed by a <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A>. Devices <SPAN CLASS="ConformWord">
+must</SPAN>
+ be able to execute <A HREF="Introduction.html#0_50778" CLASS="XRef">JDF Node</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and initiate <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_16395" CLASS="XRef">Machine</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ that can perform the physical execution. The communication between Machines and <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ is not defined in this specification. <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ <SPAN CLASS="ConformWord">
+may</SPAN>
+, however, support <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> messaging in order to interact dynamically with Controllers.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998863"></A>2.1.2.3	Agents</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998866"></A><A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ in a JDF workflow are responsible for writing JDF. An <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> has the ability to create a <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A>, to add <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ to an existing Job, and to modify existing Nodes. <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ can be software Processes, automated tools or even text editors. Anything that can be used in composing JDF can be considered an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1049268"></A>Actual implementations of <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ or <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ will most often be able to modify JDF. These system components have <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> properties in the terms of this specification.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1049269"></A>2.1.2.4	Controllers <SPAN CLASS="AnchorCalloutPurple">
+<IMG SRC="Overview_of_JDF-3.png" ALIGN="RIGHT">
+</SPAN>
+ </H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1086878"></A><A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ create and modify JDF information; Controllers route it to the appropriate <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+. The  minimum requirement of a Controller is that it can initiate <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+ on at least one Device, or at least one other Slave Controller that will then initiate <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+ on a Device.  In other words, a Controller is not a Controller if it has nothing to control. In some cases, a pyramid-like hierarchy of Controllers can be built, with Controllers at the top of the pyramid controlling a series of lower-level Controllers at the bottom.  The lowest-level Controllers in the pyramid, however, <SPAN CLASS="ConformWord">
+must</SPAN>
+ have <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+ capability.  Therefore, Controllers <SPAN CLASS="ConformWord">
+must</SPAN>
+ be able to work in collaboration with other Controllers.  In order to communicate with one another, and to communicate with <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+, Controllers <SPAN CLASS="ConformWord">
+must</SPAN>
+ support the JDF file-exchange protocol and <SPAN CLASS="ConformWord">
+may</SPAN>
+ support <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A>. Controllers can also determine Process planning and scheduling data, such as Process times and planned production amounts..</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1086894"></A>2.1.2.5	Management Information Systems--MIS </H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1077876"></A>The overseer of the relationships between all of the units in a workflow is known as Management Information Systems or MIS. MIS is, in effect, a macrocosmic <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A>. It is responsible for dictating and monitoring the execution of all of the diverse aspects of the workflow. To do this, it <SPAN CLASS="ConformWord">
+must</SPAN>
+ remain in contact with the actual production facilities. This can be accomplished either in real time using <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> messaging or post facto using the audit records within JDF.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1077883"></A>To allow MIS to communicate effectively with the other workflow components, JDF supplies what is essentially a messenger service, in the form of JMF, to run between MIS and production. This format is equipped with a variety of Message types, ranging from simple, unidirectional notification to queries and even commands. System designers have a great deal of flexibility in terms of how they choose to use the messaging architecture, so that they can tailor the Processes to the capabilities of the existing workflow mechanism. The <SPAN CLASS="Link-internal">
+<A HREF="Overview_of_JDF.html#0_24675" CLASS="XRef">Figure 2-1</A></SPAN>
+ depicts how various communication threads can run between MIS and production.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998961"></A>JDF also provides system components the ability to collect performance data for each <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>, which can then be passed on to a Job-tracking system for use by the MIS system. These data can be derived from the Messages that the Controller receives or from the audit records in the Job. (For more information on audits, see <EM CLASS="crossRef">
+<A HREF="Structure_of_JDF_Nodes.html#0_62876" CLASS="XRef">Section 3.11.3, “Abstract Audit”</A></EM>
+.) Alternatively, the completed Job can be passed to the Job accounting system, which examines the audit records to determine the costs of all the Processes in the Job.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998976"></A>2.1.2.6	System Interaction</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998979"></A>An example of the interaction and hierarchical structure of the components considered in the preceding sections is shown in the following figure. Single arrows indicate unidirectional communication channels and double arrows indicate bidirectional communication.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020152"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042026"></A>Figure 2-1: <A NAME="0_24675"></A>Example of JDF and JMF workflow interactions </H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1042023"></A><IMG SRC="Overview_of_JDF-4.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-998995"></A>2.2	<A NAME="0_43331"></A>JDF Workflow</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998998"></A>JDF does not dictate that a workflow be constructed in any pre-specified way for it to be usable. On the contrary, its flexibility has allowed JDF to model existing custom solutions for the graphic arts, as well as those yet to be imagined. JDF is equally as effective with a simple system using a single Controller-Agent and Device as it is with a completely automated industrial press workflow with integrated pre- and postpress operations.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999007"></A>Because of workflow system construction in today’s industry, the principal subsection procedures of a printing Job--prepress, press and postpress--remain largely disconnected from one another. JDF provides a solution for this lack of unity. With JDF, a print Job becomes an interconnected workflow that runs from Job submission through trapping, RIPing, filmmaking, platemaking, inking, printing, cutting, binding, and sometimes even through shipping. JDF enables an architecture that defines the Process necessary to produce each intended result and identifies the Elements necessary to complete the Processes. All Processes are separated into Nodes, and the entire Job is represented by a tree of these Nodes. All of the Nodes taken together represent a desired printed product.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999014"></A>Each individual Node in JDF is defined in terms of inputs and outputs. The inputs for a Node consist of the Resources it uses and the parameters that control it. For example, the inputs in a Node describing the Process parameters for imaging the cover of a brochure might include requirements for trapping, RIPing, and imposing the image. The output of such a Node might be a raster image.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1007500"></A>Unless they represent the absolutely final product, Resources that are produced by one Node are in turn modified or consumed by subsequent Nodes. Therefore, the output of the Process described above--the raster image--becomes one of the Input Resources for a Node describing the printing Process for the brochure. This Input Resource would be joined in the Node by other Input Resources such as inks, press Sheets, plates and a set of parameters that indicate how many Sheets to produce. The output would be a set of printed press Sheets that in turn would become the Input Resource for postpress operations such as folding and cutting. And so on until the brochure is completed.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999026"></A>This system of interlinked Nodes effectively unites the prepress, press and postpress Processes, and even extends the notion of where a Job begins. A JDF Job, like any printing Job, is defined by the original intent for the end product. The difference between a JDF Job and a generic printing Job, however, is that JDF allows the entire Job, from prepress through postpress, to be defined up front. All of the Resources and Processes necessary to produce an entire printed product can be identified and organized into Nodes before the first prepress Process is set in motion. Furthermore, the Product Intent specification can be extremely broad or extremely detailed, or anywhere in between. This means that a Job can be so well defined before production begins that the system administrator only has to set the wheels in motion and let the Job run its course. It might also mean that the person submitting the Job has only a general idea of what the final product will look like and that modifications to the intent will be made along the way, depending on the course of the Job.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999035"></A>For example, the person submitting the Job specification for the brochure described above might know that she wants 400 copies, that she wants it done on a four-color press with no spot colors, that the cover will be on a particular paper stock and the contents on another, that the binding will be stapled, and that she requires the Job in two weeks. Another person might know only that he wants the pages she’s designed to be put into some sort of brochure form, although she doesn’t know exactly what. Either person’s request can be translated into a JDF Product Intent Node that will eventually branch into a tree structure describing each Process needed to complete the brochure. In the first example, the prepress, press and postpress Processes will be well defined from the start. In the second example, information will be included as it is gathered. The following sections describe the way in which Nodes can combine to form a Job.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999042"></A>2.2.1	Job Structure </H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1013776"></A>JDF Jobs consist of a set of Nodes that specify the production steps needed to create the desired end product. The Nodes, in addition to being connected through inputs and outputs, are arranged in a hierarchical tree structure. <A HREF="Overview_of_JDF.html#0_60940" CLASS="XRef">Figure 2-2</A>, below, shows a simple example of a tree of Nodes.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1086939"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042054"></A>Figure 2-2: <A NAME="0_60940"></A>JDF tree structure</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1013785"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-5.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1013867"></A>The following table provides a hypothetical breakdown of the Nodes in the tree structure shown above.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1086943"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1013792"></A>Table 2-1: Information contained in JDF Nodes, arranged numerically (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013796"></A>Node #</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013798"></A>Meaning</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013800"></A>1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013802"></A>Entire book</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013804"></A>2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013806"></A>Cover</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013808"></A>3</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013810"></A>Contents</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013812"></A>4</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013814"></A>Production of cover</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013816"></A>5</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013818"></A>Production of all color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013820"></A>6</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013822"></A>Production of all black-and-white pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013824"></A>7</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013826"></A>Cover production Process 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013828"></A>8</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013830"></A>Cover production Process 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013832"></A>9</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013834"></A>Cover production Process 3</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013836"></A>10</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013838"></A>Cover Finishing Process</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013840"></A>11</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013842"></A>RIPing for color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013844"></A>12</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013846"></A>Plate making for color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013848"></A>13</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013850"></A>Printing for color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013852"></A>14</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013854"></A>Color page finishing Process</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013856"></A>15</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013858"></A>RIPing for black-and-white pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013860"></A>16</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013862"></A>Printing for black-and-white pages on a digital press</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013864"></A>17</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013866"></A>Binding Process for entire book</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999264"></A>The uppermost Nodes (1, 2, &amp; 3) represent the Product Intent in general terms. These Nodes describe the desired end product and the components of that product, which, in this case, are the cover and the content pages. As the tree branches, the information contained within the Nodes gets more specific. Each Subnode defines a component of the product that has a unique set of characteristics, such as different media, different physical size or different color requirements. The Nodes that occur in the middle of the tree (4, 5, &amp; 6) represent the groups of Processes needed to produce each component of the product. The Nodes that occur closest to the bottom of the tree (7-17) each represent individual Processes.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999271"></A>In this example, there are two subcomponents of the Job, the cover and the contents, each with distinct requirements. Therefore, two Nodes--Nodes 2 and 3--are needed to describe the elements of the Job in broad terms. Within the content pages there are some black-and-white pages and some color pages. Since fabricating each requires a different set of Processes, further branching is necessary. The following table arranges the Nodes in groups according to the Processes they will be executing.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1020185"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1005655"></A>Table 2-2: Information contained in JDF Nodes, arranged by group (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1011509"></A>Process Group</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1011511"></A>Node #</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1011513"></A>Meaning</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="2" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-999303"></A>Entire book</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999305"></A>1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999307"></A>Entire book</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999317"></A>17</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999319"></A>Assemble book</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="6" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-999326"></A>Cover</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999328"></A>2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999330"></A>Cover</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999340"></A>4</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999342"></A>Cover assembly Processes</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999351"></A>7</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999353"></A>Cover production Process 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999362"></A>8</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999364"></A>Cover production Process 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999373"></A>9</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999375"></A>Cover production Process 3</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999384"></A>10</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999386"></A>Finishing Process for cover</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-999393"></A>Contents</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999395"></A>3</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999397"></A>Contents</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="5" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-999407"></A>Color Pages</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999409"></A>5</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999411"></A>Production of all color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999421"></A>11</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999423"></A>RIPing for color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999432"></A>12</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999434"></A>Plate making for color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999443"></A>13</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999445"></A>Printing for color pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999454"></A>14</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999456"></A>Color page finishing</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="3" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-999463"></A>Black-and-white pages</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999465"></A>6</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999467"></A>Production of all black-and-white pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999477"></A>15</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999479"></A>RIPing for black-and-white pages</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999488"></A>16</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-999490"></A>Printing for black-and-white pages on a digital press</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1086981"></A>This hierarchical structure is discussed in more detail in the following section.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1090888"></A>2.3	Hierarchical Tree Structure and Networks in JDF<SPAN CLASS="AnchorCalloutTeal">
+<IMG SRC="Overview_of_JDF-6.png" ALIGN="RIGHT">
+</SPAN>
+</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1090898"></A>Output Resources of JDF Nodes are often the Input Resources for other JDF Nodes. Nodes <SPAN CLASS="ConformWord">
+must not</SPAN>
+ begin executing until all of their Input Resources are complete and available. This means that the Nodes execute in a well defined sequence. One Process follows the next. For example, a Process for making plates will produce, as Output Resources, press plates that are needed by a <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_ConventionalPrinting" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ConventionalPrinting</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999565"></A>In the hierarchical organization of a JDF Job, Nodes that occur higher in the tree represent high level, more abstract operations, while lower Nodes represent more detailed Process operations. More specifically, Nodes near the top of the tree can represent only intent regarding the components or assemblies that make up the product, while the leaf Nodes provide explicit instructions to a Device to perform some operation. <A HREF="Overview_of_JDF.html#0_21377" CLASS="XRef">Figure 2-3</A> shows an example of a hierarchical structure.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020181"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042094"></A>Figure 2-3: <A NAME="0_21377"></A>Example of a hierarchical tree structure of JDF Nodes</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1005710"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-7.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999587"></A>In addition to the hierarchical structure of the Node tree, sibling Nodes are linked in a Process chain by their respective Resources. In other words, an Output Resource of one Node ends up representing the Input Resource of the following Node (as represented in <A HREF="Overview_of_JDF.html#0_77228" CLASS="XRef">Figure 2-4</A>). This interrelationship is known as Resource linking.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999595"></A>With Resource linking, complex networks of Processes can be formed. The <SPAN CLASS="Link-internal">
+<A HREF="Overview_of_JDF.html#0_77228" CLASS="XRef">Figure 2-4</A></SPAN>
+ displays an alternate representation of the Process described in <A HREF="Overview_of_JDF.html#0_21377" CLASS="XRef">Figure 2-3</A>. Whereas <A HREF="Overview_of_JDF.html#0_21377" CLASS="XRef">Figure 2-3</A> represents a hierarchical structure, <A HREF="Overview_of_JDF.html#0_77228" CLASS="XRef">Figure 2-4</A> shows an example of the linking mechanism of the same Job. Note that there are many possible Process networks that map to the same Node hierarchy.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020175"></A> &nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042116"></A>Figure 2-4: <A NAME="0_77228"></A>Example of a Process chain linked by Input Resources and Output Resources</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1005739"></A><IMG SRC="Overview_of_JDF-8.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999615"></A>In the JDF specification, the linking of Processes is not explicitly specified. In other words, Nodes are not arranged in an abstract chronology, dictating, for example, that the trapping Node is to come before the RIPing Node. Rather, the links are implicitly defined in the exchange of input and Output Resources. Resource dependencies form a network of Processes, and the sequence of Process execution--that is, the routing of Processes--can be derived from these dependencies. One Resource dependency might have the possibility of multiple Process routing scenarios. It is up to MIS to define the proper solution to meet local constraints. Note that the type of exchange Resource effectively limits the Processes that can be linked. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999618"></A>The Agent or set of Agents employed by MIS to write the JDF Job <SPAN CLASS="ConformWord">
+must</SPAN>
+ be familiar with these local constraints. They <SPAN CLASS="ConformWord">
+must</SPAN>
+ take into account factors such as the control abilities of the applications that complete the prepress Processes, the transport distance between the prepress facility and the press itself, the load capabilities of the press, and the time requirements for the Job. All of the factors taken together build a Process network representing the workflow of production. To aid Agents in defining the workflow, JDF provides the following four different and fundamental types of Process routing mechanisms, which can be combined in any way.</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-999627"></A>1	<SPAN CLASS="Bold">
+Serial processing</SPAN>
+ that is subsequent production and consumption of Resources as a whole, represented by a simple Process chain</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-999631"></A>2	<SPAN CLASS="Bold">
+Overlapping processing</SPAN>
+ that is simultaneous production and consumption of Resources by pipes</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-999635"></A>3	<SPAN CLASS="Bold">
+Parallel processing</SPAN>
+ that involves the splitting and sharing of Resources</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-999639"></A>4	<SPAN CLASS="Bold">
+Iterative processing</SPAN>
+ that is a circular or back and forward processing for developing Resources by repeated activity</LI>
+</OL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999643"></A>These mechanisms are discussed in greater detail in <A HREF="Life_Cycle_of_JDF.html#0_46654" CLASS="XRef">Section 4.3, “Execution Model”</A>.</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-999649"></A>2.4	Role of Messaging in JDF</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999652"></A>Whereas JDF provides a container to define a Job, the Job Messaging Format -- JMF, defined in Chapter 5, <A HREF="JMF.html#0_45514" CLASS="XRef"><SPAN CLASS="Link-internal">
+JDF Messaging with the Job Messaging Format</SPAN>
+</A> -- provides a method to generate snapshots of Job status and to interactively manipulate elements of a workflow system.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999657"></A>JMF is specifically designed for communication between the production system Controller and the work centers or Devices with which it interacts. It provides a series of queries and commands to check the status of Processes and, in some cases, to dictate the next course of action. For example, the <A HREF="JMF.html#0_12961" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownDevices</SPAN>
+</A> Query Message allows the Controller to determine what Processes can be executed by a particular Device or Work Center. These Processes are likely to be determined at system initialization time. The <A HREF="JMF.html#0_SubmitQueueEntry" CLASS="XRef"><SPAN CLASS="Link-Message">
+SubmitQueueEntry</SPAN>
+</A> Message provides a means for the Controller to submit a Job ticket to individual work centers or Devices. And the <A HREF="JMF.html#0_81092" CLASS="XRef"><SPAN CLASS="Link-Message">
+Status</SPAN>
+</A>, <A HREF="JMF.html#0_Resource" CLASS="XRef"><SPAN CLASS="Link-Message">
+Resource</SPAN>
+</A> and <A HREF="JMF.html#0_Occupation" CLASS="XRef"><SPAN CLASS="Link-Message">
+Occupation</SPAN>
+</A> Messages allow the Device or Work Center to communicate quasi real-time<A HREF="#0_pgfId-1001100" CLASS="footnote">1</A> processing status to a Controller. Depending on the system configuration, the Message handler can choose to record status changes in the history logs. The status Message allows the Controller to request status updates from the Controller.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999676"></A>JDF also provides mechanisms to define recipients for individual Messages on a Node-by-Node basis. This enables Controllers to define the aspects and the parts of Jobs that they want to track. For more information about messaging, see <A HREF="JMF.html#0_45514" CLASS="XRef">Chapter 5, “JDF Messaging with the Job Messaging Format”</A>.</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-999687"></A>2.5	<A NAME="0_46028"></A>Coordinate Systems in JDF</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999690"></A>This chapter explains how coordinate systems are defined and used in JDF. It also shows how the matrices are used to specify a certain transformation and how these matrices can be used to transform coordinates from one coordinate system to another coordinate system. In addition, it clarifies the meaning of terms like <SPAN CLASS="Enumeration">
+Top</SPAN>
+ or <SPAN CLASS="Enumeration">
+Left</SPAN>
+. </P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999697"></A>2.5.1	Introduction</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1029232"></A>During the production of a printed product it often happens that one object is placed onto another object. During imposition, for example, single pages and marks (like cut, fold or register marks) are placed on a Sheet surface. Later, at image setting, a bitmap containing one separation of a Sheet surface is imposed on a piece of film. In a following step, the film is copied to a printing plate which then is mounted on a press. In postpress, the printed Sheets are gathered on a pile. The objects involved in all these operations have a certain orientation and size when they are put together. In addition, one has to know where to place one object on the other.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024253"></A>The position of an object (e.g., a cut mark) on a plane can be specified by a two-dimensional coordinate. Every digital or <A HREF="Structure_of_JDF_Nodes.html#0_71333" CLASS="XRef"><SPAN CLASS="Link-Element">
+Physical Resource</SPAN>
+</A> has its own coordinate system. The origin of each coordinate system is located in the lower left corner, (i.e., the X coordinate increases from left to the right, and the Y coordinate increases from bottom to top.)</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1029226"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042127"></A>Figure 2-5: Standard coordinate system</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029223"></A><IMG SRC="Overview_of_JDF-9.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1029227"></A>Each page contained in a PDL file has its own coordinate system. In the same way a piece of film or a Sheet of paper has a coordinate system. Within JDF each of these coordinate systems is called <SPAN CLASS="Italics">
+Resource coordinate system</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1028949"></A>If a Process has more than one Input Resource with a coordinate system, it is necessary to define the relationship between these input coordinate systems. Therefore, a <SPAN CLASS="Italics">
+process coordinate</SPAN>
+ system is defined for each Process. JDF tickets are written assuming an idealized Device that is defined in the process coordinate system for each Process that the Device implements. A real Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ map the idealized process coordinate system to its own device coordinate system. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1008745"></A>The coordinate systems of the Input Resources are mapped to the process coordinate system. Each of those mappings is defined by a transformation matrix, which specifies how a coordinate (or position) of the input coordinate system is transformed into a coordinate of the target coordinate system. (See <A HREF="Overview_of_JDF.html#0_98594" CLASS="XRef">Section 2.5.6, “Homogeneous Coordinates”</A> for mathematical background information.) In the same way, the mapping from the process coordinate system to the coordinate systems of the Output Resources is defined. The process coordinate system is also used to define the meaning of terms like <SPAN CLASS="Enumeration">
+Top</SPAN>
+ or <SPAN CLASS="Enumeration">
+Left</SPAN>
+, which are used as values for parameters in some Processes.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020197"></A> &nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1045690"></A>Figure 2-6: Relation between Resource and process coordinate systems</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1007696"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-10.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1005829"></A>It is important that no implicit transformations (such as rotations) are assumed if the dimensions of the Input Resources of a Process do not match each other. Instead every transformation (e.g., a rotation) <SPAN CLASS="ConformWord">
+must</SPAN>
+ be specified explicitly by using the <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ or <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute of the corresponding <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>. The same applies also to other areas in JDF, (e.g., the <A HREF="Processes.html#0_LayoutPreparation" CLASS="XRef"><SPAN CLASS="Link-Process">
+LayoutPreparation</SPAN>
+</A> Process). A <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_FitPolicy" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+FitPolicy</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Element MAY define a policy for implied transformations.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1024289"></A>2.5.1.1	<A NAME="0_91511"></A>Source Coordinate Systems</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024290"></A>The source coordinate system of a referenced object is defined by the lower left of the object. X values are increasing to the right, Y values are increasing towards the top. In case of PDF the lower left of the MediaBox defines the lower left of the source coordinate system.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024291"></A>Note: some object coordinate systems have optional tags to indicate internal transformations. These internal transformations MUST be applied prior to defining the source coordinate system; for instance:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024292"></A>PDF: the rotation defined by the Rotate key MUST be applied. The lower left of the MediaBox of the rotated PDF defines the lower left of the PDF source coordinate system.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024352"></A>TIFF: the orientation defined by the Orientation tag MUST be applied. The lower left of the rotated TIFF defines the lower left of the TIFF source coordinate system.</LI>
+</UL>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1006072"></A>2.5.2	<A NAME="0_80322"></A>Coordinates and Transformations</H3>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1006073"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1014766"></A>Table 2-3: Data types for specifying coordinates and transformation (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1006079"></A>Data Type</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1006081"></A>Example</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006083"></A>XYPair</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006085"></A><SPAN CLASS="Enumeration">
+”612 792”</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006087"></A>double</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006089"></A><SPAN CLASS="Enumeration">
+”20.7”</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006091"></A>rectangle</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006093"></A><SPAN CLASS="Enumeration">
+”0 0 595 843”</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006173"></A>(Order of elements is “lower-left x, lower-left y, upper-right x, upper-right y” or “left, bottom, right, top”.)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006095"></A>Matrix</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006097"></A><SPAN CLASS="Enumeration">
+”1 0 0 1 30.0 235.3”</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006177"></A>(The ordering of elements is defined in <A HREF="Overview_of_JDF.html#0_98594" CLASS="XRef">Section 2.5.6, “Homogeneous Coordinates”</A>.)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006099"></A>Orientation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006101"></A><SPAN CLASS="Enumeration">
+”Rotate180”</SPAN>
+ or <SPAN CLASS="Enumeration">
+”Flip90”</SPAN>
+</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1003901"></A>Coordinates and transformations are used throughout JDF, to include:</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999809"></A>Intent Resources, such as:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-999812"></A><A HREF="Resources.html#0_LayoutIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+LayoutIntent</SPAN>
+</A>: specifies size of finished product</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-999815"></A><A HREF="Resources.html#0_MediaIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+MediaIntent</SPAN>
+</A>: specifies size of media</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1013908"></A><A HREF="Resources.html#0_InsertingIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+InsertingIntent</SPAN>
+</A>: specifies rotation and offset of inserts</LI>
+</UL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1013909"></A>Process Resources, such as:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-999824"></A><A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A>: specifies coordinate system</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-999827"></A><A HREF="Resources.html#0_CutBlock" CLASS="XRef"><SPAN CLASS="Link-Resource">
+CutBlock</SPAN>
+</A>: specifies cut block coordinate system</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-999830"></A><A HREF="Resources.html#0_FoldingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FoldingParams</SPAN>
+</A>: specifies folding operations	</LI>
+</UL>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999836"></A>2.5.3	<A NAME="0_91653"></A>Coordinate Systems of Resources and Processes</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999839"></A>Each physical Input Resource, (e.g., <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A>), of a Process has, by default, its own coordinate system, which is called the “resource coordinate system.” The coordinate system also implies a specific orientation of that <A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"><SPAN CLASS="Link-Element">
+Resource</SPAN>
+</A>. On the other hand there is a coordinate system that is used to define various Process-specific parameters. This coordinate system is called a target or process coordinate system.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1011116"></A>It is often necessary to change the orientation of an Input Resource before executing the operation. This can be done by specifying a transformation matrix. It is stored in the<SPAN CLASS="Attribute">
+ Orientation</SPAN>
+ or <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute of the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>. This provides the ability to specify different matrices for the individual Resources of a Process. For details on <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements, see the section <SPAN CLASS="Link-internal">
+<A HREF="Structure_of_JDF_Nodes.html#0_43124" CLASS="XRef">Section 3.9, “ResourceLinkPool and ResourceLink”</A></SPAN>
+.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1011120"></A>2.5.3.1	Coordinate Systems of Combined Processes</H4>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1010584"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1049540"></A>Combined Processes (see <SPAN CLASS="Link-internal">
+<A HREF="Structure_of_JDF_Nodes.html#0_86485" CLASS="XRef">Section 3.3.3, “Combined Process Nodes”</A></SPAN>
+) combine multiple individual Processes and thus also the Processes respective coordinate systems. The process coordinate systems are not modified by the fact that the Processes are part of a Combined Process, they are identical to the process coordinate systems of the Processes, were they defined in a linked chain of individual Processes. The coordinate systems of an exchange Resource can be modified by defining it as a pipe by specifying <A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"><SPAN CLASS="Link-Element">
+Resource</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+PipeID</SPAN>
+ and <A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"><SPAN CLASS="Link-Element">
+Resource</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+PipeProtocol </SPAN>
+= <SPAN CLASS="Enumeration">
+&quot;Internal&quot;</SPAN>
+. (See <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_62562" CLASS="XRef">Section 4.3.3, “Overlapping Processing Using Pipes”</A></SPAN>
+) and linking it to the Combined Process with both an input and output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>. The Input <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> defines the coordinate transformation using the standard <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ or <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ Attributes. <A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"><SPAN CLASS="Link-Element">
+Resource</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Status</SPAN>
+ of the exchange Resource <SPAN CLASS="ConformWord">
+must</SPAN>
+ be <SPAN CLASS="Enumeration">
+”Complete”</SPAN>
+. </P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1049559"></A>2.5.3.2	Coordinate System Transformations</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1008799"></A>The following table shows some matrices that can be used to change the orientation of a <A HREF="Structure_of_JDF_Nodes.html#0_71333" CLASS="XRef"><SPAN CLASS="Link-Element">
+Physical Resource</SPAN>
+</A>. Most of the transformations require the X- (<SPAN CLASS="NoSpell">
+w</SPAN>
+) and the Y-dimension (<SPAN CLASS="NoSpell">
+h</SPAN>
+) of the <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> as specified in the <SPAN CLASS="Attribute">
+Dimensions</SPAN>
+ Attribute. If these are unknown, it is still possible to define a general orientation in the <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ Attribute of the <SPAN CLASS="Element">
+<A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+. The naming of the Attribute reflects the state of the Resource and not necessarily the order of applied transformations. Thus <SPAN CLASS="Enumeration">
+Rotate90</SPAN>
+ and <SPAN CLASS="Enumeration">
+Flip90</SPAN>
+ specify that the original Y axis as represented by the spine is on top. In the case of <SPAN CLASS="Enumeration">
+Flip90</SPAN>
+, the <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> is additionally flipped front to back.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1023399"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1023427"></A>Table 2-4: <A NAME="0_63588"></A>Matrices and Orientation values for describing the orientation of a Component </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023435"></A>Orientation Value</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023437"></A>Source</P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023438"></A>Coordinate System</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023440"></A>Transformation Matrix </P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023441"></A>According Action</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023443"></A>Target</P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023444"></A>Coordinate System</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023446"></A><SPAN CLASS="Enumeration">
+Rotate0</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023451"></A><IMG SRC="Overview_of_JDF-11.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023453"></A> 1   0   0   1   0   0 </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023454"></A>No Action</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023459"></A> <IMG SRC="Overview_of_JDF-12.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023461"></A><SPAN CLASS="Enumeration">
+Rotate90</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023466"></A><IMG SRC="Overview_of_JDF-13.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023468"></A> 0   1   -1   0  <SPAN CLASS="Bold-italics">
+ </SPAN>
+<SPAN CLASS="NoSpell">
+h</SPAN>
+   0 </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023469"></A>90˚ Counterclockwise Rotation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023474"></A> <IMG SRC="Overview_of_JDF-14.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023476"></A><SPAN CLASS="Enumeration">
+Rotate180</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023481"></A><IMG SRC="Overview_of_JDF-15.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023483"></A> -1   0   0   -1   <SPAN CLASS="NoSpell">
+w</SPAN>
+<SPAN CLASS="Bold-italics">
+   </SPAN>
+<SPAN CLASS="NoSpell">
+h</SPAN>
+<SPAN CLASS="Bold-italics">
+ </SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023484"></A>180˚ Rotation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023489"></A> <IMG SRC="Overview_of_JDF-16.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023491"></A><SPAN CLASS="Enumeration">
+Rotate270</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023496"></A><IMG SRC="Overview_of_JDF-17.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023498"></A> 0   -1   1   0   0   <SPAN CLASS="NoSpell">
+w</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023499"></A>270˚ Counterclockwise Rotation</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023504"></A> <IMG SRC="Overview_of_JDF-18.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023506"></A><SPAN CLASS="Enumeration">
+Flip0</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023511"></A><IMG SRC="Overview_of_JDF-19.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023513"></A> 1   0   0   -1   0   <SPAN CLASS="NoSpell">
+h</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023514"></A>Flip around X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023519"></A> <IMG SRC="Overview_of_JDF-20.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023521"></A><SPAN CLASS="Enumeration">
+Flip90</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023526"></A><IMG SRC="Overview_of_JDF-21.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023528"></A> 0   -1   -1   0   <SPAN CLASS="NoSpell">
+h</SPAN>
+<SPAN CLASS="Bold-italics">
+   </SPAN>
+<SPAN CLASS="NoSpell">
+w</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023529"></A>90˚ Counterclockwise Rotation + Flip around X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023534"></A> <IMG SRC="Overview_of_JDF-22.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023536"></A><SPAN CLASS="Enumeration">
+Flip180</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023541"></A><IMG SRC="Overview_of_JDF-23.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023543"></A> -1   0   0   1   <SPAN CLASS="NoSpell">
+w</SPAN>
+<SPAN CLASS="Bold-italics">
+ </SPAN>
+  0 </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023544"></A>180˚ Rotation + Flip around X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023549"></A> <IMG SRC="Overview_of_JDF-24.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023551"></A><SPAN CLASS="Enumeration">
+Flip270</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023556"></A><IMG SRC="Overview_of_JDF-25.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023558"></A> 0   1   1   0   0   0 </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023559"></A>270˚ Counterclockwise<BR>
+Rotation + Flip around X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023564"></A> <IMG SRC="Overview_of_JDF-26.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1023147"></A>2.5.4	<A NAME="0_39306"></A>Product Example: Simple Brochure</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1087034"></A>To illustrate the use of coordinate systems in JDF, a simple saddle stitched brochure with eight pages is used as an example in <A HREF="Overview_of_JDF.html#0_70825" CLASS="XRef">Table 2-5</A>. The brochure is printed on two Sheets with front and back. The two Sheets are then folded, collected on a saddle, and saddle stitched. Finally the brochure is cut with a three-side trimmer.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1087257"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1087045"></A>Table 2-5: <A NAME="0_70825"></A>JDF Processes used for the production of the simple brochure </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1087051"></A> Input Resources</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1087053"></A>Process</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1087055"></A>Output Resources</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087060"></A><A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A><BR>
+<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (<SPAN CLASS="RPUsage">
+Document</SPAN>
+)<BR>
+<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (<SPAN CLASS="RPUsage">
+Marks</SPAN>
+)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087071"></A><A HREF="Processes.html#0_Imposition" CLASS="XRef"><SPAN CLASS="Link-Process">
+Imposition</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087076"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087081"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087086"></A><A HREF="Processes.html#0_Interpreting" CLASS="XRef"><SPAN CLASS="Link-Process">
+Interpreting</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087091"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (of interpreted PDL data)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087096"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (of interpreted PDL data)<BR>
+<A HREF="Resources.html#0_Media" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Media</SPAN>
+</A><BR>
+<A HREF="Resources.html#0_RenderingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RenderingParams</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087107"></A><A HREF="Processes.html#0_Rendering" CLASS="XRef"><SPAN CLASS="Link-Process">
+Rendering</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087112"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (of rasterized byte maps)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087117"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (of rasterized byte maps)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087122"></A><A HREF="Processes.html#0_Screening" CLASS="XRef"><SPAN CLASS="Link-Process">
+Screening</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087127"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (of bit maps)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087132"></A><A HREF="Resources.html#0_ImageSetterParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ImageSetterParams</SPAN>
+</A><BR>
+<SPAN CLASS="Resource">
+<A HREF="Resources.html#0_Media" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+Media</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+ (of film)<BR>
+<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (of bit maps)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087143"></A><A HREF="Processes.html#0_ImageSetting" CLASS="XRef"><SPAN CLASS="Link-Process">
+ImageSetting</SPAN>
+</A> (to film)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087148"></A><A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+</A> (of film)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087153"></A><A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+</A> (of film)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087158"></A><A HREF="Processes.html#0_ContactCopying" CLASS="XRef"><SPAN CLASS="Link-Process">
+ContactCopying</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087163"></A><A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+</A> (of plate)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087168"></A><A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+</A> (of plate)<BR>
+<A HREF="Resources.html#0_ConventionalPrintingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ConventionalPrintingParams</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087176"></A><A HREF="Processes.html#0_43648" CLASS="XRef"><SPAN CLASS="Link-Process">
+ConventionalPrinting</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087181"></A><A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087186"></A><A HREF="Resources.html#0_FoldingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FoldingParams</SPAN>
+</A><BR>
+<A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087194"></A><A HREF="Processes.html#0_Folding" CLASS="XRef"><SPAN CLASS="Link-Process">
+Folding</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087199"></A><A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087204"></A><A HREF="Resources.html#0_CollectingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+CollectingParams</SPAN>
+</A><BR>
+<A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087212"></A><A HREF="Processes.html#0_Collecting" CLASS="XRef"><SPAN CLASS="Link-Process">
+Collecting</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087217"></A><A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087222"></A><A HREF="Resources.html#0_SaddleStitchingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+SaddleStitchingParams</SPAN>
+</A><BR>
+<A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087230"></A><A HREF="Processes.html#0_SaddleStitching" CLASS="XRef"><SPAN CLASS="Link-Process">
+SaddleStitching</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087235"></A><A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087240"></A><A HREF="Resources.html#0_TrimmingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+TrimmingParams</SPAN>
+</A><BR>
+<A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087248"></A><A HREF="Processes.html#0_Trimming" CLASS="XRef"><SPAN CLASS="Link-Process">
+Trimming</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1087253"></A><A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> </P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1087254"></A>At imposition, the layout describes a Signature with two Sheets, each having a front and a back surface. On each surface, two content objects, (i.e., pages, are placed.)</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020223"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042148"></A>Figure 2-7: Layout of simple saddle stitched brochure (product example)</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006651"></A><IMG SRC="Overview_of_JDF-27.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024146"></A>Each surface has its own coordinate system, in which a surface contents box is defined. This coordinate system is also referred to as the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> coordinate system because the Signature, Sheet and surface elements are defined within the hierarchy of the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> Resource by means of Partitioning. The content objects are placed by specifying the CTM Attribute relative to the surface contents box. If the position of an object within a page is given in the page coordinate system, this coordinate can be transformed into a position within the surface coordinate system:</P>
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1042189"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042188"></A>Figure 2-8: <A NAME="0_78028"></A>Equation for Surface Coordinate System Transformations</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1042200"></A><SPAN CLASS="NoSpell">
+PSurface = PPage X CTMPage +</SPAN>
+ [SurfaceContentsBoxXlowerleft SurfaceContentsBoxYlowerleft 0]</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1042191"></A>Please note, that the width and height of the surface NEED NOT be known at this point.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020219"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042159"></A>Figure 2-9: Surface coordinate system</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006756"></A><IMG SRC="Overview_of_JDF-28.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000639"></A>The Sheet coordinate system is identical with the coordinate system of the front surface. This means that no transformation is needed to convert a coordinate from one system to the other. Instead, the coordinates are valid (and equal) in both coordinate systems. The relation between the coordinate system of the front and the back surfaces depends on the value of the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+LockOrigins </SPAN>
+Attribute. The Sheet coordinate system is also identical with the Signature coordinate system, which in turn is identical with the coordinate system of the <A HREF="Processes.html#0_Imposition" CLASS="XRef"><SPAN CLASS="Link-Process">
+Imposition</SPAN>
+</A> Process.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000654"></A>The Output Resource of the <A HREF="Processes.html#0_Imposition" CLASS="XRef"><SPAN CLASS="Link-Process">
+Imposition</SPAN>
+</A> Process is a run list. Each Element of the run list has its own coordinate system, which is identical with the corresponding Signature coordinate system. The interpretation, rendering and screening Processes do not affect the coordinate systems. This means that the coordinate systems of all these Processes are identical.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000659"></A>At the image setting Process, the digital data is set onto film. The process coordinate system is defined by the media Input Resource. The width and height of the media are defined in the <A HREF="Resources.html#0_Media" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Media</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Dimension</SPAN>
+ Attribute. The position of the Signatures (as defined by the run list Input Resource) on the film is defined by the <A HREF="Resources.html#0_ImageSetterParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ImageSetterParams</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+CenterAcross</SPAN>
+ Attribute.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1029989"></A>The coordinate system of the conventional and digital printing Processes is called <SPAN CLASS="Italics">
+press coordinate system</SPAN>
+. It is defined by the press: the X-axis is parallel to the press cylinder, and the Y-axis is going along the paper travel. Y = 0 is at begin of print, X = 0 is at the left edge of the maximum print area. The Front side of the press Sheet faces up   towards the positive Z-axis. The relationship between the layout coordinate system and the press coordinate system is defined by the <SPAN CLASS="Attribute">
+CTM</SPAN>
+ Attributes of the corresponding <A HREF="Resources.html#0_60864" CLASS="XRef"><SPAN CLASS="Link-Element">
+TransferCurveSet</SPAN>
+</A> Elements located in the <A HREF="Resources.html#0_TransferCurvePool" CLASS="XRef"><SPAN CLASS="Link-Resource">
+TransferCurvePool</SPAN>
+</A>.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1030004"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042214"></A>Figure 2-10: Press coordinate system used for Sheet-Fed Printing</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1030001"></A><IMG SRC="Overview_of_JDF-29.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1000685"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042226"></A>Figure 2-11: <A NAME="0_99031"></A>Press coordinate system used for Web Printing</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006828"></A><IMG SRC="Overview_of_JDF-30.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000697"></A>The output of the printing Process (e.g., a pile of printed Sheets) is described as a <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> Resource in JDF. The coordinate system of the printed Sheets is defined by the transformation given in the <A HREF="Resources.html#0_60864" CLASS="XRef"><SPAN CLASS="Link-Element">
+TransferCurveSet</SPAN>
+</A>/<SPAN CLASS="Attribute">
+CTM</SPAN>
+ Attribute (where <SPAN CLASS="Attribute">
+Name</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Paper&quot;</SPAN>
+).</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000710"></A>Each of the two Sheets is folded in a separate folding Process. In this example, the orientation of the Sheets is not changed before folding. This can be specified by setting the <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ Attribute of the Input Resource to <SPAN CLASS="Enumeration">
+Rotate0</SPAN>
+ or by setting the <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute to <SPAN CLASS="Enumeration">
+&quot;1 0 0 1 0 0&quot;</SPAN>
+. The folding Process changes the coordinate system. In this example the origin of the coordinate system is moved from the lower left corner of the flat Sheet (input) to the lower left corner of the folded Sheet (output), (i.e., it is moved to the right by half of the Sheet width.)</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020234"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042237"></A>Figure 2-12: Coordinate systems after Folding (product example)</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006955"></A><IMG SRC="Overview_of_JDF-31.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1028194"></A>The two folded Sheets are now collected. In this example, the orientation of the folded Sheets is not changed before collecting. This can be specified by setting the <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ Attribute of the Input Resource to <SPAN CLASS="Enumeration">
+Rotate0</SPAN>
+ or by setting the <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute to <SPAN CLASS="Enumeration">
+&quot;1 0 0 1 0 0&quot;</SPAN>
+. The collecting Process does not change the coordinate system.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1020238"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042249"></A>Figure 2-13: <A NAME="0_60346"></A>Coordinate systems after Collecting (product example)</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1006961"></A><IMG SRC="Overview_of_JDF-32.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000759"></A>The two collected and folded Sheets are now trimmed to the final size of the simple brochure. In this example, the orientation of the collected and folded Sheets is not changed before trimming. This can be specified by setting the <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ Attribute of the Input Resource to <SPAN CLASS="Enumeration">
+Rotate0</SPAN>
+ or by setting the <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute to <SPAN CLASS="Enumeration">
+&quot;1 0 0 1 0 0&quot;</SPAN>
+. The trimming Process changes the coordinate system: the origin is moved to the lower left corner of the trimmed product.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000772"></A>In looking at the whole production Process, a series of coordinate systems is being involved. The relationship between the separate coordinate systems is specified by transformation matrices. This allows transformation of a coordinate from one coordinate system to another coordinate system. As an example, note the position of the title on page 1 of the product example in <A HREF="Overview_of_JDF.html#0_60346" CLASS="XRef">Figure 2-13</A>. By applying the first transformation, this position can be converted into a position of the surface (or layout) coordinate system. This position can then be converted into the paper coordinate system by applying (in this order) the <SPAN CLASS="Enumeration">
+Film</SPAN>
+, <SPAN CLASS="Enumeration">
+Plate</SPAN>
+, <SPAN CLASS="Enumeration">
+Press</SPAN>
+ and <SPAN CLASS="Enumeration">
+Paper</SPAN>
+ transformations stored in the <A HREF="Resources.html#0_TransferCurvePool" CLASS="XRef"><SPAN CLASS="Link-Resource">
+TransferCurvePool</SPAN>
+</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000789"></A>From now on in the workflow, every Process is using components as input and Output Resources. The <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> of each input and output component contains a <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute or an<SPAN CLASS="Attribute">
+ Orientation</SPAN>
+ Attribute. The <SPAN CLASS="Attribute">
+Transformation</SPAN>
+ Attribute is to be used if the width and the height of the component are known or a non-orthogonal rotation is needed. Otherwise the <SPAN CLASS="Attribute">
+Orientation</SPAN>
+ Attribute is to be used to specify a change of the orientation, (e.g., an orthogonal rotation).</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000802"></A>Since the folding Process changes the coordinate system depending on the fold type, the transformations specified in the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements are not sufficient to transform a position given in the paper coordinate system to a position in the coordinate system of the folded Sheets, (i.e., the resource coordinate system of the output component of the folding Process.) An additional transformation depending on the fold type and details of the individual folds has to be applied. The corresponding transformation matrix is not explicitly specified in the JDF file.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000811"></A>The collecting Process does not change the coordinate system. Therefore, only the transformations specified in the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements of the input and Output Resources, (i.e., components, have to be applied.)</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000814"></A>The trimming Process again changes the coordinate system depending on the trimming parameters. Therefore, a transformation depending on the trimming parameters has to be applied in addition to the transformations specified in the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements. The matrix for the additional transformation (depending on the trimming parameters) is not explicitly specified in the JDF file.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000817"></A>After having applied all transformations mentioned above, the resulting coordinate specifies the position of the title in the coordinate system of the final product.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1011378"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042303"></A>Figure 2-14: Examples of Transformations and Coordinate Systems in JDF.</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1007037"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-33.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000831"></A>2.5.5	General Rules</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000834"></A>The following rules summarize the use of coordinate systems in JDF. </P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000837"></A>Every individual piece of material (film, plate, paper) has a <SPAN CLASS="Italics">
+resource coordinate system</SPAN>
+.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000842"></A>Every Process has a <SPAN CLASS="Italics">
+process coordinate system</SPAN>
+.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000847"></A>Terms like <SPAN CLASS="Italics">
+top</SPAN>
+, <SPAN CLASS="Italics">
+left</SPAN>
+, etc., are used with respect to the <SPAN CLASS="Italics">
+process coordinate system</SPAN>
+ in which they are used and are independent of orientation, (i.e., <SPAN CLASS="Italics">
+landscape</SPAN>
+ or <SPAN CLASS="Italics">
+portrait)</SPAN>
+, and the human reading direction.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000862"></A>The coordinate system of each input component is mapped to the process coordinate system.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000865"></A>The coordinate system might change during processing, (e.g., in <A HREF="Processes.html#0_Folding" CLASS="XRef"><SPAN CLASS="Link-Process">
+Folding</SPAN>
+</A>).</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000870"></A>The description of a product in JDF is independent of particular Machines used to produce this product. When creating setup information for an individual Machine, it might be necessary to compensate for certain Machine characteristics. At printing, for example, it might be necessary to rotate a landscape Job because the printing width of the press is not large enough to run the Job without rotation.</LI>
+</UL>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000873"></A>2.5.6	<A NAME="0_98594"></A>Homogeneous Coordinates</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1028593"></A>A convenient way to calculate coordinate transformations in a two-dimensional space is by using so-called homogeneous coordinates. With this concept, a two-dimensional coordinate P=(x,y) is expressed in vector form as [x y 1]. The third element “1” is added to allow the vector being multiplied with a transformation matrix describing scaling, rotation, and translation in one shot. Although this only requires a 2*3 matrix (e.g., as it is used in PostScript) in practice 3*3 matrices are much more common, because they can be concatenated very easily. Thus, the third column is set to <SPAN CLASS="Enumeration">
+&quot;0 0 1&quot;</SPAN>
+.</P>
+<P CLASS="AnchorTabularData">
+<A NAME="0_pgfId-1020267"></A>&nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111294"></A><IMG SRC="Overview_of_JDF-34.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111296"></A>would in JDF be written as <SPAN CLASS="Enumeration">
+&quot;a b c d e f&quot;</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111298"></A>Some often used transformation matrices are</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111305"></A><IMG SRC="Overview_of_JDF-35.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111307"></A>identity transformation</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111312"></A><IMG SRC="Overview_of_JDF-36.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111314"></A>translation by dx, dy</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111319"></A><IMG SRC="Overview_of_JDF-37.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111321"></A>rotation by ϕ degrees counter-clockwise</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1011621"></A>Transforming a point</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1004557"></A>In this example, the position <SPAN CLASS="NoSpell">
+P</SPAN>
+ given in the coordinate system A is transformed to a position of coordinate system B. The relationship between the two coordinate systems is given by the transformation matrix <SPAN CLASS="Italics">
+Trf</SPAN>
+</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1011394"></A>.</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1042315"></A>Figure 2-15: Transforming a point (example)</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1007120"></A><IMG SRC="Overview_of_JDF-38.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="AnchorTabularData">
+<A NAME="0_pgfId-1004562"></A> &nbsp;</P>
+<TABLE>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111234"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-39.png">
+</DIV>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111236"></A><SPAN CLASS="NoSpell">
+PA = (30, 100)</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111241"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-40.png">
+</DIV>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111243"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111248"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-41.png">
+</DIV>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111250"></A>in JDF, Trf is written as <SPAN CLASS="Enumeration">
+&quot;1 0 0 1 40 60&quot;</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111255"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Overview_of_JDF-42.png">
+</DIV>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1111257"></A><SPAN CLASS="NoSpell">
+P</SPAN>
+B = (70, 160)</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+</DIV>
+<HR>
+<DIV CLASS="footnotes">
+<DIV CLASS="footnote">
+<P CLASS="Footnote">
+<SPAN CLASS="footnoteNumber">
+1.</SPAN>
+<A NAME="0_pgfId-1001100"></A>Quasi real-time is the time-scale typically associated with production control systems. JMF is not intended for true real-time, lower level Machine control.</P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

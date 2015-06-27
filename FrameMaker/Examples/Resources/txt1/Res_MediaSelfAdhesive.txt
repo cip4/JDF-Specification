@@ -1,0 +1,23 @@
+﻿<JDF ID="ID" Type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="ID34" Version="1.4">
+	<ResourcePool>
+		<Media Class="Consumable" ID="M123456" ProductID="7890123" Status="Available" 
+				DescriptiveName="40# Fasson coated label stock" Dimension="1134.0 0" 
+				MediaType="SelfAdhesive" MediaUnit="Roll" Thickness="1000.0" 
+				Weight="150">
+			<MediaLayers>
+				<!-- Front -->
+				<Media DescriptiveName="Antique Cream Smooth WS IL" MediaType="Paper" 
+						Weight="90"/>
+				<!-- Glue -->
+				<GlueLine DescriptiveName="Permanent 91A" AreaGlue="true" 
+						GlueType="Hotmelt" GlueBrand="Uhu"/>
+				<!-- Back -->
+				<Media DescriptiveName="Blue Glassine 50" MediaType="Paper" Weight="50"/>
+			</MediaLayers>
+		</Media>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<MediaLink Usage="Input" rRef="M123456"/> 
+	</ResourceLinkPool>
+</JDF>

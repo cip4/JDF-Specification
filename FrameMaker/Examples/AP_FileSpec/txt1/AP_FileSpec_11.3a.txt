@@ -1,0 +1,56 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> 
+		<FileSpec Class="Parameter" Status="Available" ID="ID_005_TAR" 
+				MimeType="Tar" URL="ftp://www.any.com/e.tar"/>
+		<FileSpec Class="Parameter" Status="Available" ID="ID_005_ZIP_C"
+				MimeType="application/zip" URL="c.zip">
+			<Container> 
+				<FileSpecRef rRef="ID_005_TAR"/>
+			</Container> 
+		</FileSpec>
+		<FileSpec Class="Parameter" Status="Available" ID="ID_005_ZIP_D" 
+				MimeType="application/zip" URL="d.zip">
+			<Container> 
+				<FileSpecRef rRef="ID_005_TAR"/>
+			</Container> 
+		</FileSpec>
+		<FileSpec Class="Parameter" Status="Available" ID="ALL_FILES" 
+				Compression="Deflate" MimeType="application/pdf" 
+				PartIDKeys="PartVersion DocIndex">
+			<!-- English Files -->
+			<FileSpec PartVersion="English">
+				<!-- English File A -->
+				<FileSpec DocIndex="1" URL="a.pdf">
+					<Container> 
+						<FileSpecRef rRef="ID_005_ZIP_C"/>
+					</Container> 
+				</FileSpec>
+				<!-- English File B -->
+				<FileSpec DocIndex="2" URL="a.pdf">
+					<Container> 
+						<FileSpecRef rRef="ID_005_ZIP_D"/>
+					</Container> 
+				</FileSpec>
+			</FileSpec>
+			<!-- German Files -->
+			<FileSpec PartVersion="German">
+				<!-- German File A -->
+				<FileSpec DocIndex="1" URL="b.pdf">
+					<Container> 
+						<FileSpecRef rRef="ID_005_ZIP_C"/>
+					</Container> 
+				</FileSpec>
+				<!-- German File B -->
+				<FileSpec DocIndex="2" URL="b.pdf">
+					<Container> 
+						<FileSpecRef rRef="ID_005_ZIP_D"/>
+					</Container> 
+				</FileSpec>
+			</FileSpec>
+		</FileSpec>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<FileSpecLink Usage="Input" rRef="ALL_FILES"/>
+	</ResourceLinkPool>
+</JDF>

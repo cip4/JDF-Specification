@@ -1,0 +1,17 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<Media Class="Consumable" Dimension="72 72" ID="MediaID" PartIDKeys="Location" 
+				Status="Available">
+			<Comment Name="foo">bar</Comment>
+			<Media Location="desk"/>
+			<Media Location="drawer"/>
+		</Media>
+		<Layout Class="Parameter" ID="Sheet" Status="Available">
+			<MediaRef rRef="MediaID"/>
+		</Layout>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutLink Usage="Input" rRef="Sheet"/>
+	</ResourceLinkPool>
+</JDF>

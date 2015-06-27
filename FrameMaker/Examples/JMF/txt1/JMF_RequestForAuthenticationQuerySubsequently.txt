@@ -1,0 +1,9 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" DeviceID="A3 Printer"
+		SenderID="MIS master A" TimeStamp="2000-07-25T12:32:48+02:00"
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Query ID="M004" Type="RequestForAuthentication"
+			xsi:type="QueryRequestForAuthentication">
+		<AuthenticationQuParams AuthenticationType="AsClient"/>
+	</Query>
+</JMF>

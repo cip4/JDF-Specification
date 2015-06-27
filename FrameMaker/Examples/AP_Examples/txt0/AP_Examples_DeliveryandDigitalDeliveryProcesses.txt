@@ -1,0 +1,160 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		DescriptiveName="ArtDeliveryIntent translated to Delivery and 
+				DigitalDelivery processes" ID="ID000" 
+		Status="InProgress" Type="Product" JobPartID="ID879" Version="1.4" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ResourcePool>
+		<NodeInfo ID="N01" Class="Parameter" Status="Available" 
+				JobPriority="100"/>
+		<CustomerInfo ID="Cus01" Class="Parameter" Status="Available" 
+				CustomerJobName="Job title ...">
+			<Contact ContactTypes="Customer">
+				<Address City="Alta" PostalCode="36930" Region="AV" 
+						Street="123 Gibrish Street"/>
+				<Person FamilyName="Spencer" FirstName="Ron"/>
+				<ComChannel ChannelType="Phone" ChannelUsage="DayTime" 
+						Locator="tel:+44-019-1234-4567"/>
+				<ComChannel ChannelType="Fax" 
+						ChannelUsage="Business DayTime NightTime" 
+						Locator="tel:+44-019-1234-4567"/>
+			</Contact>
+		</CustomerInfo>
+		<ArtDeliveryIntent Class="Intent" ID="Link002" 
+				ReturnList="DigitalMedia" Status="Available">
+			<ArtHandling DataType="EnumerationSpan" 
+					Range="Return ReturnWithProduct"/>
+			<ReturnMethod DataType="NameSpan" Preferred="FedEx"/>
+			<ArtDelivery ArtDeliveryType="DigitalNetwork">
+				<Contact ContactTypes="Delivery">
+					<ComChannel ChannelType="WWW" ChannelTypeDetails="Form" 
+							Locator="http://www.server.com/uploader.aspx"/>
+				</Contact>
+				<RunList>
+					<LayoutElement>
+						<FileSpec 
+							URL="file:///D:/WINNT/Profiles/23423/Desktop/test.pdf"/>
+					</LayoutElement>
+				</RunList>
+			</ArtDelivery>
+		</ArtDeliveryIntent>
+		<Contact Class="Parameter" ContactTypes="Delivery" ID="Shipping001"
+				Status="Available">
+			<Address City="Alta" PostalCode="36930" Region="AV" 
+					Street="123 Gibrish Street"/>
+			<Person FamilyName="Jones" FirstName="Bill"/>
+			<ComChannel ChannelType="Phone" ChannelTypeDetails="Mobile" 
+					Locator="tel:+44-078-1234-4567"/>
+		</Contact>
+		<Component Amount="500" Class="Quantity" ComponentType="FinalProduct"
+				ID="ItemFinal" Status="Unavailable"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ArtDeliveryIntentLink Usage="Input" rRef="Link002"/>
+		<ComponentLink Amount="500" Usage="Output" rRef="ItemFinal"/>
+		<NodeInfoLink Usage="Input" rRef="N01"/>
+		<CustomerInfoLink Usage="Input" rRef="Cus01"/>
+	</ResourceLinkPool>
+	<JDF ID="J171373" Status="Completed" Type="DigitalDelivery" 
+			JobPartID="ID877" >
+		<ResourcePool>
+			<CustomerInfo ID="Cus02" Class="Parameter" Status="Available" 
+						CustomerJobName="Job title ...">
+				<CustomerMessage Language="FR" MessageEvents="Delivered" 
+						ShowList="StartTime EndTime Error">
+					<ComChannel ChannelType="Email" 
+							Locator="mailto:sender@Email.com"/>
+					<ComChannel ChannelType="InstantMessaging" 
+							ChannelTypeDetails="Yahoo"
+							Locator="bill_jones"/>
+				</CustomerMessage>
+			</CustomerInfo>
+			<RunList Class="Parameter" ID="FileListLink1" Status="Available">
+				<LayoutElement>
+					<FileSpec 
+						URL="file:///D:/WINNT/Profiles/23423/Desktop/test.pdf"/>
+				</LayoutElement>
+			</RunList>
+			<DigitalDeliveryParams Class="Parameter" 
+					DigitalDeliveryDirection="Push" 
+					DigitalDeliveryProtocol="FTP" 
+					ID="DestinationLink" Method="WebServer" 
+					Status="Available">
+				<Contact ContactTypes="Delivery">
+					<ComChannel ChannelType="WWW" ChannelTypeDetails="Form" 
+							Locator="http://www.server.com/uploader.aspx"/>
+				</Contact>
+				<Contact ContactTypes="Sender">
+					<ComChannel ChannelType="Email" 
+						Locator="mailto:sender@Email.com"/>
+				</Contact>
+			</DigitalDeliveryParams>
+			<RunList Class="Parameter" ID="FileListLink2" Status="Available">
+				<Disposition MinDuration="P30D"/>
+				<LayoutElement>
+					<FileSpec Compression="Deflate" URL="test.pdf">
+						<Container>
+							<FileSpec MimeType="application/zip" 
+								URL="file://network_share/uploaded%20files/test.zip"/>
+						</Container>
+					</FileSpec>
+				</LayoutElement>
+			</RunList>
+		</ResourcePool>
+		<ResourceLinkPool>
+			<DigitalDeliveryParamsLink Usage="Input" rRef="DestinationLink"/>
+			<RunListLink Usage="Input" rRef="FileListLink1"/>
+			<CustomerInfoLink Usage="Input" rRef="Cus02"/>
+			<RunListLink Usage="Output" rRef="FileListLink2"/>
+		</ResourceLinkPool>
+		<AuditPool>
+			<PhaseTime DescriptiveName="Upload of Job 171373 to Server" 
+				End="2003-01-08T12:27:56Z" Start="2003-01-08T12:27:40Z" 
+				Status="InProgress"
+				TimeStamp="2003-01-08T12:27:56Z"/>
+			<Created Author="Server uploader 1.51" TimeStamp="2003-01-08T12:27:40Z"/>
+			<ProcessRun End="2003-01-08T12:27:56Z" EndStatus="Completed" 
+				Start="2003-01-08T12:27:40Z" TimeStamp="2003-01-08T12:27:56Z"/>
+		</AuditPool>
+	</JDF>
+	<JDF DescriptiveName="The Return of product and digital media with intermediate 
+					materials" 
+			ID="X00000" Status="Waiting" Type="Delivery" JobPartID="ID878" >
+		<ResourceLinkPool>
+			<ComponentLink Usage="Output" rRef="Item001"/>
+			<DigitalMediaLink Usage="Output" rRef="Item002"/>
+			<DeliveryParamsLink Usage="Input" rRef="Delivery001"/>
+		</ResourceLinkPool>
+		<ResourcePool>
+			<RunList Class="Parameter" ID="FileListLink0" PartIDKeys="Run"
+					Status="Available">
+				<RunList Run="1">
+					<LayoutElement>
+						<FileSpec URL="./ForReturn/Intermediate/test.pdf"/>
+					</LayoutElement>
+				</RunList>
+				<RunList Run="2">
+					<LayoutElement>
+						<FileSpec URL="./ForReturn/Final/test.pdf"/>
+					</LayoutElement>
+				</RunList>
+			</RunList>
+			<Component Amount="500" Class="Quantity" ComponentType="FinalProduct"
+					ID="Item001" ProductID="AG5678" Status="Available" Unit="1"/>
+			<DigitalMedia Amount="1" Capacity="700" Class="Handling" ID="Item002"
+					MediaLabel="TempResults" MediaType="CD" Status="Available">
+				<RunListRef rRef="FileListLink0"/>
+			</DigitalMedia>
+			<DeliveryParams Class="Parameter" ID="Delivery001" Status="Available">
+				<Drop Method="FedEx" ServiceLevel="Ground" TrackingID="1234567890Z">
+					<ContactRef rRef="Shipping001"/>
+					<DropItem Amount="500" Unit="1">
+						<ComponentRef rRef="Item001"/>
+					</DropItem>
+					<DropItem Amount="1">
+						<DigitalMediaRef rRef="Item002"/>
+					</DropItem>
+				</Drop>
+			</DeliveryParams>
+		</ResourcePool>
+	</JDF>
+</JDF>

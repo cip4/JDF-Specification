@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" Activation="Active" ID="JDF_c"
+JobID="Geef62b72-0f6e-4195-a412-aaa3123d200b" Status="Waiting" Type="Product" 
+Version="1.4" JobPartID="345">
+<ResourceLinkPool>
+<ComponentLink Usage="Output" rRef="ID125"/>
+</ResourceLinkPool>
+<ResourcePool>
+<RunList Class="Parameter" DocCopies="1" FirstPage="0" ID="RunList4" 
+IsPage="true" NDoc="1" PageCopies="1" Status="Available">
+<LayoutElement ElementType="Document" HasBleeds="false" ID="LayoutElement_1" 
+IgnorePDLCopies="true" IgnorePDLImposition="true" IsPrintable="true">
+<FileSpec AppOS="Windows" Compression="None" Disposition="Retain" 
+ID="FileSpec_9" URL="cid:Asset01@hostname.com" 
+UserFileName="Christmas Cards"/>
+</LayoutElement>
+</RunList>
+<Component ID="ID125" Class="Quantity" Status="Unavailable" 
+ComponentType="Sheet" />
+</ResourcePool>
+<JDF ID="JDF-3" Status="Waiting" Type="DigitalPrinting" JobPartID="400">
+<ResourceLinkPool>
+<DigitalPrintingParamsLink Usage="Input" rRef="ID123"/>
+<RunListLink Usage="Input" rRef="RunList4"/>
+<ComponentLink Usage="Output" rRef="ID125"/>
+</ResourceLinkPool>
+<ResourcePool>
+<DigitalPrintingParams ID="ID123" Class="Parameter" Status="Available" />
+</ResourcePool>
+</JDF>
+</JDF>

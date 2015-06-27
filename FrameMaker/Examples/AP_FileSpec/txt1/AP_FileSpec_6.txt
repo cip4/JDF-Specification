@@ -1,0 +1,18 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> 
+		<FileSpec Class="Parameter" ID="F1" Status="Available"
+				Compression="Deflate" MimeType="application/pdf" URL="a.pdf">
+			<Container>
+				<FileSpec Compression="Base64" MimeType="application/zip" URL="b.zip">
+					<Container>
+						<FileSpec MimeType="Base64" URL="ftp://www.any.com/b.mme"/>
+					</Container>
+				</FileSpec>
+			</Container>
+		</FileSpec>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<FileSpecLink Usage="Input" rRef="F1"/>
+	</ResourceLinkPool>
+</JDF>

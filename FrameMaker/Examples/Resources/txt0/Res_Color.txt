@@ -1,0 +1,19 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> >
+		<Color Class="Parameter" ID="C000" Status="Available" CMYK="0.2 0.3 0.4 0.5" 
+				Density="3.14" Lab="20. 30. 40." MediaType="Coated" 
+				Name="PANTONE Deep Blue" sRGB="0.6 0.7 0.9">
+			<TransferCurve Curve="0 0 .5 .4 1 1" Separation="Cyan"/>
+			<TransferCurve Curve="0 0 .5 .6 1 1" Separation="Magenta"/>
+			<TransferCurve Curve="0 0 1 1" Separation="Yellow"/>
+			<TransferCurve Curve="0 0 1 1" Separation="Black"/>
+			<TransferCurve Curve="0 0 1 1" Separation="sRed"/>
+			<TransferCurve Curve="0 0 1 1" Separation="sGreen"/>
+			<TransferCurve Curve="0 0 1 1" Separation="sBlue"/>
+		</Color>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ColorLink Usage="Input" rRef="C000"/>
+	</ResourceLinkPool>
+</JDF>

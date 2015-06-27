@@ -1,0 +1,16 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<Preview Class="Parameter" ID="P1" PartIDKeys="PreviewType Separation" 
+				URL="File:///aaa.pdf" Status="Available">
+			<Preview PreviewType="Separation">
+				<Preview Separation="Cyan"/>
+				<Preview Separation="Magenta"/>
+			</Preview>
+			<Preview PreviewType="ThumbNail"/>
+		</Preview>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<PreviewLink Usage="Input" rRef="P1"/>
+	</ResourceLinkPool>
+</JDF>

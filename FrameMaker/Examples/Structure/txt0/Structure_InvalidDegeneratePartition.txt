@@ -1,0 +1,10 @@
+﻿<ResourcePool> 
+	<Component Class="Quantity" ID="c12" PartIDKeys="SheetName" SheetName="Sheet 1"
+			Status="Available" ComponentType="Sheet"/>
+	<Component Class="Quantity" ID="c22" PartIDKeys="SheetName" SheetName="Sheet 2"
+			Status="Available" ComponentType="Sheet"/>
+	<FoldingParams Class="Parameter" ID="fold2" NoOp="true" PartIDKeys="SheetName"
+			Status="Available">
+		<FoldingParams NoOp="false" />
+	</FoldingParams>
+</ResourcePool> 

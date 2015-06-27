@@ -1,0 +1,25 @@
+﻿<JDF ID="ID" Type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="ID34" Version="1.4">
+	<ResourcePool>
+		<Media Class="Consumable" ID="M123456" ProductID="B190Y180D1050x120" 
+				Status="Available" DescriptiveName="B Flute 190Y 180D 1050x1210" 
+				Dimension="1050.0 120.0" MediaType="CorrugatedBoard" 
+				MediaTypeDetails="SingleWall" MediaUnit="Sheet" Thickness="2382.0" 
+				InsideLoss="1000.0" OutsideGain="1380.0" Weight="600">
+			<MediaLayers>
+				<!-- FrontLiner -->
+				<Media DescriptiveName="190gsm clay coated" MediaType="Paper" 
+						Weight="190" FrontCoatings="Coated"/>
+				<!-- Flute -->
+				<Media DescriptiveName="Flute" MediaType="Paper" Weight="180" 
+						FluteDirection="ShortEdge" Flute="B" MediaTypeDetails="Flute"/>
+				<!-- BackLiner -->
+				<Media DescriptiveName="180gsm white top" MediaType="Paper" 
+						Weight="180"/>
+			</MediaLayers>
+		</Media>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<MediaLink Usage="Input" rRef="M123456"/> 
+	</ResourceLinkPool>
+</JDF>

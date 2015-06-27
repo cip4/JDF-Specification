@@ -1,0 +1,17 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<Layout Class="Parameter" ID="L1" Status="Available">
+			<MarkObject Anchor="BottomCenter" CTM="1 0 0 1 0 0">
+				<DeviceMark FontSize="8" Font="MySlugLineFont"/>   
+				<!--Result: Gender=male -->
+				<JobField JobFormat="Gender=%s" JobTemplate="GeneralID:Gender"/>
+				<RefAnchor Anchor="BottomCenter" AnchorType="Sibling" rRef="l000006"/>
+				<MarkActivation Context="CollectIndex" Index="0"/>
+			</MarkObject>
+		</Layout>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutLink Usage="Input" rRef="L1"/>
+	</ResourceLinkPool>
+</JDF>

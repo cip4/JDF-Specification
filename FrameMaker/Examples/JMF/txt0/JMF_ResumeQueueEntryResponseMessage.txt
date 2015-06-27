@@ -1,0 +1,11 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="A3 Printer"
+		TimeStamp="2000-07-25T12:32:48+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Response ID="M109" Type="ResumeQueueEntry" xsi:type="ResponseResumeQueueEntry" 
+			refID="M009">
+		<Queue DeviceID="A3 Printer" Status="Full">
+			<QueueEntry JobID="job-0032" QueueEntryID="job-0032" Status="Running"/>
+		</Queue>
+	</Response>
+</JMF>

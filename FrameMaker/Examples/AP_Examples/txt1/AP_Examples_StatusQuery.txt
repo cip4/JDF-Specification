@@ -1,0 +1,10 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="JMFClient" 
+		TimeStamp="2000-11-07T16:02:09+01:00" MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<Query ID="Q0011" Type="Status" xsi:type="QueryStatus">
+		<Subscription URL="http://123.123.123.123/message/recipient">
+			<ObservationTarget ObservationPath="//*/@*"/>
+		</Subscription>
+		<StatusQuParams JobDetails="Brief"/>
+	</Query>
+</JMF>

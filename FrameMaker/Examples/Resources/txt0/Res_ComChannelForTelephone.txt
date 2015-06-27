@@ -1,0 +1,11 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> >
+		<ComChannel Class="Parameter" ID="cc000004" ChannelType="Phone" 
+				ChannelTypeDetails="Mobile" ChannelUsage="Business"
+				Locator="tel:+44-07808-907-919" Status="Available"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ComChannelLink Usage="Input" rRef="cc000004"/>
+	</ResourceLinkPool>
+</JDF>

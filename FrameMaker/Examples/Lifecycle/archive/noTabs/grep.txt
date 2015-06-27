@@ -1,0 +1,3 @@
+Lifecycle_PrintTalk.txt: BusinessID="RFQ_ID" Currency="EUR" Estimate="false" 
+Lifecycle_PrintTalk.txt: Expires="2002-04-15T1700- 0800" 
+Lifecycle_PrintTalk.txt: RequestDate="2002-04-05T1700-0800">

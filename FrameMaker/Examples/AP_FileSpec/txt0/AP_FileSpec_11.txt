@@ -1,0 +1,22 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> 
+		<FileSpec Class="Parameter" Status="Available" ID="ID_004_TAR" MimeType="Tar" 
+				URL="ftp://www.any.com/c.tar"/>
+		<FileSpec Class="Parameter" Status="Available" ID="ID_004_ZIP" 
+				MimeType="application/zip" URL="b.zip">
+			<Container>
+				<FileSpecRef rRef="ID_004_TAR"/>
+			</Container>
+		</FileSpec>
+		<FileSpec Class="Parameter" Status="Available" ID="C_FILE" 
+				Compression="Deflate" MimeType="application/pdf" URL="a.pdf">
+			<Container>
+				<FileSpecRef rRef="ID_004_ZIP"/>
+			</Container>
+		</FileSpec>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<FileSpecLink Usage="Input" rRef="C_FILE"/>
+	</ResourceLinkPool>
+</JDF> 

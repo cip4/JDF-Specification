@@ -1,0 +1,3 @@
+diff all txt files
+JMF_CustomQuery.txt
+JMF_CustomQueryForIfraTrack.txt

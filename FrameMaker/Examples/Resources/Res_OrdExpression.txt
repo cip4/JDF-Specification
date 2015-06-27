@@ -1,0 +1,6 @@
+Front:
+OrdExpression = “2*s”							0	2	4	6
+OrdExpression = “4*((n+3)/4) –(s*2)-1”							15	13	11	9
+Back:
+OrdExpression = “2*s+1”							1	3	5	7
+OrdExpression = “4*((n+3)/4) –(s*2)-2”							14	12	10	8

@@ -1,0 +1,43 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<ExposedMedia Class="Handling" ID="L1" PartIDKeys="SheetName Side Separation" 
+				Status="Available">
+			<Media Class="Consumable" MediaType="Film"/>
+			<ExposedMedia SheetName="S1">
+				<ExposedMedia Side="Front">
+					<ExposedMedia ProductID="1" Separation="Cyan"/>
+					<ExposedMedia ProductID="2" Separation="Magenta"/>
+					<ExposedMedia ProductID="3" Separation="Yellow"/>
+					<ExposedMedia ProductID="4" Separation="Black"/>
+				</ExposedMedia>
+				<!-- Master partition that is referenced by an Identical Element  -->
+				<ExposedMedia Side="Back">
+					<ExposedMedia ProductID="5" Separation="Cyan"/>
+					<ExposedMedia ProductID="6" Separation="Magenta"/>
+					<ExposedMedia ProductID="7" Separation="Yellow"/>
+					<ExposedMedia ProductID="8" Separation="Black"/>
+				</ExposedMedia>
+			</ExposedMedia>
+			<ExposedMedia SheetName="S2">
+				<ExposedMedia Side="Front">
+					<ExposedMedia ProductID="9" Separation="Cyan"/>
+					<ExposedMedia ProductID="10" Separation="Magenta"/>
+					<ExposedMedia ProductID="11" Separation="Yellow"/>
+					<ExposedMedia ProductID="12" Separation="Black"/>
+				</ExposedMedia>
+				<!-- Logical partition with an Identical Element  -->
+				<ExposedMedia Side="Back">
+					<Identical>
+						<Part SheetName="S1" Side="Back"/>
+					</Identical>
+				</ExposedMedia>
+			</ExposedMedia>
+		</ExposedMedia>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ExposedMediaLink Usage="Input" rRef="L1">
+			<Part SheetName="S2" Side="Back" Separation="Black"/>
+		</ExposedMediaLink>
+	</ResourceLinkPool>
+</JDF>

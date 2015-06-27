@@ -1,0 +1,10 @@
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:   si = sc@SectionIndex
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:   if ( si > maxSectionIndexSeen)
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:      for index from maxSectionIndexSeen to si - 1:
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:         maxSectionPages.append(0) 
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:      maxSectionIndexSeen = si
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:   for page in sc@FrontPages
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:      maxSectionPages[si] = 	max(maxSectionPages[si],page)
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:   for page in sc@BackPages
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:      maxSectionPages[si] = max(maxSectionPages[si], page) 
+Res_PseudoCodeToGeneratePageCountFromSignatureCellElements.txt:   totalPages += 1 + maxSectionPages[sectionIndex]

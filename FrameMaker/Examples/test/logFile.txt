@@ -1,0 +1,6 @@
+dod2.doc has XMLAttrValueStrong
+testFind1.doc has XMLAttrValueStrong
+testFind1.doc has XMLAttrValueStrong
+testFind1.doc has XMLAttrValueStrong
+testFind1.doc has XMLAttrValueStrong
+testFind1.doc has XMLAttrValueStrong

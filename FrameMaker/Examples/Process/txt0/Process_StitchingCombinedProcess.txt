@@ -1,0 +1,22 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="CombinedStitch" 
+		JobID="Stitching special" JobPartID="ID123" Type="Combined" 
+		Types="Stitching Stitching" Status="Ready" Version="1.4">
+	<ResourcePool>
+		<StitchingParams Class="Parameter" ID="Stitch1" NumberOfStitches="2"
+				StapleShape="Butted" Status="Available" StitchPositions="100 700"
+				StitchWidth="28.3" WireBrand="Steel" WireGauge="2.3"/>
+		<StitchingParams Class="Parameter" ID="Stitch2" NumberOfStitches="2"
+				StapleShape="Eyelet" Status="Available" StitchPositions="300 500"
+				StitchWidth="42.5" WireBrand="Steel" WireGauge="2.3"/>
+		<Component Class="Quantity" ID="Comp1" Status="Available" 
+				ComponentType="Sheet"/>
+		<Component Class="Quantity" ID="Comp2" Status="Unavailable" 
+				ComponentType="Sheet"/>  
+	</ResourcePool>
+	<ResourceLinkPool>
+		<StitchingParamsLink CombinedProcessIndex="0" Usage="Input" rRef="Stitch1"/>
+		<StitchingParamsLink CombinedProcessIndex="1" Usage="Input" rRef="Stitch2"/>
+		<ComponentLink Usage="Input" rRef="Comp1"/>
+		<ComponentLink Usage="Output" rRef="Comp2"/>
+	</ResourceLinkPool>
+</JDF>

@@ -1,0 +1,18 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="BackCover" 
+			Status="InProgress"   
+			Type="DigitalPrinting" Version="1.4" JobPartID="345"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:schemaLocation="http://www.CIP4.org/Schema/JDFSchema_1_4/JDF.xsd" 
+			xsi:type="DigitalPrinting">
+	<ResourceLinkPool>
+		<DigitalPrintingParamsLink Usage="Input" rRef="ID123"/>
+		<RunListLink Usage="Input" rRef="ID124"/>
+		<ComponentLink Usage="Output" rRef="ID125"/>
+	</ResourceLinkPool>
+	<ResourcePool>
+		<DigitalPrintingParams ID="ID123" Class="Parameter" Status="Available" />
+		<RunList ID="ID124" Class="Parameter" Status="Available" />
+		<Component ID="ID125" Class="Quantity" Status="Unavailable" 
+			ComponentType="Sheet" />
+	</ResourcePool>
+</JDF>

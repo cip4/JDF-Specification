@@ -1,0 +1,73 @@
+END
+JMF_ResouceCommandMultipleResourcesAreAvailable-valid.doc
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnroot/!svn/ver/6126/trunk/Spec/FrameMaker/Examples/JMF/JMF_ResouceCommandMultipleResourcesAreAvailable-valid.doc
+END
+JMF_ResouceCommandMultipleResourcesAreAvailable.doc
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnroot/!svn/ver/6126/trunk/Spec/FrameMaker/Examples/JMF/JMF_ResouceCommandMultipleResourcesAreAvailable.doc
+END
+JMF_ResouceCommandSingleResourceIsAvailable-valid.doc
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svnroot/!svn/ver/6126/trunk/Spec/FrameMaker/Examples/JMF/JMF_ResouceCommandSingleResourceIsAvailable-valid.doc
+END
+JMF_ResponseWithNotificationElement-valid.doc
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/!svn/ver/6352/trunk/Spec/FrameMaker/Examples/JMF/JMF_ResponseWithNotificationElement-valid.doc
+END
+JMF_AbortQueueEntryResponse-valid.doc
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/!svn/ver/6090/trunk/Spec/FrameMaker/Examples/JMF/JMF_AbortQueueEntryResponse-valid.doc
+END
+JMF_AbortQueueEntryCommand-valid.doc
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/!svn/ver/6126/trunk/Spec/FrameMaker/Examples/JMF/JMF_AbortQueueEntryCommand-valid.doc
+END
+JMF_QueueElement-valid.doc
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/!svn/ver/6090/trunk/Spec/FrameMaker/Examples/JMF/JMF_QueueElement-valid.doc
+END
+JMF_ResouceCommandSingleResourceIsAvailable.doc
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnroot/!svn/ver/6126/trunk/Spec/FrameMaker/Examples/JMF/JMF_ResouceCommandSingleResourceIsAvailable.doc
+END
+JMF_ResponseWithNotificationElement.doc
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/!svn/ver/6352/trunk/Spec/FrameMaker/Examples/JMF/JMF_ResponseWithNotificationElement.doc
+END
+JMF_AbortQueueEntryResponse.doc
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/!svn/ver/6090/trunk/Spec/FrameMaker/Examples/JMF/JMF_AbortQueueEntryResponse.doc
+END
+JMF_AbortQueueEntryCommand.doc
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/!svn/ver/6126/trunk/Spec/FrameMaker/Examples/JMF/JMF_AbortQueueEntryCommand.doc
+END
+JMF_QueueElement.doc
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/!svn/ver/6090/trunk/Spec/FrameMaker/Examples/JMF/JMF_QueueElement.doc
+END

@@ -1,0 +1,35 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="Job1" JobID="J1" 
+			JobPartID="P1" 
+			Status="Waiting" Type="Product" Version="1.4">
+	<ResourcePool>
+		<Component Amount="10000" Class="Quantity" 
+					DescriptiveName="Complete 16-page Brochure" ID="Link0003" 
+					Status="Unavailable" ComponentType="Sheet" />
+		<LayoutIntent Class="Intent" ID="Link0004" Status="Available">
+			<Dimensions DataType="XYPairSpan" Preferred="612 792" 
+						Range="576 720 ~ 648 864"/>
+			<Pages DataType="IntegerSpan" Preferred="16"/>
+		</LayoutIntent>
+		<MediaIntent Class="Intent" ID="Link0005" PartIDKeys="Option" 
+						Status="Available">
+			<FrontCoatings DataType="NameSpan" Preferred="None"/>
+			<MediaIntent Option="1">
+				<FrontCoatings DataType="NameSpan" Preferred="Glossy"/>
+			</MediaIntent>
+			<BackCoatings DataType="NameSpan" Preferred="None"/>
+		</MediaIntent>
+		<ProductionIntent Class="Intent" ID="ID_PI" Status="Available">
+			<ScreeningParamsRef rRef="ScreenID"/>
+		</ProductionIntent>
+		<ScreeningParams Class="Parameter" ID="ScreenID" Status="Incomplete">
+			<ScreenSelector ScreeningFamily="My favorite screen" 
+						SpotFunction="Ellipse"/>
+		</ScreeningParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ComponentLink Usage="Output" rRef="Link0003"/>
+		<LayoutIntentLink Usage="Input" rRef="Link0004"/>
+		<MediaIntentLink Usage="Input" rRef="Link0005"/>
+		<ProductionIntentLink Usage="Input" rRef="ID_PI"/>
+	</ResourceLinkPool>
+</JDF>

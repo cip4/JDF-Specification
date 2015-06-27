@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Shape Sample for a box defined by a CAD file
+		Date: Jan 9, 2005 Version: 1.00 
+		A page with a certain size  --> 
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="n001" 
+		Type="LayoutElementProduction" 
+		Status="Waiting" JobPartID="ID100" 
+		DescriptiveName="Page sample for shape" Version="1.4">
+	<ResourcePool>
+		<LayoutElementProductionParams Class="Parameter" ID="LEPParams" 
+				Status="Available">
+			<ShapeDef>
+				<FileSpec URL="file://myserver/myshare/olive.dd3"/>
+			</ShapeDef>
+		</LayoutElementProductionParams>
+		<LayoutElement Class="Parameter" ID="LayElOut" Status="Unavailable"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutElementProductionParamsLink rRef="LEPParams" Usage="Input"/>
+		<LayoutElementLink rRef="LayElOut" Usage="Output"/>
+	</ResourceLinkPool>
+	<AuditPool>
+		<Created Author="ZYX Corporation" TimeStamp="2006-01-09T09:00:00+01:00"/>
+	</AuditPool>
+</JDF>

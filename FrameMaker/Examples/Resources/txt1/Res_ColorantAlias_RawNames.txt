@@ -1,0 +1,15 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<ColorantAlias Class="Parameter" ID="r000004" RawNames="4772FC6E 6772FC6E" 
+				ReplacementColorantName="Green" Status="Available">
+			<!-- ColorantAlias that maps the additional representation (grün, Grün) 
+				to the predefined separation Green -->
+			<SeparationSpec Name="Grün"/>
+			<SeparationSpec Name="grün"/>
+		</ColorantAlias>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ColorantAliasLink Usage="Input" rRef="r000004"/>
+	</ResourceLinkPool>
+</JDF>

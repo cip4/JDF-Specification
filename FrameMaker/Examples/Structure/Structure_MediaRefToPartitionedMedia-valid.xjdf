@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XJDF ID="A1" JobID="" JobPartID="ID300" MaxVersion="2.0"
+  Types="ProcessGroup" Version="2.0" xmlns="http://www.CIP4.org/JDFSchema_1_1">
+  <!--Very preliminary experimental prototype trial version: using: CIP4 JDF Editor __ Copyright (c) 2001-2009 CIP4 Build version CIP4 JDF Writer Java 1.4a BLD 61-->
+  <ParameterSet ID="Sheet" Name="Layout" Usage="Input">
+    <Parameter ID="Sheet.0" Status="Available">
+      <Part/>
+      <Layout MediaRef="MediaID.0 MediaID.1"/>
+    </Parameter>
+  </ParameterSet>
+  <ParameterSet ID="r_100406_204703282_001006" Name="NodeInfo" Usage="Input">
+    <Parameter ID="r_100406_204703282_001006.0" Status="Available">
+      <Part/>
+      <NodeInfo NodeStatus="Waiting"/>
+    </Parameter>
+  </ParameterSet>
+  <ResourceSet ID="MediaID" Name="Media">
+    <Resource ID="MediaID.0" Status="Available">
+      <Part Location="desk"/>
+      <Media Dimension="72 72">
+        <Comment Name="foo">bar</Comment>
+      </Media>
+    </Resource>
+    <Resource ID="MediaID.1" Status="Available">
+      <Part Location="drawer"/>
+      <Media Dimension="72 72">
+        <Comment Name="foo">bar</Comment>
+      </Media>
+    </Resource>
+  </ResourceSet>
+</XJDF>

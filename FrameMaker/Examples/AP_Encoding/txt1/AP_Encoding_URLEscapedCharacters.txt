@@ -1,0 +1,1 @@
+﻿<Example URL="file://myHost/a/c%20%c3%a4%c3%b6%c3%bc%25.pdf"/>

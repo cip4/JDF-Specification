@@ -1,0 +1,7 @@
+diff all txt files
+Building_MIMEMultipartRelated-2.txt
+Building_MIMEMultipartRelated-4.txt
+28c28
+< 			<DigitalPrintingParams ID="ID123" Class="Parameter" Status="Available" />	
+---
+> 	<DigitalPrintingParams ID="ID123" Class="Parameter" Status="Available" />

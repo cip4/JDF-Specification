@@ -1,0 +1,20 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<ColorMeasurementConditions Class="Parameter" ID="MyColorMeasCond" 
+				Status="Available"/>
+		<PrintCondition Name="Standard" Class="Parameter" ID="PC" 
+				PartIDKeys="Side Separation" Status="Available">
+			<ColorMeasurementConditionsRef rRef="MyColorMeasCond"/>
+			<PrintCondition Side="Front">
+				<PrintCondition AimCurve="0.0 0.0 0.5 0.66 1.0 1.0" Density="1.8" 
+						Separation="Black"/>
+				<PrintCondition AimCurve="0.0 0.0 0.5 0.63 1.0 1.0" Density="1.4" 
+						Separation="Cyan"/>
+			</PrintCondition>
+		</PrintCondition>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<PrintConditionLink Usage="Input" rRef="PC"/>
+	</ResourceLinkPool>
+</JDF>

@@ -1,0 +1,35 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<Ink Brand="NoName" Class="Consumable" ID="Link0015" 
+				PartIDKeys="Separation" Status="Available">
+			<Ink ColorName="Cyan" Separation="Cyan"/>
+			<Ink ColorName="Magenta" Separation="Magenta"/>
+			<Ink ColorName="Yellow" Separation="Yellow"/>
+			<Ink ColorName="Black" Separation="Black"/>
+			<Ink ColorName="Heidelberg Spot Blau" 
+					Separation="Heidelberg Spot Blau"/>
+		</Ink>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<InkLink Usage="Input" rRef="Link0015">
+			<AmountPool>
+				<PartAmount Amount="1000">
+					<Part Separation="Cyan"/>
+				</PartAmount>
+				<PartAmount Amount="1200">
+					<Part Separation="Magenta"/>
+				</PartAmount>
+				<PartAmount Amount="700">
+					<Part Separation="Yellow"/>
+				</PartAmount>
+				<PartAmount Amount="3000">
+					<Part Separation="Black"/>
+				</PartAmount>
+				<PartAmount Amount="300">
+					<Part Separation="Heidelberg Spot Blau"/>
+				</PartAmount>
+			</AmountPool>
+		</InkLink>
+	</ResourceLinkPool>
+</JDF>
