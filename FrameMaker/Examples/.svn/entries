@@ -1,98 +1,0 @@
-10
-
-dir
-4253
-http://svn.cip4.org/svnroot/trunk/Spec/FrameMaker/Examples
-http://svn.cip4.org/svnroot
-
-
-
-2009-07-30T07:13:10.877543Z
-4049
-herriot
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-25ee8a6d-831b-0410-907a-ff8528d65d49
-
-Lifecycle
-dir
-
-Structure
-dir
-
-AP_Schema
-dir
-
-AP_FormatTemplate
-dir
-
-cip4-spec-example.dot
-file
-
-
-
-
-2008-08-20T08:30:54.000000Z
-957e09b738cb5ee8ce7c342b2665a05c
-2008-09-05T06:59:03.650571Z
-3546
-herriot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-48128
-
-AP_Encoding
-dir
-
-AP_Strings
-dir
-
-AP_FileSpec
-dir
-
-Resources
-dir
-
-JMF
-dir
-
-Building
-dir
-
-AP_Examples
-dir
-
-Process
-dir
-
