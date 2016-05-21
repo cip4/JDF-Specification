@@ -1,0 +1,214 @@
+﻿<JMF SenderID="Scanner" TimeStamp="2004-10-17T14:30:47Z" 
+		xmlns="http://www.CIP4.org/JDFSchema_1_1" MaxVersion="1.4" Version="1.4" 
+		DescriptiveName="Example from JDF 1.2 Spec Document"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<Response ID="xyz" Type="KnownDevices" refID="DeviceQuery" ReturnCode="0" 
+			Acknowledged="false" xsi:type="ResponseKnownDevices" >
+		<DeviceList>
+			<DeviceInfo DeviceStatus="Idle">
+				<Device DeviceID="Joe the Drum" ModelName="Bongo">
+					<DeviceCap GenericAttributes="ID Class SettingsPolicy 
+								BestEffortExceptions OperatorInterventionExceptions 
+								MustHonorExceptions PartIDKeys DocIndex" 
+							Type="Scanning" CombinedMethod="None" 
+							ExecutionPolicy="AllFound">
+						<Performance AverageAmount="120.0" Name="ExposedMedia" />
+						<FeaturePool>
+							<EnumerationState MinOccurs="1" 
+									AllowedValueList="Mono ColorTransparency Photo" 
+									UserDisplay="Display" Editable="true" ID="sm" 
+									ListType="SingleValue" HasDefault="true" Name="ScanMode" 
+									DevNS="http://www.CIP4.org/JDFSchema_1_1" MaxOccurs="1" 
+									MacroRefs="ScanModeMacro" />
+						</FeaturePool>
+						<DisplayGroupPool>
+							<DisplayGroup rRefs="btd cmp mag colorspace outputres">
+								<Loc HelpText="Parameters for scanning configuration" 
+										Lang="en" ShortValue="ScanningParameters" />
+							</DisplayGroup>
+						</DisplayGroupPool>
+						<ActionPool>
+							<Action Severity="Error" TestRef="BD-bw" ID="BD-bw-action">
+								<Loc HelpText="For 1 bit grayscale, please select 
+											CCITTFaxEncoding" 
+										Lang="en" ShortValue="Ouch!" 
+										Value="Flate and DCT Encoding not allowed 
+											on 1 bit images" />
+							</Action>
+							<Action Severity="Error" TestRef="ctcmp" ID="ctcmp-action">
+								<Loc HelpText="Only select CCITTFaxEncoding for 
+											1 bit documents" 
+										Lang="en" ShortValue="Ouch!" 
+										Value="CCITTFaxEncoding not supported on 
+											grayscale images" />
+							</Action>
+							<Action Severity="Error" TestRef="cd" ID="cd-action">
+								<Loc HelpText="Choose a bit depth of 10 or less 
+											for color images" 
+										Lang="en" ShortValue="Ouch!" 
+										Value="Bit depths higher than 10 are not 
+											supported for color" />
+							</Action>
+						</ActionPool>
+						<TestPool>
+							<Test ID="iscolor">
+								<EnumerationEvaluation 
+										ValueList="RGB LAB CMYK" rRef="colorspace" />
+							</Test>
+							<Test ID="is1bit">
+								<IntegerEvaluation ValueList="1" rRef="btd" />
+							</Test>
+							<Test ID="BD-bw">
+								<and>
+									<TestRef rRef="is1bit" />
+									<EnumerationEvaluation 
+											ValueList="FlateEncode DCTEncode" 
+											rRef="cmp" />
+								</and>
+							</Test>
+							<Test ID="ctcmp">
+								<and>
+									<not>
+										<TestRef rRef="is1bit" />
+									</not>
+									<EnumerationEvaluation ValueList="CCITTFaxEncode" 
+											rRef="cmp" />
+								</and>
+							</Test>
+							<Test ID="cd">
+								<and>
+									<TestRef rRef="iscolor" />
+									<IntegerEvaluation ValueList="1 10" rRef="btd" />
+								</and>
+							</Test>
+						</TestPool>
+						<MacroPool>
+							<macro ID="ScanModeMacro">
+								<choice>
+									<when>
+										<EnumerationEvaluation ValueList="Mono" rRef="sm" />
+										<set rRef="btd">
+											<FeatureAttribute CurrentValue="1" />
+										</set>
+										<set rRef="colorspace">
+											<FeatureAttribute CurrentValue="GrayScale" />
+										</set>
+										<set rRef="outputres">
+											<FeatureAttribute CurrentValue="1200 1200" />
+										</set>
+									</when>
+									<when>
+										<EnumerationEvaluation ValueList="ColorTransparency" 
+												rRef="sm" />
+										<set rRef="btd">
+											<FeatureAttribute CurrentValue="8" />
+										</set>
+										<set rRef="colorspace">
+											<FeatureAttribute CurrentValue="RGB" />
+										</set>
+										<set rRef="outputres">
+											<FeatureAttribute CurrentValue="600 600" />
+										</set>
+									</when>
+									<when>
+										<EnumerationEvaluation ValueList="Photo" rRef="sm" />
+										<set rRef="btd">
+											<FeatureAttribute CurrentValue="10" />
+										</set>
+										<set rRef="colorspace">
+											<FeatureAttribute CurrentValue="LAB" />
+										</set>
+										<set rRef="outputres">
+											<FeatureAttribute CurrentValue="200 200" />
+										</set>
+									</when>
+								</choice>
+							</macro>
+						</MacroPool>
+						<DevCaps Required="false" Context="Resource" 
+								DevNS="http://www.CIP4.org/JDFSchema_1_1" 
+								Availability="Installed" 
+								Name="NodeInfo" ResourceUpdate="None">
+							<DevCap MinOccurs="1" Name="NodeInfo" 
+									DevNS="http://www.CIP4.org/JDFSchema_1_1" MaxOccurs="1">
+								<StringState UserDisplay="Display" 
+										DevNS="http://www.CIP4.org/JDFSchema_1_1" 
+										Editable="true" MinOccurs="1" MaxOccurs="1" 
+										Name="TargetRoute" HasDefault="true" 
+										ListType="SingleValue" />
+								<IntegerState Name="JobPriority" 
+										DevNS="http://www.CIP4.org/JDFSchema_1_1" 
+										Editable="true" MinOccurs="1" MaxOccurs="1" 
+										UserDisplay="Display" HasDefault="true" 
+										ListType="SingleValue" />
+							</DevCap>
+						</DevCaps>
+						<DevCaps Required="false" ResourceUpdate="None" Context="Resource" 
+								Availability="Installed" Name="ExposedMedia" 
+								DevNS="http://www.CIP4.org/JDFSchema_1_1">
+							<DevCap MinOccurs="1" Name="ExposedMedia" 
+									DevNS="http://www.CIP4.org/JDFSchema_1_1" MaxOccurs="1">
+								<DevCap MinOccurs="1" Name="Media" 
+										DevNS="http://www.CIP4.org/JDFSchema_1_1" 
+										MaxOccurs="1">
+									<NameState MinOccurs="1" DefaultValue="Sheet" 
+											UserDisplay="Display" Editable="true" 
+											ListType="SingleValue" HasDefault="true" 
+											Name="MediaUnit" MaxOccurs="1"
+											DevNS="http://www.CIP4.org/JDFSchema_1_1"/>
+									<XYPairState MinOccurs="1" UserDisplay="Display" 
+											Editable="true" AllowedValueMax="600.0 1200.0" 
+											ListType="SingleValue" HasDefault="true" 
+											Name="Dimension" AllowedValueMin="0.0 0.0" 
+											DevNS="http://www.CIP4.org/JDFSchema_1_1" 
+											MaxOccurs="1" />
+								</DevCap>
+							</DevCap>
+						</DevCaps>
+						<DevCaps Required="false" Context="Resource" 
+								DevNS="http://www.CIP4.org/JDFSchema_1_1" 
+								Availability="Installed" Name="ScanParams" 
+								ResourceUpdate="None">
+							<DevCap MinOccurs="1" Name="ScanParams" 
+									DevNS="http://www.CIP4.org/JDFSchema_1_1" MaxOccurs="1">
+								<IntegerState MinOccurs="1" DefaultValue="1" 
+										AllowedValueList="1 4 8 10 12" UserDisplay="Hide" 
+										ActionRefs="BD-bw ctcmp cd" Editable="true" 
+										ID="btd" ListType="SingleValue" HasDefault="true" 
+										Name="BitDepth" MaxOccurs="1"
+										DevNS="http://www.CIP4.org/JDFSchema_1_1"/>
+								<EnumerationState ActionRefs="BD-bw ctcmp" MinOccurs="1" 
+										AllowedValueList=
+											"CCITTFaxEncode FlateEncode DCTEncode None" 
+										UserDisplay="Hide" Editable="true" ID="cmp" 
+										ListType="SingleValue" HasDefault="true" 
+										Name="CompressionFilter" MaxOccurs="1"
+										DevNS="http://www.CIP4.org/JDFSchema_1_1" />
+								<NumberState MinOccurs="1" UserDisplay="Display" 
+										Editable="true" ID="mag" ListType="SingleValue" 
+										HasDefault="true" AllowedValueMax="100.0" 
+										AllowedValueMin="0.01" MaxOccurs="1" 
+										Name="Magnification" 
+										DevNS="http://www.CIP4.org/JDFSchema_1_1"/>
+								<EnumerationState ActionRefs="cd" MinOccurs="1" 
+										AllowedValueList="GrayScale CMYK RGB LAB" 
+										UserDisplay="Display" Editable="true" 
+										ID="colorspace" ListType="SingleValue" 
+										HasDefault="true" Name="OutputColorSpace" 
+										MaxOccurs="1"
+										DevNS="http://www.CIP4.org/JDFSchema_1_1" />
+								<XYPairState MinOccurs="1" DefaultValue="600.0 600.0" 
+										AllowedValueList="100.0 100.0 300.0 300.0 600.0 600.0 
+											1200.0 1200.0 2400.0 2400.0" 
+										UserDisplay="Display" Editable="true" ID="outputres" 
+										ListType="SingleValue" HasDefault="true" 
+										Name="OutputResolution" MaxOccurs="1"
+										DevNS="http://www.CIP4.org/JDFSchema_1_1" />
+							</DevCap>
+						</DevCaps>
+					</DeviceCap>
+				</Device>
+			</DeviceInfo>
+		</DeviceList>
+	</Response>
+</JMF>

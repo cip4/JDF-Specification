@@ -1,0 +1,5 @@
+diff all txt files
+Lifecycle_EquivalentPureJDF.txt
+Lifecycle_FamilyTreeOfSpawnedNodes.txt
+Lifecycle_PrintTalk.txt
+Lifecycle_ProductIntentNode.txt

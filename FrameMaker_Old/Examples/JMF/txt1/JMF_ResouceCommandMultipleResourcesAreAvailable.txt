@@ -1,0 +1,15 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		SenderID="MIS master A" TimeStamp="2005-07-25T12:32:48+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Command ID="C2" Type="Resource" xsi:type="CommandResource">
+		<ResourceCmdParams JobID="MakeBrochure 012" ResourceID="ExposedMediaID">
+			<Part SignatureName="Sig1" SheetName="Sheet2" Side="Front" 
+					Separation="Black"/>
+			<!-- the entire front of Sheet2 is also available -->
+			<Part SignatureName="Sig1" SheetName="Sheet2" Side="Front"/>
+			<!-- the entire Sheet2 is also available -->
+			<Part SignatureName="Sig1" SheetName="Sheet2"/>
+		</ResourceCmdParams>
+	</Command>
+</JMF>

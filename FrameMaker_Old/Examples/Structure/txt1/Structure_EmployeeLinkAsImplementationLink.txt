@@ -1,0 +1,12 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="J1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<Employee Class="Implementation" ID="L1" Status="Available" 
+				PersonalID="007">
+			<Person FamilyName="Smith" JobTitle="Press Operator"/>
+		</Employee>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<EmployeeLink Usage="Input" rRef="L1"/>
+	</ResourceLinkPool>
+</JDF>

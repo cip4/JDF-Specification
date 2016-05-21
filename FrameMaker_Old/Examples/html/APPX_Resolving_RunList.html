@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Appendix J	Resolving RunList/@Directory and FileSpec/@URL URI References</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="AppTitle">
+<A NAME="0_pgfId-1017430"></A>Appendix J	<A NAME="0_82025"></A>Resolving RunList/@Directory and FileSpec/@URL URI References</H1>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1019224"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019228"></A>This appendix describes the detailed semantics of resolving <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Directory</SPAN>
+ and any associated <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+ URI references in any of the <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> refelements. </P>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1016532"></A>J.1	Semantics of the RunList/@Directory Attribute</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017103"></A>The <SPAN CLASS="Attribute">
+Directory</SPAN>
+ Attribute defines a directory where the files that are associated with this <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> <SPAN CLASS="ConformWord">
+should</SPAN>
+ be copied to or from. If <SPAN CLASS="Attribute">
+Directory</SPAN>
+ is specified, it <SPAN CLASS="ConformWord">
+must</SPAN>
+ be an Absolute URI <A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+</A> that implicitly also specifies a Base URI that is used to resolve any relative URI Attribute in the <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> structure. As such, <SPAN CLASS="Attribute">
+Directory</SPAN>
+ <SPAN CLASS="ConformWord">
+must</SPAN>
+ start with a URL scheme, such as <SPAN CLASS="Enumeration">
+&quot;file&quot;</SPAN>
+ or <SPAN CLASS="Enumeration">
+&quot;ftp&quot;</SPAN>
+, <SPAN CLASS="ConformWord">
+may</SPAN>
+ contain an authority, such as <SPAN CLASS="Enumeration">
+&quot;//</SPAN>
+<SPAN CLASS="NoSpell">
+any.com</SPAN>
+<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+ and <SPAN CLASS="ConformWord">
+should</SPAN>
+ contain an absolute path that ends with a “/” to indicate a directory.<A HREF="#0_pgfId-1017112" CLASS="footnote">1</A> For example: <SPAN CLASS="Enumeration">
+&quot;file://</SPAN>
+<SPAN CLASS="NoSpell">
+any.com</SPAN>
+<SPAN CLASS="Enumeration">
+/pub/doc-archives/&quot;</SPAN>
+ or <SPAN CLASS="Enumeration">
+&quot;file:///pub/doc-archives/&quot;</SPAN>
+. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1017113"></A>If <SPAN CLASS="Attribute">
+Directory</SPAN>
+ is not specified, the Absolute URI that specifies the directory in which the JDF file resides is used as the Base URI to resolve each relative <SPAN CLASS="Attribute">
+URI</SPAN>
+ Attribute in the <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019303"></A>If the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/<A HREF="Resources.html#0_66236" CLASS="XRef"><SPAN CLASS="Link-Element">
+Container</SPAN>
+</A>/<A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> Resource is supplied indicating that the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> is contained in another file, the Base URI is the Absolute URI of where the JDF Consumer extracted the container file (whether or not <SPAN CLASS="Attribute">
+Directory</SPAN>
+ is specified). (See <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_FileSpec" CLASS="XRef">Section 7.2.76, “FileSpec”</A></SPAN>
+.)</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019307"></A>After determining the Base URI depending on the presence or absence of <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Directory</SPAN>
+ and <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/<A HREF="Resources.html#0_66236" CLASS="XRef"><SPAN CLASS="Link-Element">
+Container</SPAN>
+</A>/<A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> Resource as described above, each <SPAN CLASS="Attribute">
+URL</SPAN>
+ Attribute in a <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> refelement (e.g., <A HREF="Resources.html#0_LayoutElement" CLASS="XRef"><SPAN CLASS="Link-Resource">
+LayoutElement</SPAN>
+</A>/<A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+ or <A HREF="Resources.html#0_InsertSheet" CLASS="XRef"><SPAN CLASS="Link-Resource">
+InsertSheet</SPAN>
+</A>/<A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/<A HREF="Resources.html#0_Media" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Media</SPAN>
+</A>/<A HREF="Resources.html#0_QualityControlResult" CLASS="XRef"><SPAN CLASS="Link-Resource">
+QualityControlResult</SPAN>
+</A>/<A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+) is used in combination with the Base URI to form the Resolved URI as follows according to one of the following mutually exclusive patterns.<A HREF="#0_pgfId-1019316" CLASS="footnote">2</A></P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1016668"></A>1	<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> <SPAN CLASS="Attribute">
+URL</SPAN>
+ starts with a scheme (token ending with “:”, (e.g., <SPAN CLASS="Enumeration">
+&quot;file:&quot;</SPAN>
+ or <SPAN CLASS="Enumeration">
+&quot;cid:&quot;</SPAN>
+):<A HREF="#0_pgfId-1016810" CLASS="footnote">3</A></LI>
+<UL>
+<UL>
+<LI CLASS="Bullets3">
+<A NAME="0_pgfId-1016669"></A>Resolved URI = the entire <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> URL (and the Base URI is ignored). </LI>
+</UL>
+</UL>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1016670"></A>2	<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> <SPAN CLASS="Attribute">
+URL</SPAN>
+ starts with an authority/host (starts with “//”, (e.g., <SPAN CLASS="Enumeration">
+&quot;//www.cip4.org&quot;</SPAN>
+):</LI>
+<UL>
+<UL>
+<LI CLASS="Bullets3">
+<A NAME="0_pgfId-1016671"></A>Resolved URI = the Base URI scheme, followed by the <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> URL authority/host followed by its absolute path (which <SPAN CLASS="ConformWord">
+may</SPAN>
+ be empty).</LI>
+</UL>
+</UL>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1016672"></A>3	<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> <SPAN CLASS="Attribute">
+URL</SPAN>
+ starts with an absolute path (starts with “/”, (e.g., <SPAN CLASS="Enumeration">
+&quot;/pub/document-archives&quot;</SPAN>
+):</LI>
+<UL>
+<UL>
+<LI CLASS="Bullets3">
+<A NAME="0_pgfId-1016673"></A>Resolved URI = Base URI scheme and its authority (if any) followed by the <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> URL absolute path.</LI>
+</UL>
+</UL>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1016674"></A>4	<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> <SPAN CLASS="Attribute">
+URL</SPAN>
+ starts with a relative path (starts with something other than “/”, (e.g., <SPAN CLASS="Enumeration">
+&quot;</SPAN>
+<SPAN CLASS="NoSpell">
+foo.pdf</SPAN>
+<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+, <SPAN CLASS="Enumeration">
+&quot;./folder/</SPAN>
+<SPAN CLASS="NoSpell">
+foo.pdf</SPAN>
+<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+, <SPAN CLASS="Enumeration">
+&quot;</SPAN>
+<SPAN CLASS="NoSpell">
+../foo.pdf</SPAN>
+<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+, etc.):</LI>
+<UL>
+<UL>
+<LI CLASS="Bullets3">
+<A NAME="0_pgfId-1016675"></A>Resolved URI = Base URI scheme, its authority (if any), and its absolute path (if any) up to and including the right-most “/”, followed by the <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> <SPAN CLASS="Attribute">
+URL</SPAN>
+ relative path with “.”, “<SPAN CLASS="NoSpell">
+..</SPAN>
+” and “./” segments removed.</LI>
+</UL>
+</UL>
+</OL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1016542"></A>The above algorithm is only a summary. See <A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+</A> for the detailed algorithm. See <A HREF="APPX_References.html#0_[FileURL]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[FileURL]</SPAN>
+</A> for examples.</P>
+</DIV>
+</DIV>
+<HR>
+<DIV CLASS="footnotes">
+<DIV CLASS="footnote">
+<P CLASS="Footnote">
+<SPAN CLASS="footnoteNumber">
+1.</SPAN>
+<A NAME="0_pgfId-1017112"></A>According to <A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+</A> section 5.2 “Resolve Relative References to Absolute Form”, the characters following the right-most “/” if any, are removed from the Base URI, in order to resolve a Relative URI with the Base URI. So be sure to end the <SPAN CLASS="Attribute">
+Directory</SPAN>
+ value with a “/” to make it cleat that <SPAN CLASS="Attribute">
+Directory</SPAN>
+ is a reference to a directory and not a file, and to ensure that the last path segment won’t get removed in resolving the URI reference.</P>
+</DIV>
+<DIV CLASS="footnote">
+<P CLASS="Footnote">
+<SPAN CLASS="footnoteNumber">
+2.</SPAN>
+<A NAME="0_pgfId-1019316"></A>The Resolved URI is formed assuming that URI query and fragments are <SPAN CLASS="Italics">
+not</SPAN>
+ used in JDF.</P>
+</DIV>
+<DIV CLASS="footnote">
+<P CLASS="Footnote">
+<SPAN CLASS="footnoteNumber">
+3.</SPAN>
+<A NAME="0_pgfId-1016810"></A>In order to improve interoperability and to simplify implementation, JDF follows the strict-parsing rules of <A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+</A> so that even if the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+ Attribute starts with the same scheme as the Base URI, the entire URL values is always interpreted as an Absolute URI and always replaces the Base URI to form the Resolved URI. This strict rule is especially important for interoperability. Consider the case where the JDF Producer drops the JDF into a hot folder but does NOT specify <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Directory</SPAN>
+ so that the JDF Consumer has to generate the Base URI for the hot folder in order to resolve the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+RunList</SPAN>
+, but the Producer is supplying a <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+ that is relative to the hot folder. If the JDF Producer supplies the scheme in the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+, then the JDF Producer would have to supply the same scheme as the JDF Consumer generates for the Base URI for hot folder, in order for the Relative URI semantics to apply. However, under non-strict parsing, if the JDF Producer guesses wrong (say one is <SPAN CLASS="Enumeration">
+&quot;file:&quot;</SPAN>
+ and the other is <SPAN CLASS="Enumeration">
+&quot;ftp:&quot;</SPAN>
+), the JDF Consumer would interpret <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URI</SPAN>
+ as an Absolute URI. </P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

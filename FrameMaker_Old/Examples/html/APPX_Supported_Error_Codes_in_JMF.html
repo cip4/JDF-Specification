@@ -1,0 +1,696 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Appendix D	Supported Error Codes in JMF and Notification Elements</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="AppTitle">
+<A NAME="0_pgfId-1016217"></A>Appendix D	<A NAME="0_92840"></A>Supported Error Codes in JMF and Notification Elements</H1>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016218"></A>The following list defines the standard <SPAN CLASS="Attribute">
+ReturnCode</SPAN>
+ for messaging. The ID numbers are decimal. Error Messages below 100 are reserved for protocol errors. Error messages above 100 are used for Device and Controller errors and error messages above 200 for Job and pipe specific errors. Error Codes above 300 are used for errors related to authentication and certificate exchange.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1035895"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1021592"></A>Table D-1: <A NAME="0_27295"></A>Return codes for JMF (Section 1 of 3)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1021596"></A>ReturnCode</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1021598"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021600"></A>0</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021602"></A>Success</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021604"></A>1 - 99</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021606"></A>Protocol errors</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021608"></A>1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021610"></A>General error</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021612"></A>2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021614"></A>Internal error</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021616"></A>3</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021618"></A>XML parser error, (e.g., if a MIME file is sent to an XML Controller).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021620"></A>4</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021622"></A>XML validation error</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021624"></A>5</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021626"></A>Query Message/Command Message not implemented</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021628"></A>6</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021630"></A>Invalid parameters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021632"></A>7</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021634"></A>Insufficient parameters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021636"></A>8</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021638"></A>Device not available (Controller exists but not the Device or queue)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021640"></A>9</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021642"></A>Message incomplete. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021644"></A>10</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022341"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021646"></A>Message Service is busy.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022214"></A>11</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022215"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022225"></A>Synchronous mode not supported for message. No @<SPAN CLASS="Attribute">
+AcknowledgeURL</SPAN>
+ is specified and the Message can only be processed asynchronously and was not processed. (Error)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022235"></A>12</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022236"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022200"></A>Asynchronous acknowledge not supported for message. No @<SPAN CLASS="Attribute">
+AcknowledgeURL</SPAN>
+ is specified and the Message was processed. The resulting <A HREF="JMF.html#0_98535" CLASS="XRef"><SPAN CLASS="Link-Message">
+Acknowledge</SPAN>
+</A> can only be emitted asynchronously. (Warning)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022553"></A>13</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022554"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022551"></A>Reliable Signals not supported. Subscription denied.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021649"></A>100 - 199</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021651"></A>Device and Controller errors</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021653"></A>100</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021655"></A>Device not running</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021657"></A>101</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021659"></A>Device incapable of fulfilling request, (e.g., a RIP that has been asked to cut a Sheet).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021661"></A>102</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021663"></A>No executable Node exists in the JDF</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021665"></A>103</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021667"></A><SPAN CLASS="Attribute">
+JobID</SPAN>
+ not known by Controller</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021669"></A>104</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021671"></A><SPAN CLASS="Attribute">
+JobPartID</SPAN>
+ not known by Controller </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021673"></A>105</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021675"></A>Queue entry not in queue</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021677"></A>106</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021679"></A>Queue request failed because the queue entry is already executing</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021681"></A>107</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021683"></A>The queue entry is already executing. Late change is not accepted</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021685"></A>108</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021687"></A>Selection or applied filter results in an empty list</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021689"></A>109</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021691"></A>Selection or applied filter results in an incomplete list. A buffer cannot provide the complete list queried for.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021693"></A>110</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021695"></A>Queue request of a Job submission failed because the requested completion time of the Job cannot be fulfilled. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021697"></A>111</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021699"></A>Subscription request denied. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021701"></A>112</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022348"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.1</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021703"></A>Queue request failed because the Queue is <SPAN CLASS="Enumeration">
+Closed</SPAN>
+ or <SPAN CLASS="Enumeration">
+Blocked</SPAN>
+ and does not accept new entries.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021706"></A>113</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022357"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021708"></A>Queue entry is already in the resulting status. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021710"></A>114</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022569"></A><SPAN CLASS="Change-Flag">
+Modified in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022262"></A><A HREF="JMF.html#0_97284" CLASS="XRef"><SPAN CLASS="Link-Element">
+QueueEntry</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Status</SPAN>
+ is already <SPAN CLASS="Enumeration">
+&quot;PendingReturn&quot;</SPAN>
+,  <SPAN CLASS="Enumeration">
+&quot;Completed&quot;</SPAN>
+ or <SPAN CLASS="Enumeration">
+&quot;Aborted&quot;</SPAN>
+ and therefore does not accept changes.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1022573"></A><SPAN CLASS="NoteLeadIn">
+Modification note:</SPAN>
+ starting with JDF 1.4, <SPAN CLASS="Enumeration">
+&quot;PendingReturn&quot;</SPAN>
+ added.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021714"></A>115</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022364"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021716"></A>Queue entry is not running.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021718"></A>116</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022371"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021720"></A>Queue entry already exists. Used when a <A HREF="JMF.html#0_97284" CLASS="XRef"><SPAN CLASS="Link-Element">
+QueueEntry</SPAN>
+</A> with identical <SPAN CLASS="Attribute">
+JobID</SPAN>
+, <SPAN CLASS="Attribute">
+JobPartID</SPAN>
+ and <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> already exists.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021722"></A>120</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022381"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021724"></A>Cannot access referenced URL. URI Reference cannot be resolved. Used when a referenced entity, e.g., a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> in a <A HREF="JMF.html#0_SubmitQueueEntry" CLASS="XRef"><SPAN CLASS="Link-Message">
+SubmitQueueEntry</SPAN>
+</A> cannot be found. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021726"></A>121</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022458"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021728"></A>Unknown <SPAN CLASS="Attribute">
+DeviceID</SPAN>
+. No Device is known with the <SPAN CLASS="Attribute">
+DeviceID</SPAN>
+ specified. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021734"></A>130</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022388"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021736"></A>Ganging is not supported. A gang Job has been submitted to a queue that does not support ganging.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021738"></A>131</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022398"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021740"></A><SPAN CLASS="Attribute">
+GangName</SPAN>
+ not known. A Job has been submitted with an unknown <SPAN CLASS="Attribute">
+GangName</SPAN>
+. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021742"></A>200 - ...</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021744"></A>Job and pipe specific errors</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021746"></A>200</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021748"></A>Invalid Resource parameters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021750"></A>201</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021752"></A>Insufficient Resource parameters</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021754"></A>202</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021756"></A><SPAN CLASS="Attribute">
+PipeID</SPAN>
+ unknown</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021758"></A>203</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021760"></A>Unlinked <SPAN CLASS="Element">
+<A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021918"></A>204</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022408"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021920"></A>Could not create new <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021762"></A>300</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022418"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021764"></A>Authentication denied. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021766"></A>301</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022428"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021768"></A>Secure channel not supported - I don't support secure channel for this Message. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021770"></A>302</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022438"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021772"></A>Secure channel required - I require secure channel for this Message. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021774"></A>303</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022448"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1021776"></A>Certificate expired (Some implementations might not be able to send this response because the SSL layer will reject the Message before passing it to the JMF implementation for parsing) </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022480"></A>304</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022481"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022478"></A>Authentication pending.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022524"></A>305</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022492"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022474"></A>Authentication already established.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022516"></A>306</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022515"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022470"></A>No authentication request in process.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022505"></A>307</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022506"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022466"></A>Certificate Invalid</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016349"></A></P>
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,83 @@
+<!--begin spec-->
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="bookTest" JobID="bookJob" 
+Status="Waiting" JobPartID="ID455" Type="Product" Version="1.4">
+<ResourcePool>
+<Component Amount="100" Class="Quantity" DescriptiveName="Teacher's Book" 
+ID="Link0003" Status="Unavailable" ComponentType="Sheet"/>
+<Component Amount="2000" Class="Quantity" DescriptiveName="Cover" ID="Link0005" 
+Status="Unavailable" ComponentType="Sheet">
+<!--This cover is reused by both-->
+</Component>
+<LayoutIntent Class="Intent" ID="Link0006" Status="Available">
+<Dimensions DataType="XYPairSpan" Preferred="612 792" 
+Range="576 756 ~ 648 828"/>
+</LayoutIntent>
+<LayoutIntent Class="Intent" ID="Link0008" Status="Available">
+<Dimensions DataType="XYPairSpan" Preferred="612 792" 
+Range="576 756 ~ 648 828"/>
+<Pages DataType="IntegerSpan" Preferred="240"/>
+</LayoutIntent>
+<Component Amount="1000" Class="Quantity" DescriptiveName="Student's Book" 
+ID="Link0011" Status="Unavailable" ComponentType="Sheet">
+<!--Students Book Intent-->
+</Component>
+<LayoutIntent Class="Intent" ID="Link0014" Status="Available">
+<Dimensions DataType="XYPairSpan" Preferred="612 792" 
+Range="576 756 ~ 648 828"/>
+<Pages DataType="IntegerSpan" Preferred="198"/>
+</LayoutIntent>
+</ResourcePool>
+<AuditPool>
+<Created Author="Rainer's JDFWriter 0.2000" 
+TimeStamp="2000-11-01T12:46:56+01:00"/>
+</AuditPool>
+<ResourceLinkPool>
+<ComponentLink Amount="1000" Usage="Output" rRef="Link0011"/>
+</ResourceLinkPool>
+<JDF DescriptiveName="Teacher's Edition" ID="Link0002" JobPartID="0" 
+Status="Waiting" Type="Product">
+<ResourcePool>
+<Component Amount="100" Class="Quantity" DescriptiveName="Insert" 
+ID="Link0009" Status="Unavailable" ComponentType="Sheet"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Amount="100" Usage="Output" rRef="Link0003"/>
+<ComponentLink Amount="100" Usage="Input" rRef="Link0009"/>
+<ComponentLink Amount="100" Usage="Input" rRef="Link0005"/>
+</ResourceLinkPool>
+<JDF DescriptiveName="Teacher's Insert" ID="Link0007" JobPartID="2" 
+Status="Waiting" Type="Product">
+<ResourceLinkPool>
+<LayoutIntentLink Usage="Input" rRef="Link0008"/>
+<ComponentLink Amount="100" Usage="Output" rRef="Link0009"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+<JDF DescriptiveName="Cover" ID="Link0004" JobPartID="1" Status="Waiting" 
+Type="Product">
+<ResourceLinkPool>
+<ComponentLink Amount="2000" Usage="Output" rRef="Link0005"/>
+<LayoutIntentLink Usage="Input" rRef="Link0006"/>
+</ResourceLinkPool>
+</JDF>
+<JDF DescriptiveName="Student's Edition" ID="Link0010" JobPartID="3" 
+Status="Waiting" Type="Product">
+<ResourcePool>
+<Component Amount="1000" Class="Quantity" DescriptiveName="Insert" 
+ID="Link0013" Status="Unavailable" ComponentType="Sheet"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Amount="1000" Usage="Output" rRef="Link0011"/>
+<ComponentLink Amount="1000" Usage="Input" rRef="Link0013"/>
+<ComponentLink Amount="1000" Usage="Input" rRef="Link0005"/>
+</ResourceLinkPool>
+<JDF DescriptiveName="Student's Insert" ID="Link0012" JobPartID="4" 
+Status="Waiting" Type="Product">
+<ResourceLinkPool>
+<ComponentLink Amount="1000" Usage="Output" rRef="Link0013"/>
+<LayoutIntentLink Usage="Input" rRef="Link0014"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+</JDF>
+<!--end spec-->

@@ -1,0 +1,71 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool >
+		<!-- Information about the input (file, author) -->
+		<RunList ID="NodeIDRunList" Status="Available" Class="Parameter" >
+			<LayoutElementRef rRef="NodeIDLE" />
+			<PageList>
+				<ContentList>
+					<ContentData>
+						<!-- String for title -->
+						<new:DocumentInfo Title="This is the title of the book" 
+								ISBN="0123456789" xmlns:new="new schema URI">
+							<!-- Multi-lines string for Abstract -->
+							<new:DocumentAbstract>
+								This is the abstract of the book
+								It has several lines...
+							</new:DocumentAbstract>
+							<!-- List of authors. Using a PersonRef allows reusing the same 
+									Person element -->
+							<new:Author Subject="Preface">
+								<PersonRef rRef="AuthorID1" />
+							</new:Author>
+							<new:Author Subject="Content">
+								<new:PersonRef rRef="AuthorID2" />
+								<new:PersonRef rRef="AuthorID3" />
+							</new:Author>
+						</new:DocumentInfo>
+					</ContentData>
+				</ContentList>
+			</PageList>
+		</RunList>
+		<LayoutElement ID="NodeIDLE" Status="Available" Class="Parameter" >
+			<FileSpec URL="file:////hotfolder/files/Document2747.pdf" 
+					MimeType="application/pdf" UserFileName="JDF1.3.pdf" />
+		</LayoutElement>
+		<!-- Information about the authors -->
+		<Person ID="AuthorID1" Class="Parameter" Status="Available" FirstName="James" 
+				FamilyName="Smith" JobTitle="Author" />
+		<Person ID="AuthorID2" Class="Parameter" Status="Available" FirstName="John" 
+				FamilyName="Smith" JobTitle="Author" />
+		<Person ID="AuthorID3" Class="Parameter" Status="Available" FirstName="William" 
+				FamilyName="Smith" JobTitle="Author" />
+		<!-- Media: A3 white paper coated on both sides, 70 gr/m2 -->
+		<Media ID="MediaID" Class="Consumable" Status="Available" Weight="70" 
+				Dimension="1190 842" MediaType="Paper" MediaColorName="White" 
+				FrontCoatings="Coated" BackCoatings="Coated" />
+		<!-- Media: A4 yellow paper for Banner Page -->
+		<Media ID="MediaID2" Class="Consumable" Status="Available" Weight="70" 
+				Dimension="595 842" MediaType="Paper" MediaColorName="Yellow" />
+		<!-- Booklet layout + banner page with ISBN and Authors printed on it -->
+		<LayoutPreparationParams ID="NodeIDLPP" Class="Parameter" Status="Available" 
+				Sides="TwoSidedFlipY" NumberUp="2 1" BindingEdge="Left" 
+				PresentationDirection="FoldCatalog" FoldCatalog="F4-1" 
+				FinishingOrder="GatherFold" PageDistributionScheme="Saddle">
+			<InsertSheet SheetType="JobSheet" SheetUsage="Header" IsWaste="true" 
+					SheetFormat="Standard" >
+				<Layout>
+					<MediaRef rRef="MediaID2" />
+					<MarkObject CTM="1 0 0 1 0 0" >
+						<JobField ShowList="new:ISBN new:Authors" />
+					</MarkObject>
+				</Layout>
+			</InsertSheet>
+		</LayoutPreparationParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutPreparationParamsLink Usage="Input" rRef="NodeIDLPP"/>
+		<RunListLink Usage="Input" rRef="NodeIDRunList"/>
+		<MediaLink Usage="Input" rRef="MediaID"/>
+	</ResourceLinkPool>
+</JDF>

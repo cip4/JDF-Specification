@@ -1,0 +1,21 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="Bundle" Status="Waiting" 
+		Type="CylinderLayoutPreparation" JobPartID="ID20" Version="1.4">
+	<ResourcePool>
+		<CylinderLayout ID="CL-001" Class="Parameter" Status="Available" 
+				PartIDKeys="WebSetup PlateLayout Separation" 
+				DeviceID="DEV-001">
+			<!-- ... -->
+			<!-- PlatePosition (XYPairRangeList)-->
+			<CylinderPosition DeviceModuleIndex="2" PlatePosition="0 0 ~ 1 0" 
+					PlateType="Exposed" PlateUsage="Original"/>
+			<!-- ... -->
+		</CylinderLayout>
+		<Layout ID="L-001" Class="Parameter" Status="Available"/>
+		<Runlist ID="R-002" Class="Parameter" Status="Available"/>
+	</ResourcePool>
+	<ResourceLinkPool> 
+		<CylinderLayoutLink Usage="Output" rRef="CL-001"/>
+		<LayoutLink  Usage="Input" rRef="L-001"/>
+		<RunlistLink Usage="Input" rRef="R-002"/>
+	</ResourceLinkPool>
+</JDF>

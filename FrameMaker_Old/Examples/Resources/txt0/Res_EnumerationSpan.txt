@@ -1,0 +1,24 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="Product" JobPartID="ID300" Version="1.4">
+	<ResourcePool> 
+		<BindingIntent Class="Intent" ID="BI1" Status="Available">
+			<BindingType DataType="EnumerationSpan" Actual="Ring"/>
+			<RingBinding> 
+				<HoleType DataType="EnumerationSpan" Range="R4m-DIN-A5 R6m-DIN-A5">
+					<Comment Name="R4m-DIN-A5">
+						4 equidistant holes on each side of a hexagonal piece of paper
+					</Comment>
+					<Comment Name="R6m-DIN-A5">
+						6 equidistant holes on each side of a hexagonal piece of paper
+					</Comment>
+				</HoleType>
+			</RingBinding>
+		</BindingIntent>
+		<Component Class="Quantity" ID="cI1" Status="Unavailable" 
+				ComponentType="Sheet"/>
+	</ResourcePool> 
+	<ResourceLinkPool>
+		<BindingIntentLink Usage="Input" rRef="BI1"/>
+		<ComponentLink Usage="Output" rRef="cI1"/>
+	</ResourceLinkPool>
+</JDF>

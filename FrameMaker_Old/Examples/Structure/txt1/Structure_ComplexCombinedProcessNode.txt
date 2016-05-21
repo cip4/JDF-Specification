@@ -1,0 +1,29 @@
+﻿<JDF ID="ID" xmlns="http://www.CIP4.org/JDFSchema_1_1" Status="Waiting" 
+		Type="Combined" Types="Collecting Gathering Folding" JobPartID="ID345" 
+		Version="1.4">
+	<ResourcePool>
+		<GatheringParams ID="gp1" Class="Parameter" Status="Available"/>
+		<FoldingParams ID="fp1" Class="Parameter" Status="Available"/>  
+		<Component ID="in1" Class="Quantity" Status="Available" ComponentType="Sheet"/>
+		<Component ID="in2" Class="Quantity" Status="Available" ComponentType="Sheet"/>
+		<Component ID="in3" Class="Quantity" Status="Available" ComponentType="Sheet"/>
+		<Component ID="ex1" Class="Quantity" Status="Unavailable" ComponentType="Sheet"
+				PipeProtocol="Internal" PipeID="ex1"/>
+		<Component ID="ex2" Class="Quantity" Status="Unavailable" ComponentType="Sheet"
+				PipeProtocol="Internal" PipeID="ex2"/>
+		<Component ID="Out" Class="Quantity" Status="Unavailable" 
+				ComponentType="Sheet"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<GatheringParamsLink Usage="Input" rRef="gp1"/>
+		<FoldingParamsLink Usage="Input" rRef="fp1"/>
+		<ComponentLink CombinedProcessIndex="0" Usage="Input" rRef="in1"/>
+		<ComponentLink CombinedProcessIndex="0" Usage="Input" rRef="in2"/>
+		<ComponentLink CombinedProcessIndex="2" Usage="Input" rRef="in3"/>
+		<ComponentLink CombinedProcessIndex="0" Usage="Output" rRef="ex1"/>
+		<ComponentLink CombinedProcessIndex="2" Usage="Output" rRef="ex2"/>
+		<ComponentLink CombinedProcessIndex="1" Usage="Input" rRef="ex1"/>
+		<ComponentLink CombinedProcessIndex="1" Usage="Input" rRef="ex2"/>
+		<ComponentLink CombinedProcessIndex="1" Usage="Output" rRef="Out"/>
+	</ResourceLinkPool> 
+</JDF>

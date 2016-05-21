@@ -1,0 +1,6 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="Controller-1" 
+		TimeStamp="2005-07-25T11:38:23+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Query ID="M007" Type="KnownDevices" xsi:type="QueryKnownDevices"/>
+</JMF>

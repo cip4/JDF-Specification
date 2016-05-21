@@ -1,0 +1,25 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> 
+		<Media Class="Consumable" ID="TopMedia" Status="Available">
+			<Location LocationName="Top"/>
+		</Media>
+		<Media Class="Consumable" ID="BottomMedia" Status="Available">
+			<Location LocationName="Bottom"/>
+		</Media>
+		<LayoutPreparationParams Class="Parameter" ID="L1" PartIDKeys="RunIndex"
+				Sides="TwoSidedFlipY" Status="Available">
+			<!-- Partition that defines the first and last page of the document -->
+			<LayoutPreparationParams RunIndex="0 1 -2 -1">
+				<MediaRef rRef="TopMedia"/>
+			</LayoutPreparationParams>
+			<!-- Partition that defines the inside pages of the document -->
+			<LayoutPreparationParams RunIndex="2 ~ -3">
+				<MediaRef rRef="BottomMedia"/>
+			</LayoutPreparationParams>
+		</LayoutPreparationParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutPreparationParamsLink Usage="Input" rRef="L1"/>
+	</ResourceLinkPool>
+</JDF>

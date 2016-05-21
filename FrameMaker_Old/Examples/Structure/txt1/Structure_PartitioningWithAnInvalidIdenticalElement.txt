@@ -1,0 +1,28 @@
+﻿<ExposedMedia Class="Handling" ID="L2" PartIDKeys="SheetName Side Separation" 
+		Status="Available">
+	<ExposedMedia SheetName="S1">
+		<ExposedMedia Side="Front">
+			<ExposedMedia ProductID="1" Separation="Cyan"/>
+			<ExposedMedia ProductID="2" Separation="Magenta"/>
+			<ExposedMedia ProductID="3" Separation="Yellow"/>
+			<ExposedMedia ProductID="4" Separation="Black"/>
+		</ExposedMedia>
+		<ExposedMedia Side="Back">
+			<ExposedMedia ProductID="5" Separation="Cyan"/>
+			<ExposedMedia ProductID="6" Separation="Magenta"/>
+			<ExposedMedia ProductID="7" Separation="Yellow"/>
+			<ExposedMedia ProductID="8" Separation="Black"/>
+		</ExposedMedia>
+	</ExposedMedia>
+	<ExposedMedia SheetName="S2">
+		<ExposedMedia Side="Front">
+			<ExposedMedia ProductID="9" Separation="Cyan">
+				<!--This Identical is invalid because it references from a Separation 
+					partition to a Surface partition -->
+				<Identical>
+					<Part SheetName="S1" Side="Back"/>
+				</Identical>
+			</ExposedMedia>
+		</ExposedMedia>
+	</ExposedMedia>
+</ExposedMedia>

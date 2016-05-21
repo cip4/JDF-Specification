@@ -1,0 +1,24 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<LayoutElement Class="Parameter" ID="ID1" PartIDKeys="PageNumber" 
+				Status="Available">
+			<SeparationSpec Name="Cyan"/>
+			<SeparationSpec Name="Magenta"/>
+			<SeparationSpec Name="Yellow"/>
+			<SeparationSpec Name="Black"/>
+			<FileSpec/>
+			<LayoutElement PageNumber="0"/>
+			<LayoutElement PageNumber="1">
+				<!--	These two SeparationSpec Elements completely replace the 
+						CMYK in the root 
+				-->
+				<SeparationSpec Name="Black"/>
+				<SeparationSpec Name="SpotGreen"/>
+			</LayoutElement>
+		</LayoutElement>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutElementLink Usage="Input" rRef="ID1"/>
+	</ResourceLinkPool>
+</JDF>

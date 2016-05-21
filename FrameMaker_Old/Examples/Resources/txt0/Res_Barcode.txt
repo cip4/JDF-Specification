@@ -1,0 +1,25 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" DescriptiveName="Barcode Creation"
+		ID="n001" Status="Waiting" JobPartID="ID34" Type="LayoutElementProduction" 
+		Version="1.4">
+	<ResourcePool>
+		<LayoutElementProductionParams Class="Parameter" ID="BarcodeParams" 
+				Status="Available">
+			<LayoutElementPart>
+				<BarcodeProductionParams>
+					<IdentificationField Encoding="Barcode" EncodingDetails="EAN_13" 
+							Purpose="Label" PurposeDetails="ProductIdentification" 
+							Value="0123456789128"/>
+					<BarcodeReproParams Height="73.50" Magnification="1.0">
+						<BarcodeCompParams CompensationProcess="Printing" 
+								CompensationValue="10.0"/>
+					</BarcodeReproParams>
+				</BarcodeProductionParams>
+			</LayoutElementPart>
+		</LayoutElementProductionParams>
+		<LayoutElement Class="Parameter" ID="LayElOut" Status="Unavailable"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutElementProductionParamsLink Usage="Input" rRef="BarcodeParams"/>
+		<LayoutElementLink Usage="Output" rRef="LayElOut"/>
+	</ResourceLinkPool>
+</JDF>

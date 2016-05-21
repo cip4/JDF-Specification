@@ -1,0 +1,65 @@
+﻿<JDF ID="n001" Type="Stripping" JobPartID="ID378" Status="Ready" Version="1.4">
+	<ResourcePool>
+		<BinderySignature Class="Parameter" FoldCatalog="F4-1" ID="F4-1" 
+				Status="Available"/>
+		<BinderySignature Class="Parameter" FoldCatalog="F16-6" ID="F16-6" 
+				Status="Available"/>
+		<BinderySignature Class="Parameter" FoldCatalog="F8-7" ID="F8-7" 
+				Status="Available"/>
+		<StrippingParams Class="Parameter" ID="L1" 
+				PartIDKeys="SheetName BinderySignatureName" Status="Available">
+			<StrippingParams SheetName="Sheet1">
+				<StrippingParams AssemblyIDs="Part1" BinderySignatureName="F4-1" 
+						JobID="Book1" SectionList="0">
+					<BinderySignatureRef rRef="F4-1"/>
+					<Position RelativeBox="0 0.5 0.5 0.75"/>
+					<Position RelativeBox="0 0.75 0.5 1"/>
+				</StrippingParams>
+				<StrippingParams AssemblyIDs="Part2" BinderySignatureName="F8-7" 
+						JobID="Book1" SectionList="0">
+					<BinderySignatureRef rRef="F8-7"/>
+					<Position RelativeBox="0.5 0.5 1 1"/>
+				</StrippingParams>
+				<StrippingParams BinderySignatureName="F16-6" JobID="Book2" 
+						SectionList="0">
+					<BinderySignatureRef rRef="F16-6"/>
+					<Position RelativeBox="0 0 1 0.5"/>
+				</StrippingParams>
+			</StrippingParams>
+			<StrippingParams SheetName="Sheet2">
+				<StrippingParams AssemblyIDs="Part2" BinderySignatureName="F8-7_1" 
+						JobID="Book1" SectionList="1">
+					<BinderySignatureRef rRef="F8-7"/>
+					<Position RelativeBox="0 0.5 0.5 1"/>
+				</StrippingParams>
+				<StrippingParams AssemblyIDs="Part2" BinderySignatureName="F8-7_2" 
+						JobID="Book1" SectionList="2">
+					<BinderySignatureRef rRef="F8-7"/>
+					<Position RelativeBox="0.5 0.5 1 1"/>
+				</StrippingParams>
+				<StrippingParams BinderySignatureName="F16-6" JobID="Book2" 
+						SectionList="1">
+					<BinderySignatureRef rRef="F16-6"/>
+					<Position RelativeBox="0 0 1 0.5"/>
+				</StrippingParams>
+			</StrippingParams>
+		</StrippingParams>
+		<Assembly Class="Parameter" ID="A1" JobID="Book1" Order="List" 
+				Status="Available">
+			<AssemblySection AssemblyIDs="Part1" Order="Gathering">
+				<AssemblySection AssemblyIDs="Part2"/>
+				<AssemblySection AssemblyIDs="Part2"/>
+				<AssemblySection AssemblyIDs="Part2"/>
+			</AssemblySection>
+		</Assembly>
+		<Assembly Class="Parameter" ID="A2" JobID="Book2" Order="Collecting" 
+				Status="Available"/>
+		<Layout Class="Parameter" ID="L2" Status="Unavailable"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<StrippingParamsLink Usage="Input" rRef="L1"/>
+		<AssemblyLink Usage="Input" rRef="A1"/>
+		<AssemblyLink Usage="Input" rRef="A2"/>
+		<LayoutLink Usage="Output" rRef="L2"/>
+	</ResourceLinkPool>
+</JDF>

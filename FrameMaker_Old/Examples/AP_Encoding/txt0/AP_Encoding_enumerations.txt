@@ -1,0 +1,1 @@
+﻿<Example Orientations="Rotate90 Flip90"/>

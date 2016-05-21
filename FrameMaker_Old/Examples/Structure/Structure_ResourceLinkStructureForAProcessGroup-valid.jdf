@@ -1,0 +1,59 @@
+<!--begin spec-->
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="J1" Status="Waiting" 
+Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+<!--	the ResourceLink Elements in the ProcessGroup define the Input 
+Resources that are to be available for the ProcessGroup to be 
+submitted and the Output Resources that are produced by the ProcessGroup 
+-->
+<ResourcePool>
+<DigitalPrintingParams ID="L1" Class="Parameter" Status="Available"/>
+<Media ID="L2" Class="Consumable" Status="Available"/>
+<RunList ID="L8" Class="Parameter" Status="Available"/> 
+<Component ID="L3" Class="Quantity" Status="Unavailable" 
+ComponentType="Sheet"/>
+<GatheringParams ID="L4" Class="Parameter" Status="Available"/> 
+<Component ID="L5" Class="Quantity" Status="Unavailable" 
+ComponentType="Sheet"/>
+<StitchingParams ID="L6" Class="Parameter" Status="Available"/> 
+<Component ID="L7" Class="Quantity" Status="Unavailable" 
+ComponentType="Sheet"/>
+</ResourcePool>
+<ResourceLinkPool>
+<!-- print input media -->
+<MediaLink Usage="Input" rRef="L2"/>
+<!-- gathered output components -->
+<ComponentLink Usage="Output" rRef="L7"/>
+</ResourceLinkPool>
+<JDF ID="J2" Status="Waiting" JobPartID="ID301" Type="DigitalPrinting">
+<ResourceLinkPool>
+<!-- digital printing parameters -->
+<DigitalPrintingParamsLink Usage="Input" rRef="L1"/>
+<!-- input sheets -->
+<MediaLink Usage="Input" rRef="L2"/>
+<RunListLink Usage="Input" rRef="L8"/>
+<!-- printed output components -->
+<ComponentLink Usage="Output" rRef="L3"/>
+</ResourceLinkPool>
+</JDF>
+<JDF ID="J3" Status="Waiting" JobPartID="ID302" Type="Gathering">
+<ResourceLinkPool>
+<!-- gathering parameters -->
+<GatheringParamsLink Usage="Input" rRef="L4"/>
+<!-- printed output components -->
+<ComponentLink Usage="Input" rRef="L3"/>
+<!-- gathered output components -->
+<ComponentLink Usage="Output" rRef="L5"/>
+</ResourceLinkPool>
+</JDF>
+<JDF ID="J4" Status="Waiting" JobPartID="ID303" Type="Stitching">
+<ResourceLinkPool>
+<!-- Stitching parameters -->
+<StitchingParamsLink Usage="Input" rRef="L6"/>
+<!-- gathered output components -->
+<ComponentLink Usage="Input" rRef="L5"/>
+<!-- stitched output components -->
+<ComponentLink Usage="Output" rRef="L7"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+<!--end spec-->

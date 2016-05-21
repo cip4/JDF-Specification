@@ -1,0 +1,40 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<BinderySignature Class="Parameter" ID="ComeAndGo" NumberUp="4 2" 
+				Status="Available">
+			<SignatureCell BackPages="1 6 5 2" FrontPages="3 4 7 0" Orientation="Up" 
+					SectionIndex="0"/>
+			<SignatureCell BackPages="6 1 2 5" FrontPages="4 3 0 7" 
+					Orientation="Down" SectionIndex="1"/>
+		</BinderySignature>
+		<StrippingParams Class="Parameter" ID="L1" JobID="MyJob" 
+				PartIDKeys="SheetName SectionIndex" Status="Available" 
+				WorkStyle="WorkAndBack">
+			<BinderySignatureRef rRef="ComeAndGo"/>
+			<StrippingParams SheetName="Sheet1">
+				<StrippingParams AssemblyIDs="Book1" SectionIndex="0" SectionList="0"/>
+				<StrippingParams AssemblyIDs="Book2" SectionIndex="1" SectionList="9"/>
+			</StrippingParams>
+			<StrippingParams SheetName="Sheet2">
+				<StrippingParams AssemblyIDs="Book1" SectionIndex="0" SectionList="1"/>
+				<StrippingParams AssemblyIDs="Book2" SectionIndex="1" SectionList="8"/>
+			</StrippingParams>
+			<StrippingParams SheetName="Sheet3">
+				<StrippingParams AssemblyIDs="Book1" SectionIndex="0" SectionList="2"/>
+				<StrippingParams AssemblyIDs="Book2" SectionIndex="1" SectionList="7"/>
+			</StrippingParams>
+			<StrippingParams SheetName="Sheet4">
+				<StrippingParams AssemblyIDs="Book1" SectionIndex="0" SectionList="3"/>
+				<StrippingParams AssemblyIDs="Book2" SectionIndex="1" SectionList="6"/>
+			</StrippingParams>
+			<StrippingParams SheetName="Sheet5">
+				<StrippingParams AssemblyIDs="Book1" SectionIndex="0" SectionList="4"/>
+				<StrippingParams AssemblyIDs="Book2" SectionIndex="1" SectionList="5"/>
+			</StrippingParams>
+		</StrippingParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<StrippingParamsLink Usage="Input" rRef="L1"/>
+	</ResourceLinkPool>
+</JDF>

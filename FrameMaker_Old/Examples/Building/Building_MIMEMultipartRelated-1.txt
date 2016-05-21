@@ -1,0 +1,7 @@
+MIME-Version: 1.0
+Content-Type: multipart/related; boundary=unique-boundary
+
+--unique-boundary
+Content-Type: application/vnd.cip4-jmf+xml
+Content-Transfer-Encoding: 8bit
+...

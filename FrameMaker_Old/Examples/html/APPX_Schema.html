@@ -1,0 +1,539 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Appendix B	Schema</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="AppTitle">
+<A NAME="0_pgfId-1015475"></A>Appendix B	Schema</H1>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015477"></A>XML Schema for JDF (and JMF) will be published on: <SPAN CLASS="Link-External">
+<A HREF="http://www.CIP4.org" CLASS="URL">http://www.CIP4.org</A></SPAN>
+<SPAN CLASS="AnchorCalloutPurple">
+.<IMG SRC="APPX_Schema-1.png" ALIGN="RIGHT">
+</SPAN>
+</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1015479"></A>The XML Schema is not sufficient to completely validate a JDF Job. For example, Partitioned Resources or Process Node types as defined in JDF cannot be validated by XML Schema processors. In other words, the structure of some elements depends on the context of usage which cannot be completely described by XML Schema. Thus, the XML Schema for JDF will be structured in a way that it enables a pre-validation of valid JDF-candidates but does not preclude all syntactically invalid files to be validated. </P>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1019678"></A>B.1	<A NAME="0_37565"></A>Using xsi:type</H2>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1019679"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019668"></A>XML Schema permits that multiple type definitions be derived from a base type. Wherever the schema has define an element of that base type, it is possible for the document to indicate to a validator the particular derived type that it has used. This it does by using the <SPAN CLASS="Attribute">
+xsi:type</SPAN>
+ Attribute with a value of the name of the type, where the <SPAN CLASS="Enumeration">
+&quot;xsi&quot;</SPAN>
+ tag is associated with the Schema Instance namespace that has to be declared in the document. </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016317"></A>Note: Use of <SPAN CLASS="Enumeration">
+&quot;xsi&quot;</SPAN>
+ as the tag is normal practice.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016318"></A>Note: The selected type is namespace qualified (which permits extensions)</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1016669"></A>B.1.1	Using xsi:type with JDF Nodes</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1016670"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016671"></A>When used with JDF Nodes then all Processes defined in Section 6 are supported. Furthermore the value to be used is identical to the Process type, thus a JDF Node that has a <SPAN CLASS="Attribute">
+Type</SPAN>
+ of <SPAN CLASS="Enumeration">
+&quot;DigitalPrinting&quot;</SPAN>
+ can inform validators to use the schema definition for <A HREF="Processes.html#0_DigitalPrinting" CLASS="XRef"><SPAN CLASS="Link-Process">
+DigitalPrinting</SPAN>
+</A> Nodes by also setting <SPAN CLASS="Attribute">
+xsi:type</SPAN>
+ to <SPAN CLASS="Enumeration">
+&quot;DigitalPrinting&quot;</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1016672"></A>Some JDF Nodes are general in their nature and do not have a restricted definition, (i.e., Product Intent Nodes, Combined Process Nodes and so on.) General definitions with the appropriate name are provided to enable consistent use of <SPAN CLASS="Attribute">
+xsi:type</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019165"></A>The JDF Schema defines types for JDF Process Nodes and JMF Messages. It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ that these types are used with <SPAN CLASS="Attribute">
+xsi:type</SPAN>
+.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1019089"></A>Example B-1: JDF Nodes: xsi:type</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1021767"></A>&lt;<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ ID=<SPAN CLASS="XMLAttrValue">
+&quot;BackCover&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021768"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;InProgress&quot;</SPAN>
+   </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021769"></A><SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;DigitalPrinting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;345&quot;</SPAN>
+</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021770"></A><SPAN CLASS="XMLAttrName">
+xmlns:xsi</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021771"></A><SPAN CLASS="XMLAttrName">
+xsi:schemaLocation</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/Schema/JDFSchema_1_4/JDF.xsd&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021772"></A><SPAN CLASS="XMLAttrNameStrong">
+xsi:type</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;DigitalPrinting&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021773"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021774"></A>&lt;<SPAN CLASS="XML-Tag">
+DigitalPrintingParamsLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021775"></A>&lt;<SPAN CLASS="XML-Tag">
+RunListLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID124&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021776"></A>&lt;<SPAN CLASS="XML-Tag">
+ComponentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021777"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021778"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021779"></A>&lt;<SPAN CLASS="XML-Tag">
+DigitalPrintingParams</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021780"></A>&lt;<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID124&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021781"></A>&lt;<SPAN CLASS="XML-Tag">
+Component</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Quantity&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Unavailable&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021782"></A><SPAN CLASS="XMLAttrName">
+ComponentType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Sheet&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021783"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1021784"></A>&lt;/<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1019217"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1019108"></A>Example B-2: JDF Nodes: xsi:type (not in Default Namespace)</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016327"></A>If the JDF is not in the default namespace then the type name needs to be altered accordingly:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1021791"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns:jdf</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ ID=<SPAN CLASS="XMLAttrValue">
+&quot;BackCover&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021792"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;InProgress&quot;</SPAN>
+   </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021793"></A><SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;DigitalPrinting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;345&quot;</SPAN>
+</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021794"></A><SPAN CLASS="XMLAttrName">
+xmlns:xsi</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021795"></A><SPAN CLASS="XMLAttrNameStrong">
+xsi:type</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;jdf:DigitalPrinting&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021796"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021797"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:DigitalPrintingParamsLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021798"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:RunListLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID124&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021799"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:ComponentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021800"></A>&lt;/<SPAN CLASS="XML-Tag">
+jdf:ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021801"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021802"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:DigitalPrintingParams</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1021803"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021804"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:RunList</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID124&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021805"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:Component</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Quantity&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Unavailable&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1021806"></A><SPAN CLASS="XMLAttrName">
+ComponentType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Sheet&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021807"></A>&lt;/<SPAN CLASS="XML-Tag">
+jdf:ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1021808"></A>&lt;/<SPAN CLASS="XML-Tag">
+jdf:JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1019256"></A>&nbsp;</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1016351"></A>B.1.2	Using xsi:type with JMF Messages</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1016352"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016465"></A>JMF Messages are organized into families -- <A HREF="JMF.html#0_65248" CLASS="XRef"><SPAN CLASS="Link-Message">
+Command</SPAN>
+</A>, <A HREF="JMF.html#0_98535" CLASS="XRef"><SPAN CLASS="Link-Message">
+Acknowledge</SPAN>
+</A>, etc. (See <SPAN CLASS="Link-internal">
+<A HREF="JMF.html#0_94734" CLASS="XRef">Section 5.3, “JMF Message Families”</A></SPAN>
+) -- and each of these families has Messages for each Message <SPAN CLASS="Attribute">
+Type</SPAN>
+ -- <A HREF="JMF.html#0_42017" CLASS="XRef"><SPAN CLASS="Link-Message">
+Events</SPAN>
+</A>, <A HREF="JMF.html#0_KnownControllers" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownControllers</SPAN>
+</A>, etc. Because it is the convolution of these two that are the unique derived types, the name used in <SPAN CLASS="Attribute">
+xsi:type</SPAN>
+ has to be the convolution of the Message Family and Type.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019120"></A>To query an event a Query Message with an <A HREF="JMF.html#0_42017" CLASS="XRef"><SPAN CLASS="Link-Message">
+Events</SPAN>
+</A>/<A HREF="JMF.html#0_30996" CLASS="XRef"><SPAN CLASS="Link-Element">
+QueryTypeObj</SPAN>
+</A> would be used. The type definition name employed by the JDF Schema would therefore be <SPAN CLASS="Enumeration">
+&quot;QueryEvents&quot;</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019196"></A>Note JMF Messages also do not have to be in the default namespace as in the JDF Node example below. </P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1019302"></A>Example B-3: JMF: xsi:type</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1021811"></A>&lt;<SPAN CLASS="XML-Tag">
+JMF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+SenderID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;TestSender&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021812"></A><SPAN CLASS="XMLAttrName">
+TimeStamp</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2003-11-07T12:15:56Z&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MaxVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021813"></A><SPAN CLASS="XMLAttrName">
+xmlns:xsi</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</SPAN>
+ &gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021814"></A>&lt;<SPAN CLASS="XML-Tag">
+Query</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Message_001Q&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Events&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+xsi:type</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;QueryEvents&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021815"></A>&lt;<SPAN CLASS="XML-Tag">
+NotificationFilter</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021816"></A>&lt;/<SPAN CLASS="XML-Tag">
+Query</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021817"></A>&lt;<SPAN CLASS="XML-Tag">
+Response</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Message_001R&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Events&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+refID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Q001&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1021818"></A><SPAN CLASS="XMLAttrNameStrong">
+xsi:type</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;ResponseEvents&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1021819"></A>&lt;<SPAN CLASS="XML-Tag">
+NotificationDef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Classes</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Error&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Barcode&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1021820"></A>&lt;/<SPAN CLASS="XML-Tag">
+Response</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1021821"></A>&lt;/<SPAN CLASS="XML-Tag">
+JMF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1019305"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1016683"></A>&nbsp;</P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

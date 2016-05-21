@@ -1,0 +1,22 @@
+﻿<JDF ID="ID" Type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="ID34" Version="1.4">
+	<ResourcePool>
+		<PreflightParams Class="Parameter" ID="PP001" Status="Available">
+			<TestPool>
+				<Test ID="PT01">
+					<BooleanEvaluation ValueList="true">
+						<BasicPreflightTest Name="InsideBox">
+							<PreflightArgument>
+								<BoxArgument Box="TrimBox" Overlap="true"/>
+							</PreflightArgument>
+						</BasicPreflightTest>
+					</BooleanEvaluation>
+				</Test>
+			</TestPool>
+			<ActionPool/>
+		</PreflightParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<PreflightParamsLink Usage="Input" rRef="PP001"/> 
+	</ResourceLinkPool>
+</JDF>

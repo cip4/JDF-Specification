@@ -1,0 +1,1508 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Appendix I	Generating strings with Format and Template</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="AppTitle">
+<A NAME="0_pgfId-1014132"></A>Appendix I	<A NAME="0_87780"></A><A NAME="0_Generating strings with Format and Template"></A>Generating strings with Format and Template</H1>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1017403"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017411"></A>JDF specifies a set of <SPAN CLASS="NoSpell">
+XXXFormat</SPAN>
+ <SPAN CLASS="NoSpell">
+XXXTemplate</SPAN>
+ pairs that allow dynamic generation of strings based on the standard <SPAN CLASS="NoSpell">
+C</SPAN>
+ <SPAN CLASS="NoSpell">
+printf</SPAN>
+() function. (See <A HREF="APPX_References.html#0_[K&amp;R]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[K&amp;R]</SPAN>
+</A>.). The following instances are specified:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1020121"></A><A HREF="JMF.html#0_11190" CLASS="XRef"><SPAN CLASS="Link-Message">
+Query</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+AcknowledgeFormat</SPAN>
+ and <A HREF="JMF.html#0_11190" CLASS="XRef"><SPAN CLASS="Link-Message">
+Query</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+AcknowledgeTemplate;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1020131"></A><A HREF="JMF.html#0_65248" CLASS="XRef"><SPAN CLASS="Link-Message">
+Command</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+AcknowledgeFormat</SPAN>
+ and <A HREF="JMF.html#0_65248" CLASS="XRef"><SPAN CLASS="Link-Message">
+Command</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+AcknowledgeTemplate;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1022738"></A><A HREF="JMF.html#0_55539" CLASS="XRef"><SPAN CLASS="Link-Message">
+Subscription</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Format</SPAN>
+ and <A HREF="JMF.html#0_55539" CLASS="XRef"><SPAN CLASS="Link-Message">
+Subscription</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Template</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1023486"></A><A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+with a fixed format</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1020086"></A><A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+FileFormat </SPAN>
+and<SPAN CLASS="Attribute">
+ </SPAN>
+<A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+FileTemplate;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017707"></A><A HREF="Resources.html#0_IdentificationField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+IdentificationField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ValueFormat </SPAN>
+and<SPAN CLASS="Attribute">
+ </SPAN>
+<A HREF="Resources.html#0_IdentificationField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+IdentificationField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ValueTemplate</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1022561"></A><A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+JobFormat </SPAN>
+and <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+JobTemplate</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1022705"></A><A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+with a fixed format</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1022564"></A><A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+SheetNameFormat </SPAN>
+and <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+SheetNameTemplate</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017734"></A><A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/<A HREF="Resources.html#0_MarkObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+MarkObject</SPAN>
+</A>/<A HREF="Resources.html#0_87039" CLASS="XRef"><SPAN CLASS="Link-Element">
+DynamicField</SPAN>
+</A>@<SPAN CLASS="Attribute">
+Format </SPAN>
+and<SPAN CLASS="Attribute">
+ </SPAN>
+<A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/<A HREF="Resources.html#0_MarkObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+MarkObject</SPAN>
+</A>/<A HREF="Resources.html#0_87039" CLASS="XRef"><SPAN CLASS="Link-Element">
+DynamicField</SPAN>
+</A>/<SPAN CLASS="Attribute">
+@Template.</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1023783"></A><A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>/<A HREF="Resources.html#0_ MetadataMap" CLASS="XRef"><SPAN CLASS="Link-Element">
+MetadataMap</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ValueFormat </SPAN>
+and <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>/<A HREF="Resources.html#0_ MetadataMap" CLASS="XRef"><SPAN CLASS="Link-Element">
+MetadataMap</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ValueFormat</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1023790"></A><A HREF="Resources.html#0_StrippingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+StrippingParams</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+SheetNameFormat </SPAN>
+and <A HREF="Resources.html#0_StrippingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+StrippingParams</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+SheetNameTemplate</SPAN>
+</LI>
+</UL>
+<P CLASS="Body">
+<A NAME="0_pgfId-1023791"></A>The function defined when using the Attributes <SPAN CLASS="Attribute">
+XXXFormat</SPAN>
+ and <SPAN CLASS="Attribute">
+XXXTemplate</SPAN>
+ is based on the standard C printf() function. (See <A HREF="APPX_References.html#0_[K&amp;R]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[K&amp;R]</SPAN>
+</A>.) <SPAN CLASS="Attribute">
+XXXFormat</SPAN>
+ is the first argument and <SPAN CLASS="Attribute">
+XXXTemplate</SPAN>
+ is a comma-separated list of the additional arguments. <SPAN CLASS="Attribute">
+XXXTemplate</SPAN>
+ <SPAN CLASS="ConformWord">
+may</SPAN>
+ contain the following operators: +,-,*,/,%,(,) which are evaluated using standard C-operator precedence and the variables defined in the following table which include any valid Partition Key of a Partitioned Resource</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023577"></A><SPAN CLASS="NoteLeadIn">
+Modification note:</SPAN>
+ starting with JDF 1.4, values from <SPAN CLASS="Attribute">
+ShowList</SPAN>
+ are added to <A HREF="APPX_Format_Template.html#0_32013" CLASS="XRef">Table I-1</A> below and when two values differ only in case, the one starting with an uppercase letter is deprecated. </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1038014"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1022771"></A>Table I-1: <A NAME="0_32013"></A>Predefined variables used in @XXXTemplate and @ShowList (Section 1 of 4)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1022775"></A>Name</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1022777"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023494"></A>&lt;<SPAN CLASS="Italics">
+a Partition Key</SPAN>
+&gt;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023496"></A>Any Partition Key that is a value of @<SPAN CLASS="Attribute">
+PartIDKeys</SPAN>
+ in <A HREF="Structure_of_JDF_Nodes.html#0_69278" CLASS="XRef">Table 3-27, “Partitionable Resource Element”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022779"></A><SPAN CLASS="Enumeration">
+AcknowledgeType</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022781"></A>Corresponds to the JMF <SPAN CLASS="Attribute">
+AcknowledgeType</SPAN>
+ in the <A HREF="JMF.html#0_98535" CLASS="XRef"><SPAN CLASS="Link-Message">
+Acknowledge</SPAN>
+</A> Message. See <SPAN CLASS="Link-internal">
+<A HREF="JMF.html#0_98535" CLASS="XRef">Section 5.3.5, “Acknowledge”</A></SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022786"></A><SPAN CLASS="Enumeration">
+all</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022788"></A>Selects all matching Elements. Valid only when <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> is used as an Input Resource.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023246"></A><SPAN CLASS="Enumeration">
+Amount</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023255"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023248"></A>Amount of the product that was produced.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023266"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022790"></A><SPAN CLASS="Enumeration">
+CustomerID</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022792"></A><SPAN CLASS="Attribute">
+CustomerID</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022794"></A><SPAN CLASS="Enumeration">
+Date</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022799"></A>Current <SPAN CLASS="Attribute">
+Date</SPAN>
+ in <A HREF="APPX_References.html#0_[ISO8601" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO8601:2004]</SPAN>
+</A> format.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022801"></A><SPAN CLASS="Enumeration">
+DeviceID</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022802"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022804"></A>ID of the Device. This is a unique name within the workflow.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023276"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+ and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022807"></A><SPAN CLASS="Enumeration">
+element</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022809"></A>Integer iterator over all elements in a given page. Restarts at 0 for each page.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022811"></A><SPAN CLASS="Enumeration">
+EndTime</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022812"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022814"></A>Actual end time of the Job.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023292"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022817"></A><SPAN CLASS="Enumeration">
+Error</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022818"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022820"></A>Errors that happened during the Job.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023298"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022823"></A><SPAN CLASS="Enumeration">
+ErrorStats</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022824"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022826"></A>Statistics on errors that happened during execution.</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022827"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022829"></A><SPAN CLASS="Enumeration">
+ExposedMediaName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022830"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022832"></A><SPAN CLASS="Attribute">
+DescriptiveName</SPAN>
+ of the exposed media, e.g. plate or proof that is being imaged.</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022833"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022835"></A><SPAN CLASS="Enumeration">
+FriendlyName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022836"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022838"></A><SPAN CLASS="Attribute">
+FriendlyName</SPAN>
+ of the Device.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023304"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023078"></A><SPAN CLASS="Enumeration">
+GeneralID:</SPAN>
+XXX</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023128"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023061"></A><A HREF="Structure_of_JDF_Nodes.html#0_GeneraID" CLASS="XRef"><SPAN CLASS="Link-Element">
+GeneralID</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+IDValue</SPAN>
+ of a <A HREF="Structure_of_JDF_Nodes.html#0_GeneraID" CLASS="XRef"><SPAN CLASS="Link-Element">
+GeneralID</SPAN>
+</A>[@<SPAN CLASS="Attribute">
+IDUsage </SPAN>
+= <SPAN CLASS="Enumeration">
+&quot;XXX&quot;</SPAN>
+]</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023124"></A>For example if <SPAN CLASS="Attribute">
+Format </SPAN>
+= <SPAN CLASS="Enumeration">
+&quot;%i&quot;</SPAN>
+ and <SPAN CLASS="Attribute">
+Template</SPAN>
+= <SPAN CLASS="Enumeration">
+&quot;GeneralID:foo&quot;</SPAN>
+ then for: </P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1023122"></A>&lt;<SPAN CLASS="XML-Tag">
+GeneralID</SPAN>
+ <SPAN CLASS="XMLAttrName">
+IDUsage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;foo&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+IDValue</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1023156"></A>the extracted value is 1.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022841"></A><SPAN CLASS="Enumeration">
+Generated</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022843"></A>System generated file name.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022845"></A><SPAN CLASS="Enumeration">
+i</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022847"></A>Integer iterator over all files produced by this Process. 0-based numbering.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022849"></A><SPAN CLASS="Enumeration">
+input</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022851"></A>Local file name of the input file. Valid only when <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> is used as an Output Resource.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022853"></A><SPAN CLASS="Enumeration">
+jobID</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022855"></A>Job ID string.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022857"></A><SPAN CLASS="Enumeration">
+JobID</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022858"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022860"></A><SPAN CLASS="Attribute">
+JobID</SPAN>
+ of the Node that is executing. </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023310"></A><SPAN CLASS="NoteLeadIn">
+Deprecation note:</SPAN>
+ starting with JDF 1.4, use <SPAN CLASS="Enumeration">
+jobID</SPAN>
+<SPAN CLASS="NoteLeadIn">
+. </SPAN>
+Before JDF 1.4, <SPAN CLASS="Enumeration">
+JobID </SPAN>
+was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022863"></A><SPAN CLASS="Enumeration">
+jobName</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022865"></A><SPAN CLASS="Attribute">
+DescriptiveName</SPAN>
+ of the Node that is being processed.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022867"></A><SPAN CLASS="Enumeration">
+JobName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022868"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022870"></A><SPAN CLASS="Enumeration">
+DescriptiveName</SPAN>
+ of the Node that is executing.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023327"></A><SPAN CLASS="NoteLeadIn">
+Deprecation note:</SPAN>
+ starting with JDF 1.4, use <SPAN CLASS="Enumeration">
+jobName</SPAN>
+<SPAN CLASS="NoteLeadIn">
+. </SPAN>
+Before JDF 1.4, <SPAN CLASS="Enumeration">
+JobName </SPAN>
+was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022873"></A><SPAN CLASS="Enumeration">
+jobPartID</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022875"></A><SPAN CLASS="Attribute">
+JobPartID</SPAN>
+ string.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022877"></A><SPAN CLASS="Enumeration">
+JobRecipientName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022878"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022880"></A>Name of the recipient of the Job.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023345"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022883"></A><SPAN CLASS="Enumeration">
+JobSubmitterName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022884"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022886"></A>Name of the submitter of the Job.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023351"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022889"></A><SPAN CLASS="Enumeration">
+LayPartCount2in1</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022890"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022895"></A>Number of Partitions at level 2 within Partition level 1 (the base) within the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> Resource. When using the <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ <SPAN CLASS="Attribute">
+SignatureName</SPAN>
+ / <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ Partition Keys, this equates to the number of Signatures within the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>. All other variants of <SPAN CLASS="Attribute">
+LayPartCount</SPAN>
+<SPAN CLASS="NoSpell">
+&lt;n&gt;</SPAN>
+<SPAN CLASS="Attribute">
+in</SPAN>
+<SPAN CLASS="NoSpell">
+&lt;m&gt;</SPAN>
+ <SPAN CLASS="ConformWord">
+may</SPAN>
+ be used, where &lt;n&gt; is an integer greater than <SPAN CLASS="NoSpell">
+&lt;m&gt;</SPAN>
+, and where &lt;n&gt; does not exceed the depth of the Partition tree within the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022903"></A><SPAN CLASS="Enumeration">
+LayPartIndex2in1</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022904"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022906"></A>Index (1-based) of Partition level 2 within Partition level 1 (the base) within the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> Resource. When using the <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ <SPAN CLASS="Attribute">
+SignatureName</SPAN>
+/<SPAN CLASS="Attribute">
+SheetName</SPAN>
+ Partition Keys, this equates to the Signature number within the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>. All other variants of <SPAN CLASS="Attribute">
+LayPartIndex</SPAN>
+<SPAN CLASS="NoSpell">
+&lt;n&gt;</SPAN>
+<SPAN CLASS="Attribute">
+in</SPAN>
+<SPAN CLASS="NoSpell">
+&lt;m&gt;</SPAN>
+ <SPAN CLASS="ConformWord">
+may</SPAN>
+ be used, where &lt;n&gt; is an integer greater than <SPAN CLASS="NoSpell">
+&lt;m&gt;</SPAN>
+, and where &lt;n&gt; does not exceed the depth of the Partition tree within the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022917"></A><SPAN CLASS="Enumeration">
+MediaBrand</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022918"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022920"></A>Brand of the media that is being printed.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023357"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022923"></A><SPAN CLASS="Enumeration">
+MediaType</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022924"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022926"></A><SPAN CLASS="Enumeration">
+DescriptiveName</SPAN>
+ of the media that is being printed.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023363"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022929"></A><SPAN CLASS="Enumeration">
+MoonPhase</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022930"></A> <SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022932"></A>Phase of the moon at the <SPAN CLASS="Attribute">
+StartTime</SPAN>
+ of the Job.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1022933"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022935"></A><SPAN CLASS="Enumeration">
+Operator</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022936"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022938"></A>Name of the operator.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023369"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022941"></A><SPAN CLASS="Enumeration">
+OperatorText</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022942"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022944"></A>Text from the operator as defined in <SPAN CLASS="Attribute">
+OperatorText</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022946"></A><SPAN CLASS="Enumeration">
+page</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022948"></A>Integer iterator over the page number of a document. This value is equivalent to value <SPAN CLASS="NoSpell">
+r</SPAN>
+ (below) for the case that each run contains exactly one page.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022950"></A><SPAN CLASS="Enumeration">
+PrintQuality</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022951"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022953"></A>The quality of the printout. (High, Normal, Draft or Device specific name) </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1022954"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022956"></A><SPAN CLASS="Enumeration">
+ProoferProfileName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022957"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022959"></A>Name of the ICC profile for the proofing Device. </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1022960"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022962"></A><SPAN CLASS="Enumeration">
+PressProfileName</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022963"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022965"></A>Name of the ICC profile for the final printing (used as intermediate space during proofing). </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1022966"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022968"></A><SPAN CLASS="NoSpell">
+r</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022970"></A>Integer iterator over all <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> Partitions with a Partition Key of <SPAN CLASS="Enumeration">
+&quot;Run&quot;</SPAN>
+ in an input <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022972"></A><SPAN CLASS="Enumeration">
+ri</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022974"></A>Integer iterator over all indices in an input <SPAN CLASS="Enumeration">
+&quot;Run&quot;</SPAN>
+ of a <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>. This index is equivalent to looping over a <SPAN CLASS="Attribute">
+RunIndex</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022976"></A><SPAN CLASS="Enumeration">
+Resolution</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022977"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022979"></A>Output resolution.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023375"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022982"></A><SPAN CLASS="Enumeration">
+ResolutionX</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022983"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022985"></A>Output resolution in X direction.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023381"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022988"></A><SPAN CLASS="Enumeration">
+ResolutionY</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022989"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022991"></A>Output resolution in Y direction.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023387"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022994"></A><SPAN CLASS="Enumeration">
+ScreeningFamily</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022995"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1022997"></A>Name of the screening family of the output.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023393"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023000"></A><SPAN CLASS="Enumeration">
+sep</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023205"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.4</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1037974"></A>Separation as defined in the separation Partition Keys of a Partitioned Resource.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023214"></A><SPAN CLASS="NoteLeadIn">
+Deprecation note:</SPAN>
+ starting with JDF 1.4, use the Partition Key <SPAN CLASS="Enumeration">
+&quot;Separation&quot;</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023004"></A><SPAN CLASS="Enumeration">
+SheetNum</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023005"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023007"></A>Integer iterator over the sheet number of a document. </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023008"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023010"></A><SPAN CLASS="Enumeration">
+StartTime</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023011"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023013"></A>Actual start time of the Job</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023399"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023016"></A><SPAN CLASS="Enumeration">
+surf</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023017"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.3</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023019"></A>Surface string, <SPAN CLASS="Enumeration">
+&quot;Front&quot;</SPAN>
+ or <SPAN CLASS="Enumeration">
+&quot;Back&quot;</SPAN>
+. </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023020"></A><SPAN CLASS="NoteLeadIn">
+Deprecation note:</SPAN>
+ starting with JDF 1.3, use the Partition Key <SPAN CLASS="Enumeration">
+&quot;Side&quot;</SPAN>
+ instead.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023022"></A><SPAN CLASS="Enumeration">
+SystemRoot</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023024"></A>Root of system directory file structure. This token provides an operating system, independent way to refer to the root.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023026"></A><SPAN CLASS="Enumeration">
+TileX</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023028"></A>X coordinate of a Tile.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023030"></A><SPAN CLASS="Enumeration">
+TileY</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023032"></A>Y coordinate of a Tile.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023034"></A><SPAN CLASS="Enumeration">
+Time</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023039"></A>Current <SPAN CLASS="Attribute">
+Time</SPAN>
+ in <A HREF="APPX_References.html#0_[ISO8601" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO8601:2004]</SPAN>
+</A> format.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023041"></A><SPAN CLASS="Enumeration">
+TotalPagesInDoc</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023042"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023044"></A>Total # of pages in a document. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023046"></A><SPAN CLASS="Enumeration">
+UserText</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023047"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023049"></A>For <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>, <SPAN CLASS="Enumeration">
+UserText</SPAN>
+ references user-defined text in <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+UserText</SPAN>
+. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023427"></A>For <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>, <SPAN CLASS="Enumeration">
+UserText</SPAN>
+ references user defined text in <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A>[<SPAN CLASS="Attribute">
+@Name</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;UserText&quot;</SPAN>
+].</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023413"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023051"></A><SPAN CLASS="Enumeration">
+Warning</SPAN>
+</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023052"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023054"></A>Warnings that happened during the Job. Warnings don't lose information in the resulting Job, while errors do.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1023407"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ before JDF 1.4, was only for <A HREF="Resources.html#0_JobField" CLASS="XRef"><SPAN CLASS="Link-Resource">
+JobField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList </SPAN>
+and <A HREF="Resources.html#0_CustomerMessage" CLASS="XRef"><SPAN CLASS="Link-Element">
+CustomerMessage</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ShowList</SPAN>
+</P>
+</TD>
+</TR>
+</TABLE>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1023707"></A>Example I-1: @FileTemplate and @FileFormat</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017549"></A>With <SPAN CLASS="Attribute">
+JobID</SPAN>
+=<SPAN CLASS="Enumeration">
+&quot;j001&quot;</SPAN>
+ and a <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> defining 2024 created files, this example will iterate over all created files and place them into:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1017550"></A>&quot;file://myserver.mydomain.com/next/j001/0000/m0000.pdf&quot;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1017551"></A>...</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1017552"></A>&quot;file://myserver.mydomain.com/next/j001/0020/m0023.pdf&quot;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1023746"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026649"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1026650"></A>Type=&quot;ProcessGroup&quot; <SPAN CLASS="XMLAttrName">
+JobID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;j001&quot;</SPAN>
+ JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1026651"></A>&lt;ResourcePool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1026652"></A>&lt;<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;R1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1026653"></A>&lt;<SPAN CLASS="XML-Tag">
+LayoutElement</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1026654"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+FileFormat</SPAN>
+=</P>
+<P CLASS="Sample-code07">
+<A NAME="0_pgfId-1026655"></A><SPAN CLASS="XMLAttrValue">
+&quot;file://myserver.mydomain.com/next/%s/%4.i/m%4.i.pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1026656"></A><SPAN CLASS="XMLAttrName">
+FileTemplate</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;JobID,i/100,i%100&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1026657"></A>&lt;/<SPAN CLASS="XML-Tag">
+LayoutElement</SPAN>
+&gt;<SPAN CLASS="XML-Tag">
+</SPAN>
+</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1026658"></A>&lt;/<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1026659"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1026660"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1026661"></A>&lt;RunListLink Usage=&quot;Output&quot; rRef=&quot;R1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1026662"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026663"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1024496"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1023750"></A>&nbsp;</P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

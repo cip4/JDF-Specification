@@ -1,0 +1,4256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Chapter 4	Life Cycle of JDF </TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="ChapTitle">
+<A NAME="0_pgfId-998290"></A>Chapter 4	<A NAME="0_97151"></A>Life Cycle of JDF </H1>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1019606"></A>Introduction </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019607"></A>This chapter describes the life cycle of a JDF Job, from creation through modification to processing. Information is provided about the spawning of individual steps of Jobs and in what way they are merged into the Job once the Process step is completed. Ancillary aspects of the life cycle, such as test running and error handling, are also discussed.</P>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1018553"></A>4.1	Creation and Modification</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998319"></A>The life cycle of a JDF Job will likely follow one of two scenarios. In the first scenario, a Job is created all at once by a single Agent and then is consumed by a set of Devices. More often, however, a Job is created by one Agent and is then transformed, or modified, over time by a series of other Agents. This Process might require specification of Product Intent, which is defined in <A HREF="Life_Cycle_of_JDF.html#0_77817" CLASS="XRef">Section 4.1.1, “Product Intent Constructs”</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998323"></A>Jobs can be modified in a variety of ways. In essence, any Job is modified as it is executed, since information about the execution is logged. Another instance of modification of a JDF Job, however, occurs during processing when more detailed information is learned or understood and then added along the way. This information might be added because an Agent knows more about the processing needed to achieve some result specified in a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node than the original, creating Agent knew. For example, one Agent might create a Product Intent Node that specifies the Product Intent of a series of pages. This Product Intent Node might include information about the number of pages and the paper properties. Another Node might then be inserted that includes a Resource describing how the pages are to be RIPed. Later, another Agent might provide more detail about the RIPing Process by appending optional information to the RIP <A HREF="Structure_of_JDF_Nodes.html#0_45417" CLASS="XRef"><SPAN CLASS="Link-Element">
+Parameter Resource</SPAN>
+</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998330"></A>Regardless of where in the life cycle they are written, Nodes and their Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ be valid and include all <SPAN CLASS="ConformWord">
+required</SPAN>
+ information in order to have a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+Ready</SPAN>
+ (in case of Nodes) or <SPAN CLASS="Enumeration">
+Available</SPAN>
+ (in case of Resources). This restriction allows for the definition of incomplete Output Resources. For example, a URL Resource without a file name might be completed by a Process. On the other hand, it is impossible to define a valid and executable Node with insufficient input parameters.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998345"></A>Once all of the inputs and parameters for the Process requested by a Node are completely specified, a Controller can route the JDF Job containing this Node to a Device that can execute the Process. When the Process is completed, the Agent/Controller in charge of the Device will modify the Node to record the results of the Process.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-998435"></A>4.1.1	<A NAME="0_77817"></A>Product Intent Constructs<SPAN CLASS="AnchorCalloutTeal">
+ <IMG SRC="Life_Cycle_of_JDF-1.png" ALIGN="RIGHT">
+</SPAN>
+</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1041508"></A>JDF Jobs, in essence, are requests made by customers for the production of quantities of some product or products. In other words, a Job begins with a particular goal in mind. In JDF, product goals are often specified by using a construct called “Product Intent” and represented by <A HREF="Structure_of_JDF_Nodes.html#0_94195" CLASS="XRef"><SPAN CLASS="Link-Element">
+Intent Resource</SPAN>
+</A>s. In contrast to Process Resources that define precise values, <A HREF="Structure_of_JDF_Nodes.html#0_94195" CLASS="XRef"><SPAN CLASS="Link-Element">
+Intent Resource</SPAN>
+</A>s allow ranges or sets of preferred values to be specified. Resources of this kind include <A HREF="Resources.html#0_ColorIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ColorIntent</SPAN>
+</A>, <A HREF="Resources.html#0_FoldingIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FoldingIntent</SPAN>
+</A>, <A HREF="Resources.html#0_MediaIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+MediaIntent</SPAN>
+</A> and <A HREF="Resources.html#0_ShapeCuttingIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ShapeCuttingIntent</SPAN>
+</A>, all of which are described in <A HREF="Resources.html#0_44425" CLASS="XRef">Section 7, “Resources”</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1018955"></A>The Product Intent of a Job is like a blue print of a product. The blue print might be extremely vague, detailing only the general goal, or it might be very specific, stipulating the specific requirements inherent in meeting that goal. Product Intent might be defined for an end product about which little is known or about which the processing details for the Job are entirely unknown. Product Intent constructs also allow Agents to describe Jobs that comprise multiple product components and that might share some parts.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1018956"></A>The initiating Agent of a Job specifies either Product Intent or a full set or Processes. The various kinds of Process Nodes are described in <A HREF="Structure_of_JDF_Nodes.html#0_99290" CLASS="XRef">Section 3.3.1</A>, <A HREF="Structure_of_JDF_Nodes.html#0_74523" CLASS="XRef">Section 3.3.2</A>, and <A HREF="Structure_of_JDF_Nodes.html#0_86485" CLASS="XRef">Section 3.3.3</A>. Any Job that specifies Product Intent <SPAN CLASS="ConformWord">
+must</SPAN>
+ include Nodes whose <SPAN CLASS="Attribute">
+Type</SPAN>
+ = <SPAN CLASS="Enumeration">
+Product</SPAN>
+. This representation is described in the following section.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998500"></A>4.1.1.1	Representation of Product Intent</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1036921"></A>The product description of a Job is a hierarchy of Product Intent Nodes, and the bottom-most level of the product hierarchy represents portions of the product that are each homogeneous in terms of their materials and formats. All Nodes below these Product Intent Nodes begin specifying the Processes needed to produce the products.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1036922"></A>Product Intent Nodes are <SPAN CLASS="ConformWord">
+required</SPAN>
+ to contain only one thing, and that is a Resource that represents the physical result specified by the Node. This Resource is generally a <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A>. In addition, somewhere in the hierarchy of Product Intent Nodes, it is a good idea to include an <A HREF="Structure_of_JDF_Nodes.html#0_94195" CLASS="XRef"><SPAN CLASS="Link-Element">
+Intent Resource</SPAN>
+</A> to describe the characteristics of the intended product. Although these are the only Resources that <SPAN CLASS="ConformWord">
+should</SPAN>
+ occur, Product Intent Nodes can contain multiple Resources. For example, some Resource types, such as <A HREF="Resources.html#0_LayoutIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+LayoutIntent</SPAN>
+</A> and <SPAN CLASS="Resource">
+<A HREF="Resources.html#0_MediaIntent" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+MediaIntent</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+, are defined to provide more general mechanisms to specify Product Intent. The resulting product of a Product Intent Node is specified as an output <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> Resource of the Product Intent Node.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998528"></A>In some cases, more than one high level Product Intent Node will use the output of a Product Intent Node. These high level Nodes represent the combination of homogeneous product parts. In this case, the <SPAN CLASS="Attribute">
+Amount</SPAN>
+ Attribute of the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements that connect the Nodes will identify how the lower level product is shared.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-998537"></A>4.1.1.2	Representation of Product Binding</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1008786"></A>Some <A HREF="Structure_of_JDF_Nodes.html#0_94195" CLASS="XRef"><SPAN CLASS="Link-Element">
+Intent Resource</SPAN>
+</A>s, such as <A HREF="Resources.html#0_BindingIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+BindingIntent</SPAN>
+</A> or <A HREF="Resources.html#0_InsertingIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+InsertingIntent</SPAN>
+</A>, define how to combine multiple products. To accomplish this, the respective <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ be labeled according to their usage. For example, the <SPAN CLASS="Attribute">
+Cover</SPAN>
+ and <SPAN CLASS="Attribute">
+Insert</SPAN>
+ Attributes use the <SPAN CLASS="Attribute">
+ProcessUsage</SPAN>
+ Attribute of the respective <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements. For more information about Product Intent, see <A HREF="Structure_of_JDF_Nodes.html#0_99290" CLASS="XRef">Section 3.3.1, “Product Intent Nodes”</A>.</P>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-998558"></A>4.1.2	<A NAME="0_88392"></A>Defining Business Objects Using Intent Resources <SPAN CLASS="AnchorCalloutRed">
+<IMG SRC="Life_Cycle_of_JDF-2.png" ALIGN="RIGHT">
+</SPAN>
+</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-998690"></A>Business objects like requests-for<SPAN CLASS="NoSpell">
+-quote</SPAN>
+, quote, invoice, <SPAN CLASS="NoSpell">
+etc.</SPAN>
+ need to reference Processes at a level that is well represented by Product Intent Nodes. It is assumed that business object metadata such as financial information, business document type, customer information, <SPAN CLASS="NoSpell">
+etc.</SPAN>
+ is defined by an XML envelope that contains JDF as a Job description. If this is not the case, the business related metadata <SPAN CLASS="ConformWord">
+may</SPAN>
+ be placed into the root <SPAN CLASS="Element">
+<A HREF="Resources.html#0_NodeInfo" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+/<SPAN CLASS="Element">
+BusinessInfo</SPAN>
+ Resource, and the customer related data <SPAN CLASS="ConformWord">
+may</SPAN>
+ be placed into the root <A HREF="Resources.html#0_CustomerInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+CustomerInfo</SPAN>
+</A> Resource. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-998714"></A>This section sketches the usage of JDF in an <SPAN CLASS="NoSpell">
+E-</SPAN>
+commerce environment using the business object model that was defined by the PrintTalk <A HREF="APPX_References.html#0_[PrintTalk]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PrintTalk]</SPAN>
+</A> consortium and is being maintained by CIP4.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1013137"></A>The following table describes the individual business objects and their relationships. “Object type” defines the name of the XML element that defines the metadata. All object types are inherited from the abstract PrintTalk <SPAN CLASS="Element">
+Request</SPAN>
+ Element. “References” defines the business objects that are responded to when generating the business object, and the “buyer-provider” arrow defines the direction of the transaction.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1027146"></A> &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1013140"></A>Table 4-1: Business objects as defined by PrintTalk (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013152"></A>Object Type</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013156"></A>Description</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013158"></A>References</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013160"></A>Direction</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1013162"></A>&nbsp;</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013164"></A><SPAN CLASS="Element">
+RFQ</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013165"></A>(Request for Quote) </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013167"></A>Initiated by a buyer to a print supplier. It might instigate a new product Process or it might supersede an existing RFQ. The Change Order and Request for Requote variations are included within Request for Quote.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013171"></A><SPAN CLASS="Element">
+None</SPAN>
+, <SPAN CLASS="Element">
+Quote</SPAN>
+, <SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013173"></A><SPAN CLASS="NoSpell">
+B</SPAN>
+--›<SPAN CLASS="NoSpell">
+P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013177"></A><SPAN CLASS="Element">
+Quote</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013179"></A>Normally sent in response to a <SPAN CLASS="Element">
+RFQ</SPAN>
+. The Requote and Change Order Quote variations are included within Quote. A Quote might supersede an existing Quote before the Print Buyer has answered with a RFQ or an Order.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013183"></A><SPAN CLASS="Element">
+RFQ</SPAN>
+, <SPAN CLASS="Element">
+PO</SPAN>
+, <SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013185"></A><SPAN CLASS="NoSpell">
+B</SPAN>
+‹--<SPAN CLASS="NoSpell">
+P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013189"></A><SPAN CLASS="Element">
+Purchase Order</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013191"></A>Typically sent as a response to a quote but might be the initial document in a well defined buyer / print supplier relationship or when ordering finished goods items. The Change Order variation is included within Purchase Order. An order might supersede an existing Order prior to the Print Provider having confirmed it.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013195"></A><SPAN CLASS="Element">
+None</SPAN>
+, <SPAN CLASS="Element">
+Quote</SPAN>
+, <SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013197"></A><SPAN CLASS="NoSpell">
+B--›P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013201"></A>(Order) <BR>
+<SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013203"></A>Sent by the print supplier to the buyer acknowledging receipt of the purchase order. It might contain information about expected due dates and final pricing that were undetermined at the time of the quote.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013207"></A><SPAN CLASS="Element">
+PO</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013209"></A><SPAN CLASS="NoSpell">
+B‹--P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013213"></A><SPAN CLASS="Element">
+Cancellation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013215"></A>Cancels a complete Job. To cancel parts of a Job, one sends a new RFQ, Quote or PO for the non-cancelled parts of the Job. For canceling parts of a confirmed order, the Change Order variations of these Business Objects are sent.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013219"></A><SPAN CLASS="Element">
+RFQ</SPAN>
+, <SPAN CLASS="Element">
+Quote</SPAN>
+, <SPAN CLASS="Element">
+PO</SPAN>
+, <SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013221"></A><SPAN CLASS="NoSpell">
+B‹-›P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013225"></A><SPAN CLASS="Element">
+Refusal</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013227"></A>Used to explicitly decline a Business Object sent by the counter party. Alternatively, the non-accepted Business Object expires.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013231"></A><SPAN CLASS="Element">
+RFQ</SPAN>
+, <SPAN CLASS="Element">
+Quote</SPAN>
+, <SPAN CLASS="Element">
+PO</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013233"></A><SPAN CLASS="NoSpell">
+B‹-›P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013237"></A><SPAN CLASS="Element">
+Order Status Request</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013239"></A>Generated anytime one party requests status from another party.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013243"></A><SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013245"></A><SPAN CLASS="NoSpell">
+B‹-›P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013249"></A><SPAN CLASS="Element">
+Order Status Response</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013251"></A>An <SPAN CLASS="Element">
+Order Status Response</SPAN>
+ can be sent as a response to an <SPAN CLASS="Element">
+Order Status Request </SPAN>
+or it can be sent automatically.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013255"></A><SPAN CLASS="Element">
+Confirmation</SPAN>
+, <SPAN CLASS="Element">
+Order Status Request</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013257"></A><SPAN CLASS="NoSpell">
+B‹-›P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013261"></A><SPAN CLASS="Element">
+Proof Approval Request</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013263"></A>Provides a transport for proofing from supplier to buyer. This <SPAN CLASS="ConformWord">
+may</SPAN>
+ contain MIME data or a URL where the proof is located.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013267"></A><SPAN CLASS="Element">
+Confirmation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013269"></A><SPAN CLASS="NoSpell">
+B‹--P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013273"></A><SPAN CLASS="Element">
+Proof Approval Response</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013275"></A>Contains buyer’s approval or denial of a proof.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013279"></A><SPAN CLASS="Element">
+Proof Approval Request</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013281"></A><SPAN CLASS="NoSpell">
+B--›P</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013285"></A><SPAN CLASS="Element">
+Invoice</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013287"></A>Typically sent once the Job is shipped, but can also be sent several times when certain milestones during production are reached. can include additional charges or discounts.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013291"></A><SPAN CLASS="Element">
+Confirmation</SPAN>
+, <SPAN CLASS="Element">
+Cancellation</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="2">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1013293"></A><SPAN CLASS="NoSpell">
+B‹--P</SPAN>
+</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1013296"></A>In the following figure the workflow of these business objects is partly illustrated in a simplified manner. See the PrintTalk specification <A HREF="APPX_References.html#0_[PrintTalk]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PrintTalk]</SPAN>
+</A> for a complete picture.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027156"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060436"></A>Figure 4-1: Simplified PrintTalk workflow (negotiation phase)</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1013303"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Life_Cycle_of_JDF-3.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999132"></A>The Node that defines an RFQ <SPAN CLASS="ConformWord">
+must</SPAN>
+ contain one or more <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_DeliveryIntent" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+DeliveryIntent</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Resources that define the amounts and methods of delivery. The <SPAN CLASS="Attribute">
+Usage</SPAN>
+ of the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements is <SPAN CLASS="Enumeration">
+Input</SPAN>
+, its <SPAN CLASS="Attribute">
+Type</SPAN>
+ is <SPAN CLASS="Enumeration">
+Product</SPAN>
+ and the Business object is an <SPAN CLASS="Element">
+RFQ</SPAN>
+. </P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1038348"></A>Example 4-1: <A NAME="0_24505"></A>PrintTalk</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1038599"></A>This example and <A HREF="Life_Cycle_of_JDF.html#0_38696" CLASS="XRef">Example 4-2</A> use an object model as defined by PrintTalk with the business objects defined in <SPAN CLASS="Element">
+BusinessInfo</SPAN>
+. This does not preclude the use of other <SPAN CLASS="NoSpell">
+E</SPAN>
+-commerce systems. This example shows PrintTalk. The <SPAN CLASS="XML-TagStrong">
+highlighted tags</SPAN>
+ and <SPAN CLASS="XMLAttrNameStrong">
+highlighted attributes</SPAN>
+ show the respective position of an RFQ.</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045203"></A>&lt;<SPAN CLASS="XML-Tag">
+PrintTalk</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.printtalk.org/schema&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045204"></A>&lt;<SPAN CLASS="XML-Tag">
+Header</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045205"></A>Standard CXML header</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045206"></A>&lt;/<SPAN CLASS="XML-Tag">
+Header</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045207"></A>&lt;<SPAN CLASS="XML-Tag">
+Request</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045208"></A>&lt;<SPAN CLASS="XML-TagStrong">
+RFQ</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+AgentDisplayName</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Lara Garcia-Daniels&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+AgentID</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Lara&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045209"></A> <SPAN CLASS="XMLAttrNameStrong">
+BusinessID</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;RFQ_ID&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+Currency</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;EUR&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+Estimate</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;false&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045210"></A> <SPAN CLASS="XMLAttrNameStrong">
+Expires</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;2002-04-15T1700- 0800&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045211"></A> <SPAN CLASS="XMLAttrNameStrong">
+RequestDate</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;2002-04-05T1700-0800&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045212"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns:jdf</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1045213"></A><SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ScreenTest&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1045214"></A><SPAN CLASS="XMLAttrName">
+JobID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ScreenJob&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Waiting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Product&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1045215"></A><SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.2&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045216"></A>&lt;<SPAN CLASS="XML-Tag">
+jdf:NodeInfo</SPAN>
+ <SPAN CLASS="XMLAttrName">
+LastEnd</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2000-12-24T06:02:42+01:00&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045217"></A>&lt;/<SPAN CLASS="XML-Tag">
+jdf:JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045218"></A>&lt;/<SPAN CLASS="XML-Tag">
+RFQ</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045219"></A>&lt;/<SPAN CLASS="XML-Tag">
+Request</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045220"></A>&lt;/<SPAN CLASS="XML-Tag">
+PrintTalk</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1042495"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1017419"></A>Example 4-2: <A NAME="0_38696"></A>Equivalent Pure JDF</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1038377"></A>This example shows pure JDF document text that is equivalent to the PrintTalk shown in <A HREF="Life_Cycle_of_JDF.html#0_24505" CLASS="XRef">Example 4-1</A>. The <SPAN CLASS="XML-TagStrong">
+highlighted tags</SPAN>
+ and <SPAN CLASS="XMLAttrNameStrong">
+highlighted attributes</SPAN>
+ show the respective position of an RFQ.</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045233"></A>&lt;<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ScreenTest&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045234"></A><SPAN CLASS="XMLAttrName">
+JobID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ScreenJob&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ScreenJob100&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Waiting&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045235"></A><SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Product&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045236"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045237"></A>&lt;<SPAN CLASS="XML-Tag">
+NodeInfo</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID122&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045238"></A><SPAN CLASS="XMLAttrName">
+LastEnd</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2000-12-24T06:02:42+01:00&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045239"></A>&lt;<SPAN CLASS="XML-Tag">
+BusinessInfo</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045240"></A>&lt;<SPAN CLASS="XML-TagStrong">
+pt:RFQ</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+xmlns:pt</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;http://www.printtalk.org/schema&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045241"></A><SPAN CLASS="XMLAttrNameStrong">
+AgentDisplayName</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Lara Garcia-Daniels&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+AgentID</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Lara&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045242"></A><SPAN CLASS="XMLAttrNameStrong">
+BusinessID</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;RFQ_ID&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045243"></A><SPAN CLASS="XMLAttrNameStrong">
+Currency</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;EUR&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+Estimate</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;false&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045244"></A><SPAN CLASS="XMLAttrNameStrong">
+Expires</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;2002-04-15T1700- 0800&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045245"></A><SPAN CLASS="XMLAttrNameStrong">
+RequestDate</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;2002-04-05T1700-0800&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045246"></A>&lt;/<SPAN CLASS="XML-Tag">
+BusinessInfo</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045247"></A>&lt;/<SPAN CLASS="XML-Tag">
+NodeInfo</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045248"></A>&lt;<SPAN CLASS="XML-Tag">
+Component</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Quantity&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Unavailable&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045249"></A><SPAN CLASS="XMLAttrName">
+ComponentType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Sheet&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045250"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045251"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045252"></A>&lt;<SPAN CLASS="XML-Tag">
+ComponentLink </SPAN>
+<SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045253"></A>&lt;<SPAN CLASS="XML-Tag">
+NodeInfoLink </SPAN>
+<SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID122&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045254"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045255"></A>&lt;/<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1038944"></A>&nbsp;</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1020049"></A>4.1.3	Specification of Delivery of End Products</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020050"></A>A Job can define one or more products and specify a set of deliveries of end products. To accomplish this, a Node <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> [@<SPAN CLASS="Attribute">
+Type</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Product&quot;</SPAN>
+] is created to define each product to be produced. The root Product Intent Node <SPAN CLASS="ConformWord">
+should</SPAN>
+ contain a <A HREF="Resources.html#0_DeliveryIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+DeliveryIntent</SPAN>
+</A> Resource that specifies a set of <A HREF="Resources.html#0_35491" CLASS="XRef"><SPAN CLASS="Link-Element">
+Drop</SPAN>
+</A> Elements. Each <A HREF="Resources.html#0_35491" CLASS="XRef"><SPAN CLASS="Link-Element">
+Drop</SPAN>
+</A> Element has a common delivery address and time, and a set of <A HREF="Resources.html#0_29390" CLASS="XRef"><SPAN CLASS="Link-Element">
+DropItem</SPAN>
+</A> Elements that specifies the amount of individual <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> Elements to deliver to this address. Quote generation as defined in the previous chapter includes the specification of delivery addresses. For more information, see <A HREF="Processes.html#0_Delivery" CLASS="XRef">Section 6.2.4, “Delivery”</A>.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999259"></A>4.1.4	Specification of Process Specifics for Product Intent Nodes</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999262"></A>Product Intent Nodes are designed to represent a customer’s view of the product. In some instances, a knowledgeable customer might want to specify production details that are only available in JDF Process Resources for a given product. Examples include scanning or screening parameters. This customer will still have no knowledge or control of the Process workflow. and therefore is expected to specify only the <SPAN CLASS="Resource">
+<A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+Resource</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+ Elements.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999267"></A>Individual JDF Process Resources <SPAN CLASS="ConformWord">
+may</SPAN>
+ be referenced from the <A HREF="Resources.html#0_ProductionIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ProductionIntent</SPAN>
+</A> Resource. <SPAN CLASS="Resource">
+<A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+Resource</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+/@<SPAN CLASS="Attribute">
+Status</SPAN>
+ will most likely be <SPAN CLASS="Enumeration">
+&quot;Incomplete&quot; </SPAN>
+because generally the customer does not know all parameters of the <A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"><SPAN CLASS="Link-Element">
+Resource</SPAN>
+</A>. </P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1038269"></A>Example 4-3: Product Intent Node</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1038273"></A>The <SPAN CLASS="XML-TagStrong">
+highlighted tags</SPAN>
+ and <SPAN CLASS="XMLAttrNameStrong">
+highlighted attributes</SPAN>
+ section shows how specific information about screening is specified in an intent Node.</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045258"></A>&lt;<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Job1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;J1&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045259"></A><SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;P1&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045260"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Waiting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Product&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045261"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045262"></A>&lt;<SPAN CLASS="XML-Tag">
+Component</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Amount</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;10000&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Quantity&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045263"></A><SPAN CLASS="XMLAttrName">
+DescriptiveName</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Complete 16-page Brochure&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Link0003&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1045264"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Unavailable&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ComponentType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Sheet&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045265"></A>&lt;<SPAN CLASS="XML-Tag">
+LayoutIntent</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Intent&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Link0004&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045266"></A>&lt;<SPAN CLASS="XML-Tag">
+Dimensions</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DataType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;XYPairSpan&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Preferred</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;612 792&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1045267"></A><SPAN CLASS="XMLAttrName">
+Range</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;576 720 ~ 648 864&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045268"></A>&lt;<SPAN CLASS="XML-Tag">
+Pages</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DataType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;IntegerSpan&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Preferred</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;16&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045269"></A>&lt;/<SPAN CLASS="XML-Tag">
+LayoutIntent</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045270"></A>&lt;<SPAN CLASS="XML-Tag">
+MediaIntent</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Intent&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Link0005&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Option&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1045271"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045272"></A>&lt;<SPAN CLASS="XML-Tag">
+FrontCoatings</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DataType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;NameSpan&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Preferred</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;None&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045273"></A>&lt;<SPAN CLASS="XML-Tag">
+MediaIntent</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Option</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1045274"></A>&lt;<SPAN CLASS="XML-Tag">
+FrontCoatings</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DataType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;NameSpan&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Preferred</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Glossy&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045275"></A>&lt;/<SPAN CLASS="XML-Tag">
+MediaIntent</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045276"></A>&lt;<SPAN CLASS="XML-Tag">
+BackCoatings</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DataType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;NameSpan&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Preferred</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;None&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045277"></A>&lt;/<SPAN CLASS="XML-Tag">
+MediaIntent</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045278"></A>&lt;<SPAN CLASS="XML-Tag">
+ProductionIntent</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Intent&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_PI&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045279"></A>&lt;<SPAN CLASS="XML-TagStrong">
+ScreeningParamsRef</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;ScreenID&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045280"></A>&lt;/<SPAN CLASS="XML-Tag">
+ProductionIntent</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045281"></A>&lt;<SPAN CLASS="XML-TagStrong">
+ScreeningParams</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;ScreenID&quot;</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Incomplete&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1045282"></A>&lt;<SPAN CLASS="XML-TagStrong">
+ScreenSelector</SPAN>
+ <SPAN CLASS="XMLAttrNameStrong">
+ScreeningFamily</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;My favorite screen&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1045283"></A><SPAN CLASS="XMLAttrNameStrong">
+SpotFunction</SPAN>
+=<SPAN CLASS="XMLAttrValueStrong">
+&quot;Ellipse&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045284"></A>&lt;/<SPAN CLASS="XML-TagStrong">
+ScreeningParams</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045285"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045286"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045287"></A>&lt;<SPAN CLASS="XML-Tag">
+ComponentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Link0003&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045288"></A>&lt;<SPAN CLASS="XML-Tag">
+LayoutIntentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Link0004&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045289"></A>&lt;<SPAN CLASS="XML-Tag">
+MediaIntentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Link0005&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045290"></A>&lt;<SPAN CLASS="XML-Tag">
+ProductionIntentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_PI&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045291"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045292"></A>&lt;/<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1039025"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-999394"></A>4.2	<A NAME="0_52908"></A>Process Routing</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999397"></A>A Controller in a JDF workflow system has two tasks. The first is to determine which of the Nodes in a JDF document are executable, and the second is to route these Nodes to a Device that is capable of executing them. Both of these procedures are explained in the sections that follow.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1027714"></A>In a distributed environment with multiple Controllers and Devices, finding the right Device or Controller to execute a specific Node might be a non-trivial task. Systems with a centralized, smart master Controller might want to route Jobs dynamically by sending them to the appropriate locations. Simple systems, on the other hand, might have a static, well defined routing path. Such a system might, for example, pass the Job from hot folder to hot folder. Both of these extremes are valid examples of JDF systems that have no need for additional routing metadata.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1027750"></A>In order to accommodate systems between these extremes, the <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource of a Node contains <SPAN CLASS="ConformWord">
+optional</SPAN>
+ <SPAN CLASS="Attribute">
+Route</SPAN>
+ and <SPAN CLASS="Attribute">
+TargetRoute</SPAN>
+ Attributes that let an Agent define a static Process route on a Node-by-Node basis. <A HREF="JMF.html#0_97734" CLASS="XRef"><SPAN CLASS="Link-Message">
+JMF</SPAN>
+</A>/<A HREF="JMF.html#0_QueueSubmissionParams" CLASS="XRef"><SPAN CLASS="Link-Element">
+QueueSubmissionParams</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ReturnURL</SPAN>
+ takes precedence over <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+TargetRoute</SPAN>
+ of the <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node that is processed. If no <SPAN CLASS="Attribute">
+Route</SPAN>
+ or <SPAN CLASS="Attribute">
+TargetRoute</SPAN>
+ Attribute is specified and if a Controller has multiple options where to route a Job, it is up to the implementation to decide which route to use.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1027751"></A>The Controller or Device reading the JDF Job is responsible for processing the Nodes. A Device examines the Job and attempts to execute those Nodes that it knows how to execute, whereas a Controller routes the Job to the next Controller or Device that has the appropriate capabilities.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1060644"></A>4.2.1	<A NAME="0_57200"></A>Determining Executable Nodes</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1060788"></A>In order to determine which Node to execute, the Controller/Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ use the following procedures.       </P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1060803"></A>1	 It searches the JDF document for Node types that it can execute or Gray Boxes that it can expand by comparing the <SPAN CLASS="Attribute">
+Type </SPAN>
+and<SPAN CLASS="Attribute">
+ Types</SPAN>
+ Attributes and possibly the <SPAN CLASS="Attribute">
+Category</SPAN>
+ Attribute of the Node to its own capabilities and by determining the <SPAN CLASS="Attribute">
+Activation</SPAN>
+ of the Nodes. It <SPAN CLASS="ConformWord">
+should</SPAN>
+ also verify that the <SPAN CLASS="Attribute">
+Status</SPAN>
+ of the Node or the respective <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+NodeStatus</SPAN>
+ is either <SPAN CLASS="Enumeration">
+Waiting</SPAN>
+ or <SPAN CLASS="Enumeration">
+Ready</SPAN>
+. If a <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> Resource is specified as input to the Node, the Resource <SPAN CLASS="ConformWord">
+must</SPAN>
+ match the Controller/Device. Devices <SPAN CLASS="ConformWord">
+may</SPAN>
+ opt to limit the scope of the Node search. The limitations <SPAN CLASS="ConformWord">
+should</SPAN>
+ be specified in the Device capability description by appropriately setting <A HREF="Resources.html#0_35748" CLASS="XRef"><SPAN CLASS="Link-Element">
+DeviceCap</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ExecutionPolicy</SPAN>
+.</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-999515"></A>2	 The Controller/Device can then determine if no Resources have a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+Incomplete</SPAN>
+ or a <SPAN CLASS="Attribute">
+SpawnStatus</SPAN>
+ of <SPAN CLASS="Enumeration">
+SpawnedRW</SPAN>
+. It <SPAN CLASS="ConformWord">
+should</SPAN>
+ also determine if all of the Input Resources of the respective Nodes have a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+Available</SPAN>
+ and that all Processes that are attached through pipes are ready to execute. A Controller <SPAN CLASS="ConformWord">
+may</SPAN>
+ skip these checks and expect the lower level Controller or Device that it controls to perform this step and return with an error if it fails.</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1037100"></A>3	 If scheduling information is provided in the <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource, the specified start and/or end time <SPAN CLASS="ConformWord">
+must</SPAN>
+ be taken into account by the executing Device. If no process times are specified, it is up to the Device in charge of queue handling to execute the Process Node.</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1018115"></A>4	 If no executable Nodes are found, the Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ return the Node to the Controller. A <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Audit Element with <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A>/<SPAN CLASS="Attribute">
+@Class </SPAN>
+= <SPAN CLASS="Enumeration">
+&quot;Error&quot;</SPAN>
+ <SPAN CLASS="ConformWord">
+should</SPAN>
+ be appended to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> of the root <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A>/<SPAN CLASS="Element">
+<A HREF="APPX_Supported_Strings.html#0_84976" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+Error</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+/<SPAN CLASS="Attribute">
+@ReturnCode </SPAN>
+= <SPAN CLASS="Enumeration">
+&quot;</SPAN>
+102<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+ specifies that no executable Node was found. </LI>
+</OL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016170"></A>The Node will go through various states during its life time as is described in <A HREF="Life_Cycle_of_JDF.html#0_99137" CLASS="XRef">Figure 4-2</A>.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1068065"></A>&nbsp;</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1068036"></A> &nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1068050"></A>Figure 4-2: <A NAME="0_99137"></A>Life Cycle of a JDF Node</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1068042"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Life_Cycle_of_JDF-4.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999565"></A>4.2.2	<A NAME="0_98528"></A>Distributing Processing to Work Centers or Devices</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999570"></A>JDF syntax supports two means of distributing Processes to work centers or Devices. Its first option is to use a “smart” Controller that has the ability to parse a JDF Job and identify individual Processes or Process Groups that might be distributed to a particular Work Center or Device. This smart Controller <SPAN CLASS="ConformWord">
+may</SPAN>
+ use spawning and merging facilities to subdivide the Job ticket and pass specific instructions to a Work Center or Device.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999577"></A>The second option, which is applicable when the Controller being used isn’t smart, is to employ a simple Controller implementation that routes the entire Job to each workcenter or Device, thus leaving it up to the recipient to determine which processing it can accomplish. For this option to work, each JDF-capable Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ be able to identify Process Nodes it is capable of executing. Furthermore, each Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ have sufficient JDF-handling capabilities to identify Processes that are ready to run.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999588"></A>4.2.3	Device / Controller Selection</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999593"></A>The method used to determine which is the appropriate Device or lower level Controller to use to execute a given Node depends greatly on the implemented workflow being used. Although JDF provides a method for storing routing information in the <SPAN CLASS="Attribute">
+Route</SPAN>
+ Attribute of the <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource of a Node, it does not prescribe any specific routing methods. However, some of the tools available to figure out alternative workflows are described below.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1041720"></A>Knowledge of the capabilities of lower level Controllers/Devices either <SPAN CLASS="ConformWord">
+may</SPAN>
+ be hard-wired into the system or gained using the <A HREF="JMF.html#0_12961" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownDevices</SPAN>
+</A> Message. Since JDF does not yet provide mechanisms to determine if a given Device is capable of processing a Node without actually performing a test run, a Controller <SPAN CLASS="ConformWord">
+must</SPAN>
+ either have a prior knowledge of the detailed capabilities of its controlled Devices or perform a test run to determine if a Device is capable of executing a Node. Furthermore, in addition to the explicit routing information in the <SPAN CLASS="Attribute">
+Route</SPAN>
+ Attribute of the <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource of a Node, JDF <SPAN CLASS="ConformWord">
+may</SPAN>
+ contain implicit routing information in the form of <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef"><SPAN CLASS="Link-Element">
+Implementation Resource</SPAN>
+</A>s.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1041739"></A>JMF defines the <A HREF="JMF.html#0_KnownControllers" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownControllers</SPAN>
+</A> Query Message to find Controllers and the <A HREF="JMF.html#0_12961" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownDevices</SPAN>
+</A> Query Message to find Devices that are controlled by a Controller. The information provided by these queries can be used by a Controller to infer the appropriate routing for a Node. In a system that does not support messaging, this information <SPAN CLASS="ConformWord">
+must</SPAN>
+ be provided outside of JDF.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-999630"></A>4.3	<A NAME="0_46654"></A>Execution Model</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999633"></A>JDF provides a range of options that help Controllers tailor a processing system to the needs of the workflow and of the Job itself. The following sections explain the ways in which Controllers execute processes using these various options.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999636"></A>The processing model of JDF is based on a producer/consumer model, which means that the sequencing of events is controlled by the availability of Input Resources. As has been described, Nodes act both as producers and consumers of Resources. When all necessary inputs are available in a given Node, and not before, the Process can execute. The sequence of processing, therefore, is implied by the chain of Resources in which the Output Resources of one Node become the Input Resources of a subsequent Node.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999641"></A>JDF supports four kinds of Process sequences: serial processing, overlapping processing, parallel processing and iterative processing. All four are described in the following sections.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-999646"></A>4.3.1	Serial Processing</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999649"></A>The simplest kind of Process routing, known as serial processing, executes Nodes sequentially and with no overlap. In other words, no Nodes are executed simultaneously. Once the Process has acted upon the Resource in some way, the Resource availability is described by the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of the Resource, as described above. When the Process state is <SPAN CLASS="Enumeration">
+Ready</SPAN>
+ or <SPAN CLASS="Enumeration">
+Waiting</SPAN>
+, the Process can begin executing.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-999660"></A>In a workflow using serial processing, the Controller is responsible for comparing the actual amount available with the specified amount in the corresponding <A HREF="Structure_of_JDF_Nodes.html#0_35209" CLASS="XRef"><SPAN CLASS="Link-Element">
+PhysicalLink</SPAN>
+</A> Element to determine whether or not the Input Resource can be considered available. If no amount is specified in the <A HREF="Structure_of_JDF_Nodes.html#0_35209" CLASS="XRef"><SPAN CLASS="Link-Element">
+PhysicalLink</SPAN>
+</A>, the Process is assumed to consume the entire <A HREF="Structure_of_JDF_Nodes.html#0_71333" CLASS="XRef"><SPAN CLASS="Link-Element">
+Physical Resource</SPAN>
+</A>.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027192"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060452"></A>Figure 4-3: <A NAME="0_99000"></A>Example of a simple Process chain linked by Resources</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1009906"></A><IMG SRC="Life_Cycle_of_JDF-5.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999687"></A><SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_99000" CLASS="XRef">Figure 4-3</A></SPAN>
+ depicts a simple Process chain that produces and consumes <A HREF="Structure_of_JDF_Nodes.html#0_35611" CLASS="XRef"><SPAN CLASS="Link-Element">
+Quantity Resource</SPAN>
+</A>s and uses an <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef"><SPAN CLASS="Link-Element">
+Implementation Resource</SPAN>
+</A>. The Resources R1, R2 and R3 represent <A HREF="Structure_of_JDF_Nodes.html#0_35611" CLASS="XRef"><SPAN CLASS="Link-Element">
+Quantity Resource</SPAN>
+</A>s. Process <SPAN CLASS="NoSpell">
+P1</SPAN>
+ consumes Resource R1 and produces Resource R2. R2 is then completely consumed by <SPAN CLASS="NoSpell">
+P2</SPAN>
+, which also requires the <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef"><SPAN CLASS="Link-Element">
+Implementation Resource</SPAN>
+</A> R4 for processing. Process <SPAN CLASS="NoSpell">
+P2</SPAN>
+ uses these two Resources and produces Resource R3. All of this is accomplished along a linear time axis.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999700"></A><A HREF="Life_Cycle_of_JDF.html#0_67711" CLASS="XRef">Table 4-2</A> shows the value of the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of each of the Resources and Processes used in <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_99000" CLASS="XRef">Figure 4-3</A></SPAN>
+. The time axis runs from left to right both in <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_99000" CLASS="XRef">Figure 4-3</A></SPAN>
+ and in <A HREF="Life_Cycle_of_JDF.html#0_67711" CLASS="XRef">Table 4-2</A>. Note that no Process can execute until all Resources leading up to that Process are <SPAN CLASS="Enumeration">
+Available</SPAN>
+. In other words, the Job executes serially and sequentially. For more information about the values of the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of Resources, see <A HREF="Structure_of_JDF_Nodes.html#0_98511" CLASS="XRef">Table 3-10, “Abstract Resource Element”</A>. For more information about the values of the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of Processes, see <A HREF="Structure_of_JDF_Nodes.html#0_53532" CLASS="XRef">Table 3-5, “JDF Node”</A>.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1027196"></A> &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1014182"></A>Table 4-2: <A NAME="0_67711"></A>Examples of Resource and Process states in the case of simple Process routing </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060881"></A> Object Status</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060883"></A>before </P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060884"></A>running <SPAN CLASS="NoSpell">
+P1</SPAN>
+</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060886"></A>during </P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060887"></A>running <SPAN CLASS="NoSpell">
+P1</SPAN>
+</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060889"></A>after running <SPAN CLASS="NoSpell">
+P1</SPAN>
+, before <SPAN CLASS="NoSpell">
+P2</SPAN>
+</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060891"></A>during <SPAN CLASS="NoSpell">
+P2</SPAN>
+</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1060893"></A>after <SPAN CLASS="NoSpell">
+P2</SPAN>
+</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014208"></A>Resource R1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014210"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014212"></A><SPAN CLASS="Enumeration">
+InUse</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014214"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014216"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014218"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014220"></A>Resource R2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014222"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014224"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014226"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014228"></A><SPAN CLASS="Enumeration">
+InUse</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014230"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014232"></A>Resource R3</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014234"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014236"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014238"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014240"></A><SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014242"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014244"></A>Resource R4</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014246"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014248"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014250"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014252"></A><SPAN CLASS="Enumeration">
+InUse</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014254"></A><SPAN CLASS="Enumeration">
+Available</SPAN>
+ </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014256"></A>Process <SPAN CLASS="NoSpell">
+P1</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014258"></A><SPAN CLASS="Enumeration">
+Waiting</SPAN>
+ or <SPAN CLASS="Enumeration">
+Ready</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014260"></A><SPAN CLASS="Enumeration">
+InProgress</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014262"></A><SPAN CLASS="Enumeration">
+Completed</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014264"></A><SPAN CLASS="Enumeration">
+Completed</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014266"></A><SPAN CLASS="Enumeration">
+Completed</SPAN>
+ </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014268"></A>Process <SPAN CLASS="NoSpell">
+P2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014270"></A><SPAN CLASS="Enumeration">
+Waiting</SPAN>
+ or <SPAN CLASS="Enumeration">
+Ready</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014272"></A><SPAN CLASS="Enumeration">
+Waiting</SPAN>
+ or <SPAN CLASS="Enumeration">
+Ready</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014274"></A><SPAN CLASS="Enumeration">
+Waiting</SPAN>
+ or <SPAN CLASS="Enumeration">
+Ready</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014276"></A><SPAN CLASS="Enumeration">
+InProgress</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1014278"></A><SPAN CLASS="Enumeration">
+Completed</SPAN>
+ </P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-999978"></A>If a Process aborts before completion, its Output Resources are <SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+ unless the output has been partially produced in which case the Device <SPAN CLASS="ConformWord">
+may</SPAN>
+ update the amount and set the output to <SPAN CLASS="Enumeration">
+Available</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1016297"></A>When the <SPAN CLASS="Attribute">
+Amount </SPAN>
+Attribute is used in connection with the quantifiable Resources R1, R2 or R3 and their links, then the Controller <SPAN CLASS="ConformWord">
+must</SPAN>
+ decide whether or not a Resource is available by comparing the individual values. If the amounts are used to define the availability, then the Resource <SPAN CLASS="Attribute">
+Status</SPAN>
+ <SPAN CLASS="ConformWord">
+may</SPAN>
+ be set to <SPAN CLASS="Enumeration">
+Available</SPAN>
+ for all <A HREF="Structure_of_JDF_Nodes.html#0_35611" CLASS="XRef"><SPAN CLASS="Link-Element">
+Quantity Resource</SPAN>
+</A>s. Note that when the value of the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of the Resource is <SPAN CLASS="Enumeration">
+Unavailable</SPAN>
+, the Resource is not available even if a sufficient <SPAN CLASS="Attribute">
+Amount</SPAN>
+ is specified.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1037145"></A>If amounts are specified in the Resource Element, they represent the actual available amount. If they are not specified, the actual amount is unknown, and it is assumed that the Process will consume the entire Resource. Amounts of <A HREF="Structure_of_JDF_Nodes.html#0_35209" CLASS="XRef"><SPAN CLASS="Link-Element">
+PhysicalLink</SPAN>
+</A> Elements <SPAN CLASS="ConformWord">
+must</SPAN>
+ be specified for Output Resources that represent the intended production amount. The specification of the <SPAN CLASS="Attribute">
+Amount</SPAN>
+ Attribute for Input Resources is <SPAN CLASS="ConformWord">
+optional</SPAN>
+. For details, see <SPAN CLASS="Link-internal">
+<A HREF="Structure_of_JDF_Nodes.html#0_73653" CLASS="XRef">Section 3.10.4, “Resource Amount”</A></SPAN>
+. If the Controller cannot determine the amounts, this constitutes a JDF content error, which is logged by error handling. This Process is described in <A HREF="Life_Cycle_of_JDF.html#0_73195" CLASS="XRef">Section 4.6, “Error Handling”</A>. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1037152"></A>If a Process in a serial processing run does not finish successfully, the final Process status is designated as <SPAN CLASS="Enumeration">
+aborted</SPAN>
+. In an aborted Job, only a part of the intended production might be available. If this occurs, the actual produced amount is logged into the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A>by a <A HREF="Structure_of_JDF_Nodes.html#0_36968" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceAudit</SPAN>
+</A> Element.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1014338"></A>4.3.2	<A NAME="0_57054"></A>Partial Processing of Nodes with Partitioned Resources</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1031592"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1031593"></A><A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Nodes themselves <SPAN CLASS="ConformWord">
+must not</SPAN>
+ be Partitioned, although the input and Output Resources <SPAN CLASS="ConformWord">
+may</SPAN>
+ be Partitioned. If the input and output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements reference one or more individual Partitions, the <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node executes using only the referenced Resources. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1014434"></A>If multiple Input Resources are input to a process, the Resource with the highest granularity defines the Partitioning. For instance, a <A HREF="Processes.html#0_43648" CLASS="XRef"><SPAN CLASS="Link-Process">
+ConventionalPrinting</SPAN>
+</A> Process might consume a non-Partitioned <A HREF="Resources.html#0_ConventionalPrintingParams" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ConventionalPrintingParams</SPAN>
+</A> and a set of <A HREF="Resources.html#0_Ink" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Ink</SPAN>
+</A> and <SPAN CLASS="Resource">
+<A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+ (<SPAN CLASS="RPUsage">
+Plate</SPAN>
+) Resources that are Partitioned by <SPAN CLASS="Enumeration">
+Separation</SPAN>
+. The Partition granularity will be defined by the <A HREF="Resources.html#0_Ink" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Ink</SPAN>
+</A> and <SPAN CLASS="Resource">
+<A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+ (<SPAN CLASS="RPUsage">
+Plate</SPAN>
+) Resources to be <SPAN CLASS="Enumeration">
+Separation</SPAN>
+. The <SPAN CLASS="Enumeration">
+Separation</SPAN>
+ Partition set is defined by the superset of all defined Partition Key values. If the <SPAN CLASS="Enumeration">
+Separation</SPAN>
+ key values of <A HREF="Resources.html#0_Ink" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Ink</SPAN>
+</A> were <SPAN CLASS="Enumeration">
+Black</SPAN>
+ and <SPAN CLASS="Enumeration">
+Varnish</SPAN>
+, and the <SPAN CLASS="Attribute">
+Separation</SPAN>
+ key values of <SPAN CLASS="Resource">
+<A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+ (<SPAN CLASS="RPUsage">
+Plate</SPAN>
+) were <SPAN CLASS="Enumeration">
+Black</SPAN>
+, the resulting set is <SPAN CLASS="Enumeration">
+Black</SPAN>
+ and <SPAN CLASS="Enumeration">
+Varnish</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1014439"></A>The Partition Keys of both input and output restrict the Process. If the Partition Keys are not identical, both <SPAN CLASS="ConformWord">
+must</SPAN>
+ be applied to restrict the Node. If the Partition Keys are non-overlapping (e.g., in an <A HREF="Processes.html#0_Imposition" CLASS="XRef"><SPAN CLASS="Link-Process">
+Imposition</SPAN>
+</A> Node where a <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> based input Partition is mapped to a Sheet based output Partition), the application <SPAN CLASS="ConformWord">
+must</SPAN>
+ explicitly calculate the result. The following examples in <A HREF="Life_Cycle_of_JDF.html#0_37119" CLASS="XRef">Table 4-3</A> illustrate the restriction algorithms:</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1076411"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1076289"></A>Table 4-3: <A NAME="0_37119"></A>Examples of Partitioning across multiple Resources (Section 1 of 2) </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1076299"></A>Input Partition 1</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1076301"></A>Input Partition 2</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1076303"></A>Output Partition</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1076305"></A>Node Partition</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1076307"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076309"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076311"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076313"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076315"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076317"></A>If only the input is Partitioned, the Node Partition is defined by the input.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076319"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076320"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076322"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076324"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076326"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076327"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076329"></A>If only the input is Partitioned, the Node Partition is defined by the input.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076331"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076332"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076334"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ +</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076335"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Black&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076336"></A>(<SPAN CLASS="Attribute">
+PartUsage</SPAN>
+ =</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076337"></A><SPAN CLASS="Enumeration">
+&quot;Implicit&quot;</SPAN>
+) </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076339"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076341"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076342"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ + <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076343"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Black&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076345"></A>The first input is Partitioned by <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ and <SPAN CLASS="Attribute">
+Separation</SPAN>
+ which defines the Partition Key granularity. The second input is Partitioned by <SPAN CLASS="Attribute">
+Separation</SPAN>
+ only but has an implied <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ and has a larger but overlapping set of separation values. The separation value set is therefore defined by the second key.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076347"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076349"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076351"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076352"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076354"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076355"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076357"></A>The input and output base Partitions are identical. The output further restricts the Partition.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076359"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076361"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076363"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S2&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076364"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076366"></A>Error</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076368"></A>Input and output are not overlapping. This specifies the null set.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076370"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076371"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Magenta&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076373"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ +</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076374"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Black&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076376"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076378"></A>Error</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076380"></A>This is an error and defines the null set. The first input is Partitioned by <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ and <SPAN CLASS="Attribute">
+Separation</SPAN>
+ which defines the Partition Key granularity. The second input is Partitioned by <SPAN CLASS="Attribute">
+Separation</SPAN>
+ only and has a larger but non-overlapping set of separation values. The separation value set is therefore the null set.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076382"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;S1&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076383"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076385"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Cyan&quot;</SPAN>
+ +</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076386"></A><SPAN CLASS="Attribute">
+Separation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Black&quot;</SPAN>
+ </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076387"></A>(<SPAN CLASS="Attribute">
+PartUsage</SPAN>
+ =</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076388"></A><SPAN CLASS="Enumeration">
+&quot;Explicit&quot;</SPAN>
+) </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076390"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076392"></A>Error</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076394"></A>The first input is Partitioned by <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ and <SPAN CLASS="Attribute">
+Separation</SPAN>
+ which defines the Partition Key granularity. The second input is Partitioned by <SPAN CLASS="Attribute">
+Separation</SPAN>
+ only but has no implied <SPAN CLASS="Attribute">
+SheetName</SPAN>
+ and therefore has a non-overlapping set of Partition Keys. The separation value set is therefore defined by the second key.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076396"></A><SPAN CLASS="Attribute">
+RunIndex</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;0 ~ 7&quot;</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076398"></A>--</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076400"></A><SPAN CLASS="Attribute">
+SheetName</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;s2&quot;</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076402"></A>Special </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1076404"></A>This specifies Sheet s2, with all <A HREF="Resources.html#0_14902" CLASS="XRef"><SPAN CLASS="Link-Element">
+PlacedObject</SPAN>
+</A> Elements with an <SPAN CLASS="Attribute">
+Ord</SPAN>
+ in the range of 0 to 7. This special case is important when <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> entries occur multiply on different imposition Sheets.</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1076413"></A>4.3.3	<A NAME="0_62562"></A>Overlapping Processing Using Pipes <SPAN CLASS="AnchorCalloutTeal">
+ <IMG SRC="Life_Cycle_of_JDF-6.png" ALIGN="RIGHT">
+</SPAN>
+</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1076420"></A>Whereas pipes themselves are identified in the Resource that represents the pipe, pipe dynamics are declared in the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements that reference the pipe. This allows multiple Nodes to access one pipe, each of them with its own pipe buffering parameters.  </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1076434"></A>In some situations, Resource linking is a continuous Process rather than a chronological one. In other words, one Process might require the Output Resources of another Process before that Process has completely finished producing them. The ability to accomplish this kind of Resource transfer is known as overlapping processing, and it is accomplished with the use of a mechanism known as pipes. Pipes are considered to be <SPAN CLASS="Bold">
+active</SPAN>
+ if any Process linking to the pipe simultaneously consumes or produces that pipe Resource.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000082"></A>Any Resource <SPAN CLASS="ConformWord">
+may</SPAN>
+ be transformed into a pipe Resource by specifying the <SPAN CLASS="Attribute">
+PipeID</SPAN>
+ Attribute in the Resource. Pipes of quantifiable Resources resemble reservoir containers that hang between Processes. Processes connected to the pipe via output links fill the container with necessary Resources, while Processes connected via input links deplete it (see <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_77438" CLASS="XRef">Figure 4-4</A></SPAN>
+). The level is controlled by the <A HREF="Structure_of_JDF_Nodes.html#0_35209" CLASS="XRef"><SPAN CLASS="Link-Element">
+PhysicalLink</SPAN>
+</A> Attributes <SPAN CLASS="Attribute">
+PipeResume,</SPAN>
+ <SPAN CLASS="Attribute">
+PipePause</SPAN>
+, <SPAN CLASS="Attribute">
+RemotePipeEndPause</SPAN>
+ and<SPAN CLASS="Attribute">
+ RemotePipeEndResume</SPAN>
+ (see <A HREF="Structure_of_JDF_Nodes.html#0_38173" CLASS="XRef">Table 3-21, “Abstract PhysicalLink or //AmountPool/PartAmount Element”</A>). If none of them are specified, any produced <SPAN CLASS="Enumeration">
+Quantity</SPAN>
+ can be immediately consumed by the consuming end of the pipe. The unit of the buffers is defined by the <SPAN CLASS="Attribute">
+Unit</SPAN>
+ Attribute of the Resource.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000131"></A>The two following diagrams show the ways in which pipes mediate between the Process producing the Resource and the Process consuming the Resource. The following <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Attribute Values are defined for pipes: </P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1010132"></A><SPAN CLASS="Attribute">
+PipePartIDKeys</SPAN>
+</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1010116"></A><SPAN CLASS="Attribute">
+PipePause</SPAN>
+</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1016922"></A><SPAN CLASS="Attribute">
+PipeProtocol</SPAN>
+</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1010118"></A><SPAN CLASS="Attribute">
+PipeResume</SPAN>
+</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1010120"></A><SPAN CLASS="Attribute">
+RemotePipeEndPause</SPAN>
+</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1010122"></A><SPAN CLASS="Attribute">
+RemotePipeEndResume</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1045327"></A>The latter two--<SPAN CLASS="Attribute">
+RemotePipeEndPause</SPAN>
+ and <SPAN CLASS="Attribute">
+RemotePipeEndResume--</SPAN>
+are use to control the level in context with pipe Command Messages which will be described in <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_40823" CLASS="XRef">Section 4.3.3.2, “Dynamic Pipes”</A></SPAN>
+. The specified value of each of these Attributes in any given Node dictates the levels at which a pipe <SPAN CLASS="ConformWord">
+should</SPAN>
+ resume or pause execution. <A HREF="Life_Cycle_of_JDF.html#0_61189" CLASS="XRef">Figure 4-5</A> gives an example of a view on the dynamics of a pipe Resource. The available level of the pipe Resource, represented as R2, and the availability status of two entity Resources, represented as R1 and R3, are changing along a consistent time line. Below the progressions of these Resources is the status of two Processes -- <SPAN CLASS="NoSpell">
+P1</SPAN>
+ and <SPAN CLASS="NoSpell">
+P2</SPAN>
+. <SPAN CLASS="NoSpell">
+P1</SPAN>
+ represents the Process producing the pipe Resource and <SPAN CLASS="NoSpell">
+P2</SPAN>
+ represents the Process consuming that Resource. The Resource status of a active pipe, represented here as R2, is defined to be <SPAN CLASS="Attribute">
+Status</SPAN>
+ = <SPAN CLASS="Enumeration">
+InUse</SPAN>
+ (see also <A HREF="Structure_of_JDF_Nodes.html#0_98511" CLASS="XRef">Table 3-10, “Abstract Resource Element”</A>).</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027219"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060468"></A>Figure 4-4: <A NAME="0_77438"></A>Example of a Pipe Resource linking two Processes</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1010157"></A><IMG SRC="Life_Cycle_of_JDF-7.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1003965"></A><SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_77438" CLASS="XRef">Figure 4-4</A></SPAN>
+ is a view on the structure and <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_61189" CLASS="XRef">Figure 4-5</A></SPAN>
+ a view on the dynamics of the pipe example considered here. R1 represents an Input Resource for P1, which feeds into the intermediate pipe Resource R2. Once the container R2 is filled to the predetermined level, it is used as the Input Resource for P2, which in turn produces Output Resource R3.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1017629"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060485"></A>Figure 4-5: <A NAME="0_61189"></A>Example of status transitions in case of overlapping Processing</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1010193"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Life_Cycle_of_JDF-8.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000197"></A>Resource linking through pipes is controlled through the specification of the <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ and <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ Attributes. The intended amount of a Resource <SPAN CLASS="ConformWord">
+must</SPAN>
+ be specified in advance in the output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>. Whenever the level representing the available quantity of the pipe Resource exceeds the <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ level of the output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>, the Process <SPAN CLASS="NoSpell">
+P1</SPAN>
+ is halted (<SPAN CLASS="Attribute">
+Status</SPAN>
+ = <SPAN CLASS="Enumeration">
+Stopped</SPAN>
+) so that the Process does not overproduce. Once the level falls below the <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ value, the Process <SPAN CLASS="NoSpell">
+P1</SPAN>
+ resumes execution. <SPAN CLASS="NoSpell">
+P1</SPAN>
+ is completed when it has produced the intended amount. Once <SPAN CLASS="NoSpell">
+P1</SPAN>
+ has performed its task, the Resources still in the pipe are consumed by the subsequent Process without level control. In other words, after a Process filling a pipe buffer has completed, pipe buffering becomes disabled.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000218"></A>Conversely, if the level representing the actual amount exceeds the <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ level of the input <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>, P2 can start or resume execution. If it falls below the <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ level, P2 is halted (<SPAN CLASS="Attribute">
+Status</SPAN>
+ = <SPAN CLASS="Enumeration">
+Stopped</SPAN>
+) unless the intended amount of the pipe Resource R2 has already been produced. Then the <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ level is ignored and the pipe Resource is completely consumed.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1012691"></A>In the case of output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements, the <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ value <SPAN CLASS="ConformWord">
+must</SPAN>
+ be smaller than the <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ value, whereas in the case of input <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements, the <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ value <SPAN CLASS="ConformWord">
+must</SPAN>
+ be greater than the <SPAN CLASS="Attribute">
+PipePause </SPAN>
+value. If <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ is specified for an input or an output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> and <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ is not specified, the related Process might run into a deadlock state. In other words, the Process stops and cannot resume execution automatically. Once a Process is stopped under these circumstances it can only be resumed manually or by sending a pipe control Message for resumption that allows interconnected execution control (halting and resumption of Processes by pipe control Messages is described in <A HREF="JMF.html#0_26696" CLASS="XRef">Section 5.10, “Messages for Pipe Control”</A>). If the Attributes <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ or <SPAN CLASS="Attribute">
+PipePause</SPAN>
+ of <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements to pipe Resources are not specified, the Controller is responsible when the linked Processes start and stop independent of the level.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1000261"></A>4.3.3.1	Pipes of Partitionable Resources</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000264"></A>Pipes of Partitionable Resources <SPAN CLASS="ConformWord">
+may</SPAN>
+ also define the granularity of the Resources that are considered to be one part by specifying the <SPAN CLASS="Attribute">
+PipePartIDKeys</SPAN>
+ Attribute in the appropriate <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Element. For instance, a Partitioned <A HREF="Processes.html#0_ImageSetting" CLASS="XRef"><SPAN CLASS="Link-Process">
+ImageSetting</SPAN>
+</A> Process could be defined for multiple Sheet separations, but a complete set containing all separations of both sides of a single Sheet would be sent to the pressroom as one pipe request. In this case, the value of <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+/@<SPAN CLASS="Attribute">
+PartIDKeys</SPAN>
+ would be <SPAN CLASS="Enumeration">
+&quot;SheetName</SPAN>
+ <SPAN CLASS="Enumeration">
+Side</SPAN>
+ <SPAN CLASS="Enumeration">
+Separation&quot;</SPAN>
+ and the value of the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+PipePartIDKeys</SPAN>
+ for the pipe would be <SPAN CLASS="Enumeration">
+&quot;SheetName&quot;</SPAN>
+.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1000290"></A>4.3.3.2	<A NAME="0_40823"></A>Dynamic Pipes</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000293"></A>In addition to abstractly declaring pipe properties, JMF provides pipe Messages that allow dynamic control of pipes. Dynamic pipes can be used to model situations where the amount of Resources is not known beforehand but becomes known during processing. An example of this behavior is a long press run where new plates are needed during a press run because of quality deterioration. The exact point in time where quality becomes unacceptable is not predetermined and might even vary from separation to separation. Dynamic pipes provide the flexibility to adjust to changing situations of this nature.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1020401"></A>Dynamic pipes provide a <SPAN CLASS="Attribute">
+PipeURL</SPAN>
+ Attribute that allows dynamic requests for a status change of the pipe while a Process is executing. Dynamic requests use JMF pipe control Messages (see <A HREF="JMF.html#0_26696" CLASS="XRef">Section 5.10, “Messages for Pipe Control”</A>) sent to another Controller whose URL address is specified by the <SPAN CLASS="Attribute">
+PipeURL</SPAN>
+ Attribute of the respective <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>. Depending on the values of the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Usage</SPAN>
+ Attribute, the following actions are possible.</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000310"></A><SPAN CLASS="Enumeration">
+Input</SPAN>
+: The consumer sends a <A HREF="JMF.html#0_87683" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePull</SPAN>
+</A> Message to its <SPAN CLASS="Attribute">
+PipeURL</SPAN>
+ in order to request additional Resources or a <A HREF="JMF.html#0_98790" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePause</SPAN>
+</A> to halt production by the creator. The consumer sends a <A HREF="JMF.html#0_22639" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipeClose</SPAN>
+</A> Message to the producer if the consumer does not require any further Resources.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1000322"></A><SPAN CLASS="Enumeration">
+Output</SPAN>
+: The creator sends a <A HREF="JMF.html#0_91534" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePush</SPAN>
+</A> Message to its <SPAN CLASS="Attribute">
+PipeURL</SPAN>
+ in order to deliver additional Resources or a <A HREF="JMF.html#0_98790" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePause</SPAN>
+</A> to halt consumption by the consumer.</LI>
+</UL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020427"></A>When dynamic pipes are used, (i.e., when the <SPAN CLASS="Attribute">
+PipeURL</SPAN>
+ Attribute is specified), the pipe buffering parameters <SPAN CLASS="Attribute">
+RemotePipeEndResume</SPAN>
+ and <SPAN CLASS="Attribute">
+RemotePipeEndPause</SPAN>
+ define the buffering parameters of the remote (controlled) end. <SPAN CLASS="Attribute">
+PipeResume</SPAN>
+ and <SPAN CLASS="Attribute">
+PipePause</SPAN>
+, meanwhile, define the buffering parameters of the local Node as described in <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_62562" CLASS="XRef">Section 4.3.3, “Overlapping Processing Using Pipes”</A></SPAN>
+. The buffering parameters of a non-dynamic pipe might control the Process that contains the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>, whereas the buffering parameters of a dynamic pipe control the Process at the other end of the pipe. The pipe control Messages described later in <A HREF="JMF.html#0_26696" CLASS="XRef">Section 5.10, “Messages for Pipe Control”</A> are designed to establish communication between Processes at both ends of dynamic pipe, even if the corresponding Processes are spawned separately.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1012118"></A>The following table summarizes the actions to be taken when the buffer in a dynamic pipe reaches a certain level “<SPAN CLASS="NoSpell">
+L</SPAN>
+”.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1027245"></A> &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1012121"></A>Table 4-4: Actions generated when a dynamic-pipe buffer passes various levels </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1032855"></A>Controlling Pipe End</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1032857"></A>Situation</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1032859"></A>Message</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1032861"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012137"></A>Output (creator)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012139"></A>L &gt; <SPAN CLASS="Attribute">
+RemotePipeEndResume</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012141"></A><A HREF="JMF.html#0_91534" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePush</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012143"></A>Sufficient Resources have been produced by the creator and are ready for delivery to the consumer.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012145"></A>Output (creator)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1033559"></A>L &lt; <SPAN CLASS="Attribute">
+RemotePipeEndPause</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012149"></A><A HREF="JMF.html#0_98790" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePause</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012151"></A>The consumer has consumed to the low water mark and <SPAN CLASS="ConformWord">
+must</SPAN>
+ pause until a sufficient amount of Resources have been produced.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012153"></A>Input (consumer)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012155"></A>L &lt; <SPAN CLASS="Attribute">
+RemotePipeEndResume</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012157"></A><A HREF="JMF.html#0_87683" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePull</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012159"></A>More Resources are requested from the creator and processing <SPAN CLASS="ConformWord">
+may</SPAN>
+ continue by the consumer.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012161"></A>Input (consumer)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012163"></A>L &gt; <SPAN CLASS="Attribute">
+RemotePipeEndPause</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012165"></A><A HREF="JMF.html#0_98790" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePause</SPAN>
+</A> </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1012167"></A>The creator has produced to the high water mark and <SPAN CLASS="ConformWord">
+must</SPAN>
+ wait until a sufficient amount of Resources have been consumed.</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1012168"></A>Dynamic pipes are initially dormant and <SPAN CLASS="ConformWord">
+must</SPAN>
+ be activated by an explicit request. Dynamic pipe requests <SPAN CLASS="ConformWord">
+may</SPAN>
+ be initiated by both ends of the pipe. For example, a print Process might notify an off-line finishing Process when a certain amount is ready by sending a <A HREF="JMF.html#0_91534" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePush</SPAN>
+</A> Message, or the printing Process might request a new plate by sending a <A HREF="JMF.html#0_87683" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePull</SPAN>
+</A> Message. </P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1000548"></A>4.3.3.3	Comparison of Non-Dynamic and Dynamic Pipes</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000551"></A>The <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> between non-dynamic pipes provides the buffering parameters for the Process to which the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> belongs. Therefore, many Processes can link to the same pipe Resource. Furthermore, each Process has its own buffering parameters, whether it is a consumer or a producer. In order to control non-dynamic pipes, one master Controller <SPAN CLASS="ConformWord">
+must</SPAN>
+ control all Processes linked to the pipe Resource.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000554"></A>In contrast, dynamic pipes provide a URL address to control a Process at the other pipe end. Then the buffering parameters of the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> control the Process at the other end. In the case of dynamic pipes, no master Controller is needed to control the pipe. Control is accomplished by sending pipe Messages. If pipe Resources are linked to multiple consumers or producers, such as two finishing lines that consume the output of one press one palette at a time, it is up to implementation to ensure consistency of the Processes.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000561"></A>When using pipe Resources, it is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ that scheduling data for the Process be specified only in the <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource of the parent Node of the Processes linked by pipe Resources in order to avoid scheduling deadlocks. In <A HREF="Life_Cycle_of_JDF.html#0_61189" CLASS="XRef">Figure 4-5</A>, for instance, the actual start and end time of the corresponding parent of <SPAN CLASS="NoSpell">
+P1</SPAN>
+ and <SPAN CLASS="NoSpell">
+P2</SPAN>
+ are marked on the time axis.</P>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000569"></A>4.3.4	Parallel Processing</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000572"></A>While serial processing assumes that all Resources will be produced and consumed in a linear fashion, and while overlapping processing uses multiple Processes that work together to use and create Resources, there are times when it makes sense to run more than one Process simultaneously, creating a multi-pronged workflow. This kind of Process routing is known as parallel processing. Subsections of Jobs are spawned off so that Nodes can be executed individually and simultaneously by the appropriate Devices. Once the Processes are complete, the spawned Nodes are merged back into the original Job. The Output Resources of the merged Nodes become inputs for later Processes. For example, an insert could be produced independently of a cover, and both will be bound together later.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000575"></A>In parallel processing, Processes can be run in a coordinated parallel fashion by using independent Resources. An independent Resource is a Resource that is not shared between multiple Processes. <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef"><SPAN CLASS="Link-Element">
+Implementation Resource</SPAN>
+</A>s, for example, cannot be shared and are therefore always independent, and <A HREF="Structure_of_JDF_Nodes.html#0_29199" CLASS="XRef"><SPAN CLASS="Link-Element">
+Consumable Resource</SPAN>
+</A>s and <A HREF="Structure_of_JDF_Nodes.html#0_35611" CLASS="XRef"><SPAN CLASS="Link-Element">
+Quantity Resource</SPAN>
+</A>s can each be split to function as independent Resources. Individual Partitions of Partitionable Resources are independent and can be Processed in parallel. Read-only Resources, such as parameters, can be shared without any restrictions, and can, therefore, be used in read-only mode for parallel processing. Process chains created by the use of independent Resources are known as independent Process chains.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000582"></A>Parallel processing can proceed in one of two ways. Either a Controller can organize the <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Nodes in a way that allows it to initiate parallel processing, or it can use the spawning-and-merging mechanism to field out chunks of the Job to execute simultaneously. If a Controller chooses the latter method, parent Nodes that contain independent Process chains can be spawned off and processed independently. For example, in order to improve production capacity, an Agent could split <A HREF="Structure_of_JDF_Nodes.html#0_29199" CLASS="XRef"><SPAN CLASS="Link-Element">
+Consumable Resource</SPAN>
+</A>s and create independent Process chains in which each chain consumes its own Resource part. Afterwards, the Agent could submit one of the created Job Parts to a subcontractor and Process the other part with its own facilities.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000589"></A>Parallel processing is used only to process multiple aspects of a Job simultaneously; it is not used to process multiple copies of a JDF Job. In other words, a Job <SPAN CLASS="ConformWord">
+must not</SPAN>
+ be copied and sent to different Controllers for parallel processing. For more information about spawning of Jobs, see <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_26241" CLASS="XRef">Section 4.4, “Spawning and Merging”</A></SPAN>
+.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000598"></A>4.3.5	Iterative Processing</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000601"></A>Some Processes, especially in the prepress area of production, cannot be described as a serial or parallel set of Process steps. Instead, a set of interdependent Processes is iterated in a non-deterministic order. These Processes are known as iterative Processes. For example, an advertisement is laid out that requires a photographic image. During the layout phase, changes are to be made to the color settings of the image, which is then reinserted to the layout. Changes such as these can be described in a high level fashion by defining a Resource <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of <SPAN CLASS="Enumeration">
+Draft</SPAN>
+. As long as an Input Resource to a Process has a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+Draft</SPAN>
+, the <SPAN CLASS="Attribute">
+Status</SPAN>
+ of the Output Resource <SPAN CLASS="ConformWord">
+must not</SPAN>
+ be <SPAN CLASS="Enumeration">
+Available</SPAN>
+.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000619"></A>The <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+MinStatus</SPAN>
+ of a <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> that links to a draft Input Resource <SPAN CLASS="ConformWord">
+must</SPAN>
+ be set to less than or equal <SPAN CLASS="Enumeration">
+Draft</SPAN>
+ to state that a draft Input Resource is acceptable for a Process. Thus a prepress layout Process can be abstractly defined to work on draft Resources until an acceptable output has been achieved, but the output PDL file will not be used for printing until <SPAN CLASS="Attribute">
+Status</SPAN>
+ is <SPAN CLASS="Enumeration">
+Available</SPAN>
+ and no longer designated as a <SPAN CLASS="Enumeration">
+Draft</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000632"></A>Iterative Processes can be set up in a formal fashion using dynamic pipes to convey parameter change requests or in an informal way that assumes that the operators of the various Processes have an informal communication channel. Both are described in greater detail below.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1000638"></A>4.3.5.1	Informal Iterative Processing</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000641"></A>Informal iterative processing does not require a complete redefinition of the Resources needed at every iteration. This kind of processing is generally used in a creative workflow where a Job is defined and gets refined in a series of steps until it is completed. The information about the changes is transferred through channels that bypass JDF. Nonetheless, the description of these Processes in JDF is useful for accounting purposes, as the status of each Process might be monitored individually.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000646"></A>The <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements for informal processing contain an additional <SPAN CLASS="Attribute">
+DraftOK</SPAN>
+ Attribute, but in all other ways they are identical to the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements used in simple sequential processing. Furthermore, the Nodes run through the same set of phases as they would in sequential processing. Nodes are designated only as <SPAN CLASS="Enumeration">
+Stopped</SPAN>
+ and not as <SPAN CLASS="Enumeration">
+Completed</SPAN>
+ after being processed for an iterative cycle. They are marked as completed after their Output Resources lose their <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+Draft.</SPAN>
+ </P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1000661"></A>4.3.5.2	<A NAME="0_62324"></A>Formal Iterative Processing</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1040135"></A>In formal iterative processing, all <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements between interacting Processes are dynamic pipes. Every request for a new Resource is initiated by a <A HREF="JMF.html#0_91534" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePush</SPAN>
+</A> or <A HREF="JMF.html#0_87683" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipePull</SPAN>
+</A> Message that contains at least one <A HREF="Structure_of_JDF_Nodes.html#0_58917" CLASS="XRef"><SPAN CLASS="Link-Element">
+Resource</SPAN>
+</A> Element with the updated parameters. This Resource is used by the Process, and the resulting new Output Resource can be consumed by the requesting Process. The <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+&quot;Draft&quot;</SPAN>
+ can be removed from a Resource by sending the creator a <A HREF="JMF.html#0_22639" CLASS="XRef"><SPAN CLASS="Link-Message">
+PipeClose</SPAN>
+</A> Message that has the <SPAN CLASS="ConformWord">
+optional</SPAN>
+ <SPAN CLASS="Attribute">
+UpdatedStatus</SPAN>
+ Attribute set to <SPAN CLASS="Enumeration">
+&quot;Available&quot;</SPAN>
+. A Node can only reach a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+&quot;Completed&quot;</SPAN>
+ if it has no remaining draft Resources. Another method to remove the draft status is to define a Node for an <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Approval" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Approval</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process that accepts draft Resources as inputs and has non-draft Resources representing the same entities as outputs.</P>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000690"></A>4.3.6	<A NAME="0_65834"></A>Approval, Quality Control and Verification</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000693"></A>In many cases, it is desirable to ensure that an executed Process or set of Processes have been executed completely and/or correctly. In the graphic arts industry this is verified by generating approvals and signing them. JDF allows modeling of the approval Process and modeling of the verification Processes by allowing an <SPAN CLASS="ConformWord">
+optional</SPAN>
+ <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_ApprovalSuccess" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ApprovalSuccess</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Input Resource in any Process. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1014921"></A>The <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Approval" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Approval</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+, <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_QualityControl" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+QualityControl</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ and <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Verification" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Verification</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Processes accept any Resource as input and output that Resource along with <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_ApprovalSuccess" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ApprovalSuccess</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Resource if approved. An <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_ApprovalSuccess" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ApprovalSuccess</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Resource <SPAN CLASS="ConformWord">
+must not</SPAN>
+ be set as <SPAN CLASS="Enumeration">
+Available</SPAN>
+ unless it has been signed by an authorized person. For hard copy proofing, a Combined Process (e.g., ending with the <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_ImageSetting" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+ImageSetting</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+, <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_ConventionalPrinting" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+ConventionalPrinting</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ or <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_DigitalPrinting" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+DigitalPrinting</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process) generates the hard proof which is input to a separate <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Approval" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Approval</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process. For soft proofing, a Combined Process (ending with <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Approval" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Approval</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process) generates the soft proof which is approved by that <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Approval" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Approval</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1015026"></A>JDF provides a <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_QualityControl" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+QualityControl</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process to verify that the output of a Process fulfills certain quality criteria. This differs from the <SPAN CLASS="Link-internal">
+<A HREF="Processes.html#0_Verification" CLASS="XRef"></A><SPAN CLASS="Link-Process">
+Verification</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ Process, which verifies the completeness of a given set of Resources. </P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1000708"></A>4.4	<A NAME="0_26241"></A>Spawning and Merging</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000711"></A>JDF spawning is the process of extracting a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Subnode from a Job and creating a new, complete JDF document that contains all of the information needed to process the Subnode in the original Job. Merging is the process of recombining the information from a spawned JDF part with the original JDF Job, even after both documents have evolved independently. By using the mechanism for spawning and merging different parts of a Job, it is possible to submit Job Parts to distributed Controllers, Devices, other work areas or other work centers.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000717"></A>The JDF spawning-and-merging mechanism can be applied recursively, which means that subjects that have already been spawned can in turn spawn other <SPAN CLASS="NoSpell">
+sub-</SPAN>
+Subjobs and so on. However, a Node <SPAN CLASS="ConformWord">
+must not</SPAN>
+ be re-spawned. If a Node is to be spawned a second time, the previously submitted version <SPAN CLASS="ConformWord">
+must</SPAN>
+ first be deleted, and the spawning procedure <SPAN CLASS="ConformWord">
+must</SPAN>
+ be applied again to the original Node.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1036535"></A>No matter how many Job Parts have been spawned, however, merging is realized by copying Nodes back to their original location and synchronizing the appropriate Resources. Therefore, each spawning <SPAN CLASS="ConformWord">
+must</SPAN>
+ be logged in the Job by the Agent performing the actions that result in a spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. Furthermore, in order to avoid inconsistent JDF states after merging, each merging <SPAN CLASS="ConformWord">
+must</SPAN>
+ be logged, or the appropriate <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Audit Element <SPAN CLASS="ConformWord">
+must</SPAN>
+ be removed from the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> Element. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1036539"></A><SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_99863" CLASS="XRef">Figure 4-6</A></SPAN>
+ shows, schematically, the spawning and merging of a Subjob, designated as <SPAN CLASS="NoSpell">
+P.b</SPAN>
+. The following three phases are defined on a demonstrational time scale.</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1000735"></A>1	The first phase occurs before the Subjob is spawned off.</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000740"></A>2	The second phase occurs during the spawn phase, when the spawned Subjob is executed separately.</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000745"></A>3	The third phase occurs after the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node has been merged back into the original JDF Job.</LI>
+</OL>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027261"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060509"></A>Figure 4-6: <A NAME="0_99863"></A>The spawning and merging mechanism and its phases</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1010552"></A><IMG SRC="Life_Cycle_of_JDF-9.png">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000765"></A>The three phases of the Job Part are bordered by the spawning point and the merging point. On a Job scale, denoted as spawning depth in <A HREF="Life_Cycle_of_JDF.html#0_99863" CLASS="XRef">Figure 4-6</A>, one Job ticket exists during the phases before and after spawning, and the following two Job tickets exist during the spawning phase: the Job with the <SPAN CLASS="Bold">
+parent</SPAN>
+ (<SPAN CLASS="NoSpell">
+P</SPAN>
+) of the <SPAN CLASS="Bold">
+original</SPAN>
+ JDF part (<SPAN CLASS="NoSpell">
+P.b'</SPAN>
+, also denoted as a Subjob) that has been spawned; and the <SPAN CLASS="Bold">
+spawned </SPAN>
+<A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A><SPAN CLASS="Bold">
+ Node</SPAN>
+ (<SPAN CLASS="NoSpell">
+P.bs</SPAN>
+) itself.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000781"></A>This section provides examples that outline the various ways in which spawning and merging can be applied. The following cases are considered in the next six sections.</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1000784"></A>1	Standard spawning and merging</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000787"></A>2	Spawning and merging with Resource copying</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000791"></A>3	Parallel spawning and merging of Partitioned Resources</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000795"></A>4	Nested spawning and merging in reverse sequence</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000799"></A>5	Spawning and merging of independent Job tickets</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1000803"></A>6	Simultaneous spawning and merging of multiple Nodes</LI>
+</OL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000806"></A>JDF can support any combination of the cases described, but these six represent a cross-section of likely scenarios. Case one is the simplest of all of the cases and is occurs in every instance of spawning and merging, regardless of the circumstances surrounding the Process. Each subsequent case requires additional processing that builds upon the processing described in the cases that precede it.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000809"></A>4.4.1	<A NAME="0_70917"></A>Case 1: Standard Spawning and Merging</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000812"></A>The actions described in this case <SPAN CLASS="ConformWord">
+must</SPAN>
+ be applied in every spawning and merging Process. All cases described in this chapter, as well as any other that might be invented, begin with these procedures.</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1000815"></A>Spawning</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000838"></A>To indicate that a Process has been spawned, the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of the original <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node <SPAN CLASS="ConformWord">
+must</SPAN>
+ be set to the value <SPAN CLASS="Enumeration">
+Spawned</SPAN>
+ (see <A HREF="Structure_of_JDF_Nodes.html#0_53532" CLASS="XRef">Table 3-5, “JDF Node”</A>). The <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of the spawned Node remains unchanged.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000848"></A>A unique <SPAN CLASS="Attribute">
+SpawnID</SPAN>
+ Attribute <SPAN CLASS="ConformWord">
+should</SPAN>
+ be set in the spawned Node, and a copy of its value <SPAN CLASS="ConformWord">
+should</SPAN>
+ be set in the <SPAN CLASS="Attribute">
+NewSpawnID</SPAN>
+ of the newly created <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Audit Element. This simplifies bookkeeping of <SPAN CLASS="Element">
+<A HREF="Structure_of_JDF_Nodes.html#0_36977" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+Audit</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+ Elements and merging in case a Node is multiply spawned, either due to error conditions or in parallel with individual Partitions. The value of <SPAN CLASS="Attribute">
+SpawnID</SPAN>
+ <SPAN CLASS="ConformWord">
+should</SPAN>
+ also be appended to the <SPAN CLASS="Attribute">
+SpawnIDs</SPAN>
+ list of all spawned Resources.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000861"></A>In order to identify all of the ancestors of a Job that has been spawned, an <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> Element is included in the Root Node of every spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. This Element contains an <A HREF="Structure_of_JDF_Nodes.html#0_23414" CLASS="XRef"><SPAN CLASS="Link-Element">
+Ancestor</SPAN>
+</A> Element that identifies every parent, grandparent, great-grandparent and so on of the spawned Subnode. In this way, the family tree of every spawned Node is tracked in an ordered sequence that allows an unbroken trace back through all predecessors. Consequently, the Elements that comprise the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> of a spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node <SPAN CLASS="ConformWord">
+must</SPAN>
+ be copied into the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> Element of the newly spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node before the ancestor information of the previously spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node is appended to the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> Element of the newly spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. The last <A HREF="Structure_of_JDF_Nodes.html#0_23414" CLASS="XRef"><SPAN CLASS="Link-Element">
+Ancestor</SPAN>
+</A> Element in each <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> is the parent, the second-to-last the grandparent and so on. <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> and <A HREF="Resources.html#0_CustomerInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+CustomerInfo</SPAN>
+</A> Elements or refelements <SPAN CLASS="ConformWord">
+may</SPAN>
+ be copied into the respective <A HREF="Structure_of_JDF_Nodes.html#0_23414" CLASS="XRef"><SPAN CLASS="Link-Element">
+Ancestor</SPAN>
+</A> Elements. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019528"></A>The complete ancestor information is <SPAN CLASS="ConformWord">
+required</SPAN>
+ in order to merge back semi-finished Jobs with nested spawns. If the last spawn is always merged first (“LIFO”--Last In, First Out), then knowing the direct parent is sufficient as each parent will in turn know its own parent back to the original and a complete ancestor line can be inferred.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1000907"></A>When a Job is spawned, the action <SPAN CLASS="ConformWord">
+must</SPAN>
+ be logged in the parent Node of the spawned Node in the original Job. This is accomplished by creating a <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element with the <SPAN CLASS="Attribute">
+jRef</SPAN>
+ Attribute set to the ID of the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. This <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element <SPAN CLASS="ConformWord">
+must</SPAN>
+ be appended to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> container of the original parent Node. If no <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> container exists in the parent Node, one <SPAN CLASS="ConformWord">
+must</SPAN>
+ be created for the purpose.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1038445"></A>Example 4-4: Family Tree of Spawned Nodes</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1038446"></A>The following code is an example of a family tree:</P>
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1038447"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045223"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045224"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045225"></A>&lt;!-- ... --&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045226"></A>&lt;<SPAN CLASS="XML-Tag">
+AncestorPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045227"></A>&lt;<SPAN CLASS="XML-Tag">
+Ancestor</SPAN>
+ <SPAN CLASS="XMLAttrName">
+FileName</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;file:///grandparent.jdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+NodeID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;p_01&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1045228"></A>&lt;<SPAN CLASS="XML-Tag">
+Ancestor</SPAN>
+ <SPAN CLASS="XMLAttrName">
+FileName</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;file:///parent.jdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+NodeID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;p_02&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1045229"></A>&lt;/<SPAN CLASS="XML-Tag">
+AncestorPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1045230"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1042733"></A>&nbsp;</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1000929"></A>Merging</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1040340"></A>After processing, the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node <SPAN CLASS="ConformWord">
+must</SPAN>
+ be merged back to its original location. Before this can occur, however, duplicate information contained in any Elements (such as <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A>) <SPAN CLASS="ConformWord">
+must</SPAN>
+ be deleted by the Agent executing the spawning and merging. Once this has been accomplished, the spawned Node is copied to the location of the original Node, completely overwriting the original Node. The <SPAN CLASS="Attribute">
+Status</SPAN>
+ of the original Node is then overwritten with the result.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1040390"></A>To complete the merging Process, the merging Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ add a <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Audit Element to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> (see <A HREF="Structure_of_JDF_Nodes.html#0_39711" CLASS="XRef">Section 3.11, “AuditPool and Audit”</A>). The <SPAN CLASS="Attribute">
+MergeID</SPAN>
+ of the <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> audit Element <SPAN CLASS="ConformWord">
+should</SPAN>
+ be set to the value of the <SPAN CLASS="Attribute">
+SpawnID</SPAN>
+ Attribute of the merged Node. Furthermore, the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> container with all child Elements <SPAN CLASS="ConformWord">
+must</SPAN>
+ be removed, and the value of <SPAN CLASS="Attribute">
+SpawnID</SPAN>
+ <SPAN CLASS="ConformWord">
+should</SPAN>
+ be removed from the <SPAN CLASS="Attribute">
+SpawnIDs</SPAN>
+ Attribute of the appropriate Resources.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1015075"></A>A JDF Agent that receives a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node that has been spawned individually, and thus has no <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Element in the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A>, <SPAN CLASS="ConformWord">
+may</SPAN>
+ modify any Elements except for Resources that were spawned as read-only data.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1000972"></A>4.4.2	Case 2: Spawning and Merging with Resource Copying</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000975"></A>The following figure represents an example of a Job that requires that Resources be copied during spawning. In this Job, the Nodes <SPAN CLASS="NoSpell">
+B</SPAN>
+1 and <SPAN CLASS="NoSpell">
+B</SPAN>
+2 are linked to the same Resource, which is localized in the <A HREF="Structure_of_JDF_Nodes.html#0_21621" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourcePool</SPAN>
+</A> of an ancestor Node, denoted as Node A. This Node is the parent Node.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027282"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060525"></A>Figure 4-7: JDF Node structure that requires Resource copying during spawning and merging</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1010674"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Life_Cycle_of_JDF-10.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1000993"></A>When Node <SPAN CLASS="NoSpell">
+B</SPAN>
+1 is spawned, its Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ also be duplicated. To accomplish this, the affected Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ be copied to the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node and purged during merging, a Process that is described below. </P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1000998"></A>4.4.2.1	Spawning of Resources with Inter-Resource Links </H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001001"></A>Resources are linked to a Node by three mechanisms.</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001004"></A>Explicit links defined by a <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> in the <A HREF="Structure_of_JDF_Nodes.html#0_40694" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLinkPool</SPAN>
+</A> of the Node.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001011"></A>Implicit links defined by the <A HREF="Structure_of_JDF_Nodes.html#0_29624" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceRef</SPAN>
+</A> Elements of linked Resources (implicit links are recursive).</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001016"></A>Implicit links defined by the <A HREF="Structure_of_JDF_Nodes.html#0_29624" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceRef</SPAN>
+</A> Elements of the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> of the Node.</LI>
+</UL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001027"></A>A spawning or merging Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ resolve all of these links by copying any non-local Resources into the local <A HREF="Structure_of_JDF_Nodes.html#0_21621" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourcePool</SPAN>
+</A>. </P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1001034"></A>Spawning</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001037"></A>Spawning begins as it did in Case 1. The affected Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ then be copied to the <A HREF="Structure_of_JDF_Nodes.html#0_21621" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourcePool</SPAN>
+</A> of the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. The copied Resources retain the same <SPAN CLASS="Attribute">
+ID</SPAN>
+ values as the original Resources. These Resources can be spawned for read-only access, which allows multiple simultaneous spawning of a Resource, or for read/write access, which allows only one spawning of a Resource. The read/write spawning of a Resource locks the Resource in the original file in order to avoid conflicts that result from simultaneous modification or reading and modification of a Resource. The <SPAN CLASS="Attribute">
+SpawnStatus</SPAN>
+ Attribute of the original Resource <SPAN CLASS="ConformWord">
+must</SPAN>
+ be set to <SPAN CLASS="Enumeration">
+SpawnedRW</SPAN>
+ (which stands for “spawned read/write”) or <SPAN CLASS="Enumeration">
+SpawnedRO</SPAN>
+ (which stands for “spawned read-only”) to indicate that the Resource is spawned. In other words, a copy of the Resource is spawned together with the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. Read/write access effectively locks the original Resources, just as if the Attribute <SPAN CLASS="Attribute">
+Locked</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;true&quot;<A HREF="#0_pgfId-1002013" CLASS="footnote">1</A></SPAN>
+ were present. If a Resource is spawned as read-only, it is not a good idea to modify the original Resource that remains in the parent Job ticket as this might lead to inconsistencies, unless the JMF <A HREF="JMF.html#0_84138" CLASS="XRef"><SPAN CLASS="Link-Message">
+Resource Command</SPAN>
+</A> Message is used to inform the Device or Controller that the Resource was spawned to. The <SPAN CLASS="Attribute">
+Locked</SPAN>
+ Attribute of spawned Resources that are copied read-only <SPAN CLASS="ConformWord">
+must</SPAN>
+ also be set <SPAN CLASS="Enumeration">
+true</SPAN>
+. Furthermore, the value of the <SPAN CLASS="Attribute">
+ID</SPAN>
+ Attribute of each copied Resource <SPAN CLASS="ConformWord">
+must</SPAN>
+ be appended to the appropriate <SPAN CLASS="Attribute">
+rRefsROCopied</SPAN>
+ or <SPAN CLASS="Attribute">
+rRefsRWCopied</SPAN>
+ values of the <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element that resides in the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> of the parent Node.</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1001070"></A>Merging</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019843"></A>Merging begins as it did in Case 1. Each Read/Write Resource that has been copied for spawning <SPAN CLASS="ConformWord">
+must</SPAN>
+ be copied into its original location, completely overwriting the original Resource. If any Read-only Resource that has been copied for spawning, is not the identical to the original Resource, a JDF content error <SPAN CLASS="ConformWord">
+should</SPAN>
+ be logged by a <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Element of <SPAN CLASS="Attribute">
+Class</SPAN>
+ = <SPAN CLASS="Enumeration">
+Error</SPAN>
+ (see <A HREF="Life_Cycle_of_JDF.html#0_73195" CLASS="XRef">Section 4.6, “Error Handling”</A>). The <SPAN CLASS="Attribute">
+ID</SPAN>
+ Attributes of the overwritten Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ be specified in the <SPAN CLASS="Attribute">
+rRefsOverwritten</SPAN>
+ Attribute of the <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Element. The <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Element is then inserted into the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> container of the parent during the usual merging procedure, which is shown as the return point in the spawning diagram.</P>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1001099"></A>4.4.3	<A NAME="0_82329"></A>Case 3: Parallel Spawning and Merging of Partitioned Resources</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001102"></A>In many cases, it is desirable to define a parallel workflow for Partitioned Resources. This is modeled by spawning a Node that defines the Process for each part that is to be processed individually. </P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1001105"></A>Spawning</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1041201"></A>Spawning begins as it did in Case 1 or Case 2. Then the spawning Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ loop over all <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements and ensure that the appropriate <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Element or Elements exist in any Resources in the spawned ticket, where only the individual parts are <SPAN CLASS="ConformWord">
+required</SPAN>
+. This is accomplished either by adding <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Elements if none exist in <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements of the parent Node or by modifying the copies of existing <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Elements. <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Elements <SPAN CLASS="ConformWord">
+must</SPAN>
+ be included in all <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements that point to Resources that are spawned with write access. <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Elements <SPAN CLASS="ConformWord">
+may</SPAN>
+ be included in <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements that point to Resources that are spawned with read only access, (e.g., <A HREF="Structure_of_JDF_Nodes.html#0_71333" CLASS="XRef"><SPAN CLASS="Link-Element">
+Physical Resource</SPAN>
+</A>s where only a part is provided to a Process as input). In addition, copies of the <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Elements are appended to the <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Audit Element. The <SPAN CLASS="Attribute">
+Status</SPAN>
+ of any Partitioned Resource is defined individually for each Partition. The <SPAN CLASS="Attribute">
+Status</SPAN>
+ of the parent Node is set to <SPAN CLASS="Enumeration">
+&quot;Part&quot;</SPAN>
+ and a <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Partition for the Partition of this spawn MUST be created. <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+NodeStatus</SPAN>
+ of the Partition that describes the newly spawned Node is set to <SPAN CLASS="Enumeration">
+&quot;Spawned&quot;</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1015138"></A>Exactly one <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Element that contains the Partition Keys of this spawn and all Partition Keys of previous spawns <SPAN CLASS="ConformWord">
+must</SPAN>
+ be present in the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> of the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001244"></A>The spawning procedure described in this section can be performed iteratively for multiple parts, effectively generating one <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Audit Element and one <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Partition per part. The <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> and <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> audit Elements are not placed in the parent Node of the Node to be spawned, but rather in the Node itself.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1015152"></A>An Agent that receives a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node that has been spawned in parallel and thus has a <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Element in the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> <SPAN CLASS="ConformWord">
+must not</SPAN>
+ modify any Elements except for:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1020909"></A>Resources that were spawned with read-write permission, and </LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1020910"></A>Adding <A HREF="Structure_of_JDF_Nodes.html#0_36977" CLASS="XRef"><SPAN CLASS="Link-Element">
+Audit</SPAN>
+</A> Elements. </LI>
+</UL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020911"></A>Synchronizing newly inserted <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Subnode in spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Nodes is <SPAN CLASS="ConformWord">
+optional</SPAN>
+.</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1001257"></A>Merging</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1043008"></A>After an individual Partitioned spawned Node has been processed, it is merged back to the parent as described in Case 1. In addition, a copy of the <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> Elements of the corresponding <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Audit Element is appended to the <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Element and any read/write Resources are merged into their appropriate parts. The <SPAN CLASS="Attribute">
+Status</SPAN>
+ of the spawned Node is copied into the appropriate <A HREF="APPX_Deprecated_Processes_Resources.html#0_82955" CLASS="XRef"><SPAN CLASS="Link-Element">
+PartStatus</SPAN>
+</A> in the <A HREF="Structure_of_JDF_Nodes.html#0_53985" CLASS="XRef"><SPAN CLASS="Link-Element">
+StatusPool</SPAN>
+</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1043026"></A>An example of Partitioned Spawning and Merging can be found in <SPAN CLASS="Link-internal">
+<A HREF="APPX_Examples.html#0_77242" CLASS="XRef">Section N.3, “Spawning and Merging”</A></SPAN>
+.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1043028"></A>4.4.4	Case 4: Nested Spawning and Merging in Reverse Sequence</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1017010"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.2 </SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001283"></A>Note that nested Spawning and Merging in Reverse Sequence has been deprecated because it is highly probable that applications implementing it will not interoperate.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1060547"></A><A HREF="Life_Cycle_of_JDF.html#0_20453" CLASS="XRef">Figure 4-8</A> shows an example of nested spawning and merging in reverse sequence. Process A spawns Node <SPAN CLASS="NoSpell">
+B</SPAN>
+, and Node <SPAN CLASS="NoSpell">
+B</SPAN>
+ spawns Node C. Even if <SPAN CLASS="NoSpell">
+B</SPAN>
+ is merged back to A for any reason before <SPAN CLASS="NoSpell">
+C</SPAN>
+ is merged back to <SPAN CLASS="NoSpell">
+B</SPAN>
+, <SPAN CLASS="NoSpell">
+C</SPAN>
+ still contains the information of its grandparent in the <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> Element. In this way, <SPAN CLASS="NoSpell">
+C</SPAN>
+ can trace back its ancestors and find the location of its parent, Node <SPAN CLASS="NoSpell">
+B</SPAN>
+, in Node A even though the spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node, with <SPAN CLASS="NoSpell">
+B</SPAN>
+ as Root Node, has already been deleted.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1060564"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060577"></A>Figure 4-8: <A NAME="0_20453"></A>Example for a JDF Node structure with nested spawning</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1060559"></A><IMG SRC="Life_Cycle_of_JDF-11.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1060572"></A>4.4.5	<A NAME="0_66749"></A>Case 5: Spawning and Merging of Independent Jobs   </H3>
+<DIV>
+<MAP NAME="Life_Cycle_of_JDF-12">
+</MAP>
+<IMG SRC="Life_Cycle_of_JDF-12.png" USEMAP="#Life_Cycle_of_JDF-12">
+</DIV>
+<P CLASS="AnchorTabularData">
+<A NAME="0_pgfId-1064509"></A> &nbsp;</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1042910"></A>It is useful to spawn and merge independent Jobs in situations where the execution of separate, independent Small Jobs is not efficient in a commercial sense. Business cards for individual customers that are printed on one set of Sheets and subsequently cut are an example of this kind of situation. In cases such as these, Small Jobs can be collected in order to form a Big Job that can then be executed as a whole. This allows Job aspects such as production, equipment load, and balancing of <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef"><SPAN CLASS="Link-Element">
+Implementation Resource</SPAN>
+</A>s to be performed more efficiently. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001324"></A>Note that production Devices will generally require their Resources to unambiguously define the production details. Thus a JDF Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ prepare the Resources in a way that the exact positioning of the contents of individual Small Jobs is specified. It is therefore <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ to use the procedure that is described in this section for Product Intent Nodes only.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001331"></A>In this example, diagrammed in <A HREF="Life_Cycle_of_JDF.html#0_71090" CLASS="XRef">Figure 4-9</A>, Nodes <SPAN CLASS="NoSpell">
+C</SPAN>
+ and <SPAN CLASS="NoSpell">
+E</SPAN>
+ represent Small Jobs of identical type. Node bigF represents a Big Job, which might exist already or which might have been created for the purposes of this spawning-and-merging Process. Once Nodes <SPAN CLASS="NoSpell">
+C</SPAN>
+ and <SPAN CLASS="NoSpell">
+E</SPAN>
+ are gathered beneath Node bigF, as described below, a Big Job can then be executed as a whole for the sake of efficiency. When the Big Job is executed, the Small Jobs are effectively executed simultaneously. Nodes A, <SPAN CLASS="NoSpell">
+B</SPAN>
+ and D are provided to demonstrate that spawned Nodes in this example might be related to other Nodes in various ways.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027297"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060593"></A>Figure 4-9: <A NAME="0_71090"></A>Example of the spawning and merging of independent Jobs</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1010809"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Life_Cycle_of_JDF-13.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1001351"></A>Spawning</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001354"></A>Spawning begins as it did in Case 1 or Case 2. Then, the Process to be spawned (Job <SPAN CLASS="NoSpell">
+C</SPAN>
+ in <A HREF="Life_Cycle_of_JDF.html#0_71090" CLASS="XRef">Figure 4-9</A>) is copied into a newly created or already existing Big Job (Big Job bigZ in <A HREF="Life_Cycle_of_JDF.html#0_71090" CLASS="XRef">Figure 4-9</A>). The Process type of the Root Node of the Big Job <SPAN CLASS="ConformWord">
+must</SPAN>
+ be identical to that of the spawned Processes. The <SPAN CLASS="Attribute">
+Activation</SPAN>
+ state of the spawned Processes is set to <SPAN CLASS="Enumeration">
+Inactive</SPAN>
+, and an <A HREF="Structure_of_JDF_Nodes.html#0_37840" CLASS="XRef"><SPAN CLASS="Link-Element">
+AncestorPool</SPAN>
+</A> Element is added to the inactive spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node to define the ancestry (as was described above). A <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Element containing information about the spawned independent Jobs and when they have been received is added to the Big Job.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001378"></A>In the original Jobs, the <SPAN CLASS="Attribute">
+Status</SPAN>
+ of the Process is designated as <SPAN CLASS="Enumeration">
+Spawned</SPAN>
+, and a <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element with the <SPAN CLASS="ConformWord">
+optional</SPAN>
+ <SPAN CLASS="Attribute">
+jRefDestination</SPAN>
+ Attribute specified is added to the parent of the original Job. The  <SPAN CLASS="Attribute">
+jRefDestination</SPAN>
+ Attribute contains the ID of the Big Job beneath which the spawned Process has been placed. The changes in the parent are the equivalent of those described in Case 1 except for the specification of the <SPAN CLASS="Attribute">
+jRefDestination</SPAN>
+ Attribute in the <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001395"></A>Where necessary, Resource instances <SPAN CLASS="ConformWord">
+must</SPAN>
+ be copied and logged as in Case 2 by appending the IDs to the appropriate Attribute (<SPAN CLASS="Attribute">
+rRefsROCopied</SPAN>
+ or <SPAN CLASS="Attribute">
+rRefsRWCopied</SPAN>
+) of the <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element in the parent of the original Job. This is <SPAN CLASS="ConformWord">
+required</SPAN>
+ in single spawning and merging. Furthermore, the <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements of the spawned Process <SPAN CLASS="ConformWord">
+must</SPAN>
+ be copied to the <A HREF="Structure_of_JDF_Nodes.html#0_40694" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLinkPool</SPAN>
+</A> of the active, big Process Node. In this way, the Input Resources and the Resources to be produced are linked to the Big Job.</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1001414"></A>Merging</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001417"></A>For each of the spawned Small Jobs, the return procedure is performed as it was in the preceding cases. Once the Process explained in Case 1 is performed, the completed Job is copied back to its original location and the <SPAN CLASS="Attribute">
+Activation</SPAN>
+ Attribute is restored by setting it to the activation of the Big Job Node after completion. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1040784"></A>Eventually, copied Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ be purged and handled just as they were in Case 2. Then, the merging <SPAN CLASS="ConformWord">
+must</SPAN>
+ be logged by appending the <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Element to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> container of the parent of the original Node. In independent spawning and merging, the <SPAN CLASS="Attribute">
+jRefSource</SPAN>
+ Attribute <SPAN CLASS="ConformWord">
+must</SPAN>
+ be specified in the appropriate <A HREF="Structure_of_JDF_Nodes.html#0_99999" CLASS="XRef"><SPAN CLASS="Link-Element">
+Merged</SPAN>
+</A> Element.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1040797"></A>If the Big Job is retained, a <A HREF="Structure_of_JDF_Nodes.html#0_97266" CLASS="XRef"><SPAN CLASS="Link-Element">
+Spawned</SPAN>
+</A> Element with the Attribute <SPAN CLASS="Attribute">
+Independent</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;true&quot; </SPAN>
+<SPAN CLASS="ConformWord">
+must</SPAN>
+ be appended to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> of the Big Job. For instance, saving the finished Big Job might be desirable if the audit information contained in the Big Job <SPAN CLASS="ConformWord">
+should</SPAN>
+ be available for individual invoicing. Finally, the newly created big <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node <SPAN CLASS="ConformWord">
+should</SPAN>
+ be deleted to avoid the double existence of Nodes.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1001449"></A>4.4.6	Case 6: Simultaneous Spawning and Merging of Multiple Nodes</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001452"></A>It is not possible to explicitly spawn multiple Nodes simultaneously into one JDF job ticket. The Nodes <SPAN CLASS="ConformWord">
+must</SPAN>
+ be grouped into a single Process Group Node. This Node can then be spawned and merged as described in the previous sections.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1001459"></A>4.5	<A NAME="0_49224"></A>Node and Resource IDs</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001462"></A>All Nodes and Resources <SPAN CLASS="ConformWord">
+must</SPAN>
+ contain a unique identifier, not only because it is important to be able to identify individual components of a Job, but also because JDF uses these IDs for internal linking purposes. Each Agent that creates Resources and Subnodes or that performs spawning and merging is responsible for providing IDs that are unique in the scope of the file, taking into account all of the phases of a Job’s life cycle.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001467"></A>IDs come in two flavors: pure and composite. A <SPAN CLASS="Bold">
+pure ID</SPAN>
+ is an ID that does not contain a period character (.). A <SPAN CLASS="Bold">
+composite ID</SPAN>
+ is made up of pure IDs separated by periods. IDs are used differently under different circumstances. Several different circumstances are described below.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017954"></A><SPAN CLASS="Bold">
+In case of no spawning.</SPAN>
+ If an Agent inserts new Elements requiring IDs into an original Job, then the Agent assigns pure IDs to the new Elements and <SPAN CLASS="ConformWord">
+must</SPAN>
+ guarantee their uniqueness.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017961"></A><SPAN CLASS="Bold">
+In case of single spawning.</SPAN>
+ If an Agent inserts new Elements into a spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node, then the Agent creates composite IDs by using the ID of the Root Node and appending a unique pure ID delimited by a period. For example:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001506"></A>ID of spawned Root Node: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Job_01234.Proc1&quot;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001511"></A>ID used for new Element: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Job_01234.Proc1.newpureID&quot;</SPAN>
+</LI>
+</UL>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001518"></A><SPAN CLASS="Bold">
+In case of independent spawning. </SPAN>
+The Agent that merges the independent Jobs beneath a Big Job inserts a unique, pure ID (delimited by a period) in front of all IDs of each Small Job it receives. That means that the Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ replace all IDs of each Job it receives whenever it encounters an ID collision. If an Agent inserts new Elements into a spawned <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node, then the Agent creates composite IDs by using the ID of the respective Root Node of the Small Job and appends a unique pureID, delimited by a period.  For example:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001524"></A>ID of the Big Job with Node <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A&quot;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001529"></A>Receives Small Job A1 with some IDs: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A.A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A.B&quot;</SPAN>
+ where the first is the ID of the Root Node.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001540"></A>Receives Small Job A2 with some IDs: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A.A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;anything&quot;</SPAN>
+ ...</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1052501"></A>The Agent creates locally unique pure IDs: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A1&quot;</SPAN>
+ and <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A2&quot;</SPAN>
+ each prefixed to all IDs of each received Small Job; the IDs of the Small Job A1 become: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A1.A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A1.A.A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ =<SPAN CLASS="Enumeration">
+&quot;A1.A.B&quot;</SPAN>
+, and the IDs of the Small Job A2 become: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A2.A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A2.A.A&quot;</SPAN>
+ <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A2.anything&quot;</SPAN>
+. All IDs in the Big Job are unique.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001574"></A>The Agent creates a new Element added to the Small Job A1 with ID: <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A1.A.C&quot;</SPAN>
+. Here the Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ resolve the possible conflict if it would append the pure ID = <SPAN CLASS="Enumeration">
+&quot;A&quot;</SPAN>
+ to the root ID = <SPAN CLASS="Enumeration">
+&quot;A1.A&quot;</SPAN>
+. That means the Agent has to check the uniqueness of each created ID.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1001582"></A>Before merging the Jobs back to their original location, the Agent <SPAN CLASS="ConformWord">
+must</SPAN>
+ remove the prefixed pure IDs of all IDs, here <SPAN CLASS="Enumeration">
+&quot;A1&quot;</SPAN>
+, <SPAN CLASS="Enumeration">
+&quot;A2&quot;</SPAN>
+ respectively. Then the newly created Element will be merged back with the <SPAN CLASS="Attribute">
+ID</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;A.C&quot;</SPAN>
+.</LI>
+</UL>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1001587"></A>4.6	<A NAME="0_73195"></A>Error Handling</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001590"></A>Error handling is an implementation-dependent feature of JDF-based systems. The <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> Element provides a container where errors that occur during the execution of a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node are to be logged using <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Elements. <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Elements <SPAN CLASS="ConformWord">
+may</SPAN>
+ also be sent in JMF s. The content of the <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Element is described in <EM CLASS="crossRef">
+<A HREF="Structure_of_JDF_Nodes.html#0_19143" CLASS="XRef">Table 3-38, “Notification Audit Element”</A></EM>
+. For a list of predefined error codes, see <SPAN CLASS="Link-internal">
+<A HREF="APPX_Supported_Error_Codes_in_JMF.html#0_92840" CLASS="XRef">Appendix D, “Supported Error Codes in JMF and Notification Elements”</A></SPAN>
+. Further details about error handling are provided in the next four sections.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1001610"></A>4.6.1	<A NAME="0_91752"></A>Classification of Notifications</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1042085"></A><A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Audit Elements are classified by the <SPAN CLASS="Attribute">
+Class </SPAN>
+Attribute. Every workflow implementation <SPAN CLASS="ConformWord">
+must</SPAN>
+ associate a Class with all events on an event-by-event basis. For values, see <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Class</SPAN>
+ in <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef">Table 3.11.4.5, “Notification”</A>.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1042079"></A>4.6.2	Event Description</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1040898"></A>A description of the event is given by a generic <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A> Element, which is <SPAN CLASS="ConformWord">
+required</SPAN>
+ for the <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Classes <SPAN CLASS="Enumeration">
+Information</SPAN>
+, <SPAN CLASS="Enumeration">
+Warning</SPAN>
+, <SPAN CLASS="Enumeration">
+Error</SPAN>
+ or <SPAN CLASS="Enumeration">
+Fatal</SPAN>
+. For example, after a Process is aborted, error information describing a Device error <SPAN CLASS="ConformWord">
+may</SPAN>
+ be logged in the <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A> Element of the <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Element. If phase times are logged, the <A HREF="Structure_of_JDF_Nodes.html#0_43358" CLASS="XRef"><SPAN CLASS="Link-Element">
+PhaseTime</SPAN>
+</A> Element that logged the transition to the <SPAN CLASS="Enumeration">
+Aborted</SPAN>
+ state <SPAN CLASS="ConformWord">
+may</SPAN>
+ also contain a local <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A> Element that describes the cause of the Process abortion. <A HREF="Structure_of_JDF_Nodes.html#0_43358" CLASS="XRef"><SPAN CLASS="Link-Element">
+PhaseTime</SPAN>
+</A> and <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Elements are <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Subelements of the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A>, which is described in <A HREF="Structure_of_JDF_Nodes.html#0_39711" CLASS="XRef">Section 3.11, “AuditPool and Audit”</A>.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1001709"></A>4.6.3	Error Logging in the JDF File</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001712"></A>A JDF-compliant Controller/Agent <SPAN CLASS="ConformWord">
+should</SPAN>
+ log an error by inserting a <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Element in the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> of the Node that generated the error. The <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource <SPAN CLASS="ConformWord">
+may</SPAN>
+ contain <A HREF="JMF.html#0_22990" CLASS="XRef"><SPAN CLASS="Link-Element">
+NotificationFilter</SPAN>
+</A> Elements to define the notification events (or, more specifically, errors) that <SPAN CLASS="ConformWord">
+should</SPAN>
+ be logged.</P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1001727"></A>4.6.4	Error Handling via Messaging (JMF)</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001730"></A>A JMF with a <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Element in the Message body <SPAN CLASS="ConformWord">
+should</SPAN>
+ be sent through all persistent channels that subscribed events of Class <SPAN CLASS="Enumeration">
+Error</SPAN>
+. How to subscribe error events via JMF, see <A HREF="JMF.html#0_40222" CLASS="XRef">Section 5.4.3, “Persistent Channels”</A> and <A HREF="JMF.html#0_42017" CLASS="XRef">Section 5.8.1, “Events”</A>. Note that this is different from the <A HREF="JMF.html#0_22990" CLASS="XRef"><SPAN CLASS="Link-Element">
+NotificationFilter</SPAN>
+</A> Elements of the <A HREF="Resources.html#0_NodeInfo" CLASS="XRef"><SPAN CLASS="Link-Resource">
+NodeInfo</SPAN>
+</A> Resource, which is defined for logging events by <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Elements to the <SPAN CLASS="Element">
+<A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+. </P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1001757"></A>4.7	Test Running</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001760"></A>In JDF, the notion of a test run is similar to the press notion of preflight. The goal is to detect JDF content errors and inconsistencies in a Job before the Job is executed.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001763"></A>The ability to perform a test run <SPAN CLASS="ConformWord">
+may</SPAN>
+ be built into individual Devices or Controllers. Alternatively, a Controller implementation <SPAN CLASS="ConformWord">
+may</SPAN>
+ perform test runs on behalf of its Devices. A test run <SPAN CLASS="ConformWord">
+may</SPAN>
+ be routed through all of the different Devices and Controllers in a workflow, just as if the test run were a standard execution run. For the routing of Jobs and Nodes through different Devices and Controllers for a test, the spawning and merging mechanism <SPAN CLASS="ConformWord">
+may</SPAN>
+ also be applied. The Devices/Controllers receiving a Job read and analyze it WITHOUT initiating execution. Rather, they investigate the content of the Node they would execute. A Device/Controller with Agent capabilities <SPAN CLASS="ConformWord">
+may</SPAN>
+ record results into the <SPAN CLASS="Element">
+<A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+ associated with a given Process. </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1001770"></A>During test running, the requirements of the Processes specified are compared to the capabilities of the Devices targeted. A Device or Controller explicitly tests if the <SPAN CLASS="ConformWord">
+required</SPAN>
+ inputs are actually present, valid and without errors. For example, an input requirement might be a URL that, when a test run is performed, is found to point to an item that no longer exists in that location. Test running is meant to prevent errors as a result of that kind of misinformation. It is particularly useful when running expensive or time-consuming Jobs.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001775"></A>It is also possible to test run specific parts of a workflow, or even individual Nodes. An Agent might request a test of certain Nodes by setting the JDF <SPAN CLASS="Attribute">
+Activation </SPAN>
+Attribute to <SPAN CLASS="Enumeration">
+&quot;TestRun&quot;</SPAN>
+ (see <A HREF="Structure_of_JDF_Nodes.html#0_53532" CLASS="XRef">Table 3-5, “JDF Node”</A>), which is inherited by all descendent Nodes that are not inactive (<SPAN CLASS="Attribute">
+Activation</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Inactive&quot;</SPAN>
+). If a Device or Controller<A HREF="#0_pgfId-1011112" CLASS="footnote">2</A> detects an error in a Node a <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Element containing a textual description <SPAN CLASS="ConformWord">
+should</SPAN>
+ be appended to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> Element of the Node in which the error occurred, and if messaging is supported, the error <SPAN CLASS="ConformWord">
+should</SPAN>
+ be also communicated to the connected listeners via messaging. For more information, see <A HREF="JMF.html#0_61861" CLASS="XRef">Section 5.6, “Error and Event Messages”</A>. If an error has been detected, the Agent can modify the Job in order to correct the error. Once a test run has been completed successfully, the Device/Controller with Agent capabilities changes the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of the tested Node to <SPAN CLASS="Enumeration">
+Ready</SPAN>
+. If a test run fails, the Device/Controller <SPAN CLASS="ConformWord">
+must</SPAN>
+ record the Process status as<SPAN CLASS="Enumeration">
+ FailedTestRun</SPAN>
+. After the test run has finished, the Agent <SPAN CLASS="ConformWord">
+should</SPAN>
+ log the result by appending a <A HREF="Structure_of_JDF_Nodes.html#0_11902" CLASS="XRef"><SPAN CLASS="Link-Element">
+ProcessRun</SPAN>
+</A> Element to the <A HREF="Structure_of_JDF_Nodes.html#0_25471" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuditPool</SPAN>
+</A> Element. For more information about <A HREF="Structure_of_JDF_Nodes.html#0_36977" CLASS="XRef"><SPAN CLASS="Link-Element">
+Audit</SPAN>
+</A> Elements, see <A HREF="Structure_of_JDF_Nodes.html#0_39711" CLASS="XRef">Section 3.11, “AuditPool and Audit”</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1001820"></A>In principle, execution and test runs might be run simultaneously. For example, one Job Part could be executed while another part requests only a test. JDF also defines an <SPAN CLASS="Attribute">
+Activation</SPAN>
+ value of <SPAN CLASS="Enumeration">
+TestRunAndGo</SPAN>
+ that requests a test run and, upon successful completion, automatically initiates processing.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1001827"></A>4.7.1	Resource Status During a Test Run</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1042122"></A>In order to test run a complete set of Nodes, it is sometimes necessary to imply the <SPAN CLASS="Attribute">
+Status</SPAN>
+ of Resources that are produced by prior Nodes. Successful test running does <SPAN CLASS="Italics">
+not</SPAN>
+ set the <SPAN CLASS="Attribute">
+Status</SPAN>
+ Attribute of a Resource to <SPAN CLASS="Enumeration">
+&quot;Available&quot;</SPAN>
+ unless the Resource actually is available. Nodes that require an Output Resource from a Node that has completed test running for purposes of test running itself can assume that these Resources have a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+&quot;Available&quot;</SPAN>
+ for the purpose of test running as long as the producing Node has a <SPAN CLASS="Attribute">
+Status</SPAN>
+ of <SPAN CLASS="Enumeration">
+&quot;Ready&quot;</SPAN>
+.</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1027311"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1060612"></A>Figure 4-10: Parameter space in Device capabilities<A HREF="#0_pgfId-1060611" CLASS="footnote">3</A></H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1011127"></A><IMG SRC="Life_Cycle_of_JDF-14.png" ALIGN="RIGHT">
+&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1001867"></A>4.8	<A NAME="0_49109"></A>Capability and Constraint Definitions</H2>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1013839"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.1</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015211"></A>While the JDF schema describes the structure of all <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Nodes, it does not provide for a way to allow a specific JDF Device to provide details on how it subsets (or extends) the JDF language. This ability is provided by the JDF Device Capabilities features. With it, a JDF Device can describe details on supported Processes, Resources, Attributes and Attribute Values (and details about constraints and their interaction).</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1043087"></A>A JDF Device’s capabilities are described as a space of allowed Resource parameter values within <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Nodes. A Device in this context is assumed to execute one or more <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Nodes. Its capabilities are defined by the space of acceptable JDF Resources for the Product Intent or Process described by the Node. An individual <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node definition can be compared to the capabilities of a JDF Device by looping over all Resource parameters of a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node that is to be executed by a Device. The Job can be executed as specified (Attributes can be ignored if the <SPAN CLASS="Attribute">
+SettingsPolicy</SPAN>
+ is <SPAN CLASS="Enumeration">
+&quot;BestEffort&quot;</SPAN>
+) if all Job parameter values are within the ranges specified by the capabilities. If the capabilities describe Product Intent, the Job is executable as specified when all Product Intent ranges overlap with the capabilities description.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1043099"></A>Details of the Elements needed for capability description are specified in <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_15347" CLASS="XRef">Section 7.3, “Device Capability Definitions”</A></SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1043107"></A>It is assumed that <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> Resources that describe capabilities will be transported in JMF <A HREF="JMF.html#0_12961" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownDevices</SPAN>
+</A> Messages. However, a <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> Resource <SPAN CLASS="ConformWord">
+should not</SPAN>
+ specify the capabilities of its associated <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> if a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node links to the <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A>in order to specify that the <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> is intended to execute the Node.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1020311"></A>A capabilities description can also provide information necessary for the construction of a user interface to allow entry of the values to use for a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> Node. This includes specifying the NMTOKEN, enumeration or string values that are supported, hints for how to group features on the user interface, and macro definitions for features of the Device (allowing multiple JDF controls to be presented as a single user control). </P>
+</DIV>
+</DIV>
+<HR>
+<DIV CLASS="footnotes">
+<DIV CLASS="footnote">
+<P CLASS="Footnote">
+<SPAN CLASS="footnoteNumber">
+1.</SPAN>
+<A NAME="0_pgfId-1002013"></A>Usually Resources become locked (<SPAN CLASS="Attribute">
+Locked</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;true&quot;</SPAN>
+) if they are referenced by <A HREF="Structure_of_JDF_Nodes.html#0_36977" CLASS="XRef"><SPAN CLASS="Link-Element">
+Audit</SPAN>
+</A> Elements (see also <A HREF="Structure_of_JDF_Nodes.html#0_39711" CLASS="XRef">Section 3.11, “AuditPool and Audit”</A>).</P>
+</DIV>
+<DIV CLASS="footnote">
+<P CLASS="Footnote">
+<SPAN CLASS="footnoteNumber">
+2.</SPAN>
+<A NAME="0_pgfId-1011112"></A>Note that only Devices and Controllers with Agent capabilities can write in a JDF document.</P>
+</DIV>
+<DIV CLASS="footnote">
+<P CLASS="TableFootnote">
+<SPAN CLASS="footnoteNumber">
+3.</SPAN>
+<A NAME="0_pgfId-1060611"></A>Note that the restriction to three dimensions is for graphical demonstration purposes only.</P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

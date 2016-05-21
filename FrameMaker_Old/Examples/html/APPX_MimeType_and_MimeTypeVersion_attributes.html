@@ -1,0 +1,1404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Appendix H	MimeType and MimeTypeVersion Attributes</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="AppTitle">
+<A NAME="0_pgfId-1014132"></A>Appendix H	<A NAME="0_95010"></A>MimeType and MimeTypeVersion Attributes</H1>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1016380"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018772"></A>This appendix lists examples values for the following Attributes of the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> Resource: <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ and <SPAN CLASS="Attribute">
+MimeTypeVersion</SPAN>
+. The preferred file name extension is also indicated for use in the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URL</SPAN>
+ Attribute. The tables below apply to the values of <SPAN CLASS="Attribute">
+PDLType</SPAN>
+ and <SPAN CLASS="Attribute">
+PDLVersion</SPAN>
+ defined in <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_61927" CLASS="XRef">Section 7.4.2.5, “Document Properties”</A></SPAN>
+, respectively.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019530"></A>The listing is intended to be exhaustive for the most likely document formats that are routinely used in JDF applications. However, other document formats and other combinations of the listed document formats can be used as well. When these format standards are revised with new version numbers, they <SPAN CLASS="ConformWord">
+may</SPAN>
+ be used and <SPAN CLASS="ConformWord">
+should</SPAN>
+ follow the patterns established in the following tables. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019545"></A>Many <SPAN CLASS="Attribute">
+MimeTypeVersion</SPAN>
+ values are taken from the <SPAN CLASS="Italics">
+Printer MIB</SPAN>
+ <A HREF="APPX_References.html#0_[RFC1759]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1759]</SPAN>
+</A> by using the a language (e.g., PS, PCL, <SPAN CLASS="NoSpell">
+etc.</SPAN>
+) as a prefix followed by the level or version defined for <SPAN CLASS="Bold">
+prtInterpreterLangLevel</SPAN>
+ separated by a “/” character (ex. “PS/3” for PostScript Level 3.) For file formats not in the <SPAN CLASS="Italics">
+Printer MIB</SPAN>
+, the prefix is the common acronym for the format with “/” changed to “-” so that the prefix always ends with the first “/” (ex. “<SPAN CLASS="NoSpell">
+DCS</SPAN>
+/2.0” for <SPAN CLASS="NoSpell">
+DCS</SPAN>
+ version 2.0 and “TIFF-IT/<SPAN CLASS="NoSpell">
+BL</SPAN>
+/<SPAN CLASS="NoSpell">
+P1:1998</SPAN>
+” for TIFF/IT -- Binary Line art image data -- profile 1.) </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1028697"></A><A HREF="APPX_MimeType_and_MimeTypeVersion_attributes.html#0_34540" CLASS="XRef">Table H-1</A> lists the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ values that are MIME Media Types registered with IANA (as opposed to file types which are not registered with IANA) in alphabetical order, as well as possible <SPAN CLASS="Attribute">
+MimeTypeVersion</SPAN>
+ values. A blank <SPAN CLASS="Attribute">
+MimeTypeVersion</SPAN>
+ table entry indicates that there is no recognized version number for the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+. <A HREF="APPX_MimeType_and_MimeTypeVersion_attributes.html#0_34540" CLASS="XRef">Table H-1</A> also lists the associated <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ file name extensions commonly used by JDF applications. Note: According to <A HREF="APPX_References.html#0_[RFC2046]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2046]</SPAN>
+</A> the initial set of MIME media types start with the substrings: “application/”, “audio/”, “image/”, “message/”, “model/”, “multipart/”, “text/” or “video/”. File Types will not start with these strings. The <SPAN CLASS="Attribute">
+Compression</SPAN>
+ values that do have a corresponding IANA MIME type are also listed, so that a file that is so compressed or encoded has an appropriate <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ value for the file, as shown below.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1028893"></A><SPAN CLASS="NoteLeadIn">
+Modification note: </SPAN>
+starting with JDF 1.4, the second column “Sample MimeType Version” replaces “MimeType Version” and rows with same value of MimeType, but with different values of MimeType Version are reduced to a single row with just a sample MimeType Version </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1042630"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1028997"></A>Table H-1: <A NAME="0_34540"></A>MimeType Attribute Values (IANA Registered) (Section 1 of 3)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1029005"></A>MimeType</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1029007"></A>Sample MimeType-Version</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1029009"></A>File</P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1029010"></A>Extension</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1029012"></A>Description [<SPAN CLASS="NoSpell">
+iana-mt</SPAN>
+] indicates IANA registration</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029014"></A>application/<SPAN CLASS="NoSpell">
+mac-binhex40</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029016"></A>HQX/4.0</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029018"></A>.hqx</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029020"></A>Macintosh BinHex 4.0 7-bit encoding <A HREF="APPX_References.html#0_[RFC1741]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1741]</SPAN>
+</A> </P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1029024"></A><SPAN CLASS="NoteLeadIn">
+Note: </SPAN>
+BinHex encoding converts an 8-bit file into a 7-bit format <A HREF="APPX_References.html#0_[RFC1741]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1741]</SPAN>
+</A>, similar to Uuencoding. BinHex format preserves file Attributes, as well as Macintosh resource forks, and includes CRC (Cyclic Redundancy Check) error-checking. This encoding method works on any type of file, including formatted word processing and spreadsheet files, graphics files and even executable files (i.e., programs or applications). Note: BinHex is not to be confused with MacBinary encoding, which is an 8-bit format.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029029"></A>application/msword</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029031"></A>MSWORD/XP</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029033"></A>.doc</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029035"></A>Microsoft Word </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029037"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029039"></A>PDF/1.6, </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029040"></A>PDF/<SPAN CLASS="NoSpell">
+X-3:2003</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029042"></A>.pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Note">
+<A NAME="0_pgfId-1029047"></A>Adobe Portable Document Format <A HREF="APPX_References.html#0_[PDF1.6]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PDF1.6]</SPAN>
+</A> and Portable Document Format (PDF) PDF/<SPAN CLASS="NoSpell">
+X-3</SPAN>
+ <A HREF="APPX_References.html#0_[iso15930-6" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO15930-6:2003]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029052"></A>application/postscript</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029054"></A>PS/3</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029056"></A>.ps</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029061"></A>Adobe PostScript™ See <A HREF="APPX_References.html#0_[RFC2045]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2045]</SPAN>
+</A> and <A HREF="APPX_References.html#0_[RFC2046]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2046]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029066"></A>application/<SPAN CLASS="NoSpell">
+vnd.cip4-jdf+xml</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029068"></A>JDF 1.4</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029070"></A>.jdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029072"></A>CIP4 Job Definition Format (JDF) version 1.4.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029300"></A>application/<SPAN CLASS="NoSpell">
+vnd.cip4-jmf+xml</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029302"></A>JMF 1.4</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029304"></A>.jmf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029306"></A>CIP4 Job Definition Format (JDF) version 1.4 (See Job Messaging Format).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029074"></A>application/<SPAN CLASS="NoSpell">
+vnd.cip3-ppf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029076"></A>PPF/3.0</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029078"></A>.ppf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029080"></A>CIP3 Print Production Format (PPF) version 3.0, 1998 <A HREF="APPX_References.html#0_[PPF]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PPF]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029085"></A>application/<SPAN CLASS="NoSpell">
+vnd.hp-PCL</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029087"></A>PCL/X</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029089"></A>.pcl</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029091"></A>Hewlett Packard Printer Control Language (PCL™) </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029188"></A>application/vnd.iccprofile</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029189"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029192"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029203"></A>.icc</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029204"></A>.icm</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029206"></A>International Color Consortium (ICC) File Format for Color Profiles taken from the binary coded decimal Profile Header Profile Version Number field (bytes 8 through 11) <A HREF="APPX_References.html#0_[ICC.1]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ICC.1]</SPAN>
+</A></P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1029210"></A><SPAN CLASS="NoteLeadIn">
+Creation note:</SPAN>
+ starting with JDF 1.4 this MimeType replaces “ICC Profile”. See <A HREF="APPX_MimeType_and_MimeTypeVersion_attributes.html#0_84109" CLASS="XRef">Table H-2</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029101"></A>application/<SPAN CLASS="NoSpell">
+vnd.podi-ppml+xml</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029103"></A>PPML/2.1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029105"></A>.ppml</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029107"></A>Personalized Print Markup Language <A HREF="APPX_References.html#0_[PPML]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PPML]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029112"></A>application/vnd.Quark.QuarkXPress</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029114"></A>XPress/6.0</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029116"></A>.qxd </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029117"></A>.qxt </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029118"></A>.qwd</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029119"></A>.qwt</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029120"></A>.qxl </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029121"></A>.qxb</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029126"></A>QuarkXPress <A HREF="APPX_References.html#0_[Quark]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[Quark]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029128"></A>application/zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029130"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029132"></A>.zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029134"></A>ZIP packaging -- The actual compression used for each file in a ZIP package is stored in the ZIP package as metadata for each file. Therefore, the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Compression</SPAN>
+ Attribute for the contained file <SPAN CLASS="ConformWord">
+may</SPAN>
+ use any <SPAN CLASS="Attribute">
+Compression</SPAN>
+ value, including <SPAN CLASS="Enumeration">
+&quot;None&quot;</SPAN>
+, <SPAN CLASS="Enumeration">
+&quot;Compress&quot;</SPAN>
+, <SPAN CLASS="Enumeration">
+&quot;Gzip&quot;</SPAN>
+ and <SPAN CLASS="Enumeration">
+&quot;ZLIB&quot;</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029136"></A>image/jpeg</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029138"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029140"></A>.jpeg</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029141"></A>.jpg</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029149"></A>JPEG See <A HREF="APPX_References.html#0_[RFC2045]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2045]</SPAN>
+</A> and <A HREF="APPX_References.html#0_[RFC2046]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2046]</SPAN>
+</A>. Note: image/jpeg is really an image format, not a file format. JFIF and EXIF are file formats that contain image/jpeg image format data, and some applications have their own formats that are similar to JFIF and EXIF but which are proprietary. None the less, the “image/jpeg” <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ value is used to identify these file types.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029151"></A>image/tiff</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029153"></A>tiff/6.0</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029155"></A>.tiff</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029156"></A>.tif</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029161"></A>Tag Image File Format <A HREF="APPX_References.html#0_[RFC3302]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3302]</SPAN>
+</A></P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1029162"></A><SPAN CLASS="NoteLeadIn">
+Note: </SPAN>
+The image/tiff MIME <SPAN CLASS="Attribute">
+MediaType</SPAN>
+ is assumed to be TIFF Revision 6.0 as defined in detail by Adobe in <A HREF="APPX_References.html#0_[TIFF6]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[TIFF6]</SPAN>
+</A>. TIFF/IT is a different MIME type.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029167"></A>multipart/related</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029169"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029171"></A>.mjd</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029172"></A>.mjm</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029174"></A>Multipart/Related with JDF as the first part <A HREF="APPX_References.html#0_[RFC2387]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2387]</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029179"></A> x-world/x-vrml</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029180"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029182"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029184"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1029186"></A>&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017236"></A><A HREF="APPX_MimeType_and_MimeTypeVersion_attributes.html#0_84109" CLASS="XRef">Table H-2</A> lists the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ values that are file types assigned by CIP4 (as opposed to MIME Media Types which are registered with IANA) and possible <SPAN CLASS="Attribute">
+MimeTypeVersion</SPAN>
+ values commonly used in JDF applications. A blank <SPAN CLASS="Attribute">
+MimeTypeVersion</SPAN>
+ table entry indicates that there is no recognized version number for the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+. <A HREF="APPX_MimeType_and_MimeTypeVersion_attributes.html#0_84109" CLASS="XRef">Table H-2</A> also lists associated <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ file name extensions values. A blank file extension column entry indicates that there is no recognized file name extension for the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+. The <SPAN CLASS="Attribute">
+Compression</SPAN>
+ values that do not have a corresponding IANA MIME type are also assigned a file type value, so that a file that is so compressed or encoded has an appropriate <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ value for the file, as shown in the table below. </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1042636"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1027787"></A>Table H-2: <A NAME="0_84109"></A>MimeType and File Type Combinations (Section 1 of 3)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1027793"></A>MimeType</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1027795"></A>File</P>
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1027796"></A>Extension</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1027798"></A>Description [<SPAN CLASS="NoSpell">
+iana-mt</SPAN>
+] indicates IANA registration</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027800"></A>Base64</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027802"></A>.mme</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027804"></A>Base64 -- A format for encoding arbitrary binary information for transmission by electronic mail. <A HREF="APPX_References.html#0_[RFC3548]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3548]</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027809"></A>Compress </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027811"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027816"></A>Compress -- UNIX compression <A HREF="APPX_References.html#0_[RFC1977]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1977]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027818"></A>DCS</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027820"></A>.eps</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027825"></A>Document Color Separation (DCS), version 2.0. <A HREF="APPX_References.html#0_[DCS2.0]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[DCS2.0]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027827"></A>Deflate </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027829"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027831"></A>Deflate -- The file is compressed using ZIP public domain compression format <A HREF="APPX_References.html#0_[RFC1951]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1951]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027836"></A>GZip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027838"></A>.gz</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027843"></A>Gzip -- GNU zip compression technology <A HREF="APPX_References.html#0_[RFC1952]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1952]</SPAN>
+</A>. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027875"></A>ICC Profile</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028933"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027877"></A>.icc</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027878"></A>.icm</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028942"></A>International Color Consortium (ICC) File Format for Color Profiles taken from the binary coded decimal Profile Header Profile Version Number field (bytes 8 through 11) <A HREF="APPX_References.html#0_[ICC.1]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ICC.1]</SPAN>
+</A></P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1028937"></A><SPAN CLASS="NoteLeadIn">
+Deprecation note:</SPAN>
+ starting with JDF 1.4 this MimeType becomes <SPAN CLASS="Enumeration">
+&quot;application/vnd.iccprofile&quot;</SPAN>
+. See <A HREF="APPX_MimeType_and_MimeTypeVersion_attributes.html#0_34540" CLASS="XRef">Table H-1</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027885"></A>MacBinary</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027887"></A>.bin</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027889"></A>MacBinary -- An encoding format that combines the two forks of a Mac file, together with the file information (Name, Creator Application, File Type, <SPAN CLASS="NoSpell">
+etc.</SPAN>
+) into a single binary data stream that is suitable for storage or transferring through non-Mac systems. <A HREF="APPX_References.html#0_[macbinary]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[macbinary]</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027894"></A>Tar</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027896"></A>.tar</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027898"></A>UNIX packaging format.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027900"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027902"></A>.fp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027907"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Full Page -- baseline</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1027908"></A><SPAN CLASS="NoteLeadIn">
+Note: </SPAN>
+the file format TIFF/IT <SPAN CLASS="ConformWord">
+must not</SPAN>
+ use the “application/tiff” <SPAN CLASS="Attribute">
+MimeType</SPAN>
+. The “image/tiff” <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ conforms to baseline TIFF 6.0 <A HREF="APPX_References.html#0_[RFC3302]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3302]</SPAN>
+</A>, whereas TIFF/IT does not conform to TIFF 6.0. Consequently, the widely-deployed TIFF 6.0 readers are not able to read TIFF/IT. The <A HREF="APPX_References.html#0_[RFC3302]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3302]</SPAN>
+</A> requires that an RFC be published in order to extend image/tiff with a parameter that would be needed in order to distinguish TIFF/IT from TIFF. There is no plan by the ISO committee that oversees TIFF/IT to register TIFF/IT with either a parameter to image/tiff or as new separate MIME type. Therefore, TIFF/IT will use the <SPAN CLASS="Attribute">
+FileType</SPAN>
+ Attribute instead of the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+ Attribute.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027916"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027918"></A>.ct</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027923"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Continuous Tone picture data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027925"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027927"></A>.lw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027932"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Continuous Line art -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027934"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027936"></A>.hc</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027941"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- High-resolution Continuous tone image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027943"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027945"></A>.mp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027950"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- monochrome picture image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027952"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027954"></A>.bp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027959"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Picture image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027961"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027963"></A>.bl</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027968"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Line art image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027970"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027972"></A>.fp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027977"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Full Page -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027979"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027981"></A>.ct</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027986"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Continuous Tone picture data -- profile 1 </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027988"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027990"></A>.lw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027995"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Color Line art data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027997"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1027999"></A>.hc</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028004"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- High-resolution Continuous tone image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028006"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028008"></A>.mp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028013"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- monochrome picture image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028015"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028017"></A>.bp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028022"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Picture image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028024"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028026"></A>.bl</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028031"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Line art image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028033"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028035"></A>.fp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028040"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Full Page -- baseline</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1028041"></A><SPAN CLASS="NoteLeadIn">
+Note:</SPAN>
+ this entry and following ones were created in the context of <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A>, whereas preceding entries were created in the context of the 1998 version of <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028049"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028051"></A>.ct</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028056"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Continuous Tone picture data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028058"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028060"></A>.lw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028065"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Color Line art data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028067"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028069"></A>.hc</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028074"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- High-resolution Continuous tone image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028076"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028078"></A>.mp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028083"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- monochrome picture image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028085"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028087"></A>.bp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028092"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Picture image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028094"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028096"></A>.bl</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028101"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Line art image data -- baseline</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028103"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028105"></A>.sd</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028110"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028112"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028114"></A>.fp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028119"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Full Page -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028121"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028123"></A>.ct</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028128"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Continuous Tone picture data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028130"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028132"></A>.lw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028137"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Color Line art data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028139"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028141"></A>.hc</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028146"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- High-resolution Continuous tone image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028148"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028150"></A>.mp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028155"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- monochrome picture image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028157"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028159"></A>.bp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028164"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Picture image data -- profile 1</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028166"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028168"></A>.bl</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028173"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Line art image data -- profile 1.</P>
+<P CLASS="Note">
+<A NAME="0_pgfId-1028174"></A><SPAN CLASS="NoteLeadIn">
+Note:</SPAN>
+ There is no TIFF/IT P1 conformance level of SD in <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028179"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028181"></A>.fp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028186"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Full Page -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028188"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028190"></A>.ct</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028195"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Continuous Tone picture data -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028197"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028199"></A>.lw</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028204"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Color Line art data -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028206"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028208"></A>.hc</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028213"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- High-resolution Continuous tone image data -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028215"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028217"></A>.mp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028222"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- monochrome picture image data -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028224"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028226"></A>.bp</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028231"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Picture image data -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028233"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028235"></A>.bl</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028240"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> -- Binary Line art image data -- profile 2</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028242"></A>TIFF/IT</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028244"></A>.sd</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028249"></A>TIFF/IT <A HREF="APPX_References.html#0_[ISO12639" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO12639:2004]</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028251"></A>Type 1 Font</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028253"></A>.pfa</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028254"></A>.pfb</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028259"></A>Type 1 Font <A HREF="APPX_References.html#0_[type1font]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[type1font]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028261"></A>True Type Font</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028263"></A>.ttf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028268"></A>True Type Font <A HREF="APPX_References.html#0_[truetypefont]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[truetypefont]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028270"></A>Open Type Font</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028272"></A>.otf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028277"></A>Open Type Font <A HREF="APPX_References.html#0_[opentypefont]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[opentypefont]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028279"></A>UUEncoded</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028281"></A>.uue</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028283"></A>Uuencode -- A set of encoding algorithms for converting files into a series of 7-bit ASCII characters that can be transmitted over the Internet. Originally, uuencode stood for <SPAN CLASS="NoSpell">
+Unix-to-Unix</SPAN>
+ encode, but it has since become a universal protocol used to transfer files between different platforms such as Unix, Windows and Macintosh. Uuencoding is especially popular for sending Email attachments. <A HREF="APPX_References.html#0_[uuencode]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[uuencode]</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028288"></A>ZLIB</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028290"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1028295"></A>ZLIB <SPAN CLASS="NoSpell">
+--</SPAN>
+ ZLIB compression <A HREF="APPX_References.html#0_[RFC1950]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1950]</SPAN>
+</A> </P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</BODY>
+</HTML>

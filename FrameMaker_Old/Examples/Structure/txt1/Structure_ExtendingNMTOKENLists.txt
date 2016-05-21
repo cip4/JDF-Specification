@@ -1,0 +1,1 @@
+﻿<TrappingParams TrapEndStyle="HDM:FooBar"/>

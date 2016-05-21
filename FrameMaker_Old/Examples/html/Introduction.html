@@ -1,0 +1,3911 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Chapter 1	JDF Specification Release 1.4</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="ChapTitle">
+<A NAME="0_pgfId-1009895"></A>Chapter 1	JDF Specification Release 1.4</H1>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009896"></A>This document defines the technical specification for the Job Definition Format (JDF) and its counterpart, the Job Messaging Format (<A HREF="Introduction.html#0_91610" CLASS="XRef"><SPAN CLASS="Link-Message">
+JMF</SPAN>
+</A>). We will describe the components of JDF, both internal and external, and explain how to integrate the format components to create a viable workflow. Ancillary aspects are also introduced, such as how to convert PJTF or PPF to JDF, and how JDF relates to IfraTrack. It is intended for use by programmers and systems integrators for operations addressed by the International Cooperation for Integration of Processes in Prepress, Press and Postpress (CIP4). In this first chapter, we present the concept of JDF, how to use this document and some basic document navigational aids.</P>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1009897"></A>1.1	<A NAME="0_26780"></A>Background on JDF</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009898"></A>JDF is an extensible, XML-based format built upon the existing technologies of CIP3’s Print Production Format <A HREF="APPX_References.html#0_[PPF]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PPF]</SPAN>
+</A> and Adobe’s Portable Job Ticket Format <A HREF="APPX_References.html#0_[PJTF]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[PJTF]</SPAN>
+</A>. It provides three primary benefits to the printing industry: </P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1051149"></A>1	The ability to unify the prepress, press and postpress aspects of any printing Job, unlike any previous format; </LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1051155"></A>2	The means to bridge the communication gap between production services and Management Information Systems (<A HREF="Introduction.html#0_35397" CLASS="XRef">MIS</A>); and </LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1051159"></A>3	The ability to carry out both of these functions no matter what system architecture is already in place and no matter what tools are being used to complete the <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A>. In short, JDF is extremely versatile and comprehensive.</LI>
+</OL>
+<P CLASS="Body">
+<A NAME="0_pgfId-1009899"></A>JDF is an interchange data format to be used by a system of administrative and implementation-oriented components, which together produce printed products. It provides the means to describe print Jobs in terms of the products eventually to be created, as well as in terms of the Processes needed to create those products. The format provides a mechanism to explicitly specify the controls needed by each Process, which might be specific to the Devices that will execute the Processes.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1009900"></A>JDF works in tandem with a counterpart format known as the Job Messaging Format or <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A>. <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> provides the means for production components of a JDF workflow to communicate with system controllers and administrative components. It relays information about the progress of JDF Jobs and gives <A HREF="Introduction.html#0_35397" CLASS="XRef">MIS</A> the active ability to query Devices about the status of Processes being executed or getting ready to be executed. <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> will provide the complete Job tracking functionality that is defined by IfraTrack messaging standard. Depending on the system architecture, <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> might also provide the means to control certain aspects of these Processes directly.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1009901"></A>JDF and <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> are maintained and developed by CIP4 (<SPAN CLASS="Link-External">
+<A HREF="http://www.cip4.org" CLASS="URL">http://www.cip4.org</A></SPAN>
+). They were originally developed by four companies prominent in the graphic arts industry--Adobe, Agfa, Heidelberg and MAN Roland -- with significant contributions provided by CIP3, the IfraTrack working group, Fraunhofer IGD and the PrintTalk consortium.</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1009902"></A>1.2	<A NAME="0_61959"></A>Document References</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102201"></A>Throughout this specification references to other documents are indicated by short symbolic names inside square brackets, (e.g., <A HREF="APPX_References.html#0_[ICC.1]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ICC.1]</SPAN>
+</A>). Implementers ought to read and conform to such referenced documents when implementing a part of this specification with such a reference. The reader is directed to <SPAN CLASS="Link-internal">
+<A HREF="APPX_References.html#0_41654" CLASS="XRef">Appendix K, “References”</A></SPAN>
+.  to find the complete set of JDF references and the full title, date, source and availability of all such references. In addition, this specification assumes that the reader has a basic awareness of or access to, the following documents.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1102264"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1102215"></A>Table 1-1: <A NAME="0_89942"></A>Basic references (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1102219"></A>Term</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1102221"></A>Definition</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102224"></A><A NAME="0_[XML]"></A>[XML]</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102226"></A><SPAN CLASS="Italics">
+XML Specification</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102227"></A><SPAN CLASS="Italics">
+Version 1.0 (Second Edition)</SPAN>
+ </P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102228"></A>Date:		6 October 2000</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102229"></A>Produced by:		World Wide Web Consortium (W3C)</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102231"></A>Available at:		<SPAN CLASS="Link-External">
+<A HREF="http://www.w3.org/TR/REC-xml" CLASS="URL">http://www.w3.org/TR/REC-xml</A></SPAN>
+. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102235"></A><A NAME="0_marker-1102233"></A>[<A NAME="0_XMLNS"></A>XMLNS]</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102237"></A><SPAN CLASS="Italics">
+Namespaces in XML</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102238"></A><SPAN CLASS="Italics">
+Version (W3C Recommendation of 14 January 1999) </SPAN>
+</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102239"></A>Date:		14 January 1999</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102240"></A>Produced by:		World Wide Web Consortium (W3C)</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102241"></A>Available at: <SPAN CLASS="Link-External">
+http://www.w3.org/TR/REC-xml-names/</SPAN>
+ </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102244"></A><A NAME="0_[XPath]"></A>[XPath]</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102246"></A><SPAN CLASS="Italics">
+XML Path Language (XPath) Version 1.0</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102247"></A><SPAN CLASS="Italics">
+Version W3C Recommendation 16 November 1999</SPAN>
+ </P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102248"></A>Date:		16 November 1999</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102249"></A>Produced by:		World Wide Web Consortium (W3C)</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102251"></A><A HREF="http://www.w3.org/TR/xpath.html" CLASS="URL">Available at: </A><SPAN CLASS="Link-External">
+http://www.w3.org/TR/xpath.html</SPAN>
+. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102254"></A><A NAME="0_[XMLSchema]"></A>[XMLSchema]</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102256"></A><SPAN CLASS="Italics">
+XML Schema Part 0+1+2: Primer, Structures and Datatypes</SPAN>
+  </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102257"></A><SPAN CLASS="Italics">
+Version (W3C Recommendation of 02 May 2001)</SPAN>
+ </P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102258"></A>Date:		02 May 2001</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102259"></A>Produced by: 		World Wide Web Consortium (W3C) XML Schema working group</P>
+<P CLASS="FM-Ref">
+<A NAME="0_pgfId-1102262"></A>Available at:		<SPAN CLASS="Link-External">
+<A HREF="http://www.w3.org/TR/xmlschema-0/" CLASS="URL">http://www.w3.org/TR/xmlschema-0/</A></SPAN>
+, <SPAN CLASS="Link-External">
+<A HREF="http://www.w3.org/TR/xmlschema-1/" CLASS="URL">http://www.w3.org/TR/xmlschema-1/</A></SPAN>
+ and <SPAN CLASS="Link-External">
+<A HREF="http://www.w3.org/TR/xmlschema-2/" CLASS="URL">http://www.w3.org/TR/xmlschema-2/</A></SPAN>
+.</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1032855"></A>1.3	<A NAME="0_16271"></A>Conventions Used in This Specification</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009942"></A>This section contains conventions and notations used within this document.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1009943"></A>1.3.1	<A NAME="0_83270"></A>Text Styles</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009944"></A>The following text styles are used to identify the components of a JDF <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A>.</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1009945"></A>Elements are written in sans serif. Examples are <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A>, <A HREF="Resources.html#0_24671" CLASS="XRef"><SPAN CLASS="Link-Element">
+BundleItem</SPAN>
+</A> and <SPAN CLASS="Element">
+<A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"></A><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+<SPAN CLASS="Element">
+</SPAN>
+</SPAN>
+ Elements.<SPAN CLASS="AnchorCalloutRed">
+ </SPAN>
+<IMG SRC="Introduction-1.png" ALIGN="RIGHT">
+</LI>
+</UL>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1009946"></A>Attributes are written in italic sans serif. Examples are <SPAN CLASS="Attribute">
+Status</SPAN>
+, <SPAN CLASS="Attribute">
+ResourceID</SPAN>
+ and <SPAN CLASS="Attribute">
+ID</SPAN>
+.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1009947"></A>Resources are written in bold sans serif. Examples are <A HREF="Resources.html#0_Ink" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Ink</SPAN>
+</A>, <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> and <SPAN CLASS="Resource">
+<A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+<SPAN CLASS="Resource">
+</SPAN>
+</SPAN>
+.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1009167"></A>Processes are written in bold-italic sans serif. Examples are <A HREF="Processes.html#0_ColorSpaceConversion" CLASS="XRef"><SPAN CLASS="Link-Process">
+ColorSpaceConversion</SPAN>
+</A>, <A HREF="Processes.html#0_Rendering" CLASS="XRef"><SPAN CLASS="Link-Process">
+Rendering</SPAN>
+</A> and <A HREF="Processes.html#0_Scanning" CLASS="XRef"><SPAN CLASS="Link-Process">
+Scanning</SPAN>
+</A>.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1009192"></A>Enumerative and Boolean values of Attributes are written in italics. Examples are <SPAN CLASS="Enumeration">
+true</SPAN>
+, <SPAN CLASS="Enumeration">
+Waiting</SPAN>
+, <SPAN CLASS="Enumeration">
+Completed</SPAN>
+ and <SPAN CLASS="Enumeration">
+Stopped</SPAN>
+.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1051792"></A>Standard bold text is used for the following purposes </LI>
+<UL>
+<LI CLASS="Bullets2">
+<A NAME="0_pgfId-1009194"></A>to highlight glossary items. Examples are <SPAN CLASS="Bold">
+Device</SPAN>
+, <SPAN CLASS="Bold">
+Element</SPAN>
+ and<SPAN CLASS="Bold">
+ Job</SPAN>
+. </LI>
+<LI CLASS="Bullets2">
+<A NAME="0_pgfId-1009195"></A>to highlight defined items inside a table. An example is the data type <SPAN CLASS="Bold">
+NMTOKEN </SPAN>
+in the table in <A HREF="Introduction.html#0_83141" CLASS="XRef">Section 1.5, “Data Structures”</A>.</LI>
+<LI CLASS="Bullets2">
+<A NAME="0_pgfId-1009196"></A>to highlight definitions of local terms. These are terms that are of local importance for a certain chapter or some sections inside a chapter. An example is a <SPAN CLASS="Bold">
+spawned JDF</SPAN>
+ in <A HREF="Life_Cycle_of_JDF.html#0_26241" CLASS="XRef">Section 4.4, “Spawning and Merging”</A>.</LI>
+</UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1009201"></A>For the benefit of those who are reading this document in PDF or online, cross-reference links are denoted by gray text. Examples are <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_97151" CLASS="XRef">Chapter 4, “Life Cycle of JDF”</A></SPAN>
+ and <SPAN CLASS="Link-internal">
+<A HREF="Introduction.html#0_16271" CLASS="XRef">Section 1.3, “Conventions Used in This Specification”</A></SPAN>
+. To follow a link, click the highlighted text. </LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017929"></A>Also for the benefit of online readers, external hyperlinks are graphically designated. An example is <SPAN CLASS="Link-External">
+http://www.cip4.org</SPAN>
+. To follow a link, click the highlighted text.</LI>
+</UL>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1040924"></A>1.3.2	<A NAME="0_83057"></A>XPath Notation Used in this Specification</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1056718"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1056719"></A>A simple subset of the XPath Language <A HREF="APPX_References.html#0_[XPath]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XPath]</SPAN>
+</A> is used throughout this specification in the description of an Element, Attribute or value to identify other Elements, Attributes and/or values. XPath gets its name from its use of a path notation (as in URLs) for navigating through the hierarchical structure of an XML document. The simple subset of XPath used is:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1046212"></A>Element <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A> hierarchy is indicated by a slash (e.g., “<SPAN CLASS="Element">
+Element</SPAN>
+/<SPAN CLASS="Element">
+Element</SPAN>
+”)</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1046213"></A>Element Attribute hierarchy is indicated by a slash and an at (@) symbol) (ex., “<SPAN CLASS="Element">
+Element</SPAN>
+/@<SPAN CLASS="Attribute">
+Attribute</SPAN>
+”), and</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1046201"></A>The text styles above in Section 1.3.1 are used to indicate whether an Element is a Resource, Process or other Element, or if the subject is an Attribute or a value (ex., enumeration, string, etc.).</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1046653"></A>Paths beginning with a single slash: “/” indicate root Elements: (ex. /JDF indicates the root <A HREF="Introduction.html#0_50778" CLASS="XRef">JDF Node</A>).</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1046654"></A>Paths beginning with a double slash “//” indicate Elements with any parent (ex. //<A HREF="Structure_of_JDF_Nodes.html#0_21621" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourcePool</SPAN>
+</A> indicates a <A HREF="Structure_of_JDF_Nodes.html#0_21621" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourcePool</SPAN>
+</A> Element in any Element).</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1050456"></A>Paths containing square brackets that enclose a predicate describe an Element that is restricted by the predicate. This document uses three types of predicates as described in the next 3 items:</LI>
+</UL>
+<P CLASS="HangingIndent2">
+<A NAME="0_pgfId-1050461"></A><SPAN CLASS="NoSpell">
+E[@A = V]</SPAN>
+ -  the XPath specifies an Element <SPAN CLASS="Element">
+E</SPAN>
+ whose Attribute <SPAN CLASS="Attribute">
+A</SPAN>
+ has the value <SPAN CLASS="Enumeration">
+V</SPAN>
+, e.g. <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A>[@<SPAN CLASS="Attribute">
+ComponentType</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;FinalProduct&quot;</SPAN>
+] specifies a <A HREF="Resources.html#0_Component" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Component</SPAN>
+</A> whose <SPAN CLASS="Attribute">
+ComponentType</SPAN>
+ has the value of <SPAN CLASS="Enumeration">
+&quot;FinalProduct&quot;</SPAN>
+. The predicate can be used ouside the context of an Element, e.g. @<SPAN CLASS="Attribute">
+ComponentType</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;FinalProduct&quot;</SPAN>
+ (or without the “@”: <SPAN CLASS="Attribute">
+ComponentType</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;FinalProduct&quot;</SPAN>
+) means that the <SPAN CLASS="Attribute">
+ComponentType</SPAN>
+ value equals <SPAN CLASS="Enumeration">
+&quot;FinalProduct&quot;</SPAN>
+</P>
+<P CLASS="HangingIndent2">
+<A NAME="0_pgfId-1050622"></A><SPAN CLASS="NoSpell">
+E[contains(@A = V)]</SPAN>
+ -  the XPath specifies an Element <SPAN CLASS="Element">
+E</SPAN>
+ whose Attribute <SPAN CLASS="Attribute">
+A</SPAN>
+ has some value that contains <SPAN CLASS="Enumeration">
+V</SPAN>
+, <SPAN CLASS="Attribute">
+A</SPAN>
+’s value is either an enumerations or NMTOKENS and <SPAN CLASS="Enumeration">
+V</SPAN>
+ is an enumeration or NMTOKEN. For example,  <A HREF="Resources.html#0_Contact" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Contact</SPAN>
+</A>[contains(@<SPAN CLASS="Attribute">
+ContactTypes</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Delivery&quot;</SPAN>
+]/<A HREF="Resources.html#0_Address" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Address</SPAN>
+</A> specifies the <A HREF="Resources.html#0_Address" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Address</SPAN>
+</A> of a <A HREF="Resources.html#0_Contact" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Contact</SPAN>
+</A> whose <SPAN CLASS="Attribute">
+ContactTypes</SPAN>
+ value contains <SPAN CLASS="Enumeration">
+&quot;Delivery&quot;</SPAN>
+ and possibly other NMTOKEN values. The predicate can be used ouside the context of an Element, e.g. contains(@<SPAN CLASS="Attribute">
+ContactTypes</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Delivery&quot;</SPAN>
+ means that <SPAN CLASS="Attribute">
+ContactTypes</SPAN>
+ value contains <SPAN CLASS="Enumeration">
+&quot;Delivery&quot;</SPAN>
+.</P>
+<P CLASS="HangingIndent2">
+<A NAME="0_pgfId-1050517"></A><SPAN CLASS="NoSpell">
+E[@A]</SPAN>
+ -  the XPath specifies an Element <SPAN CLASS="Element">
+E</SPAN>
+ in which Attribute <SPAN CLASS="Attribute">
+A</SPAN>
+ is present, e.g. <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>[@<SPAN CLASS="Attribute">
+Side</SPAN>
+] specifies a <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> in which the <SPAN CLASS="Attribute">
+Side</SPAN>
+ Attribute is present.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1067556"></A>Example 1-1: XPath Expression</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1046435"></A>The XPath expression: </P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1041058"></A><A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>/<A HREF="Resources.html#0_MarkObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+MarkObject</SPAN>
+</A>/<A HREF="Resources.html#0_87039" CLASS="XRef"><SPAN CLASS="Link-Element">
+DynamicField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Format</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;Replacement Text for </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+ and </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+ go in here at </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+ on </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+ <SPAN CLASS="NoSpell">
+...</SPAN>
+</LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1046454"></A>Means: </P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1049969"></A>The value “<SPAN CLASS="Enumeration">
+Replacement Text for </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+ and </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+ go in here at </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+<SPAN CLASS="Enumeration">
+ on </SPAN>
+<SPAN CLASS="NoSpell">
+%s</SPAN>
+” of the <SPAN CLASS="Attribute">
+Format</SPAN>
+ Attribute of the <A HREF="Resources.html#0_87039" CLASS="XRef"><SPAN CLASS="Link-Element">
+DynamicField</SPAN>
+</A> <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A> of the <A HREF="Resources.html#0_MarkObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+MarkObject</SPAN>
+</A> Element of the <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A> Resource Element. </LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1049970"></A>Locally, (and within context), just the basic Attribute dependency is noted (for instance -- <A HREF="Resources.html#0_87039" CLASS="XRef"><SPAN CLASS="Link-Element">
+DynamicField</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Format</SPAN>
+) where the discussion occurs within the section describing the Element (e.g., <A HREF="Resources.html#0_87039" CLASS="XRef"><SPAN CLASS="Link-Element">
+DynamicField</SPAN>
+</A> in our example) Elements or the Element’s immediate parent, (e.g., <A HREF="Resources.html#0_MarkObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+MarkObject</SPAN>
+</A> in our example).</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1041023"></A>1.3.3	<A NAME="0_84029"></A>Callouts</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1065201"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1102420"></A>To help the reader familiar with earlier versions of JDF, this specification indicates additions, deprecations and clarifications using the callouts described in <A HREF="Introduction.html#0_90983" CLASS="XRef">Table 1-2</A>. Please note that not all changes are identified with modified callout flags. When modification occurs in multiple versions, only the most recent version is indicated. A few changes have been made globally and are explained in the body of the document and only significant changes have been flagged with callouts, as determined by CIP4 Working Groups. </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1102452"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1102431"></A>Table 1-2: <A NAME="0_90983"></A>Callouts </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1102435"></A>Example</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1102437"></A>Callout Meaning</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102439"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.x</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102441"></A>New sections, Attributes/Elements and Attribute Values. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102443"></A><SPAN CLASS="Change-Flag">
+Deprecated in JDF 1.x</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102445"></A>Deprecated sections, Attributes/Elements and Attribute Values.</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102446"></A>Usually there is a deprecation note describing the mechanism that replaces the deprecated item.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102448"></A><SPAN CLASS="Change-Flag">
+Modified in JDF 1.x</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102450"></A>Changed syntax or semantics of sections or Attributes/Elements. Might include clarification as well. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1102451"></A>Frequently there is a modification note describing the change</P>
+</TD>
+</TR>
+</TABLE>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1102454"></A>1.3.3.1	<A NAME="0_54057"></A>Location of Callouts </H4>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1065232"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1065233"></A>A callout occurs after one of the following document elements.</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1065234"></A><SPAN CLASS="Bold">
+Section head:</SPAN>
+ applies to entire section and the contained table (if any).</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1065235"></A><SPAN CLASS="Bold">
+Attribute/Element name:</SPAN>
+ applies to entire row for the designated Attribute/Element.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1065236"></A><SPAN CLASS="Bold">
+Attribute value:</SPAN>
+ applies to Attribute value.</LI>
+</UL>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1017940"></A>1.3.4	<A NAME="0_16688"></A>Specification of Cardinality</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017941"></A>The cardinality of JDF Attributes, Elements and Resources is expressed using a simple Extended Backus-Naur Form (EBNF) notation. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1049921"></A>The symbol <SPAN CLASS="NoSpell">
+T</SPAN>
+ in the table below represents an Attribute, Element or Resource. The symbol <SPAN CLASS="NoSpell">
+T</SPAN>
+ consists of either a single name, such as “<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>” or a Resource name followed by a parenthesized name, such as “<A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> (Document)”. The name in parentheses “Document” identifies a particular Resource instance when several of the same type exist in some context. For further details, see <A HREF="Processes.html#0_92584" CLASS="XRef">Section 6.1, “Process Template”</A> and <A HREF="Resources.html#0_59198" CLASS="XRef">Section 7.2.1, “Process Resource Template”</A>.   </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1102459"></A>  &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1051412"></A>Table 1-3: Cardinality symbols </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1049591"></A>Notation</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1049593"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049599"></A><SPAN CLASS="NoSpell">
+T</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049824"></A><SPAN CLASS="NoSpell">
+T</SPAN>
+ <SPAN CLASS="ConformWord">
+must</SPAN>
+ occur exactly once and represents an Attribute, Element or Resource.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049603"></A>T<SPAN CLASS="NoSpell">
+ ?</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049851"></A>T is <SPAN CLASS="ConformWord">
+optional</SPAN>
+ or is <SPAN CLASS="ConformWord">
+required</SPAN>
+ only in the circumstances explained in the description field. T represents an Attribute, Element or Resource. If T is an Attribute, a default that is specified in the description will not be inserted into the XML by a schema aware parser if no value is explicitly specified. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049607"></A>T +</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049609"></A>T occurs one or more times, and represents an Element or Resource.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049611"></A>T *</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049613"></A>T occurs zero or more times, and represents an Element or Resource.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049615"></A>T = <SPAN CLASS="Enumeration">
+&quot;V&quot;</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049874"></A>T is an <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Attribute, but has the specified default value<SPAN CLASS="Enumeration">
+ </SPAN>
+<SPAN CLASS="NoSpell">
+V</SPAN>
+ when T is not supplied. T <SPAN CLASS="ConformWord">
+may</SPAN>
+ be set to other values other than the default. A default that is specified as T = <SPAN CLASS="Enumeration">
+&quot;V&quot; </SPAN>
+indicates a JDF default which <SPAN CLASS="ConformWord">
+must</SPAN>
+ be inserted into the XML by the JDF validator if no value is explicitly specified. If no schema is used in validation, it is up to the application to apply these defaults. See <SPAN CLASS="Link-internal">
+<A HREF="Introduction.html#0_73062" CLASS="XRef">Section 1.4.2.1, “Conformance Requirements for Support of Attributes and Attribute Values”</A></SPAN>
+. This notation is only valid for XML attributes, not XML elements. <SPAN CLASS="Term">
+ </SPAN>
+</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1009247"></A>1.4	<A NAME="0_67598"></A>Glossary</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1104017"></A>The following terms are defined as they are used throughout this specification. For more detail on <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A> and workflow components, see <A HREF="Overview_of_JDF.html#0_29151" CLASS="XRef">Section 2.1, “System Components”</A>. </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1110526"></A>  &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1109069"></A>Table 1-4: Glossary (Section 1 of 6)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1109073"></A>Term</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1109075"></A>Definition</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109078"></A><SPAN CLASS="Term">
+Abstract </SPAN>
+<A NAME="0_55366"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109092"></A><SPAN CLASS="Term">
+Abstract</SPAN>
+ is used as a modifier for <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+, <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ and <A HREF="Introduction.html#0_77901" CLASS="XRef">ResourceLink</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A><SPAN CLASS="Link-Term">
+s</SPAN>
+, e.g. <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_60422" CLASS="XRef">Abstract Element</A>,</SPAN>
+ <A HREF="Introduction.html#0_38498" CLASS="XRef">Abstract Resource</A>, <SPAN CLASS="Bold">
+Abstract </SPAN>
+<A HREF="Introduction.html#0_76094" CLASS="XRef">Physical Resource</A> and <A HREF="Introduction.html#0_51938" CLASS="XRef">Abstract ResourceLink</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109107"></A><SPAN CLASS="Term">
+Abstract Element</SPAN>
+<A NAME="0_60422"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109115"></A>An <SPAN CLASS="Term">
+Abstract Element</SPAN>
+ is an abstract data type with <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>s and <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+s that are inherited by subclass concrete <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+s. For example, <A HREF="Resources.html#0_14902" CLASS="XRef"><SPAN CLASS="Link-Element">
+PlacedObject</SPAN>
+</A> is an <SPAN CLASS="Term">
+Abstract Element</SPAN>
+ member of a <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A>;. <A HREF="Resources.html#0_MarkObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+MarkObject</SPAN>
+</A> and <A HREF="Resources.html#0_ContentObject" CLASS="XRef"><SPAN CLASS="Link-Element">
+ContentObject</SPAN>
+</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ are concrete <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+s of <A HREF="Resources.html#0_14902" CLASS="XRef"><SPAN CLASS="Link-Element">
+PlacedObject</SPAN>
+</A>. that are potential members of <A HREF="Resources.html#0_Layout" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109145"></A><SPAN CLASS="Term">
+Abstract Resource</SPAN>
+<A NAME="0_38498"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109153"></A>An <SPAN CLASS="Term">
+Abstract Resource</SPAN>
+ is an abstract data type with <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ that are inherited by all <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+. For example, <A HREF="Resources.html#0_Media" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Media</SPAN>
+</A>, as a <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> inherits all the <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ of the <SPAN CLASS="Term">
+Abstract Resource</SPAN>
+. <SPAN CLASS="Term">
+Abstract Resource</SPAN>
+ has subclasses, such as <A HREF="Structure_of_JDF_Nodes.html#0_39025" CLASS="XRef"><SPAN CLASS="Link-Element">
+Abstract Physical Resource</SPAN>
+</A> and <A HREF="Introduction.html#0_55366" CLASS="XRef">Abstract</A> <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef"><SPAN CLASS="Link-Element">
+Implementation Resource</SPAN>
+</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109183"></A><SPAN CLASS="Term">
+Abstract ResourceLink</SPAN>
+<A NAME="0_51938"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109191"></A>An <SPAN CLASS="Term">
+Abstract ResourceLink</SPAN>
+ is an abstract data type with <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ that are inherited by all <A HREF="Introduction.html#0_77901" CLASS="XRef">ResourceLink</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. For example, <SPAN CLASS="Element">
+MediaLink</SPAN>
+, as a <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> inherits all the <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ of the <SPAN CLASS="Term">
+Abstract ResourceLink</SPAN>
+. <SPAN CLASS="Bold">
+ </SPAN>
+<SPAN CLASS="Term">
+Abstract ResourceLink</SPAN>
+ has subclasses, such as <A HREF="Structure_of_JDF_Nodes.html#0_90470" CLASS="XRef"><SPAN CLASS="Link-Element">
+Abstract PhysicalLink</SPAN>
+</A> and <A HREF="Structure_of_JDF_Nodes.html#0_59599" CLASS="XRef"><SPAN CLASS="Link-Element">
+Abstract ImplementationLink</SPAN>
+</A>.See <A HREF="Introduction.html#0_77901" CLASS="XRef">ResourceLink</A> and <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109221"></A><SPAN CLASS="Term">
+Acknowledge Message</SPAN>
+<A NAME="0_46036"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109228"></A>An <SPAN CLASS="Term">
+Acknowledge Message</SPAN>
+ is a <A HREF="Introduction.html#0_70569" CLASS="XRef">JMF Message</A><SPAN CLASS="Bold">
+ </SPAN>
+that is delayed response to a <A HREF="Introduction.html#0_57005" CLASS="XRef">Command Message</A> or <A HREF="Introduction.html#0_97129" CLASS="XRef">Query Message</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109235"></A><SPAN CLASS="Term">
+Agent</SPAN>
+<A NAME="0_49541"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109243"></A>The component of a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>-based workflow that writes <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109246"></A><SPAN CLASS="Term">
+Attribute</SPAN>
+<A NAME="0_48645"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109253"></A>An XML-based syntactic construct describing an unstructured characteristic of a <A HREF="Introduction.html#0_50778" CLASS="XRef">JDF Node</A> or <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109257"></A><SPAN CLASS="Term">
+Attribute Value</SPAN>
+<A NAME="0_12751"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109262"></A>The value of an <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109265"></A><SPAN CLASS="Term">
+Big Job</SPAN>
+<A NAME="0_21398"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109273"></A>The combined <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A> that independent <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ are merged into in the case of independent spawning and merging.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109276"></A><SPAN CLASS="Term">
+Class</SPAN>
+<A NAME="0_42063"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109278"></A>A set of complex data types with common content in an object-oriented sense. A complex data type consist of zero or more <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+ and zero or more <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A><SPAN CLASS="Link-Term">
+s</SPAN>
+.</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109288"></A>Each <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A></SPAN>
+ belongs to a <SPAN CLASS="Term">
+Class</SPAN>
+<SPAN CLASS="Bold">
+: </SPAN>
+<SPAN CLASS="Enumeration">
+Consumable</SPAN>
+, <SPAN CLASS="Enumeration">
+Handling</SPAN>
+, <SPAN CLASS="Enumeration">
+Implementation</SPAN>
+, <SPAN CLASS="Enumeration">
+Intent</SPAN>
+, <SPAN CLASS="Enumeration">
+Parameter</SPAN>
+, <SPAN CLASS="Enumeration">
+PlaceHolder</SPAN>
+, <SPAN CLASS="Enumeration">
+Quantity</SPAN>
+. See <A HREF="Introduction.html#0_44119" CLASS="XRef">Consumable Resource</A> <A HREF="Structure_of_JDF_Nodes.html#0_29199" CLASS="XRef"><SPAN CLASS="Link-Element">
+Consumable Resource</SPAN>
+</A>, etc.</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109301"></A>Each <A HREF="Structure_of_JDF_Nodes.html#0_Notification" CLASS="XRef"><SPAN CLASS="Link-Element">
+Notification</SPAN>
+</A> Audit <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> belongs to a <SPAN CLASS="Term">
+Class</SPAN>
+<SPAN CLASS="Bold">
+: </SPAN>
+<SPAN CLASS="Enumeration">
+Event</SPAN>
+, <SPAN CLASS="Enumeration">
+Information</SPAN>
+, <SPAN CLASS="Enumeration">
+Warning</SPAN>
+, <SPAN CLASS="Enumeration">
+Error</SPAN>
+, <SPAN CLASS="Enumeration">
+Fatal</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109304"></A><SPAN CLASS="Term">
+Combined Process</SPAN>
+<A NAME="0_64272"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109318"></A>A <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A> which is described by multiple simpler <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+. See <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109321"></A><SPAN CLASS="Term">
+Combined Process Node</SPAN>
+<A NAME="0_31798"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109334"></A>A <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> that represents a <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>, which is described by multiple simpler <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+,.See <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>, <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> and <A HREF="Structure_of_JDF_Nodes.html#0_69310" CLASS="XRef">Section 3.3, “Common Node Types”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109347"></A><SPAN CLASS="Term">
+Command Message</SPAN>
+<A NAME="0_57005"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109352"></A>.A <SPAN CLASS="Term">
+Command Message</SPAN>
+ is a <A HREF="Introduction.html#0_70569" CLASS="XRef">JMF Message</A><SPAN CLASS="Bold">
+ </SPAN>
+that requests its recipient to change its state. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109355"></A><SPAN CLASS="Term">
+Consumable Resource</SPAN>
+<A NAME="0_44119"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109366"></A>A <SPAN CLASS="Term">
+Consumable Resource</SPAN>
+ is consumed during a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A></SPAN>
+, <A HREF="Introduction.html#0_76094" CLASS="XRef">Physical Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_29199" CLASS="XRef">Section 3.8.5.4, “Consumable Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109372"></A><SPAN CLASS="Term">
+Controller</SPAN>
+<A NAME="0_10585"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109383"></A>The component of a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>-based workflow that initiates <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+, routes <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>, and communicates status information.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109385"></A><SPAN CLASS="Term">
+Default</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109396"></A>Used to indicate the <A HREF="Introduction.html#0_12751" CLASS="XRef">Attribute Value</A> that a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> <SPAN CLASS="ConformWord">
+must</SPAN>
+ use if an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> omits an <SPAN CLASS="ConformWord">
+optional</SPAN>
+ <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> (as indicated by a “?” or <SPAN CLASS="Attribute">
+Attribute</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;DefaultValue&quot;</SPAN>
+ in this specification) from a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> instance. See <SPAN CLASS="Link-internal">
+<A HREF="Introduction.html#0_73062" CLASS="XRef">Section 1.4.2.1, “Conformance Requirements for Support of Attributes and Attribute Values”</A></SPAN>
+. <SPAN CLASS="DefaultValueLeadIn">
+  </SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109407"></A><SPAN CLASS="Term">
+Default behavior</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109412"></A>The phrase “<SPAN CLASS="Term">
+Default behavior:</SPAN>
+” precedes a description of the default behavior for an <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> or Span <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109417"></A><SPAN CLASS="Term">
+Default value is</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109422"></A>The phrase “<SPAN CLASS="Term">
+Default value is:</SPAN>
+” precedes the default value for an <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109424"></A><SPAN CLASS="Term">
+Default value is from</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109426"></A>The phrase “<SPAN CLASS="Term">
+Default value is from:</SPAN>
+” precedes a reference to a default value - usually an XPath.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109428"></A><SPAN CLASS="Term">
+Deprecated</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109444"></A>Indicates that a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> is being phased out of <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> usually in favor of newer <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>(s). It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ that an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> not include such a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> in a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> instance. Such an indicated <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> might be removed from a future version of the <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> specification. <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ <SPAN CLASS="ConformWord">
+should</SPAN>
+ only <A HREF="Introduction.html#0_25085" CLASS="XRef">Support</A> such <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ for backward compatibility with previous versions of <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>. <SPAN CLASS="Term">
+Deprecated</SPAN>
+ items are flagged with <SPAN CLASS="Change-Flag">
+Deprecated in JDF </SPAN>
+<SPAN CLASS="NoSpell">
+1.X</SPAN>
+ in this specification.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109484"></A><SPAN CLASS="Term">
+Device</SPAN>
+<A NAME="0_62092"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109492"></A>The component of a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> workflow part that interprets <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> and executes the instructions. If a <SPAN CLASS="Term">
+Device</SPAN>
+ controls a <A HREF="Introduction.html#0_16395" CLASS="XRef">Machine</A>, it does so in a proprietary manner.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109497"></A><SPAN CLASS="Term">
+Document Set</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109502"></A>A set of <A HREF="Introduction.html#0_39834" CLASS="XRef">Instance Document</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ presumed to be related.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109505"></A><SPAN CLASS="Term">
+Element</SPAN>
+<A NAME="0_18396"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109510"></A>An XML-based syntactic construct describing structured data in <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109513"></A><SPAN CLASS="Term">
+Finished Page</SPAN>
+<A NAME="0_40476"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109515"></A>A page of a final product that normally has no folds inside. The folds of the finished product for packaging (e.g., folding letters into an envelope) or Z-fold of an oversized book, have no effect on the <SPAN CLASS="Term">
+Finished Page</SPAN>
+ definition. A <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A> of paper with no fold inside consists of two <SPAN CLASS="Term">
+Finished Pages</SPAN>
+ (“recto” and “verso” or front and back side). If there are folds seen in a <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A> in the final product, the number of <SPAN CLASS="Term">
+Finished Pages</SPAN>
+ of one <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A> is given by <SPAN CLASS="NoSpell">
+2*(X+1)*(Y+1)</SPAN>
+, where X denotes the number of folds in X direction and Y denotes the number of folds in Y direction, each seen in the completely opened <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A>. Examples: One <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A> in a book has two <SPAN CLASS="Term">
+Finished Pages</SPAN>
+, one front, one back; a brochure with one fold inside has four <SPAN CLASS="Term">
+Finished Pages</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109533"></A><SPAN CLASS="Term">
+Folio</SPAN>
+<A NAME="0_37764"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109538"></A>A numbered <A HREF="Introduction.html#0_40476" CLASS="XRef">Finished Page</A> of a printed book or publication. (Pages are not all necessarily numbered. A 72-page book might have 68 pages that are numbered, which are referred to as either “<SPAN CLASS="Term">
+Folio pages</SPAN>
+” or “<SPAN CLASS="Term">
+Folios</SPAN>
+.”)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109540"></A><SPAN CLASS="Term">
+Form</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109545"></A>A collection of imposed (ordered) <A HREF="Introduction.html#0_40476" CLASS="XRef">Finished Page</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ set for printing or imaging to plate or film.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109548"></A><SPAN CLASS="Term">
+Gear Side</SPAN>
+<A NAME="0_17819"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109553"></A><SPAN CLASS="Term">
+Gear Side</SPAN>
+ is the side of a <A HREF="Introduction.html#0_16395" CLASS="XRef">Machine</A>, where the drives and gear are mounted. <SPAN CLASS="Term">
+Gear Side</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+is opposite to <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_74054" CLASS="XRef">Operating Side</A></SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109558"></A><SPAN CLASS="Term">
+Gray Box</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109563"></A>A <SPAN CLASS="Term">
+Gray Box</SPAN>
+ specifies a loose combination of several <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+ with a specific goal. A <SPAN CLASS="Term">
+Gray Box</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+does not specify all <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+ or all <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ - except for <A HREF="Introduction.html#0_11220" CLASS="XRef">Output Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109585"></A>In a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> Instance, a <A HREF="Introduction.html#0_70189" CLASS="XRef">Process Group</A> with a <SPAN CLASS="Attribute">
+Types</SPAN>
+ <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> and no child <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ represents a <SPAN CLASS="Term">
+Gray Box</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109587"></A><SPAN CLASS="Term">
+Handling Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109595"></A>A <SPAN CLASS="Term">
+Handling Resource</SPAN>
+ is used during a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>, but are not destroyed by that <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>, <A HREF="Introduction.html#0_76094" CLASS="XRef">Physical Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_54503" CLASS="XRef">Section 3.8.5.6, “Handling Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109606"></A><SPAN CLASS="Term">
+Implementation Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109614"></A>An <SPAN CLASS="Term">
+Implementation Resource</SPAN>
+ defines a <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A> or operator that executes a given <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_98218" CLASS="XRef">Section 3.8.5.3, “Implementation Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109623"></A><SPAN CLASS="Term">
+Input Resource</SPAN>
+<A NAME="0_25283"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109634"></A>A <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> that is an input to a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109637"></A><SPAN CLASS="Term">
+Instance Document</SPAN>
+<A NAME="0_39834"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109645"></A>A document that is part of the output of a <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A>. This generally refers to personalized printing <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. Each of the individual documents produced from the same input template is referred to as an <SPAN CLASS="Term">
+Instance Document</SPAN>
+. For example, in a credit card statement run, each statement is an <SPAN CLASS="Term">
+Instance Document</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109647"></A><SPAN CLASS="Term">
+Intent Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109649"></A>An <SPAN CLASS="Term">
+Intent Resource</SPAN>
+ defines the details of products to be produced without defining the process to produce them.See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_94195" CLASS="XRef">Section 3.8.5.2, “Intent Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109658"></A><SPAN CLASS="Term">
+JDF</SPAN>
+<A NAME="0_90703"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109666"></A>Job Definition Format. The overall name of this specification. There is also a <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>, which is a top-level <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> within <SPAN CLASS="Term">
+JDF</SPAN>
+ that encompasses a <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> (see below.)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109675"></A><SPAN CLASS="Term">
+JDF Consumer</SPAN>
+<A NAME="0_77197"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109686"></A>A <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A>, <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A> or <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> that consumes JDF instances.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109689"></A><SPAN CLASS="Term">
+JDF Node</SPAN>
+<A NAME="0_50778"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109694"></A>See <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A><SPAN CLASS="Bold">
+.</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109697"></A><SPAN CLASS="Term">
+JMF</SPAN>
+<A NAME="0_91610"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109699"></A>Job Messaging Format. A communication format with multi-level capabilities. Structures information between <A HREF="Introduction.html#0_35397" CLASS="XRef">MIS</A>, <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A><SPAN CLASS="Link-Term">
+s</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+and<SPAN CLASS="Bold">
+ </SPAN>
+<A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. There is also the <A HREF="JMF.html#0_97734" CLASS="XRef"><SPAN CLASS="Link-Message">
+JMF</SPAN>
+</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>, which is a top-level <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> within <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A>. See <A HREF="JMF.html#0_45514" CLASS="XRef">Chapter 5, “JDF Messaging with the Job Messaging Format”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109726"></A><SPAN CLASS="Term">
+JMF Message</SPAN>
+<A NAME="0_70569"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109734"></A>A <SPAN CLASS="Term">
+JMF Message</SPAN>
+ is synonymous with <A HREF="Introduction.html#0_86620" CLASS="XRef">Message</A>. See <A HREF="Introduction.html#0_86620" CLASS="XRef">Message</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109737"></A><SPAN CLASS="Term">
+Job</SPAN>
+<A NAME="0_52428"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109742"></A>A hierarchical tree structure comprised of <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. Describes the output that is desired by a customer.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109745"></A><SPAN CLASS="Term">
+Job Part</SPAN>
+<A NAME="0_55531"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109753"></A>One or more <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ which comprise the smallest level of control of interest to <A HREF="Introduction.html#0_35397" CLASS="XRef">MIS</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109755"></A><SPAN CLASS="Term">
+Leaf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109760"></A>Both the recto and verso <A HREF="Introduction.html#0_40476" CLASS="XRef">Finished Page</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ on one piece of paper with “leaves” being the plural usage.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109762"></A><SPAN CLASS="Term">
+Link</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109767"></A>A pointer to information that is located elsewhere in a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> document or that is located in another document.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109770"></A><SPAN CLASS="Term">
+Machine</SPAN>
+<A NAME="0_16395"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109781"></A>The part of a device that does not know <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> and is controlled by a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A> in a proprietary manner. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109784"></A><SPAN CLASS="Term">
+Message</SPAN>
+<A NAME="0_86620"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109792"></A>The XML element that <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A> use to exchange queries, commands, responses, etc. among themselves using HTTP as the underlying protocol and <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> as the XML format. See <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> and <A HREF="Introduction.html#0_65073" CLASS="XRef">Message Family</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109804"></A><SPAN CLASS="Term">
+Message Family</SPAN>
+<A NAME="0_65073"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109814"></A>A <SPAN CLASS="Term">
+Message Family</SPAN>
+ is a set of <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_86620" CLASS="XRef">Message</A></SPAN>
+<SPAN CLASS="Link-Term">
+s</SPAN>
+. The 6 <SPAN CLASS="Term">
+Message Families</SPAN>
+ are <A HREF="Introduction.html#0_97129" CLASS="XRef">Query Message</A>,  <A HREF="Introduction.html#0_57005" CLASS="XRef">Command Message</A>, <A HREF="Introduction.html#0_25451" CLASS="XRef">Registration Message</A>, <A HREF="Introduction.html#0_38982" CLASS="XRef">Response Message</A>, <A HREF="Introduction.html#0_46036" CLASS="XRef">Acknowledge Message</A> and<SPAN CLASS="Bold">
+ <A HREF="Introduction.html#0_50039" CLASS="XRef">Signal Message</A></SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109830"></A><SPAN CLASS="Term">
+MIS</SPAN>
+<A NAME="0_35397"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109835"></A>Management Information Systems. The functional part of a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> workflow that oversees all <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+ and communication between system components and system control. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109841"></A><SPAN CLASS="Term">
+Node</SPAN>
+<A NAME="0_92058"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109855"></A>The <A HREF="Structure_of_JDF_Nodes.html#0_68248" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDF</SPAN>
+</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> type detailing the <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A> specification needed to produce a final or intermediate product or <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>. A <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> is also called a <A HREF="Introduction.html#0_50778" CLASS="XRef">JDF Node</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109867"></A><SPAN CLASS="Term">
+Operating Side</SPAN>
+<A NAME="0_74054"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109872"></A><SPAN CLASS="Term">
+Operating Side</SPAN>
+ is the side of a <A HREF="Introduction.html#0_16395" CLASS="XRef">Machine</A>, where the operator works. <SPAN CLASS="Term">
+Operating Side</SPAN>
+ is opposite to <A HREF="Introduction.html#0_17819" CLASS="XRef">Gear Side</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109878"></A><SPAN CLASS="Term">
+Output Resource</SPAN>
+<A NAME="0_11220"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109889"></A>A <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> that is an output from a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109891"></A><SPAN CLASS="Term">
+Parameter Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109896"></A>A <SPAN CLASS="Term">
+Parameter Resource</SPAN>
+ defines the details of <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+, as well as any non-physical computer data such as files used by a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_45417" CLASS="XRef">Section 3.8.5.1, “Parameter Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109908"></A><SPAN CLASS="Term">
+Partition </SPAN>
+<A NAME="0_86149"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109913"></A>A <SPAN CLASS="Term">
+Partition</SPAN>
+ is a node of a <A HREF="Introduction.html#0_35448" CLASS="XRef">Partitioned Resource</A> structure. A leaf node <SPAN CLASS="Term">
+Partition</SPAN>
+ represents a single <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>. A non-leaf node <SPAN CLASS="Term">
+Partition</SPAN>
+ represents a set of <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. Values of the <SPAN CLASS="Attribute">
+PartIDKeys</SPAN>
+ <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> in the <A HREF="Introduction.html#0_35448" CLASS="XRef">Partitioned Resource</A><SPAN CLASS="Bold">
+ </SPAN>
+root<SPAN CLASS="Bold">
+ </SPAN>
+specify the <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>s used to identify the individual <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ in the <A HREF="Introduction.html#0_35448" CLASS="XRef">Partitioned Resource</A>. Each <SPAN CLASS="Term">
+Partition</SPAN>
+ except the <A HREF="Introduction.html#0_35448" CLASS="XRef">Partitioned Resource</A><SPAN CLASS="Bold">
+ </SPAN>
+root has a <A HREF="Introduction.html#0_73478" CLASS="XRef">Partition Key</A> <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> whose value identifies the <SPAN CLASS="Term">
+Partition</SPAN>
+. (See <A HREF="Structure_of_JDF_Nodes.html#0_69278" CLASS="XRef">Table 3-27, “Partitionable Resource Element”</A>.) </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109949"></A><SPAN CLASS="Term">
+Partition Key</SPAN>
+<A NAME="0_73478"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109954"></A>A <SPAN CLASS="Term">
+Partition Key</SPAN>
+ is an enumeration value of the <SPAN CLASS="Attribute">
+PartIDKeys</SPAN>
+ <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> and a <SPAN CLASS="Term">
+Partition Key</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+is an <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> that with can identify a <A HREF="Introduction.html#0_86149" CLASS="XRef">Partition</A> or can reference a <A HREF="Introduction.html#0_86149" CLASS="XRef">Partition</A> from within a <A HREF="Structure_of_JDF_Nodes.html#0_11267" CLASS="XRef"><SPAN CLASS="Link-Element">
+Part</SPAN>
+</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>. See <A HREF="Structure_of_JDF_Nodes.html#0_43404" CLASS="XRef">Section 3.10.6, “PartIDKeys Attribute and Partition Keys”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109974"></A><SPAN CLASS="Term">
+Partition, to </SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109982"></A>The verb <SPAN CLASS="Term">
+to Partition</SPAN>
+ means to construct a <A HREF="Introduction.html#0_35448" CLASS="XRef">Partitioned Resource</A> from a set of <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ of the same <A HREF="Introduction.html#0_42063" CLASS="XRef">Class</A>. See <A HREF="Structure_of_JDF_Nodes.html#0_32287" CLASS="XRef">Section 3.10.5.4, “Partitioning of Resource Subelements”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1109990"></A><SPAN CLASS="Term">
+Partitionable Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1109998"></A>A <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> that can become a <A HREF="Introduction.html#0_35448" CLASS="XRef">Partitioned Resource</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110001"></A><SPAN CLASS="Term">
+Partitioned Resource</SPAN>
+<A NAME="0_35448"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110009"></A>A <SPAN CLASS="Term">
+Partitioned Resource</SPAN>
+ is a structured <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> that describes a set of <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+<SPAN CLASS="Bold">
+, </SPAN>
+all of the same <A HREF="Introduction.html#0_42063" CLASS="XRef">Class</A> and representing multiple physical or logical entities (e.g.a set of <A HREF="Resources.html#0_ExposedMedia" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ExposedMedia</SPAN>
+</A> that represent multiple separated plates).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110017"></A><SPAN CLASS="Term">
+PDL</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110019"></A>Page Description Language. A generic term for any language that describes pages which might be printed. Examples are PDF&#174;, PostScript&#174; or PCL&#174;.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110022"></A><SPAN CLASS="Term">
+Physical Resource</SPAN>
+<A NAME="0_76094"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110027"></A>A <SPAN CLASS="Term">
+Physical Resource</SPAN>
+ is a Resource whose <A HREF="Introduction.html#0_42063" CLASS="XRef">Class</A> is <SPAN CLASS="Enumeration">
+Consumable</SPAN>
+, <SPAN CLASS="Enumeration">
+Quantity</SPAN>
+ or <SPAN CLASS="Enumeration">
+Handling</SPAN>
+ is considered a <SPAN CLASS="Term">
+Physical Resource</SPAN>
+. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_71333" CLASS="XRef">Section 3.8.5.7, “Physical Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110035"></A><SPAN CLASS="Term">
+PhysicalLink</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110049"></A>A <A HREF="Introduction.html#0_77901" CLASS="XRef">ResourceLink</A> <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> that links to a <A HREF="Introduction.html#0_76094" CLASS="XRef">Physical Resource</A>, i.e. a <A HREF="Structure_of_JDF_Nodes.html#0_89675" CLASS="XRef"><SPAN CLASS="Link-Element">
+ConsumableLink</SPAN>
+</A>, <A HREF="Structure_of_JDF_Nodes.html#0_61842" CLASS="XRef"><SPAN CLASS="Link-Element">
+QuantityLink</SPAN>
+</A> or <A HREF="Structure_of_JDF_Nodes.html#0_85403" CLASS="XRef"><SPAN CLASS="Link-Element">
+HandlingLink</SPAN>
+</A>. See <A HREF="Introduction.html#0_77901" CLASS="XRef">ResourceLink</A>, <A HREF="Introduction.html#0_76094" CLASS="XRef">Physical Resource</A>, <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef">Section 3.9.2, “ResourceLink”</A> and <A HREF="Structure_of_JDF_Nodes.html#0_35209" CLASS="XRef">Section 3.9.10, “PhysicalLink”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110069"></A><SPAN CLASS="Term">
+PlaceHolder Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110071"></A>A <SPAN CLASS="Term">
+PlaceHolder Resource</SPAN>
+ defines process linking and process ordering when the exact nature of interchange <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ is still unknown. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_81538" CLASS="XRef">Section 3.8.5.8, “PlaceHolder Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110083"></A><SPAN CLASS="Term">
+Process</SPAN>
+<A NAME="0_70707"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110085"></A>An individual step in the workflow.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110088"></A><SPAN CLASS="Term">
+Process Group</SPAN>
+<A NAME="0_70189"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110099"></A>A group of <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+. See <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A> and <A HREF="Introduction.html#0_60756" CLASS="XRef">Process Group Node</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110102"></A><SPAN CLASS="Term">
+Process Group Node</SPAN>
+<A NAME="0_60756"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110118"></A>A <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> that contains multiple child <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. See <A HREF="Introduction.html#0_70189" CLASS="XRef">Process Group</A>, <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> and <A HREF="Structure_of_JDF_Nodes.html#0_69310" CLASS="XRef">Section 3.3, “Common Node Types”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110121"></A><SPAN CLASS="Term">
+Process Node</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110134"></A>A <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> that describes an individual <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> and  <A HREF="Structure_of_JDF_Nodes.html#0_69310" CLASS="XRef">Section 3.3, “Common Node Types”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110138"></A><SPAN CLASS="Term">
+Product Intent</SPAN>
+<A NAME="0_17462"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110143"></A>Describes the end result that a customer is requesting. See <A HREF="Introduction.html#0_32239" CLASS="XRef">Product Intent Node</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110146"></A><SPAN CLASS="Term">
+Product Intent Node</SPAN>
+<A NAME="0_32239"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110160"></A>A <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> that describes intent rather than specifying the <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A>. See <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>, <A HREF="Introduction.html#0_17462" CLASS="XRef">Product Intent</A> and see <A HREF="Structure_of_JDF_Nodes.html#0_69310" CLASS="XRef">Section 3.3, “Common Node Types”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110165"></A><SPAN CLASS="Term">
+Quantity Resource</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110173"></A>A <SPAN CLASS="Term">
+Quantity Resource</SPAN>
+ has been created by a <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A> from either a <A HREF="Introduction.html#0_44119" CLASS="XRef">Consumable Resource</A> or an earlier <SPAN CLASS="Term">
+Quantity Resource</SPAN>
+. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>, <A HREF="Introduction.html#0_76094" CLASS="XRef">Physical Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_35611" CLASS="XRef">Section 3.8.5.5, “Quantity Resource”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110185"></A><SPAN CLASS="Term">
+Query Message</SPAN>
+<A NAME="0_97129"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110190"></A>A <SPAN CLASS="Term">
+Query Message</SPAN>
+ is a <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_70569" CLASS="XRef">JMF Message</A> </SPAN>
+that requests its recipient to provide information, but not change its state. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110192"></A><SPAN CLASS="Term">
+Queue</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110200"></A>Entity that accepts <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A> entries via a <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> messaging system.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110203"></A><SPAN CLASS="Term">
+Reader Page</SPAN>
+<A NAME="0_89691"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110208"></A>A logical page as perceived by a reader, for example one <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A> entry. One <SPAN CLASS="Term">
+Reader Page</SPAN>
+ might span more than one<SPAN CLASS="Italics">
+ </SPAN>
+<A HREF="Introduction.html#0_40476" CLASS="XRef">Finished Page</A>, (e.g., a centerfold). One <A HREF="Introduction.html#0_40476" CLASS="XRef">Finished Page</A> might contain contents defined by multiple <SPAN CLASS="Term">
+Reader Pages</SPAN>
+, (e.g., NUp imposition. <SPAN CLASS="Term">
+Reader Pages</SPAN>
+ are defined independently of <A HREF="Introduction.html#0_40476" CLASS="XRef">Finished Page</A><SPAN CLASS="Link-Term">
+s</SPAN>
+).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110220"></A><SPAN CLASS="Term">
+Registration Message</SPAN>
+<A NAME="0_25451"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110227"></A>A <SPAN CLASS="Term">
+Registration Message</SPAN>
+ is a <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_70569" CLASS="XRef">JMF Message</A> </SPAN>
+that requests its recipient to send a <A HREF="Introduction.html#0_57005" CLASS="XRef">Command Message</A> to some other recipient.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110231"></A><SPAN CLASS="Term">
+Resource</SPAN>
+<A NAME="0_14688"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110236"></A>A physical or conceptual entity that is modified or used by a <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>. Examples include paper, images or <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A> parameters.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110242"></A><SPAN CLASS="Term">
+ResourceLink</SPAN>
+<A NAME="0_77901"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110256"></A>An <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> that links to a <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>. See <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A> and <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef">Section 3.9.2, “ResourceLink”</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110259"></A><SPAN CLASS="Term">
+Response Message</SPAN>
+<A NAME="0_38982"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110267"></A>A <SPAN CLASS="Term">
+Response Message</SPAN>
+ is a <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_70569" CLASS="XRef">JMF Message</A> </SPAN>
+that functions as a response to a <A HREF="Introduction.html#0_57005" CLASS="XRef">Command Message</A> or <A HREF="Introduction.html#0_97129" CLASS="XRef">Query Message</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110273"></A><SPAN CLASS="Term">
+Roll</SPAN>
+<A NAME="0_26655"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110278"></A>A <SPAN CLASS="Term">
+Roll</SPAN>
+ is media that is mainly used in connection with <A HREF="Introduction.html#0_73622" CLASS="XRef">Web</A> Printing. In British English the name “reel” for “roll” is in widespread use. <SPAN CLASS="Term">
+Roll</SPAN>
+ is used as synonym of reel. Also, see the term <A HREF="Introduction.html#0_73622" CLASS="XRef">Web</A> in this glossary.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110283"></A><SPAN CLASS="Term">
+Root Node</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110291"></A>The top most <A HREF="Introduction.html#0_50778" CLASS="XRef">JDF Node</A>. See <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110294"></A><SPAN CLASS="Term">
+Sheet</SPAN>
+<A NAME="0_79209"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110299"></A>The printer’s <A HREF="Introduction.html#0_26655" CLASS="XRef">Roll</A> of paper or paper cut for press size, with “recto” and “verso” forms for identification of orientation through the press (facing up versus facing down at the feeder or off the <A HREF="Introduction.html#0_26655" CLASS="XRef">Roll</A>.).</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110303"></A>The term “cut sheet” refers to an individual <SPAN CLASS="Term">
+Sheet</SPAN>
+, typically in a phrase, such as “separately cut <SPAN CLASS="Term">
+Sheets</SPAN>
+ of an opaque material”. The term “Sheet-Fed” is used to describe a press that consumes cut <SPAN CLASS="Term">
+Sheets</SPAN>
+, typically in the phrase “Sheet-Fed Press”. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110306"></A><SPAN CLASS="Term">
+Signal Message</SPAN>
+<A NAME="0_50039"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110311"></A>A <SPAN CLASS="Term">
+Signal Message </SPAN>
+is a <SPAN CLASS="Bold">
+<A HREF="Introduction.html#0_70569" CLASS="XRef">JMF Message</A> </SPAN>
+that is sent asynchronously when some event occurs.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110314"></A><SPAN CLASS="Term">
+Signature</SPAN>
+<A NAME="0_26870"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110319"></A>A <SPAN CLASS="Term">
+Signature</SPAN>
+ is a set of printed <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ that can be folded or unfolded. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110323"></A>Note that there are multiple usages of the word <SPAN CLASS="Term">
+Signature</SPAN>
+ in the industry. A <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A> <SPAN CLASS="ConformWord">
+may</SPAN>
+ contain multiple <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_BinderySignature" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+BinderySignature</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ that are the input to Folding. This is the standard usage in conventional printing, where multi-page <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ are printed and potentially cut into multi-page imposition Signatures before folding. The <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_Layout" CLASS="XRef"></A><SPAN CLASS="Link-Resource">
+Layout</SPAN>
+<SPAN CLASS="Link-internal">
+</SPAN>
+</SPAN>
+ <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A>, on the other hand, describes a <SPAN CLASS="Term">
+Signature</SPAN>
+ as a set of <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. This is appropriate for digital printing, where typically only one or two pages are printed per <A HREF="Introduction.html#0_57439" CLASS="XRef">Surface</A> and multiple <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ are gathered prior to folding.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110349"></A><SPAN CLASS="Term">
+Slave Controller</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110363"></A>The component of a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> workflow that accepts <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> as a <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A> from other <A HREF="Introduction.html#0_10585" CLASS="XRef">Controller</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ and/or <SPAN CLASS="Term">
+Slave Controllers</SPAN>
+ and sends <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> to other <SPAN CLASS="Term">
+Slave Controllers</SPAN>
+ and/or <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A><SPAN CLASS="Link-Term">
+s</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110371"></A><SPAN CLASS="Term">
+Small Job</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110379"></A>An independent <A HREF="Introduction.html#0_52428" CLASS="XRef">Job</A> that is merged into a <A HREF="Introduction.html#0_21398" CLASS="XRef">Big Job</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110382"></A><SPAN CLASS="Term">
+Subelement</SPAN>
+<A NAME="0_84366"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110390"></A>A child <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A> of some other <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110392"></A><SPAN CLASS="Term">
+Subnode</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110403"></A>A <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A> that is a child of some other <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>. See <A HREF="Introduction.html#0_92058" CLASS="XRef">Node</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110406"></A><SPAN CLASS="Term">
+Support</SPAN>
+<A NAME="0_25085"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110423"></A>A <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> <SPAN CLASS="Term">
+Supports</SPAN>
+ a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> syntactic construct (<A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+, <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+, <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A><SPAN CLASS="Link-Term">
+s</SPAN>
+, <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>s and <A HREF="Introduction.html#0_12751" CLASS="XRef">Attribute Value</A>s) if the <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> performs the action defined in this specification for the <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> construct when consuming a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> instance that includes the <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> syntactic construct. If the <A HREF="Introduction.html#0_16395" CLASS="XRef">Machine</A> that a <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A> is representing <SPAN CLASS="Term">
+Supports</SPAN>
+ a feature which is represented by a <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> construct, then the <A HREF="Introduction.html#0_62092" CLASS="XRef">Device</A> <SPAN CLASS="ConformWord">
+should</SPAN>
+ <SPAN CLASS="Term">
+Support</SPAN>
+ that <A HREF="Introduction.html#0_90703" CLASS="XRef">JDF</A> syntactic construct.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110459"></A><SPAN CLASS="Term">
+Surface</SPAN>
+<A NAME="0_57439"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110467"></A>A single side of either a <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A> or a <A HREF="Introduction.html#0_26870" CLASS="XRef">Signature</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110469"></A><SPAN CLASS="Term">
+Tag</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110474"></A>A syntactic construct that marks the start or end of an <A HREF="Introduction.html#0_18396" CLASS="XRef">Element</A>. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110476"></A><SPAN CLASS="Term">
+Value format is:</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110478"></A>The phrase “<SPAN CLASS="Term">
+Value format is:</SPAN>
+” precedes description of the format.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110480"></A><SPAN CLASS="Term">
+Value format is from:</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110482"></A>The phrase “<SPAN CLASS="Term">
+Value format is from:</SPAN>
+” precedes a reference to some section which describes the format.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110484"></A><SPAN CLASS="Term">
+Values are</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110489"></A>The phrase “<SPAN CLASS="Term">
+Values are:</SPAN>
+” precedes the complete list of values for an <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> whose values are enumeration or enumerations.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110491"></A><SPAN CLASS="Term">
+Values are from</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110493"></A>The phrase “<SPAN CLASS="Term">
+Values are from:</SPAN>
+” precedes a reference to the values. The reference may be an XPath to a value or a reference to a table of <A HREF="Introduction.html#0_12751" CLASS="XRef">Attribute Value</A>s. The referenced values are as complete as a the reference says they are.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110498"></A><SPAN CLASS="Term">
+Values include</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110503"></A>The phrase “<SPAN CLASS="Term">
+Values include:</SPAN>
+” precedes a list of values for an <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A> whose values are NMTOKEN, NMTOKENS, string, <SPAN CLASS="SpanElement">
+NameSpan</SPAN>
+ or <SPAN CLASS="SpanElement">
+StringSpan</SPAN>
+. The list does not include potential vendor or customer extensions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110505"></A><SPAN CLASS="Term">
+Values include those from</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110507"></A>The phrase “<SPAN CLASS="Term">
+Values include those from:</SPAN>
+” precedes a reference to the values. The reference may be an XPath to a value or a table of <A HREF="Introduction.html#0_12751" CLASS="XRef">Attribute Value</A>s. The referenced values do not include potential vendor or customer extensions.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110513"></A><SPAN CLASS="Term">
+Web</SPAN>
+<A NAME="0_73622"></A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110518"></A>A <SPAN CLASS="Term">
+Web</SPAN>
+ is media that comes from a <A HREF="Introduction.html#0_26655" CLASS="XRef">Roll</A> and is mainly used in connection with <SPAN CLASS="Term">
+Web</SPAN>
+ Printing. This specification uses the word “Web-Fed” instead of “roll-fed” It uses the phrase “Web Printing” and “Web Press” to describe printing presses that consumes media that comes from a <A HREF="Introduction.html#0_26655" CLASS="XRef">Roll</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1110523"></A><SPAN CLASS="Term">
+Work Center</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1110525"></A>An organizational unit, such as a department or a subcontracting company, that can accomplish a task.</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1110596"></A>&nbsp;</P>
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1111134"></A><SPAN CLASS="AnchorCalloutTeal">
+</SPAN>
+&nbsp;</P>
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1111204"></A><SPAN CLASS="AnchorCalloutTeal">
+<IMG SRC="Introduction-2.png" ALIGN="BASELINE">
+</SPAN>
+&nbsp;</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1111206"></A>1.4.1	<A NAME="0_64134"></A>Conformance Terminology</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009395"></A>The words “<SPAN CLASS="ConformWord">
+must</SPAN>
+”, “<SPAN CLASS="ConformWord">
+must not</SPAN>
+”, “<SPAN CLASS="ConformWord">
+required</SPAN>
+”, “<SPAN CLASS="ConformWord">
+should</SPAN>
+”, “<SPAN CLASS="ConformWord">
+should not</SPAN>
+”, “<SPAN CLASS="ConformWord">
+recommended</SPAN>
+”, “<SPAN CLASS="ConformWord">
+may</SPAN>
+”, “<SPAN CLASS="ConformWord">
+need not</SPAN>
+” and “<SPAN CLASS="ConformWord">
+optional</SPAN>
+” are used in this specification to define a requirement for the indicated <SPAN CLASS="Bold">
+Agent</SPAN>
+ or the indicated <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> as follows.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1111212"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1049259"></A>Table 1-5: <A NAME="0_74369"></A>Conformance terminology </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1049263"></A>Term</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1049265"></A>Meaning</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049267"></A><SPAN CLASS="ConformWord">
+must</SPAN>
+ or</P>
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049268"></A><SPAN CLASS="ConformWord">
+required</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049270"></A>Means that the definition is an absolute requirement of the specification.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049272"></A><SPAN CLASS="ConformWord">
+must not</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049274"></A>Means that the definition is an absolute prohibition of the specification.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049509"></A><SPAN CLASS="ConformWord">
+should</SPAN>
+ or</P>
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049276"></A><SPAN CLASS="ConformWord">
+recommended</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049279"></A>Means that there might exist valid reasons in particular circumstances for an implementer to ignore a particular item, but the implementer must fully understand the implications and carefully weigh the alternatives before choosing a different course.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049515"></A><SPAN CLASS="ConformWord">
+should not</SPAN>
+ or</P>
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049281"></A><SPAN CLASS="ConformWord">
+not recommended</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049284"></A>Means that there might exist valid reasons in particular circumstances when the particular behavior is acceptable or even useful, but the implementer should fully understand the implications and then carefully weigh the alternatives before implementing any behavior described with this label.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049522"></A><SPAN CLASS="ConformWord">
+may</SPAN>
+,</P>
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1050841"></A><SPAN CLASS="ConformWord">
+need not</SPAN>
+ or</P>
+<P CLASS="CellHeadingRow">
+<A NAME="0_pgfId-1049287"></A><SPAN CLASS="ConformWord">
+optional</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1068726"></A>Means that an item is truly optional. If a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> is using a JDF parser, that parser will supply the default values indicated in this specification, if any, for optional <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>s that the <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> has omitted (indicated by <SPAN CLASS="Attribute">
+Attribute</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;DefaultValue&quot; </SPAN>
+in this specification). See <SPAN CLASS="Link-internal">
+<A HREF="Introduction.html#0_16688" CLASS="XRef">Section 1.3.4, “Specification of Cardinality”</A></SPAN>
+.</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1049293"></A>For features that are optional for a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> to <A HREF="Introduction.html#0_25085" CLASS="XRef">Support</A>, one vendor might choose to <A HREF="Introduction.html#0_25085" CLASS="XRef">Support</A> such an item because a particular marketplace requires it or because the vendor feels that it enhances the product, while another vendor might omit <A HREF="Introduction.html#0_25085" CLASS="XRef">Support</A> of that item. Similarly, one vendor of an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> might choose to supply such an item in a JDF instance, while another vendor might omit the same item in a JDF instance. A <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> implementation which does not include <A HREF="Introduction.html#0_25085" CLASS="XRef">Support</A> of a particular option (Element or Attribute) <SPAN CLASS="ConformWord">
+must</SPAN>
+ be prepared to interoperate with an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> implementation which does supply the option, though with reduced functionality. In the same vein, a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> implementation which does include <A HREF="Introduction.html#0_25085" CLASS="XRef">Support</A> for a particular option <SPAN CLASS="ConformWord">
+must</SPAN>
+ be prepared to interoperate with an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> implementation which does not supply the option in the JDF instance.</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1009443"></A>1.4.2	<A NAME="0_93147"></A>Conformance Requirements for JDF Entities</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009444"></A>The subsections of this section define the general conformance requirements for the JDF entities: 1) <A HREF="Introduction.html#0_48645" CLASS="XRef">Attribute</A>s and <A HREF="Introduction.html#0_12751" CLASS="XRef">Attribute Value</A>s, 2) <A HREF="Introduction.html#0_14688" CLASS="XRef">Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+, 3) <A HREF="Introduction.html#0_70707" CLASS="XRef">Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+, and 4) <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1009448"></A>1.4.2.1	<A NAME="0_73062"></A>Conformance Requirements for Support of Attributes and Attribute Values</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009449"></A>If a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> supports an Attribute, it <SPAN CLASS="ConformWord">
+must</SPAN>
+ support all of the values that this specification indicates are <SPAN CLASS="ConformWord">
+required</SPAN>
+ for a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> to support (whether or not the Attribute is <SPAN CLASS="ConformWord">
+required</SPAN>
+ for the <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> to supply in that context). If this specification is silent on which values are <SPAN CLASS="ConformWord">
+required</SPAN>
+ for support of an Attribute, then the <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> <SPAN CLASS="ConformWord">
+must</SPAN>
+ support at least one value in order to claim support for the Attribute.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1009450"></A>Attributes that are <SPAN CLASS="ConformWord">
+optional</SPAN>
+ for an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> to include in a JDF instance are indicated by a “?” character following the Attribute name or by the notation <SPAN CLASS="Attribute">
+Attribute</SPAN>
+ = <SPAN CLASS="Enumeration">
+&quot;DefaultValue&quot;</SPAN>
+ as indicated in <EM CLASS="crossRef">
+<A HREF="Introduction.html#0_16688" CLASS="XRef">Section 1.3.4, “Specification of Cardinality”</A></EM>
+. </P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1067806"></A><SPAN CLASS="RunInHeader">
+A Special Note on the Handling of Defaults. </SPAN>
+Prior to JDF 1.2 many <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Attributes included either explicit default values or the default value was indicated as <SPAN CLASS="Enumeration">
+&quot;system specified&quot;</SPAN>
+ or the <SPAN CLASS="Enumeration">
+&quot;SystemSpecified&quot;</SPAN>
+ enumeration or NMTOKEN value. In JDF/1.2, the explicit default values are indicated as default values using the “=” followed by the “value” (See <A HREF="Introduction.html#0_16688" CLASS="XRef">Section 1.3.4</A>). The <SPAN CLASS="Enumeration">
+&quot;SystemSpecified&quot;</SPAN>
+ enumeration and NMTOKEN values have been removed and the Attribute remains as an <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Attribute indicated with a “?” with no default value. The JDF consuming application <SPAN CLASS="ConformWord">
+must</SPAN>
+ supply the Default value when the Attribute is omitted from the JDF instance. Such an indicated default value <SPAN CLASS="ConformWord">
+must</SPAN>
+ have the same semantic meaning as if an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> includes the Attribute in the JDF instance with the same value. If an <SPAN CLASS="ConformWord">
+optional</SPAN>
+ Attribute does not have a default value indicated in its description and the JDF instance does not include the Attribute, then the <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> can use a system-specified value.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1043863"></A>See <A HREF="Introduction.html#0_94640" CLASS="XRef">Figure 1-1</A> below. Such a system-specified Attribute Value can be configurable by a system administrator for the <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> or can depend on the values of other supplied Attributes and/or the current setting of the <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> Device or the actual <A HREF="Introduction.html#0_16395" CLASS="XRef">Machine</A> for which the Device is providing a JDF interface</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1142835"></A>.</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1146265"></A>Figure 1-1: <A NAME="0_94640"></A>Handling of default values of JDF Attributes.</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1043681"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Introduction-3.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1009458"></A>1.4.2.2	<A NAME="0_39472"></A>Conformance Requirements for Support of Elements</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009459"></A>If a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> supports an Element, it</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1051107"></A>1	<SPAN CLASS="ConformWord">
+must</SPAN>
+ support all of the Attributes (see <A HREF="Introduction.html#0_73062" CLASS="XRef">Section 1.4.2.1</A>) defined for that Element that an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> is <SPAN CLASS="ConformWord">
+required</SPAN>
+ to include in the Element instance Attributes with either no marks or a “+” as defined in <A HREF="Introduction.html#0_16688" CLASS="XRef">Section 1.3.4</A>, and </LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1051122"></A>2	<SPAN CLASS="ConformWord">
+should</SPAN>
+ support the <SPAN CLASS="Attribute">
+SettingsPolicy</SPAN>
+, <SPAN CLASS="Attribute">
+BestEffortExceptions</SPAN>
+, <SPAN CLASS="Attribute">
+MustHonorExceptions</SPAN>
+ and <SPAN CLASS="NoSpell">
+OperatorInterventionExceptions</SPAN>
+ (see <A HREF="Structure_of_JDF_Nodes.html#0_47169" CLASS="XRef">Section 3.1, “Generic Contents of All Elements”</A>) Attributes and all of their defined values. These Attributes control the policy that a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> <SPAN CLASS="ConformWord">
+must</SPAN>
+ follow when it encounters unsupported settings, (i.e., <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A><SPAN CLASS="Link-Term">
+s</SPAN>
+, Attributes or Attribute Values in the Resource.) </LI>
+</OL>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1051127"></A>1.4.2.3	<A NAME="0_12263"></A>Conformance Requirements for Support of Processes</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1068863"></A>All Processes are <SPAN CLASS="ConformWord">
+optional</SPAN>
+ for a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> to support. However, a Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ support at least one Process or a <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>. If a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> supports a Process, it</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1068867"></A>1	<SPAN CLASS="ConformWord">
+must</SPAN>
+ support all of the input and output <A HREF="Structure_of_JDF_Nodes.html#0_89834" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceLink</SPAN>
+</A> Elements and referenced Resources as described in <A HREF="Introduction.html#0_39472" CLASS="XRef">Section 1.4.2.2</A> that this specification defines for that Process,</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1009475"></A>2	<SPAN CLASS="ConformWord">
+may</SPAN>
+ make its own assumptions regarding Attributes and <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ of an <SPAN CLASS="ConformWord">
+optional</SPAN>
+ <A HREF="Introduction.html#0_25283" CLASS="XRef">Input Resource</A> (Resources with either a “?” or an “*” - see <A HREF="Introduction.html#0_16688" CLASS="XRef">Section 1.3.4</A>) that an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> has omitted from the Process in the JDF instance; therefore, default Attribute Values defined in this specification are not guaranteed when the <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> omits the Resource from the Process in the JDF instance (see <SPAN CLASS="Change-Flag">
+<A HREF="Processes.html#0_92584" CLASS="XRef">Section 6.1, “Process Template”</A></SPAN>
+), and</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1009485"></A>3	<SPAN CLASS="ConformWord">
+should</SPAN>
+ find the Processes that it supports in a JDF instance and <SPAN CLASS="ConformWord">
+must</SPAN>
+ ignore all other Processes, independent of the <SPAN CLASS="Attribute">
+SettingsPolicy </SPAN>
+Attribute for those other Processes. </LI>
+</OL>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1009487"></A>1.4.2.4	Conformance Requirements for Support of Combined Processes</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1009494"></A>All <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A><SPAN CLASS="Link-Term">
+es</SPAN>
+ are <SPAN CLASS="ConformWord">
+optional</SPAN>
+ for a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> to support. The rules for Processes specified in <A HREF="Introduction.html#0_12263" CLASS="XRef">Section 1.4.2.3</A> apply. If a <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> supports a <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>, it</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1037800"></A>1	<SPAN CLASS="ConformWord">
+must</SPAN>
+ support all of the <A HREF="Introduction.html#0_25283" CLASS="XRef">Input Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ as defined in <A HREF="Introduction.html#0_39472" CLASS="XRef">Section 1.4.2.2</A> that this specification defines for the <SPAN CLASS="Italics">
+first</SPAN>
+ Process in the <A HREF="Introduction.html#0_31798" CLASS="XRef">Combined Process Node</A>, (i.e., the first Process listed in the <SPAN CLASS="Attribute">
+Types</SPAN>
+ Attribute), </LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1009495"></A>2	<SPAN CLASS="ConformWord">
+must</SPAN>
+ support all of the <A HREF="Introduction.html#0_11220" CLASS="XRef">Output Resource</A><SPAN CLASS="Link-Term">
+s</SPAN>
+ as defined in <A HREF="Introduction.html#0_39472" CLASS="XRef">Section 1.4.2.2</A> that this specification defines for the <SPAN CLASS="Italics">
+last</SPAN>
+ Process in the <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>,</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1009496"></A>3	<SPAN CLASS="ConformWord">
+may</SPAN>
+ support Resources that are used as exchange Resources between Processes in the Process chain of the <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>, (i.e., Resources that are both produced and consumed within the <A HREF="Introduction.html#0_31798" CLASS="XRef">Combined Process Node</A>),</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1009497"></A>4	<SPAN CLASS="ConformWord">
+must</SPAN>
+ support Resources in intermediate Process steps that are <SPAN CLASS="Italics">
+not</SPAN>
+ used as exchange Resources between Processes in the Process chain of the <A HREF="Introduction.html#0_64272" CLASS="XRef">Combined Process</A>.</LI>
+</OL>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1044379"></A>1.4.3	<A NAME="0_88599"></A>Conformance to Settings Policy</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1044454"></A>The <SPAN CLASS="Attribute">
+SettingsPolicy</SPAN>
+, <SPAN CLASS="Attribute">
+BestEffortExceptions</SPAN>
+, <SPAN CLASS="Attribute">
+MustHonorExceptions</SPAN>
+ and <SPAN CLASS="NoSpell">
+OperatorInterventionExceptions</SPAN>
+ Attributes are defined in <SPAN CLASS="Link-internal">
+<A HREF="Structure_of_JDF_Nodes.html#0_11179" CLASS="XRef">Table 3-1, “Any Element (generic content)”</A></SPAN>
+. They define the conformance policy of a Device. A <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> <SPAN CLASS="ConformWord">
+should</SPAN>
+ support these Attributes and all of the defined values so that an <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> can depend on the <A HREF="Introduction.html#0_77197" CLASS="XRef">JDF Consumer</A> following the policy requested by the <A HREF="Introduction.html#0_49541" CLASS="XRef">Agent</A> in a JDF instance.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1044431"></A>1.5	<A NAME="0_83141"></A>Data Structures<SPAN CLASS="AnchorCalloutPurple">
+<IMG SRC="Introduction-4.png" ALIGN="RIGHT">
+</SPAN>
+ </H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1045664"></A>The following table describes the data structures as they are used in this specification. For more details on JDF Schema and data types, see <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_75464" CLASS="XRef">Appendix A, “Encoding”</A></SPAN>
+. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1045677"></A>In JDF 1.2, some data types have been enhanced to include unbounded values by defining the explicit tokens <SPAN CLASS="Enumeration">
+&quot;INF&quot;</SPAN>
+ and <SPAN CLASS="Enumeration">
+&quot;-INF&quot;</SPAN>
+. For instance, the IntegerRange <SPAN CLASS="Enumeration">
+&quot;</SPAN>
+0 ~ INF<SPAN CLASS="Enumeration">
+&quot;</SPAN>
+ specifies all positive integers including 0.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1111219"></A> &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1057621"></A>Table 1-6: <A NAME="0_81866"></A>JDF data types (Section 1 of 4)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1057625"></A>Data Type</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1057627"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1065063"></A>Anchor</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1065085"></A>Describe the 9 anchor points of a rectangle. See <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_71781" CLASS="XRef">Table A-1, “Anchor Enumeration Values”</A></SPAN>
+ for a list values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057629"></A>boolean   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057631"></A>Binary-valued logic: (true | false).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057633"></A>CMYKColor</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057635"></A>Represents a CMYK color specification.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057637"></A>date   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057639"></A>Represents a time period that starts at midnight of a specified day and lasts for 24 hours.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057641"></A>dateTime   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057643"></A>Represents a specific instant of time. It <SPAN CLASS="ConformWord">
+must</SPAN>
+ be a UTC time or a local time that includes the time zone.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057645"></A>DateTimeRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057647"></A>Two <SPAN CLASS="Italics">
+dateTime</SPAN>
+ values separated by a “~” (tilde) character that defines the closed interval of the two. TimeRange corresponds semantically to the time interval (two time instants separated by a slash) defined in <A HREF="APPX_References.html#0_[ISO8601" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO8601:2004]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057652"></A>DateTimeRangeList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057654"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+DateTimeRange</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057656"></A>double</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057661"></A>Corresponds to <A HREF="APPX_References.html#0_[IEEE754]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[IEEE754]</SPAN>
+</A> double-precision, 64-bit floating point type, including special tokens INF and -INF. This corresponds to the standard XML double with NaN removed. For details, see <A HREF="Introduction.html#0_[XMLSchema]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XMLSchema]</SPAN>
+</A>. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057665"></A><SPAN CLASS="Bold">
+Note</SPAN>
+: Prior to JDF 1.2 the data type <SPAN CLASS="Italics">
+number</SPAN>
+ was used. The <SPAN CLASS="Italics">
+double</SPAN>
+ and <SPAN CLASS="Italics">
+number</SPAN>
+ data types are syntactically equivalent.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057667"></A>DoubleList </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057668"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057670"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+double</SPAN>
+ values. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064778"></A><SPAN CLASS="Bold">
+Note:</SPAN>
+ this data type was named <SPAN CLASS="Italics">
+NumberList</SPAN>
+ before JDF 1.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057672"></A>DoubleRange</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057673"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057675"></A>Two <SPAN CLASS="Italics">
+double</SPAN>
+ values separated by a “~” (tilde) character that define the closed interval of the two. <SPAN CLASS="Bold">
+Note: </SPAN>
+this data type was named <SPAN CLASS="Italics">
+NumberRange</SPAN>
+ before JDF 1.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057677"></A>DoubleRangeList</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057678"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057680"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+double</SPAN>
+ and <SPAN CLASS="Italics">
+DoubleRange</SPAN>
+ values. </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064827"></A><SPAN CLASS="Bold">
+Note: </SPAN>
+this data type was named <SPAN CLASS="Italics">
+NumberRangeList</SPAN>
+ before JDF 1.2.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057682"></A>duration   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057684"></A>Represents a duration of time.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057686"></A>DurationRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057688"></A>Describes a range of time durations. More specifically, it describes a time span that has a relative start and end. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057690"></A>DurationRangeList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057692"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+DurationRange</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057694"></A>element</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057696"></A>Structured data. The specific data type is defined by the Element name.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057698"></A>enumeration</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057700"></A>Limited set of <SPAN CLASS="Italics">
+NMTOKEN</SPAN>
+ values (see below).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057702"></A>enumerations</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057704"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+enumeration</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057706"></A>gYearMonth   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057708"></A>Represents a specific Gregorian month in a specific Gregorian year. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057710"></A>hexBinary </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057712"></A>Represents arbitrary hex encoded binary data.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064952"></A>hexBinaryList</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064974"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064956"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+hexBinary</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057714"></A>ID </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057718"></A>Unique identifier as defined by <SPAN CLASS="Link-internal">
+<A HREF="Introduction.html#0_[XML]" CLASS="XRef">[XML]</A></SPAN>
+ (see <A HREF="Introduction.html#0_61959" CLASS="XRef">Section 1.2, “Document References”</A>). <SPAN CLASS="ConformWord">
+must</SPAN>
+ be unique within the scope of the JDF document.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057721"></A>IDREF   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057723"></A>Reference to an element holding the unique identifier as defined by [XML Specification 1.0].</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057725"></A>IDREFS </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057727"></A>List of references (IDREF values) separated by white spaces as defined by <SPAN CLASS="Link-internal">
+<A HREF="Introduction.html#0_[XML]" CLASS="XRef">[XML]</A></SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057729"></A>integer</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057731"></A>Represents numerical integer values, including the special tokens INF and -INF. This corresponds to the standard XML integer with INF and -INF added. Values greater than +/-2**31 are not expected to occur for this data type. For details, see <A HREF="Introduction.html#0_[XMLSchema]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XMLSchema]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057736"></A>IntegerList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057738"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+integer</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057740"></A>IntegerRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057742"></A>Two <SPAN CLASS="Italics">
+integer</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+values separated by a “~” character that define a closed interval.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057744"></A>IntegerRangeList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057746"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+integer</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+values and <SPAN CLASS="Italics">
+IntegerRange</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057748"></A>JDFJMFVersion</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1063989"></A>Version label of a JDF or <A HREF="Introduction.html#0_91610" CLASS="XRef">JMF</A> instance. See <A HREF="Structure_of_JDF_Nodes.html#0_11684" CLASS="XRef">Section 3.13, “JDF Versioning”</A> for a discussion of versioning in JDF. See <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_45521" CLASS="XRef">Table A-2, “JDFJMFVersion Enumeration Values”</A></SPAN>
+ for a list values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057755"></A>JDFJMFVersions</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057757"></A>Whitespace separated list of <SPAN CLASS="Italics">
+JDFJMFVersion</SPAN>
+.values</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057759"></A>LabColor</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057761"></A>Represents a Lab color specification.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057763"></A>language   </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057765"></A>Represents a language and country code (for example, en-US) for a natural language. Values MUST conform to <A HREF="APPX_References.html#0_[RFC1766]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC1766]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064540"></A>languages</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064981"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064542"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+language</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+values. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057767"></A>LongInteger</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057769"></A>Represents numerical integer values, including the special tokens INF and -INF. This corresponds to the standard XML integer with INF and -INF added. Values greater than +/-2**31 are expected to occur for this data type. For details, see <A HREF="Introduction.html#0_[XMLSchema]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XMLSchema]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057774"></A>matrix</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057776"></A>Whitespace-separated list of six doubles representing a coordinate transformation matrix.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057778"></A>NamedColor</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064001"></A>Represents a color definition by name. See <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_93166" CLASS="XRef">Table A-3, “NamedColor Enumeration Values”</A></SPAN>
+ for a list values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057785"></A>NameRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057787"></A>Two <SPAN CLASS="Italics">
+NMTOKEN</SPAN>
+ values separated by a “~” (tilde) character that define an interval of <SPAN CLASS="Italics">
+NMTOKEN</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057789"></A>NameRangeList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057791"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+NMTOKEN</SPAN>
+ and <SPAN CLASS="Italics">
+NameRange</SPAN>
+<SPAN CLASS="Bold">
+ </SPAN>
+values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057793"></A>NMTOKEN </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057795"></A>A continuous sequence of special characters as defined by the [XML Specification 1.0].</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057797"></A>NMTOKENS </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057799"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+NMTOKEN</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057801"></A>Orientation</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057802"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064011"></A>Enumeration that specifies named orthogonal two-dimensional orientations. See <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_79436" CLASS="XRef">Table A-4, “Orientation Enumeration Values”</A></SPAN>
+ for a list values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057806"></A>Orientations</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057807"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057809"></A>Whitespace separated list of <SPAN CLASS="Italics">
+Orientation</SPAN>
+ enumeration values that specify named orthogonal two-dimensional orientations.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057811"></A>PDFPath</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057813"></A>Whitespace-separated list of path operators as defined in PDF.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057815"></A>rectangle</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057817"></A>Whitespace-separated list of four doubles representing a rectangle.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057819"></A>refelement</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057821"></A><SPAN CLASS="Bold">
+ResourceElement</SPAN>
+ or a reference to an Element. Used to define candidates for inter-Resource linking in Resources.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057823"></A>regExp</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057824"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057829"></A>Regular expression as defined by <A HREF="APPX_References.html#0_[XMLSchema]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XMLSchema]</SPAN>
+</A></P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057831"></A>shape</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057833"></A>Whitespace-separated list of three doubles representing a three-dimensional shape consisting of a width, height and length. Unless specified otherwise in the Attribute description, these three numbers are an X-dimension, a Y-dimension and a Z-dimension, respectively.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057835"></A>ShapeRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057837"></A>Two <SPAN CLASS="Italics">
+shape</SPAN>
+ values separated by a “~” (tilde) character that defines a 3-dimensional box bounded by <SPAN CLASS="NoSpell">
+x1 y1 z1 ~ x2 y2 z2</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057839"></A>ShapeRangeList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057841"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+shape</SPAN>
+ values or <SPAN CLASS="Italics">
+ShapeRange</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057843"></A>sRGBColor</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057845"></A>Represents an sRGB color specification.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057847"></A>string </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057848"></A><SPAN CLASS="Change-Flag">
+Modified in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057850"></A>Character strings without tabs or line feeds. Corresponds to the standard XML normalizedString data type <A HREF="Introduction.html#0_[XMLSchema]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XMLSchema]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057855"></A>telem</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057857"></A>Text elements that contain larger chunks of character data and <SPAN CLASS="ConformWord">
+may</SPAN>
+ include line feeds. A telem contains text, but neither Attributes nor <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A><SPAN CLASS="Link-Term">
+s</SPAN>
+. A telem is defined when it appears as a <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A>. It is usually not defined with a table.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057859"></A>text</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057861"></A>Text data contained in a telem (text <SPAN CLASS="Bold">
+element</SPAN>
+). Some Elements, such as <A HREF="Structure_of_JDF_Nodes.html#0_71363" CLASS="XRef"><SPAN CLASS="Link-Element">
+Comment</SPAN>
+</A>,  have text, but are not telems because they haveAttributes and/or <A HREF="Introduction.html#0_84366" CLASS="XRef">Subelement</A><SPAN CLASS="Link-Term">
+s</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057863"></A>TimeRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057865"></A>Two <SPAN CLASS="Italics">
+dateTime</SPAN>
+ values separated by a “~” (tilde) character that defines the closed interval of the two. TimeRange corresponds semantically to the time interval (two time instants separated by a slash) defined in <A HREF="APPX_References.html#0_[ISO8601" CLASS="XRef"><SPAN CLASS="Link-internal">
+[ISO8601:2004]</SPAN>
+</A>.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057870"></A>TransferFunction</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057872"></A>Whitespace separated list of an even number of doubles representing a set of XY coordinates of a transfer function.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057874"></A>URI</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057875"></A><SPAN CLASS="Change-Flag">
+Modified in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057877"></A>URI-reference. Represents a Uniform Resource Identifier (URI) Reference as defined in Section 4 of <SPAN CLASS="Link-External">
+<A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"></A><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+<SPAN CLASS="Link-External">
+</SPAN>
+ </SPAN>
+. For the <SPAN CLASS="Enumeration">
+&quot;file:&quot;</SPAN>
+ URL scheme, see <A HREF="APPX_References.html#0_[RFC3987]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3987]</SPAN>
+</A>. URI was modified in JDF 1.3 to include Internationalized Resource Identifiers (IRI).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057885"></A>URL</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057886"></A><SPAN CLASS="Change-Flag">
+Modified in JDF 1.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057888"></A>URL-reference. Represents a Uniform Resource Locator (URL) Reference as defined in Section 4 of <SPAN CLASS="Link-External">
+<A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"></A><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+<SPAN CLASS="Link-External">
+</SPAN>
+</SPAN>
+. For the <SPAN CLASS="Enumeration">
+&quot;file:&quot;</SPAN>
+ URL scheme, see <A HREF="APPX_References.html#0_[RFC3987]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3987]</SPAN>
+</A>. URL was modified in JDF 1.3 to include usage of Internationalized Resource Identifiers (IRI).</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1063955"></A>WorkStyle</P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1063956"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.4</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1064020"></A>Specifies work styles of a press run. See <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_53074" CLASS="XRef">Table A-5, “WorkStyle Enumeration Values”</A></SPAN>
+ for a list values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057896"></A>XPath</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057898"></A>Represents an XPath expression of an XML node set (Attributes or Elements), boolean, double or string.<A HREF="APPX_References.html#0_[XPath]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[XPath]</SPAN>
+</A> </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057903"></A>XYPair</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057905"></A>Whitespace-separated list of two doubles. Unless specified otherwise in the Attribute Description, these two doubles are an X-dimension and a Y-dimension, respectively.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057907"></A>XYPairRange</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057909"></A>Two <SPAN CLASS="Italics">
+XYPair</SPAN>
+ values separated by a “~” (tilde) character that defines a rectangle bounded by <SPAN CLASS="NoSpell">
+x1</SPAN>
+ <SPAN CLASS="NoSpell">
+y1 ~ x2 y2</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057911"></A>XYPairRangeList</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057913"></A>Whitespace-separated list of <SPAN CLASS="Italics">
+XYPairRange</SPAN>
+ values.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057915"></A>XYRelation </P>
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1057916"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1063975"></A>Defines the relationship between two ordered doubles. See <SPAN CLASS="Link-internal">
+<A HREF="APPX_Encoding.html#0_99924" CLASS="XRef">Table A-6, “XYRelation Enumeration Values”</A></SPAN>
+ for a list of NMTOKEN values.</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1009740"></A>1.6	<A NAME="0_97977"></A>Units</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1057964"></A>JDF specifies most values in default units. That means that an implementation <SPAN CLASS="ConformWord">
+must</SPAN>
+ use the defined default units and <SPAN CLASS="ConformWord">
+must not</SPAN>
+ use alternate units. All measurable quantities are stated in double precision. Processors <SPAN CLASS="ConformWord">
+should not</SPAN>
+ specify a unit unless no default exists, such as when new Resources are defined. Then the units <SPAN CLASS="ConformWord">
+must</SPAN>
+ be based on metric units. Overriding the default units that are defined in this table is non-standard and <SPAN CLASS="ConformWord">
+may</SPAN>
+ lead to undefined behavior. Any exceptions are specified in the appropriate descriptive tables.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1013891"></A>The following table lists the units used in JDF. The “Representation” column specifies the XML representation to indicate the units used in the following JDF attributes:</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1079763"></A>1	The <SPAN CLASS="Attribute">
+Unit</SPAN>
+ Attribute in Resources (see <A HREF="Structure_of_JDF_Nodes.html#0_35473" CLASS="XRef">Table 3-13, “Abstract Physical Resource Element”</A>).</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1079770"></A>2	The <SPAN CLASS="Attribute">
+Unit</SPAN>
+ Attribute in <A HREF="JMF.html#0_37124" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResourceInfo</SPAN>
+</A> (see <A HREF="JMF.html#0_44156" CLASS="XRef">Table 5-63, “ResourceInfo Element”</A>).</LI>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1079917"></A>3	The <SPAN CLASS="Attribute">
+CounterUnit</SPAN>
+ Attribute in <A HREF="JMF.html#0_91747" CLASS="XRef"><SPAN CLASS="Link-Element">
+DeviceInfo</SPAN>
+</A> (see <A HREF="JMF.html#0_88574" CLASS="XRef">Table 5-70, “DeviceInfo Element”</A>):</LI>
+</OL>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1111225"></A> &nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1079784"></A>Table 1-7: <A NAME="0_95809"></A>Units used in JDF (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1079792"></A>Measurement</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1079794"></A>Unit</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1079796"></A>Representation</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1079798"></A>Remarks</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079800"></A>Length</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079802"></A>point (1/72 inch)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079804"></A>pt</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079806"></A>Used for all except microscopic lengths (see below)</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079808"></A>&nbsp;</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079810"></A>micron (μ)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079812"></A>um</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079814"></A>Used for microscopic lengths -- where used (instead of points) it will be explicitly stated in the definition of the item. See <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_Media" CLASS="XRef">Media</A></SPAN>
+/@<SPAN CLASS="Attribute">
+Thickness</SPAN>
+.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079819"></A>Volume</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079821"></A>liter</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079823"></A><SPAN CLASS="NoSpell">
+l</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079825"></A>--</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079827"></A>Weight</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079829"></A>gram</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079831"></A><SPAN CLASS="NoSpell">
+g</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079833"></A>--</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079835"></A>Area</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079837"></A><SPAN CLASS="NoSpell">
+m</SPAN>
+2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079839"></A><SPAN CLASS="NoSpell">
+m2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079841"></A>--</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079843"></A>Resolution</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079845"></A>dpi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079847"></A>dpi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079849"></A>The dots per inch (dpi) for print output and bitmap image (TIFF, BMP, <SPAN CLASS="NoSpell">
+etc.</SPAN>
+) file resolution.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079851"></A>Line Screen</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079853"></A>lpi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079855"></A>lpi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079857"></A>The lines per inch (lpi) for conventionally screened halftone, screened grayscale and screened monotone bitmap images.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079859"></A>Screen Resolution</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079861"></A>ppi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079863"></A>ppi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079865"></A>The pixels per inch (ppi) for screen display (e.g., softproof display and user interface display), scanner capture settings and digital camera settings. </P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079867"></A>Spot Resolution</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079869"></A>spi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079871"></A>spi</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079873"></A>For imaging Devices such as filmsetters, platesetters and proofers, the fundamental imaging unit, (e.g., one “on” laser or imaging head imaged unit). Note: Many imaging Devices construct dots from multiple imaging spots, so dpi and spots per inch (spi) <SPAN CLASS="ConformWord">
+NEED NOT</SPAN>
+ be equivalent.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079875"></A>Paper weight</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079877"></A><SPAN CLASS="NoSpell">
+g</SPAN>
+/<SPAN CLASS="NoSpell">
+m</SPAN>
+2</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079879"></A><SPAN CLASS="NoSpell">
+g</SPAN>
+/<SPAN CLASS="NoSpell">
+m2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079881"></A>--</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079883"></A>Speed</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079885"></A>units/hour</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079887"></A>*/<SPAN CLASS="NoSpell">
+h</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079889"></A>Replace the “*” in the representation with the appropriate unit</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079891"></A>Temperature</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079893"></A><SPAN CLASS="NoSpell">
+C˚</SPAN>
+ (Celsius)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079895"></A><SPAN CLASS="NoSpell">
+C</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079897"></A>degree centigrade</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079899"></A>Angle</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079901"></A>degrees˚</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079903"></A>degree</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079905"></A>--</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079907"></A>Countable Objects<BR>
+<SPAN CLASS="Change-Flag">
+Modified in JDF 1.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079909"></A>1</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079911"></A>count</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1079916"></A>Countable objects, such as <A HREF="Introduction.html#0_79209" CLASS="XRef">Sheet</A><SPAN CLASS="Link-Term">
+s</SPAN>
+, <SPAN CLASS="ConformWord">
+MAY</SPAN>
+ be specified as “count”.</P>
+</TD>
+</TR>
+</TABLE>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1066622"></A>1.6.1	Counting in JDF</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1056790"></A>Zero-based indices <SPAN CLASS="ConformWord">
+must</SPAN>
+ be used in JDF. Thus the first index is 0, the second index is 1 etc. Note that this restriction applies to the JDF representation only. Display of values, for instance in a user interface, is implementation defined.</P>
+</DIV>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

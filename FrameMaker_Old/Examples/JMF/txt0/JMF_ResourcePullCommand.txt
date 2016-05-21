@@ -1,0 +1,10 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1"
+		SenderID="MIS master A" TimeStamp="2005-07-25T12:32:48+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Command ID="C3" Type="ResourcePull" xsi:type="CommandResourcePull">
+		<ResourcePullParams QueueEntryID="AllPlates" Priority="100" ResourceID="R42">
+			<Part SheetName="Sheet1" Side="Front" Separation="Yellow"/>
+		</ResourcePullParams>
+	</Command>
+</JMF>

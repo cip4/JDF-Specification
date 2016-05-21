@@ -1,0 +1,18 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<Device Class="Implementation" ID="Link0003" Status="Available">
+			<DeviceCap>
+				<DisplayGroupPool>
+					<DisplayGroup rRefs="bad">
+						<Loc HelpText="Parameters for scanning configuration" Lang="en"
+								Value="ScanningParameters"/>
+					</DisplayGroup>
+				</DisplayGroupPool>
+			</DeviceCap>
+		</Device>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<DeviceLink Usage="Input" rRef="Link0003"/>
+	</ResourceLinkPool>
+</JDF>

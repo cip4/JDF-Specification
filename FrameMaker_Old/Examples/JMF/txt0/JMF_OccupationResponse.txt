@@ -1,0 +1,26 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		SenderID="MIS master A" TimeStamp="2005-07-25T12:32:48+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Response ID="M1" Type="Occupation" xsi:type="ResponseOccupation" refID="Q1">
+		<!--Two Jobs on one Device with one operator-->
+		<Occupation Busy="30" JobID="J1">
+			<Employee PersonalID="P1234"/>
+			<Device DeviceID="Press1"/>
+		</Occupation>
+		<Occupation Busy="70" JobID="J2">
+			<Employee PersonalID="P1234"/>
+			<Device DeviceID="Press1"/>
+		</Occupation>
+		<!--Another operator on Job j2 -->
+		<Occupation Busy="50" JobID="J2">
+			<Employee PersonalID="P4321"/>
+			<Device DeviceID="Press1"/>
+		</Occupation>
+		<!--No Job context -->
+		<Occupation Busy="0">
+			<Device DeviceID="Press2"/>
+			<Employee PersonalID="P5678"/>
+		</Occupation>
+	</Response>
+</JMF>

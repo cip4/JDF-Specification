@@ -1,0 +1,39 @@
+<JDF ID="n20020701190951" Type="ImageSetting" 
+		xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" SpawnID="Sp0059" JobPartID="ID467" Version="1.4">
+	<AuditPool/>
+	<ResourcePool>
+		<ImageSetterParams ID="r0052" Class="Parameter" Locked="true" 
+				Status="Available"/>
+		<Media ID="r0053" Class="Consumable" Locked="true" Status="Available" 
+				PartIDKeys="Separation">
+			<Media Separation="Cyan"/>
+		</Media>
+		<ExposedMedia ID="r0054" Class="Handling" Locked="true" 
+				Status="Unavailable" 
+				PartIDKeys="Separation">
+			<ExposedMedia Separation="Cyan">
+				<MediaRef rRef="r0053">
+					<Part Separation="Cyan"/>
+				</MediaRef>
+			</ExposedMedia>
+		</ExposedMedia>
+		<RunList ID="r0055" Class="Parameter" Locked="true" Status="Available"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ImageSetterParamsLink rRef="r0052" Usage="Input"/>
+		<MediaLink rRef="r0053" Usage="Input">
+			<Part Separation="Cyan"/>
+		</MediaLink>
+		<ExposedMediaLink rRef="r0054" Usage="Output">
+			<Part Separation="Cyan"/>
+		</ExposedMediaLink>
+		<RunListLink rRef="r0055" Usage="Input"/>
+	</ResourceLinkPool>
+	<AncestorPool>
+		<Part Separation="Cyan"/>
+		<Ancestor Type="ImageSetting" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+			NodeID="n20020701190951" Status="Waiting" 
+			Version="1.4" FileName="testjdf5.jdf"/>
+	</AncestorPool>
+</JDF>

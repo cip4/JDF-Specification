@@ -1,0 +1,55 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="ColorTest" JobID="ColorJob" 
+		JobPartID="ID34" Status="Waiting" Type="ColorSpaceConversion" 
+		Version="1.4">
+	<ResourcePool>
+		<RunList Class="Parameter" ID="Link0003" Pages="0 ~ -1" 
+				Status="Available">
+			<LayoutElement>
+				<FileSpec URL="File:///in/colortest.pdf"/>
+			</LayoutElement>
+		</RunList>
+		<ColorSpaceConversionParams Class="Parameter" ID="Link0004" 
+				Status="Available">
+			<FileSpec ResourceUsage="FinalTargetDevice" 
+					URL="File:///SMProcessCMYK.icc"/>
+			<ColorSpaceConversionOp Operation="Convert" 
+					RenderingIntent="Perceptual" SourceCS="RGB" 
+					SourceObjects="ImagePhotographic ImageScreenShot SmoothShades">
+				<FileSpec ResourceUsage="SourceProfile" URL="File:///image.icc"/>
+			</ColorSpaceConversionOp>
+			<ColorSpaceConversionOp Operation="Convert" 
+					RenderingIntent="Perceptual" SourceCS="RGB" 
+					SourceObjects="Text LineArt">
+				<FileSpec ResourceUsage="SourceProfile" URL="File:///text.icc"/>
+			</ColorSpaceConversionOp>
+		</ColorSpaceConversionParams>
+		<ColorPool Class="Parameter" ID="Link0005" Status="Available">
+			<Color CMYK="1 0 0 0" Name="Cyan"/>
+			<Color CMYK="0 1 0 0" Name="Magenta"/>
+			<Color CMYK="0 0 1 0" Name="Yellow"/>
+			<Color CMYK="0 0 0 1" Name="Black"/>
+			<Color CMYK="0.8 0.8 0 0" Name="Blue"/>
+		</ColorPool>
+		<ColorantControl Class="Parameter" ID="Link0006" 
+				ProcessColorModel="DeviceCMYK" 
+				Status="Available">
+			<ColorPoolRef rRef="Link0005"/>
+		</ColorantControl>
+		<RunList Class="Parameter" ID="Link0007" Pages="0 ~ -1" 
+				Status="Unavailable">
+			<LayoutElement>
+				<FileSpec URL="File:///out/colortest.pdf"/>
+			</LayoutElement>
+		</RunList>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<RunListLink Usage="Input" rRef="Link0003"/>
+		<ColorSpaceConversionParamsLink Usage="Input" rRef="Link0004"/>
+		<ColorantControlLink Usage="Input" rRef="Link0006"/>
+		<RunListLink Usage="Output" rRef="Link0007"/>
+	</ResourceLinkPool>
+	<AuditPool>
+		<Created AgentName="Rainer's JDFWriter 0.2000" 
+			TimeStamp="2005-06-01T10:26:11+01:00"/>
+	</AuditPool>
+</JDF>

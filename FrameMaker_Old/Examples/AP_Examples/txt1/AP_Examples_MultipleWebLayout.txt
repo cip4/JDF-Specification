@@ -1,0 +1,51 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<BinderySignature Class="Parameter" ID="B001" NumberUp="4 2" 
+				PartIDKeys="WebName" Status="Available">
+			<BinderySignature WebName="Web1">
+				<SignatureCell BackPages="22 9 14 17" FrontPages="31 0 7 24" 
+						Orientation="Up"/>
+				<SignatureCell BackPages="25 6 1 30" FrontPages="16 15 8 23" 
+						Orientation="Down"/>
+			</BinderySignature>
+			<BinderySignature WebName="Web2">
+				<SignatureCell BackPages="20 11 12 19" FrontPages="29 2 5 26" 
+						Orientation="Up"/>
+				<SignatureCell BackPages="27 4 3 28" FrontPages="18 13 10 21" 
+						Orientation="Down"/>
+			</BinderySignature>
+		</BinderySignature>
+		<StrippingParams Class="Parameter" ID="MultiWeb1" 
+				PartIDKeys="SignatureName SheetName" 
+				Status="Available" WorkStyle="WorkAndBack">
+			<StrippingParams SignatureName="Signature1">
+				<StrippingParams SheetName="Sheet1">
+					<BinderySignatureRef rRef="B001">
+						<Part WebName="Web1"/>
+					</BinderySignatureRef>
+				</StrippingParams>
+				<StrippingParams SheetName="Sheet2">
+					<BinderySignatureRef rRef="B001">
+						<Part WebName="Web2"/>
+					</BinderySignatureRef>
+				</StrippingParams>
+			</StrippingParams>
+			<StrippingParams SignatureName="Signature2">
+				<StrippingParams SheetName="Sheet3">
+					<BinderySignatureRef rRef="B001">
+						<Part WebName="Web1"/>
+					</BinderySignatureRef>
+				</StrippingParams>
+				<StrippingParams SheetName="Sheet4">
+					<BinderySignatureRef rRef="B001">
+						<Part WebName="Web2"/>
+					</BinderySignatureRef>
+				</StrippingParams>
+			</StrippingParams>
+		</StrippingParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<StrippingParamsLink Usage="Input" rRef="MultiWeb1"/>
+	</ResourceLinkPool>
+</JDF>

@@ -1,0 +1,51 @@
+diff all txt files
+AP_FileSpec_1.txt
+AP_FileSpec_10.txt
+15c15
+< 		</FileSpec>	
+---
+> 	</FileSpec>
+AP_FileSpec_11.1.txt
+AP_FileSpec_11.2.txt
+6c6
+< 		<FileSpec Class="Parameter" Status="Available" ID="ID_005_ZIPS" 	
+---
+> 		<FileSpec Class="Parameter" Status="Available" ID="ID_005_ZIPS" 
+AP_FileSpec_11.3.txt
+AP_FileSpec_11.3a.txt
+6c6
+< 		<FileSpec Class="Parameter" Status="Available" ID="ID_005_ZIP_C" 		
+---
+> 		<FileSpec Class="Parameter" Status="Available" ID="ID_005_ZIP_C" 
+AP_FileSpec_11.4.txt
+AP_FileSpec_11.txt
+AP_FileSpec_12.txt
+AP_FileSpec_2.txt
+AP_FileSpec_3.txt
+AP_FileSpec_4.txt
+10c10
+< 		</FileSpec>		
+---
+> 		</FileSpec>
+AP_FileSpec_5.txt
+9c9
+< 		</FileSpec>	
+---
+> 	</FileSpec>
+AP_FileSpec_6.txt
+13c13
+< 		</FileSpec>	
+---
+> 	</FileSpec>
+AP_FileSpec_7.txt
+15c15
+< 		</FileSpec>		
+---
+> 		</FileSpec>
+AP_FileSpec_8.txt
+AP_FileSpec_9.txt
+3c3
+< 	<ResourcePool> 		
+---
+> 	<ResourcePool> 
+AP_FileSpec_IntentJobTicket.txt
