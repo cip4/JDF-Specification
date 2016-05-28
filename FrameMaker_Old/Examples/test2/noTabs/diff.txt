@@ -1,6 +1,0 @@
-diff all txt files
-AP_FileSpec_1.txt
-AP_FileSpec_2.txt
-AP_Schema_JDFNodes-xsitype.txt
-diff.txt
-grep.txt

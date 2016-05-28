@@ -1,1 +1,0 @@
-﻿<Example expression="Foo({1|2}*)"/>

@@ -1,7 +1,0 @@
-for foo in $*; do 
-#echo $foo
-root=`echo $foo|sed s/.j.f//`
-echo $foo
-diff $foo d:/stuff/CIP4/spec/JDF1.4/testExamples/$root.doc.txt
-done 
-

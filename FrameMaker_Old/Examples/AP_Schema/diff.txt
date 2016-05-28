@@ -1,3 +1,0 @@
-AP_Schema_JDFNodes-xsitype-notInDefaultNamespace.jdf
-AP_Schema_JDFNodes-xsitype.jdf
-AP_Schema_JMF-xsitype.jmf

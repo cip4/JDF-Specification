@@ -1,1 +1,0 @@
-﻿<CutBlock BlockSize="612 792"/>

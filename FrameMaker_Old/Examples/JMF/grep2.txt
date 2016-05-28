@@ -1,9 +1,0 @@
-JMF_RequestForAuthenticationResponse.txt:         SenderID="A3 Printer" TimeStamp="2000-07-25T12:32:48+02:00"
-JMF_RequestForAuthenticationResponse.txt:         MaxVersion="1.4" Version="1.4"
-JMF_RequestForAuthenticationResponse.txt:         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-JMF_RequestForAuthenticationResponse.txt:   <Response ID="M101" Type="RequestForAuthentication" refID="M001"
-JMF_RequestForAuthenticationResponse.txt:            xsi:type="ResponseRequestForAuthentication" ReturnCode="304">
-JMF_RequestForAuthenticationResponse.txt:      <AuthenticationResp SecureURL="https://printserver.mycompany.com/A3Printer">
-JMF_RequestForAuthenticationResponse.txt:         <Certificate>=====BEGIN CERTIFICATE=====
-JMF_RequestForAuthenticationResponse.txt:      </AuthenticationResp>
-JMF_RequestForAuthenticationResponse.txt:   </Response>
