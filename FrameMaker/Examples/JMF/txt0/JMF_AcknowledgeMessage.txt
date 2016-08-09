@@ -1,7 +1,0 @@
-﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="A3 Printer" 
-		TimeStamp="2000-07-25T12:32:48+02:00" MaxVersion="1.4" Version="1.4"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Acknowledge ID="M109" Type="PipePush" xsi:type="AcknowledgePipePush" refID="M010">
-		<JobPhase JobID="J1" JobPartID="1" Status="InProgress"/>
-	</Acknowledge>
-</JMF>

@@ -1,0 +1,40 @@
+<JDF ID="n20020701190951" Type="ImageSetting" 
+		xmlns="http://www.CIP4.org/JDFSchema_1_1" Status="Pool" JobPartID="ID234" 
+		Version="1.4">
+	<AuditPool>
+		<Spawned URL="File:///spawnIS.jdf" jRef="n20020701190951" 
+				Status="Waiting" 
+				TimeStamp="2002-07-01T20:25:03+02:00" NewSpawnID="Sp0059">
+			<Part Separation="Cyan"/>
+		</Spawned>
+		<Merged URL="File:///spawnIS2.jdf" jRef="n20020701190951" 
+				MergeID="Sp0059" 
+				TimeStamp="2002-07-01T20:27:51+02:00">
+			<Part Separation="Cyan"/>
+		</Merged>
+	</AuditPool>
+	<ResourcePool>
+		<ImageSetterParams ID="r0052" Class="Parameter" Status="Available"/>
+		<Media ID="r0053" Class="Consumable" Status="Available"/>
+		<ExposedMedia ID="r0054" Class="Handling" Status="Unavailable" 
+				PartIDKeys="Separation">
+			<MediaRef rRef="r0053"/>
+			<ExposedMedia Status="Available" Separation="Cyan"/>
+			<ExposedMedia Separation="Magenta"/>
+			<ExposedMedia Separation="Yellow"/>
+			<ExposedMedia Separation="Black"/>
+		</ExposedMedia>
+		<RunList ID="r0055" Class="Parameter" Status="Available"/>
+		<NodeInfo Class="Parameter" ID="r050722154232_0045" NodeStatus="Waiting" 
+				PartIDKeys="Separation" Status="Available">
+			<NodeInfo NodeStatus="Completed" Separation="Cyan"/>
+		</NodeInfo>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ImageSetterParamsLink rRef="r0052" Usage="Input"/>
+		<MediaLink rRef="r0053" Usage="Input"/>
+		<ExposedMediaLink rRef="r0054" Usage="Output"/>
+		<RunListLink rRef="r0055" Usage="Input"/>
+		<NodeInfoLink Usage="Input" rRef="r050722154232_0045"/>
+	</ResourceLinkPool>
+</JDF>

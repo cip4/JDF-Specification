@@ -1,6 +1,0 @@
-﻿<ExposedMedia Class="Handling" ID="L31" PartIDKeys="Separation" Status="Available">
-	<Media MediaType="Film">
-		<Media Brand="foo" Separation="Cyan"/>
-		<Media Brand="bar" Separation="Magenta"/>
-	</Media>
-</ExposedMedia>

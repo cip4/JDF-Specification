@@ -1,0 +1,158 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1"
+		DescriptiveName="Digital Delivery through central server; 
+				example with Process Group" 
+		ID="ID000" Status="InProgress" Type="ProcessGroup" JobPartID="ID200"
+		Version="1.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ResourcePool>
+		<NodeInfo ID="Node001" Class="Parameter" Status="Available" JobPriority="60"/>
+		<Contact Class="Parameter" ContactTypes="Delivery" ID="DestLink"
+				PartIDKeys="Location" Status="Available">
+			<Contact Location="Dest1">
+				<ComChannel ChannelType="Email" 
+						Locator="mailto:Reciever1@hotmail.com"/>
+			</Contact>
+			<Contact Location="Dest2">
+				<ComChannel ChannelType="PrivateDirectory" 
+						ChannelTypeDetails="VioAddress"
+						Locator="Best  Workgroup@Best Company"/>
+			</Contact>
+		</Contact>
+		<RunList Class="Parameter" ID="TempFileListLink" PartIDKeys="Run"
+				Status="Available">
+			<Disposition MinDuration="P10D"/>
+			<RunList Run="1">
+				<LayoutElement>
+					<FileSpec Compression="MacBinary" 
+							URL="./Atlas/Europe.bmp.bin"/>
+				</LayoutElement>
+			</RunList>
+			<RunList Run="2">
+				<LayoutElement>
+					<FileSpec Compression="MacBinary" 
+							URL="./Atlas/America.jpg.bin"/>
+				</LayoutElement>
+			</RunList>
+		</RunList>
+	</ResourcePool>
+	<JDF DescriptiveName="Upload Job to Server" ID="ID001" JobID="J702555"
+			Status="Completed" Type="DigitalDelivery" JobPartID="ID201">
+		<ResourcePool>
+			<CustomerInfo ID="Cus001" Class="Parameter" Status="Available"
+						CustomerJobName="World atlas maps #2">
+				<CustomerMessage Language="FR" MessageEvents="Delivered Accepted">
+					<ComChannel ChannelType="Email" 
+							Locator="mailto:sender@Email.com"/>
+				</CustomerMessage>
+			</CustomerInfo>
+			<RunList Class="Parameter" Directory="file:///c:/MyDir/JobForSend"
+					ID="SourceFileListLink0" PartIDKeys="Run" Status="Available">
+				<RunList Run="1">
+					<LayoutElement>
+						<FileSpec FileSize="240066" URL="./Atlas/Europe.bmp"/>
+					</LayoutElement>
+				</RunList>
+				<RunList Run="2">
+					<LayoutElement>
+						<FileSpec FileSize="33947" URL="./Atlas/America.jpg"/>
+					</LayoutElement>
+				</RunList>
+			</RunList>
+			<Contact Class="Parameter" ContactTypes="Sender" ID="SendLink"
+					Status="Available">
+				<ComChannel ChannelType="Email" 
+						Locator="mailto:sender@Email.com"/>
+			</Contact>
+			<DigitalDeliveryParams Class="Parameter" 
+					DigitalDeliveryDirection="Push"
+					DigitalDeliveryProtocol="FTP" 
+					ID="DestinationLink0" Method="Vio"
+					PartIDKeys="Location" Status="Available">
+				<Comment Name="Instruction">
+					Please take these maps and add them to the rest ...
+				</Comment>
+				<DigitalDeliveryParams Location="SenderToDest1">
+					<ContactRef rRef="SendLink"/>
+					<ContactRef rRef="DestLink">
+						<Part Location="Dest1"/>
+					</ContactRef>
+				</DigitalDeliveryParams>
+				<DigitalDeliveryParams Location="SenderToDest2">
+					<ContactRef rRef="SendLink"/>
+					<ContactRef rRef="DestLink">
+						<Part Location="Dest2"/>
+					</ContactRef>
+				</DigitalDeliveryParams>
+			</DigitalDeliveryParams>
+		</ResourcePool>
+		<ResourceLinkPool>
+			<DigitalDeliveryParamsLink Usage="Input" rRef="DestinationLink0"/>
+			<CustomerInfoLink Usage="Input" rRef="Cus001"/>
+			<NodeInfoLink Usage="Input" rRef="Node001"/>
+			<RunListLink Usage="Input" rRef="SourceFileListLink0"/>
+			<RunListLink Usage="Output" rRef="TempFileListLink"/>
+		</ResourceLinkPool>
+		<AuditPool>
+			<ProcessRun DescriptiveName="Upload of Job 702555 to Vio Server" 
+					End="2002-07-21T10:47:11Z" EndStatus="Completed" 
+					Start="2002-07-21T10:45:52Z"
+					TimeStamp="2002-07-21T10:47:11Z"/>
+			<Created Author="Vio Server 4.3" TimeStamp="2002-07-21T10:45:52Z"/>
+		</AuditPool>
+	</JDF>
+	<JDF DescriptiveName="Download Job from Server to destination" ID="ID002"
+			JobID="J702555" Status="Pool" Type="DigitalDelivery" 
+			JobPartID="ID202">
+		<ResourcePool>
+			<RunList Class="Parameter" Directory="File:///e:/My%20Download"
+					ID="TargetFileListLink1" PartIDKeys="Run" Status="Available">
+				<RunList Run="1">
+					<LayoutElement>
+						<FileSpec FileSize="240066" URL="./Atlas/Europe.bmp"/>
+					</LayoutElement>
+				</RunList>
+				<RunList Run="2">
+					<LayoutElement>
+						<FileSpec FileSize="33947" URL="./Atlas/America.jpg"/>
+					</LayoutElement>
+				</RunList>
+			</RunList>
+			<DigitalDeliveryParams Class="Parameter" 
+					DigitalDeliveryDirection="Pull"
+					DigitalDeliveryProtocol="HTTP" 
+					ID="DestinationLink1" Method="Vio"
+					PartIDKeys="Location" Status="Available">
+				<DigitalDeliveryParams Location="ToDest1">
+					<ContactRef rRef="DestLink">
+						<Part Location="Dest1"/>
+					</ContactRef>
+				</DigitalDeliveryParams>
+				<DigitalDeliveryParams Location="ToDest2">
+					<ContactRef rRef="DestLink">
+						<Part Location="Dest2"/>
+					</ContactRef>
+				</DigitalDeliveryParams>
+			</DigitalDeliveryParams>
+		</ResourcePool>
+		<ResourceLinkPool>
+			<DigitalDeliveryParamsLink Usage="Input" rRef="DestinationLink1"/>
+			<RunListLink Usage="Input" rRef="TempFileListLink"/>
+			<NodeInfoLink Usage="Input" rRef="Node001"/>
+			<RunListLink Usage="Output" rRef="TargetFileListLink1"/>
+		</ResourceLinkPool>
+		<StatusPool Status="InProgress">
+			<PartStatus Status="Completed">
+				<Part Location="ToDest2"/>
+			</PartStatus>
+		</StatusPool>
+		<AuditPool>
+			<Created Author="Vio Server 4.3" TimeStamp="2002-07-21T10:48:57Z"/>
+			<ProcessRun DescriptiveName="HTTP Download of Job by 
+						Best Workgroup@Best Company"
+					End="2002-07-21T10:50:11Z" EndStatus="Completed" 
+					Start="2002-07-21T10:48:57Z"
+					TimeStamp="2002-07-21T10:50:11Z">
+				<Part Location="ToDest2"/>
+			</ProcessRun>
+		</AuditPool>
+	</JDF>
+</JDF>

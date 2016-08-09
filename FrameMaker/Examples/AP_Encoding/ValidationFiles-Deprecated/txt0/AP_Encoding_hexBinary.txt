@@ -1,0 +1,1 @@
+﻿<Example Hex="0A1C"/>

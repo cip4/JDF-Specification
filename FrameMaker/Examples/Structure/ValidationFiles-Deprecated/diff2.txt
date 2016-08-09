@@ -1,0 +1,53 @@
+diff all txt files
+Structure_AmountInAnExposedMediaLinkToAPartitionedExposedMedia.txt
+Structure_CombinedProcessNode.txt
+Structure_ComplexCombinedProcessNode.txt
+Structure_DegeneratePartition.txt
+Structure_EmployeeLinkAsImplementationLink.txt
+Structure_EquivalentInlineMedia.txt
+Structure_ExplicitReferenceOfOrderedPartitionedResources.txt
+Structure_ExposedMediaWithLocationElements.txt
+Structure_ExtendingNMTOKENLists.txt
+Structure_ExtendingProcessTypes.txt
+Structure_IllegalIncompletePartition.txt
+Structure_IllegalPartition.txt
+Structure_ImplicitReferenceOfOrderedPartitionedResources.txt
+Structure_InheritanceForSubelementsOfAPartitionedResource.txt
+13c13
+< 				<!-- 	These two SeparationSpec Elements completely replace the 
+---
+> 				<!-- These two SeparationSpec Elements completely replace the 
+Structure_InvalidDegeneratePartition.txt
+Structure_InvalidInlinePartitionedMedia.txt
+Structure_LegalCompletePartition.txt
+Structure_LegalIncompletePartition.txt
+Structure_LinkingToSubsetsOfResources.txt
+Structure_MediaLinkAndMediaRef.txt
+22c22
+< 				<!-- PartAmount with <Part RunIndex="1 ~ -2/> 
+---
+> 				<!-- PartAmount with <Part RunIndex="1 ~ -2"/> 
+Structure_MediaLinkWithLot.txt
+Structure_MediaRefToPartitionedMedia.txt
+Structure_MediaWithLocationElements.txt
+Structure_NamespacesInXML.txt
+Structure_PartAmount.txt
+Structure_PartUsageInAPartitionedResource.txt
+Structure_PartitionedExposedMedia.txt
+Structure_PartitionedExposedMediaWithIncompleteMediaSubelements.txt
+Structure_PartitionedExposedMediaWithInvalidMediaRefSubelements.txt
+Structure_PartitionedExposedMediaWithInvalidPartitioningOfMediaSubelements.txt
+Structure_PartitionedExposedMediaWithMediaRefSubelements.txt
+Structure_PartitionedExposedMediaWithMediaSubelements.txt
+Structure_PartitioningWithAnInvalidIdenticalElement.txt
+Structure_PartitioningWithTheIdenticalElement.txt
+Structure_ResourceAuditBeforeLogging.txt
+Structure_ResourceAuditLoggingChanges.txt
+Structure_ResourceAuditLoggingOfConsumption.txt
+Structure_ResourceLinkPoolForCombinedProcessNode.txt
+Structure_ResourceLinkStructureForAProcessGroup.txt
+3c3
+< 	<!--	the ResourceLink Elements in the ProcessGroup define the Input 
+---
+> 	<!--the ResourceLink Elements in the ProcessGroup define the Input 
+Structure_ResourceLinkWithPartElement.txt

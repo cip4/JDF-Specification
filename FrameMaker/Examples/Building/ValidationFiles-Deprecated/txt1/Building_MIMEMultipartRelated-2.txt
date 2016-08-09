@@ -1,0 +1,6 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="JMFClient" 
+		TimeStamp="2005-07-07T13:15:56+01:00" Version="1.4">
+	<Command ID="C0001" Type="SubmitQueueEntry" xsi:type="CommandSubmitQueueEntry">
+		<QueueSubmissionParams Hold="true" URL="cid:JDF1@hostname.com"/>
+	</Command>
+</JMF>

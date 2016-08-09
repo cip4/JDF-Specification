@@ -1,0 +1,6 @@
+﻿<JDF Type="myCompaniesNS:MyVeryImportantProcess" 
+		xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		xmlns:myCompaniesNS="my companies namespace URI" 
+		ID="ID1" JobPartID="ID345" Status="Ready" Version="1.4" >
+	<!-- ... -->
+</JDF>

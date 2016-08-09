@@ -1,0 +1,53 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="J1" Status="Waiting" 
+		 Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+<ResourcePool>
+<!--
+	<ExposedMedia Class="Handling" ID="L1" PartIDKeys="Location" 
+			Status="Available">
+		<ExposedMedia Amount="42" Location="dd1">
+			<Location LocID="PP_01234" LocationName="Desk Drawer 1"/>
+		</ExposedMedia>
+		<ExposedMedia Amount="100" Location="dd2">
+			<Location LocID="PP_01235" LocationName="Desk Drawer 2"/>
+		</ExposedMedia>
+		<Media/>
+	</ExposedMedia>
+-->
+	<ExposedMedia Class="Handling" ID="E1" PartIDKeys="Separation SheetName Side"  
+			Status="Available" PartUsage="Implicit">
+            <Media />
+		<ExposedMedia Separation="Cyan"/>
+		<ExposedMedia Separation="Magenta"/>
+	</ExposedMedia >
+</ResourcePool>
+<ResourceLinkPool>
+<!--
+	<ExposedMediaLink Amount="50" Usage="Input" rRef="E1">
+		<Part Location="dd2"/>
+		 Note that @Location can but need not match 
+			Location/@LocationName 
+		
+	</ExposedMediaLink>
+-->
+<ExposedMediaLink Usage="Input" rRef="E1">
+	<Part Separation="Cyan" SheetName="S1"/>
+	<Part Separation="Magenta" SheetName="S1"/>
+	<AmountPool>
+		<PartAmount>
+			<Part Separation="Cyan" SheetName="S1" Side="Front"/>
+		</PartAmount>
+		<PartAmount>
+			<Part Separation="Cyan" SheetName="S1" Side="Back"/>
+		</PartAmount>
+		<PartAmount>
+			<Part Separation="Magenta" SheetName="S1" Side="Front"/>
+		</PartAmount>
+		<PartAmount Amount="2">
+			<Part Separation="Magenta" SheetName="S1" Side="Back"/>
+		</PartAmount>
+	</AmountPool>
+</ExposedMediaLink>
+
+</ResourceLinkPool>
+</JDF> 
+

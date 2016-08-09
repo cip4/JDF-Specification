@@ -1,3 +1,0 @@
-diff all txt files
-AP_Strings_MessageEventsInCustomerInfo.txt
-AP_Strings_MilestoneInJMF.txt

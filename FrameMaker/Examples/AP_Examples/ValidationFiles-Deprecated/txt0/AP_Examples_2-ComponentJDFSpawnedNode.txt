@@ -1,0 +1,22 @@
+﻿<JDF ID="n0046" Type="Product" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" SpawnID="Sp0057" Version="1.4" JobPartID="Part2" 
+		DescriptiveName="Cover">
+	<AuditPool>
+		<Created Author="CIP4 JDFWriter 1.0.1 beta" 
+				TimeStamp="2002-04-05T15:34:43+02:00"/>
+	</AuditPool>
+	<ResourceLinkPool>
+		<ComponentLink rRef="r0047" Usage="Output"/>
+		<LayoutIntentLink rRef="r0048" Usage="Input"/>
+		<ColorIntentLink rRef="r0049" Usage="Input"/>
+	</ResourceLinkPool>
+	<ResourcePool>
+		<LayoutIntent ID="r0048" Class="Intent" Status="Available"/>
+		<ColorIntent ID="r0049" Class="Intent" Status="Available"/>
+		<Component ID="r0047" Class="Quantity" Status="Available" 
+				ComponentType="Sheet" SpawnIDs="Sp0057"/>
+	</ResourcePool>
+	<AncestorPool>
+		<Ancestor NodeID="SpawnTest" FileName="testjdf4.jdf"/>
+	</AncestorPool>
+</JDF>

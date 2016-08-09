@@ -1,0 +1,34 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" TimeStamp="2005-07-25T12:32:48+02:00"
+		DeviceID="AnyDevice" SenderID="JDFMaster" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Command ID="ID1" Type="UpdateJDF" xsi:type="CommandUpdateJDF">
+		<UpdateJDFCmdParams ParentJobID="ID100" ParentJobPartID="ID112">
+			<CreateLink JobID="ID100" JobPartID="ID111">
+				<MediaLink Usage="Input" rRef="link001111"/>
+			</CreateLink>
+			<CreateResource JobID="100" JobPartID="110">
+				<Component rRef="link001112"/>
+			</CreateResource>
+			<RemoveLink JobID="100" JobPartID="111">
+				<MediaLink Usage="Input" rRef="link001113"/>
+			</RemoveLink>
+			<MoveResource JobID="100" JobPartID="101" ResourceID="link000004"/>
+			<JDF JobPartID="200" Type="Cutting">
+				<AuditPool>
+					<Created Author="MIS" TimeStamp="2005-06-02T09:01:45+01:00" 
+							AgentName="MIS" AgentVersion="1.0"/>
+				</AuditPool>
+				<ResourcePool>
+					<Component ID="link000002" Class="Quantity" Status="Available"
+							ComponentType="Sheet"/>
+					<CuttingParams ID="link000007" Class="Parameter" Status="Available"/>
+				</ResourcePool>
+				<ResourceLinkPool>
+					<ComponentLink Usage="Output" rRef="link000002"/>
+					<CuttingParamsLink Usage="Input" rRef="link000007"/> 
+				</ResourceLinkPool>
+			</JDF>
+		</UpdateJDFCmdParams>
+	</Command>
+</JMF>

@@ -1,0 +1,7 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="Controller" 
+		TimeStamp="2005-04-05T16:45:43+02:00" MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<Query ID="DeviceQuery" Type="KnownDevices" xsi:type="QueryKnownDevices">
+		<DeviceFilter DeviceDetails="Capability" Localization="en"/>
+	</Query>
+</JMF>

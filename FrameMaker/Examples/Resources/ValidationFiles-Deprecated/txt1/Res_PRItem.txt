@@ -1,0 +1,57 @@
+﻿<JDF ID="ID" Type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="ID34" Version="1.4">
+	<ResourcePool>
+		<PreflightReport Class="Parameter" ID="PP001" Status="Available"
+				ErrorCount="0" WarningCount ="0" >
+			<PRItem Occurrences="4" ActionRef="A001">
+				<PRGroup Occurrences="1">
+					<PRGroupOccurrence PageNumber="1"/>
+					<PROccurrence Occurrences="20">
+						<PRGroup Occurrences="5">
+							<PRGroupOccurrence/>
+							<PROccurrence TextSize="12"/>
+						</PRGroup>
+						<PRGroup Occurrences="15">
+							<PRGroupOccurrence/>
+							<PROccurrence EffectiveResolution="300 300"/>
+						</PRGroup>
+					</PROccurrence>
+				</PRGroup>
+				<PRGroup Occurrences="1">
+					<PRGroupOccurrence PageNumber="4"/>
+					<PROccurrence Occurrences="20">
+						<PRGroup Occurrences="7">
+							<PRGroupOccurrence/>
+							<PROccurrence NumberOfPathPoints="4"/>
+						</PRGroup>
+						<PRGroup Occurrences="13">
+							<PRGroupOccurrence/>
+							<PROccurrence EffectiveResolution="300 300"/>
+						</PRGroup>
+					</PROccurrence>
+				</PRGroup>
+				<PRGroup Occurrences="1">
+					<PRGroupOccurrence PageNumber="8"/>
+				</PRGroup>
+				<PRGroup Occurrences="1">
+					<PRGroupOccurrence PageNumber="12"/>
+				</PRGroup>
+			</PRItem>
+			<PreflightParams>
+				<TestPool>
+					<Test ID="T001">
+						<BooleanEvaluation ValueList="true"/>
+					</Test>
+				</TestPool>
+				<ActionPool>
+					<Action ID="A001" TestRef="T001"/>
+				</ActionPool>
+			</PreflightParams>
+			<PreflightReportRulePool/>
+			<RunList/>
+		</PreflightReport>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<PreflightReportLink Usage="Input" rRef="PP001"/> 
+	</ResourceLinkPool>
+</JDF>

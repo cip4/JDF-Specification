@@ -1,0 +1,12 @@
+Process_AutomatedImpositionMarkObject.jdf
+Process_DieLayoutProductionSingleShapeAndRangeOfSheetSizes.jdf
+Process_DieLayoutProductionSingleShapeAndTwoSheetSizes.jdf
+Process_DieLayoutProductionTwoShapesAndRangeOfSheetSizes.jdf
+Process_ImpositionTemplateLayout.jdf
+Process_OutputRunList_Surfaces-1.jdf
+Process_OutputRunList_Surfaces-2.jdf
+Process_RIPing.jdf
+Process_StitchingCombinedProcess.jdf
+Process_StrippingComplexExample.jdf
+Process_StrippingSimpleExample.jdf
+*.jmf

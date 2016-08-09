@@ -1,8 +1,0 @@
-﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="JMFClient" 
-		TimeStamp="2000-11-07T13:15:56+01:00" MaxVersion="1.4" Version="1.4"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  >
-	<Query ID="Q0001" Type="KnownMessages" xsi:type="QueryKnownMessages">
-		<KnownMsgQuParams ListCommands="true" ListQueries="true" 
-				ListSignals="false"/>
-	</Query>
-</JMF>

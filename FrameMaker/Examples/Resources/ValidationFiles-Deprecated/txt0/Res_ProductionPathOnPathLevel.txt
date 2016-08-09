@@ -1,0 +1,10 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool> 
+		<ProductionPath Class="Parameter" ID="F1" Status="Available" 
+				ProductionPathID="ID_2webproduction_64pages"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ProductionPathLink Usage="Input" rRef="F1"/>
+	</ResourceLinkPool>
+</JDF>

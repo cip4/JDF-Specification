@@ -1,0 +1,5 @@
+Lifecycle_EquivalentPureJDF.jdf
+Lifecycle_FamilyTreeOfSpawnedNodes.jdf
+Lifecycle_PrintTalk.jdf
+Lifecycle_ProductIntentNode.jdf
+*.jmf

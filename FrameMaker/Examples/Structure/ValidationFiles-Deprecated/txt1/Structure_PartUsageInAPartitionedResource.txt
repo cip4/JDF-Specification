@@ -1,0 +1,48 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourceLinkPool>
+		<ExposedMediaLink Usage="Input" rRef="XM_ID">
+			<Part SheetName="S1" Side="Front" Separation="Black" PartVersion="Deutsch"/>
+		</ExposedMediaLink>
+	</ResourceLinkPool>
+	<ResourcePool>
+		<ExposedMedia Brand="Gooey" Class="Handling" ID="XM_ID" 
+				PartIDKeys="SheetName Side Separation PartVersion" 
+				PartUsage="Implicit" ProductID="Root" Status="Available">
+			<Media Dimension="500 600" MediaType="Plate"/>
+			<ExposedMedia ProductID="S1" SheetName="S1">
+				<ExposedMedia ProductID="S1F" Side="Front">
+					<ExposedMedia ProductID="S1FC" Separation="Cyan"/>
+					<ExposedMedia ProductID="S1FM" Separation="Magenta"/>
+					<ExposedMedia ProductID="S1FY" Separation="Yellow"/>
+					<ExposedMedia ProductID="S1FK" Separation="Black">
+						<ExposedMedia ProductID="S1FKD" PartVersion="Deutsch"/>
+						<ExposedMedia ProductID="S1FKE" PartVersion="English"/>
+					</ExposedMedia>
+				</ExposedMedia>
+				<ExposedMedia ProductID="S1B" Side="Back">
+					<ExposedMedia ProductID="S1BC" Separation="Cyan"/>
+					<ExposedMedia ProductID="S1BM" Separation="Magenta"/>
+					<ExposedMedia ProductID="S1BY" Separation="Yellow"/>
+					<ExposedMedia ProductID="S1BK" Separation="Black">
+						<ExposedMedia ProductID="S1BKD" PartVersion="Deutsch"/>
+						<ExposedMedia ProductID="S1BKE" PartVersion="English"/>
+					</ExposedMedia>
+				</ExposedMedia>
+			</ExposedMedia>
+			<ExposedMedia ProductID="S2" SheetName="S2">
+				<ExposedMedia ProductID="S2F" Side="Front">
+					<ExposedMedia ProductID="S2FC" Separation="Cyan"/>
+					<ExposedMedia ProductID="S2FM" Separation="Magenta"/>
+					<ExposedMedia ProductID="S2FY" Separation="Yellow"/>
+					<ExposedMedia ProductID="S2FK" Separation="Black"/>
+				</ExposedMedia>
+				<ExposedMedia Side="Back">
+					<Identical> 
+						<Part SheetName="S1" Side="Back"/>
+					</Identical>
+				</ExposedMedia>
+			</ExposedMedia>
+		</ExposedMedia>
+	</ResourcePool>
+</JDF>

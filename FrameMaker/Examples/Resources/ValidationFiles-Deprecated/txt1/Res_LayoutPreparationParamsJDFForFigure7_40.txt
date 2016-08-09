@@ -1,0 +1,39 @@
+﻿<JDF ID="ID" Type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="ID34" Version="1.4">
+	<ResourcePool>
+		<LayoutPreparationParams Class="Parameter" ID="LPP_1" Status="Available"
+				NumberUp="4 1" PageDistributionScheme="Saddle" FoldCatalog="F4-1"
+				FoldCatalogOrientation="Flip0" Sides="TwoSidedFlipY" StepRepeat="2 1 1"
+				SurfaceContentsBox="0 0 612 792" VerticalCreep="0 2"
+				ImplicitGutter="0 30" ImplicitGutterMinimumLimit="0 20" CreepValue="0 5"
+				Gutter="0 10" FinishingOrder="GatherFold" FrontMarkList="CutMark">
+				<!--	Note: folding pattern F4-1 applies to each of the two 2x1 
+							signatures
+						Note: step and repeat by two in X direction logically divides grid
+							into two 2x1 signatures
+						Note: first (VC0) and third (VC2) vertical gutters are explicitly
+							creeping and the rest (~VC) are implicitly creeping
+						Note: Positive vertical creep value indicates initial gutter 
+							Widths of inner most Sheet
+						Note: cut marks are located relative to largest page cell grid 
+							trim box
+						Note: the value of some attributes in LayoutPreparationParams and
+							subElements relate to symbols in the above Figure:
+								SurfaceContentsBox="SCBx0 SCBx1 SCBy0 SCBy1"
+								ImplicitGutter="0 vig"
+								ImplicitGutterMinimumLimit="0 vigl"
+								CreepValue="0 +vc"
+								Gutter="0 vg"
+								TrimSize="m n"
+								ShiftFront="SFx SFy"
+				-->
+			<PageCell TrimSize="612 792">
+				<ImageShift PositionX="Spine" PositionY="Bottom"/>
+			</PageCell>
+			<ImageShift PositionY="Bottom" PositionX="Left" ShiftFront="20 20"/>
+		</LayoutPreparationParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutPreparationParamsLink Usage="Input" rRef="LPP_1"/> 
+	</ResourceLinkPool>
+</JDF>

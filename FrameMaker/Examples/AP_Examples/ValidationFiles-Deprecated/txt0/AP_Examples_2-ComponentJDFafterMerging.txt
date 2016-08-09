@@ -1,0 +1,62 @@
+<JDF ID="SpawnTest" Type="Product" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" Version="1.4" JobPartID="Part1">
+	<AuditPool>
+		<Created Author="CIP4 JDFWriter 1.0.1 beta" 
+				TimeStamp="2002-04-05T15:27:58+02:00"/>
+		<Spawned URL="File:///spawn.jdf" jRef="n0046" 
+				TimeStamp="2002-04-05T15:34:43+02:00" 
+				NewSpawnID="Sp0057" rRefsRWCopied="r0047"/>
+		<Merged URL="File:///spawn.jdf" jRef="n0046" MergeID="Sp0057" 
+				TimeStamp="2002-04-05T15:40:20+02:00" rRefsOverwritten="r0047"/>
+	</AuditPool>
+	<ResourcePool>
+		<Component ID="r0043" Class="Quantity" Amount="10000"  
+			ComponentType="Sheet" Status="Unavailable"/>
+		<BindingIntent ID="r0044" Class="Intent" Status="Available">
+			<BindingType Actual="SoftCover" DataType="EnumerationSpan"/>
+		</BindingIntent>
+		<ProductionIntent ID="r0045" Class="Intent" Status="Available">
+			<PrintProcess Range="Gravure" DataType="EnumerationSpan"/>
+		</ProductionIntent>
+		<Component ID="r0047" Class="Quantity" ComponentType ="Sheet" 
+				Status="Available"/>
+		<Component ID="r0051" Class="Quantity" ComponentType="Sheet" 
+				Status="Unavailable"/>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ComponentLink rRef="r0043" Usage="Output"/>
+		<BindingIntentLink rRef="r0044" Usage="Input"/>
+		<ProductionIntentLink rRef="r0045" Usage="Input"/>
+		<ComponentLink rRef="r0047" Usage="Input"/>
+		<ComponentLink rRef="r0051" Usage="Input"/>
+	</ResourceLinkPool>
+	<JDF ID="n0046" Type="Product" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+			Status="Waiting" Version="1.4" JobPartID="Part2" 
+			DescriptiveName="Cover">
+		<AuditPool>
+			<Created Author="CIP4 JDFWriter 1.0.1 beta" 
+					TimeStamp="2002-04-05T15:34:43+02:00"/>
+		</AuditPool>
+		<ResourceLinkPool>
+			<ComponentLink rRef="r0047" Usage="Output"/>
+			<LayoutIntentLink rRef="r0048" Usage="Input"/>
+			<ColorIntentLink rRef="r0049" Usage="Input"/>
+		</ResourceLinkPool>
+		<ResourcePool>
+			<LayoutIntent ID="r0048" Class="Intent" Status="Available"/>
+			<ColorIntent ID="r0049" Class="Intent" Status="Available"/>
+		</ResourcePool>
+	</JDF>
+	<JDF ID="n0050" Type="Product" Status="Waiting" JobPartID="Part3" 
+			DescriptiveName="Insert">
+		<ResourceLinkPool>
+			<ComponentLink rRef="r0051" Usage="Output"/>
+			<LayoutIntentLink rRef="r0052" Usage="Input"/>
+			<ColorIntentLink rRef="r0053" Usage="Input"/>
+		</ResourceLinkPool>
+		<ResourcePool>
+			<LayoutIntent ID="r0052" Class="Intent" Status="Available"/>
+			<ColorIntent ID="r0053" Class="Intent" Status="Available"/>
+		</ResourcePool>
+	</JDF>
+</JDF>

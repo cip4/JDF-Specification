@@ -1,0 +1,15 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<StrippingParams ID="FoldCatalogSample" Class="Parameter" Status="Available" 
+				WorkStyle="WorkAndBack" PartIDKeys="SheetName">
+			<BinderySignature FoldCatalog="F16-6"/>
+			<StrippingParams SheetName="Sheet1"/>
+			<StrippingParams SheetName="Sheet2"/>
+			<StrippingParams SheetName="Sheet3"/>
+		</StrippingParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<StrippingParamsLink Usage="Input" rRef="FoldCatalogSample"/>
+	</ResourceLinkPool>
+</JDF>

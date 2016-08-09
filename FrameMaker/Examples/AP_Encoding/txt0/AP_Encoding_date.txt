@@ -1,1 +1,0 @@
-﻿<Example StartDate="1999-05-31"/>

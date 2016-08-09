@@ -1,0 +1,16 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<ShapeDefProductionParams Class="Parameter" ID="Link0003"
+				Status="Available">
+			<ShapeTemplate>
+				<GeneralID IDUsage="L" DataType="double" IDValue="1440.0"/>
+				<GeneralID IDUsage="W" DataType="double" IDValue="720.0"/>
+				<GeneralID IDUsage="D" DataType="double" IDValue="1440.0"/>
+			</ShapeTemplate>
+		</ShapeDefProductionParams>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<ShapeDefProductionParamsLink Usage="Input" rRef="Link0003"/>
+	</ResourceLinkPool>
+</JDF>

@@ -1,0 +1,50 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="n20020626134204" 
+		Status="Waiting" JobPartID="ID345" Type="DigitalPrinting" Version="1.4">
+	<ResourcePool>
+		<!-- Media is partitioned so that it can be referenced 
+			from the AmountPool
+		--> 
+		<Media Class="Consumable" ID="r0006" PartIDKeys="RunIndex" 
+				Status="Available">
+			<Media RunIndex="0 -1"/>
+			<Media RunIndex="1 ~ -2"/>
+		</Media>
+		<DigitalPrintingParams Class="Parameter" ID="r0007" PartIDKeys="RunIndex" 
+				Status="Available">
+			<DigitalPrintingParams RunIndex="0 -1">
+				<!-- PartAmount with <Part RunIndex="0 -1"/> contains 
+					the partition details for this MediaRef -->
+				<MediaRef rRef="r0006">
+					<Part RunIndex="0 -1"/>
+				</MediaRef>
+			</DigitalPrintingParams>
+			<DigitalPrintingParams RunIndex="1 ~ -2">
+				<!-- PartAmount with <Part RunIndex="1 ~ -2"/> 
+					contains the partition details for this MediaRef 
+				-->
+				<MediaRef rRef="r0006">
+					<Part RunIndex="1 ~ -2"/>
+				</MediaRef>
+			</DigitalPrintingParams>
+		</DigitalPrintingParams>
+		<RunList Class="Parameter" ID="r0008" Status="Available" />
+		<Component Class="Quantity" ID="c0008" Status="Unavailable" 
+				ComponentType="Sheet" />
+	</ResourcePool>
+	<ResourceLinkPool>
+		<MediaLink Usage="Input" rRef="r0006">
+			<!-- the AmountPool contains the ResourceLink partition details -->
+			<AmountPool>
+				<PartAmount Orientation="Flip180">
+					<Part RunIndex="0 -1"/>
+				</PartAmount>
+				<PartAmount Orientation="Rotate0">
+					<Part RunIndex="1 ~ -2"/>
+				</PartAmount>
+			</AmountPool>
+		</MediaLink>
+		<DigitalPrintingParamsLink Usage="Input" rRef="r0007"/>
+		<RunListLink Usage="Input" rRef="r0008"/>
+		<ComponentLink Usage="Output" rRef="c0008"/>
+	</ResourceLinkPool>
+</JDF>

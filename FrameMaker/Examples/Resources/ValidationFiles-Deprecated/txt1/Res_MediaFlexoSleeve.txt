@@ -1,0 +1,24 @@
+<JDF ID="ID" Type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="ID34" Version="1.4">
+	<ResourcePool>
+		<Media Class="Consumable" ID="M123456" ProductID="FlexoSleeve" 
+				Status="Available" 
+				DescriptiveName="Sleeve" Dimension="1417.32 750.0" MediaType="Sleeve" 
+				PlateTechnology="FlexoDigitalSolvent" Manufacturer="PlateManufactererB" 
+				Brand="BrandB" BatchID="Batch 6789" Thickness="2810" 
+				ReliefThickness="500">
+			<!--	MediaLayers contains 2 items: the base layer and the 
+			----	photopolymer layer of the flexo plate 
+			-->
+			<MediaLayers>
+				<Media DescriptiveName="Base" MediaType="Plate" 
+						MediaTypeDetails="FlexoPlateBase" Thickness="1249"/>
+				<Media DescriptiveName="Photopolymer Layer" MediaType="Plate" 
+						MediaTypeDetails="FlexoPhotopolymer" Thickness="1570"/>
+			</MediaLayers>
+		</Media>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<MediaLink Usage="Input" rRef="M123456"/> 
+	</ResourceLinkPool>
+</JDF>

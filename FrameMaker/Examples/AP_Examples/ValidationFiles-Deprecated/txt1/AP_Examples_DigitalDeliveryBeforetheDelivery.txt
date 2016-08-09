@@ -1,0 +1,23 @@
+<JDF ID="SpawnTest" Type="DigitalDelivery"
+		xmlns="http://www.CIP4.org/JDFSchema_1_1" 
+		Status="Waiting" JobPartID="Part1" Version="1.4" >
+	<ResourcePool> 
+		<RunList ID="SourceFilesLink" Class="Parameter" Status="Available">
+			<LayoutElement>
+				<FileSpec URL="File:///e:/ToSend/xxx.pdf"/>
+			</LayoutElement>
+		</RunList>
+		<RunList ID="TargetFilesLink" Class="Parameter" Status="Unavailable">
+			<LayoutElement>
+				<FileSpec Compression="Gzip"/>
+			</LayoutElement>
+		</RunList>
+		<DigitalDeliveryParams ID="DDLink" Class="Parameter" Status="Available"/>
+	</ResourcePool>
+	<!-- ... -->
+	<ResourceLinkPool>
+		<DigitalDeliveryParamsLink rRef="DDLink" Usage="Input"/>
+		<RunListLink rRef="SourceFilesLink" Usage="Input"/>
+		<RunListLink  rRef="TargetFilesLink" Usage="Output"/>
+	</ResourceLinkPool>
+</JDF>

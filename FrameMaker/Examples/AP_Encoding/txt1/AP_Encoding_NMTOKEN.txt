@@ -1,1 +1,0 @@
-﻿<Example Alias="ABC_6"/>

@@ -1,1 +1,0 @@
-﻿<ContentObject ClipBox="0 0 3.14 21631.3" />

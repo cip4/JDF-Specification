@@ -1,0 +1,65 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<RunList Class="Parameter" ID="Ex3_RunList" Status="Available">
+			<LayoutElement>
+				<FileSpec URL="MyVDPRecords.vdpml" 
+					MimeType="application/x-evdpml+xml"/>
+			</LayoutElement>
+			<MetadataMap DataType="PartIDKeys" Name="RunTags" 
+					ValueFormat="%s" ValueTemplate="doctype" Context="Document">
+				<Expr Name="doctype" Value="CoverLetter">
+					<and>
+						<NameEvaluation 
+								Path="Metadata/@Key" RegExp="Part"/>
+						<NameEvaluation
+								Path="Metadata/@Value" RegExp="CoverLetter"/>
+					</and>
+				</Expr>
+				<Expr Name="doctype" Value="Brochure">
+					<and>
+						<NameEvaluation 
+								Path="Metadata/@Key" RegExp="Part"/>
+						<NameEvaluation 
+								Path="Metadata/@Value" RegExp="Brochure"/>
+					</and>
+				</Expr>
+			</MetadataMap>
+		</RunList>
+		<Media Class="Consumable" ID="Media1" Status="Available"/>
+		<!-- 
+			NOTE: MetadataMap(s) are applied to each document 
+			node input to the Imposition process independent of each other.
+		-->
+		<Layout Class="Parameter" ID="Ex2_Layout" Status="Available" 
+				PartIDKeys="RunTags SheetName Side" Automated="true" 
+				LockOrigins="true" BaseOrdReset="PagePool">
+			<MediaRef rRef="Media1"/> 
+			<!-- Used by Imposition process to obtain media dimensions -->
+			<Layout RunTags="CoverLetter">
+				<Layout SheetName="LetterSheet"> 
+					<Layout Side="Front">
+						<ContentObject CTM="1 0 0 1 0 0" Ord="0"/> 
+						<!-- First page of CoverLetter DocPart -->
+					</Layout>
+				</Layout>
+			</Layout>
+			<Layout RunTags="Brochure">
+				<Layout SheetName="BrochureSheets">
+					<Layout Side="Front">
+						<ContentObject CTM="1 0 0 1 0 0" Ord="0"/> 
+						<!--Front side of Brochure sheet -->
+					</Layout>
+					<Layout Side="Back">
+						<ContentObject CTM="1 0 0 1 0 0" Ord="1"/> 
+						<!--Back side of Brochure sheet -->
+					</Layout>
+				</Layout>
+			</Layout>
+		</Layout>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<RunListLink Usage="Input" rRef="Ex3_RunList"/>
+		<LayoutLink Usage="Input" rRef="Ex2_Layout"/>
+	</ResourceLinkPool>
+</JDF>

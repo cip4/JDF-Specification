@@ -1,1 +1,0 @@
-AP_Encoding_DateTimeRangeList.txt:   "1999-05-31T18:20:00Z ~ 1999-05-31T18:20:00Z 1999-05-31T13:20:00-05:00 ~ INF"/>

@@ -1,0 +1,34 @@
+﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool>
+		<RunList Class="Parameter" ID="L3" PartIDKeys="Run" Status="Available">
+			<MetadataMap DataType="String" Name="i1" ValueFormat="%s" 
+					ValueTemplate="s1">
+				<!--This expression maps the value of /Dokument/Rezipient/@Name to a 
+					variable "s1"-->
+				<Expr Name="s1" Path="/Dokument/Rezipient/@Name"/>
+			</MetadataMap>
+			<LayoutElement ElementType="Graphic">
+				<FileSpec URL="File:///Variable.pdf"/>
+			</LayoutElement>
+		</RunList>
+		<Layout Class="Parameter" ID="Link0003" Status="Available">
+			<!--The MarkObject in the Layout hierarchy: -->
+			<ContentObject CTM="1 0 0 1 0 0" Ord="0"/>
+			<MarkObject CTM="1 0 0 1 10 10">
+				<LayoutElement ElementType="Graphic">
+					<FileSpec URL="File:///MyReplace.pdf"/>
+				</LayoutElement>
+				<DynamicField 
+						Format="Replacement Text for %s goes in here at %s on %s" 
+						Ord="0" ReplaceField="___xxx___" Template="i1,Time,Date"/>
+				<DynamicField Format="More Replacement Text for %s go in here" 
+						Ord="0" ReplaceField="___yyy___" Template="SignatureName"/>
+			</MarkObject>
+		</Layout>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutLink Usage="Input" rRef="Link0003"/>
+		<RunListLink Usage="Input" rRef="L3"/>
+	</ResourceLinkPool>
+</JDF>

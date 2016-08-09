@@ -1,0 +1,14 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" SenderID="A3 Printer" 
+		TimeStamp="2005-03-25T12:32:48+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Response ID="M109" ReturnCode="5" Type="ResumeQueueEntry" 
+			xsi:type="ResponseResumeQueueEntry" refID="M009">
+		<Notification Class="Error" TimeStamp="2005-03-25T12:32:48+02:00" Type="Error">
+			<Comment>StartJob unsuccessful - Device does not handle commands</Comment>
+			<Error ErrorID="1234" Resend="Prohibited">
+				<ErrorData Path="/JMF/Command" ErrorType="Unsupported"/>
+			</Error>
+		</Notification>
+	</Response>
+</JMF>

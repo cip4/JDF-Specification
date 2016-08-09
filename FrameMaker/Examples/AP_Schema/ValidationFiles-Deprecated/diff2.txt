@@ -1,0 +1,4 @@
+diff all txt files
+AP_Schema_JDFNodes-xsitype-notInDefaultNamespace.txt
+AP_Schema_JDFNodes-xsitype.txt
+AP_Schema_JMF-xsitype.txt

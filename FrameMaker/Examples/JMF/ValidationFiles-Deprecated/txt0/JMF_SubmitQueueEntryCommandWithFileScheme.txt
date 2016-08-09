@@ -1,0 +1,8 @@
+﻿<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" DeviceID="A3 Printer" 
+		SenderID="MIS master A" TimeStamp="2005-07-25T12:32:48+02:00" 
+		MaxVersion="1.4" Version="1.4"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Command ID="M1" Type="SubmitQueueEntry" xsi:type="CommandSubmitQueueEntry">
+		<QueueSubmissionParams URL="File://MyNetWorkShare/AnyDirectory/job1.jdf"/>
+	</Command>
+</JMF>

@@ -1,0 +1,36 @@
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
+		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
+	<ResourcePool >
+		<BinderySignature Class="Parameter" ID="B4x2" NumberUp="4 2"
+				Status="Available"/>
+		<BinderySignature Class="Parameter" ID="B2x2" NumberUp="2 2" 
+				Status="Available"/>
+		<StrippingParams Class="Parameter" ID="L1" PartUsage="Implicit" 
+				Status="Available"
+				PartIDKeys="SheetName BinderySignatureName CellIndex" 
+				WorkStyle="WorkAndBack">
+			<BinderySignatureRef rRef="B4x2"/>
+			<StrippingParams JobID="Customer Job 1" SheetName="Sheet1">
+				<StrippingParams BinderySignatureName="B4x2">
+					<BinderySignatureRef rRef="B4x2"/>
+					<StripCellParams BleedFace="42" BleedSpine="0" MillingDepth="21"/>
+					<Position RelativeBox="0 0 0.5 1" Orientation="Rotate270"/>
+				</StrippingParams>
+				<StrippingParams BinderySignatureName="B2x2">
+					<BinderySignatureRef rRef="B2x2"/>
+					<StripCellParams BleedFace="42" BleedSpine="20" 
+							MillingDepth="84"/>
+					<Position RelativeBox="0.5 0 1 0.5"/>
+					<Position RelativeBox="0.5 0.5 1 1"/>
+					<StrippingParams CellIndex="3">
+						<StripCellParams BleedFace="10" BleedSpine="10" 
+								MillingDepth="48"/>
+					</StrippingParams>
+				</StrippingParams>
+			</StrippingParams>
+		</StrippingParams>
+	</ResourcePool >
+	<ResourceLinkPool>
+		<StrippingParamsLink Usage="Input" rRef="L1"/>
+	</ResourceLinkPool>
+</JDF>
