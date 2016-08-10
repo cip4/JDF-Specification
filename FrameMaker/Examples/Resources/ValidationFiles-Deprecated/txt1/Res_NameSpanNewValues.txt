@@ -1,8 +1,0 @@
-﻿<HoleType DataType="NameSpan" Range="36Hole 42Hole">
-	<Comment Name="36Hole">
-		6 equidistant holes on each side of a hexagonal piece of paper 
-	</Comment>
-	<Comment Name="42Hole">
-		7 equidistant holes on each side of a hexagonal piece of paper 
-	</Comment>
-</HoleType>

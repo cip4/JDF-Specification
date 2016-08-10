@@ -1,1 +1,0 @@
-﻿<ElementWithPath path="0 0 m 10 10 l 20 20 l"/>

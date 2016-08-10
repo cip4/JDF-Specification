@@ -1,1 +1,0 @@
-﻿<XXX XYrange="-INF 2 ~ 3 INF"/>

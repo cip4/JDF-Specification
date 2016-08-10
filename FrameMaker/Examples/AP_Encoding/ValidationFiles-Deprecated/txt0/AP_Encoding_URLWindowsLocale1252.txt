@@ -1,1 +1,0 @@
-﻿<Example URL="file://myHost/a/c%20Ã¤Ã¶Ã%25.pdf"/>

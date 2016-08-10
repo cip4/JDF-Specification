@@ -1,1 +1,0 @@
-﻿<Example IDREFS="R-12 R-16"/>

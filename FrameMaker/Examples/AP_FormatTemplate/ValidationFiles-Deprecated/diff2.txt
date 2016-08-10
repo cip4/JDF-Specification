@@ -1,2 +1,0 @@
-diff all txt files
-AP_FormatTemplate_File.txt

@@ -1,4 +1,0 @@
-﻿<Preview Class="Parameter" ID="P4" PartIDKeys="PreviewType Separation"
-		URL="File:///aaa.pdf" Status="Available">
-	<Preview PreviewType="Separation" Separation="Cyan"/>
-</Preview>

@@ -1,9 +1,0 @@
-﻿<ResourcePool>
-	<Layout Class="Parameter" ID="Sheet" Status="Available">
-		<Media Dimension="72 72" PartIDKeys="Location">
-			<Comment Name="foo">bar</Comment>
-			<Media Location="desk"/>
-			<Media Location="drawer"/>
-		</Media>
-	</Layout>
-</ResourcePool>

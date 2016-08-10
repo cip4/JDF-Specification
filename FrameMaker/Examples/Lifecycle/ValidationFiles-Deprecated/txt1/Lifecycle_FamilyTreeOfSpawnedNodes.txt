@@ -1,8 +1,0 @@
-﻿<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="A1" Status="Waiting" 
-		Type="ProcessGroup" JobPartID="ID300" Version="1.4">
-	<!-- ... -->
-	<AncestorPool>
-		<Ancestor FileName="file:///grandparent.jdf" NodeID="p_01"/>
-		<Ancestor FileName="file:///parent.jdf" NodeID="p_02"/>
-	</AncestorPool>
-</JDF>

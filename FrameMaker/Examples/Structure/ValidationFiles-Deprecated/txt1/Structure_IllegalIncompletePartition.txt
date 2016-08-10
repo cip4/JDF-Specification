@@ -1,5 +1,0 @@
-﻿<Preview Class="Parameter" ID="P2" PartIDKeys="PreviewType Separation"
-		Status="Available">
-	<Preview Separation="Cyan"/>
-	<Preview Separation="Magenta"/>
-</Preview>
