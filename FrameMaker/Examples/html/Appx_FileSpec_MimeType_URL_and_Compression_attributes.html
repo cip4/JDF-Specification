@@ -1,0 +1,4199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Appendix M	FileSpec Attributes and Container Subelement</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="AppTitle">
+<A NAME="0_pgfId-1014132"></A>Appendix M	<A NAME="0_91137"></A>FileSpec Attributes and Container Subelement</H1>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1016507"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016514"></A>The purpose of this appendix is to give a series of use cases with examples for the use of the Attributes of <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>: <SPAN CLASS="Attribute">
+MimeType</SPAN>
+, <SPAN CLASS="Attribute">
+URL</SPAN>
+, <SPAN CLASS="Attribute">
+Compression</SPAN>
+ and the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/<A HREF="Resources.html#0_66236" CLASS="XRef"><SPAN CLASS="Link-Element">
+Container</SPAN>
+</A> Subelement. These use cases include container packaging files, such as tar, zip and Multipart/Related files and container compression and encoding files, each of which require one or more <A HREF="Resources.html#0_66236" CLASS="XRef"><SPAN CLASS="Link-Element">
+Container</SPAN>
+</A> Subelements to link one <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> with its container <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>. </P>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1016549"></A>M.1	<A NAME="0_77295"></A>Examples of Attribute Values of FileSpec</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024303"></A><A HREF="Appx_FileSpec_MimeType_URL_and_Compression_attributes.html#0_99918" CLASS="XRef">Table M-1</A> shows a number of use cases and the corresponding values for the <SPAN CLASS="Attribute">
+MimeType</SPAN>
+, <SPAN CLASS="Attribute">
+URL</SPAN>
+ and <SPAN CLASS="Attribute">
+Compression</SPAN>
+ Attributes. Each <A HREF="Resources.html#0_66236" CLASS="XRef"><SPAN CLASS="Link-Element">
+Container</SPAN>
+</A> Element points to the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> shown on the next row in the table. The use cases are arranged in order of increasing complexity.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1017765"></A>Note: All of the <SPAN CLASS="Attribute">
+URL</SPAN>
+ examples in this appendix for <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> Resources that are not contained in other files are Absolute URIs, so that the complication of resolving <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URI</SPAN>
+ with <A HREF="Resources.html#0_RunList" CLASS="XRef"><SPAN CLASS="Link-Resource">
+RunList</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+Directory</SPAN>
+ is not considered. Of course, the <SPAN CLASS="Attribute">
+URL</SPAN>
+ examples for <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> Resources that are contained in other files <SPAN CLASS="ConformWord">
+must</SPAN>
+ all be Relative URIs (relative to the Base URI that is defined to be the Absolute URI of where the JDF Consumer extracted the container file) as the JDF spec requires (see the <SPAN CLASS="Attribute">
+URL</SPAN>
+ description at <SPAN CLASS="Link-internal">
+<A HREF="Resources.html#0_FileSpec" CLASS="XRef">Section 7.2.76, “FileSpec”</A></SPAN>
+).. </P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1041423"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1023616"></A>Table M-1: <A NAME="0_99918"></A>Use Cases showing MimeType, URL and Compression Attribute Values (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023624"></A>Description of Use Case</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023626"></A>Mime Type</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023628"></A>URL</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1023630"></A>Compression</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023632"></A><SPAN CLASS="Bold">
+1.)</SPAN>
+ Single a.pdf PDF file, no compression</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023634"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023636"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/share/a.pdf </SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023638"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023640"></A><SPAN CLASS="Bold">
+2.)</SPAN>
+ Single a.pdf PDF file, with Gzip compression</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023642"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023644"></A><SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023646"></A>Gzip</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023648"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023650"></A>Gzip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023652"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/a.gz</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023654"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023656"></A><SPAN CLASS="Bold">
+3.)</SPAN>
+ Single a.pdf PDF file, no compression, but Base64 encoded</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023658"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023660"></A><SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023662"></A>Base64</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023664"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023666"></A>Base64</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023668"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/a.mme</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023670"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023672"></A><SPAN CLASS="Bold">
+4.)</SPAN>
+ Single PDF file, no compression, but BinHex encoded into a BinHex file</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023674"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023676"></A><SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023678"></A>BinHex</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023680"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023682"></A>application/<SPAN CLASS="NoSpell">
+mac-binhex40</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023684"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/a.hqx</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023686"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023688"></A><SPAN CLASS="Bold">
+5.)</SPAN>
+ Single a.pdf PDF file with ZLIB compression in b.zip ZIP file (containing one or more files)</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023690"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023692"></A><SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023694"></A>ZLIB</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023696"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023698"></A>application/zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023700"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/b.zip</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023702"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023704"></A><SPAN CLASS="Bold">
+6.)</SPAN>
+ Single a.pdf PDF file compressed by Deflate in a b.zip with one or more files, and the b.zip packaging file itself is Base64 encoded as b.mme. To read, un-encode, then uncompress. To write, compress, then encode.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023706"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023708"></A><SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023710"></A>Deflate</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023712"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023714"></A>application/zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023716"></A><SPAN CLASS="NoSpell">
+b.zip</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023718"></A>Base64</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023720"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023722"></A>Base64</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023724"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/b.mme</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023726"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023728"></A><SPAN CLASS="Bold">
+7.)</SPAN>
+ Single myFiles/myPicture.jpg file in myNestedZip.zip file with one or many files, but the myNestedZip.zip is itself zipped into c.zip.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023730"></A>image/jpeg</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023732"></A><SPAN CLASS="NoSpell">
+myFiles/myPicture.jpg</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023734"></A>Deflate</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023736"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023738"></A>application/zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023740"></A><SPAN CLASS="NoSpell">
+myNestedZip.zip</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023742"></A>Deflate</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023744"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023746"></A>application/zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023748"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/c.zip</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023750"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1024364"></A><SPAN CLASS="Bold">
+8.)</SPAN>
+ Single a.pdf PDF file which is ZLIB compressed, in a c.zip with one or many files which is contained in a tar file and compressed with ZLIB into a .tar.gz file.</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023754"></A>application/pdf</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023756"></A><SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023758"></A>ZLIB</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023760"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023762"></A>application/zip</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023764"></A><SPAN CLASS="NoSpell">
+c.zip</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023766"></A>&nbsp;</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023768"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023773"></A>Tar<A HREF="#0_pgfId-1023772" CLASS="footnote">1</A></P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023775"></A><SPAN CLASS="NoSpell">
+d.tar</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023777"></A>ZLIB</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1023779"></A>Container FileSpec</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023781"></A><SPAN CLASS="NoSpell">
+GZip</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023783"></A><SPAN CLASS="NoSpell">
+ftp://www.any.com/d.tar.gz</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1023785"></A>&nbsp;</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1016559"></A>M.2	Corresponding XML examples</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017114"></A>The above use case examples are represented in XML as follows:</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024420"></A>Example M-1: FileSpec #1</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024516"></A>Single a.pdf PDF file, No Compression:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030076"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030077"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030078"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030079"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030080"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/share/a.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030081"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030082"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030083"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030084"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030085"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027001"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024440"></A>Example M-2: FileSpec #2</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024540"></A>Single <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ PDF file, with Gzip compression:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030088"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030089"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030090"></A>&lt;ResourcePool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030091"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot; </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030092"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Gzip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030093"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030094"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Gzip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/a.gz&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030095"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030096"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030097"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030098"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030099"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030100"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030101"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027013"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024444"></A>Example M-3: FileSpec #3</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024557"></A>Single <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ PDF file, no compression, but Base64 encoded:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030104"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030105"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030106"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030107"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030108"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Base64&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030109"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030110"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Base64&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/a.mme&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030111"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030112"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030113"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030114"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030115"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030116"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030117"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027571"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024448"></A>Example M-4: FileSpec #4</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024575"></A>Single PDF file, no compression, but BinHex encoded:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030225"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030226"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030227"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030228"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030229"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;BinHex&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030230"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030231"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/mac-binhex40&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030232"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/a.hqx&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030233"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030234"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030235"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030236"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030237"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030238"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030239"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027046"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024452"></A>Example M-5: FileSpec #5</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024584"></A>Single <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ PDF file, in <SPAN CLASS="NoSpell">
+b.zip</SPAN>
+ ZIP file containing one or more files:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030242"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030243"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030244"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030245"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030246"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ZLIB&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030247"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030248"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/b.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030249"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030250"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030251"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030252"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030253"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030254"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030255"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027063"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024456"></A>Example M-6: FileSpec #6</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024605"></A>Single <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ PDF file, in a <SPAN CLASS="NoSpell">
+b.zip</SPAN>
+ with one or more files, and the <SPAN CLASS="NoSpell">
+b.zip</SPAN>
+ packaging file itself is Base64 encoded as <SPAN CLASS="NoSpell">
+b.mme</SPAN>
+. To read, decode, then decompress. To write, compress, then encode.</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030258"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030259"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030260"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030261"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030262"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030263"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030264"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Base64&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030265"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030266"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Base64&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/b.mme&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030267"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030268"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030269"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030270"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030271"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030272"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030273"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030274"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030275"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027079"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024460"></A>Example M-7: FileSpec #7</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1026538"></A>Single <SPAN CLASS="NoSpell">
+myFiles/myPicture.jpg</SPAN>
+ file in <SPAN CLASS="NoSpell">
+myNestedZip.zip</SPAN>
+ file with one or many files, but the <SPAN CLASS="NoSpell">
+myNestedZip.zip</SPAN>
+ is itself zipped into <SPAN CLASS="NoSpell">
+c.zip</SPAN>
+ </P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029719"></A><SPAN CLASS="XMLCommon">
+</SPAN>
+&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029720"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029721"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029722"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029723"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;image/jpeg&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;myFiles/myPicture.jpg&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029724"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029725"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1029726"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;myNestedZip.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029727"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1029728"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code08">
+<A NAME="0_pgfId-1029729"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/c.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029730"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029731"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029732"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029733"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029734"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029735"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029736"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029737"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029738"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027549"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024464"></A>Example M-8: FileSpec #8</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024629"></A>Single <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ PDF file, which is ZLIB compressed in a <SPAN CLASS="NoSpell">
+c.zip</SPAN>
+ with one or many files which is contained in a tar file and compressed with ZLIB into <SPAN CLASS="NoSpell">
+a.tar.gz</SPAN>
+ file.:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029741"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029742"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029743"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029744"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; ID=&quot;F1&quot; Status=&quot;Available&quot;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029745"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ZLIB&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029746"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029747"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029748"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1029749"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ZLIB&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.tar&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code07">
+<A NAME="0_pgfId-1029750"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code08">
+<A NAME="0_pgfId-1029751"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;GZip&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code09">
+<A NAME="0_pgfId-1029752"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/d.tar.gz&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code07">
+<A NAME="0_pgfId-1029753"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1029754"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029755"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029756"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029757"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029758"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029759"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029760"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029761"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;F1&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029762"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029763"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027587"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1017115"></A>M.3	Additional examples showing Partitioning of FileSpec</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017144"></A>This section has additional examples of container files and various schemes of Partitioning.</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024468"></A>Example M-9: FileSpec #9</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024650"></A>Package <SPAN CLASS="NoSpell">
+b.zip</SPAN>
+ contains multiple pdf files <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+, <SPAN CLASS="NoSpell">
+b.pdf</SPAN>
+ etc.</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029766"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029767"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029768"></A>&lt;ResourcePool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029769"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; Status=&quot;Available&quot;<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_002&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029770"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029771"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/b.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029772"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; Status=&quot;Available&quot; <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;A_FILE&quot;</SPAN>
+</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029773"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029774"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029775"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029776"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_002&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029777"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029778"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029779"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ Class=&quot;Parameter&quot; Status=&quot;Available&quot;<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;B_FILE&quot;</SPAN>
+  </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029780"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029781"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029782"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029783"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_002&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029784"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029785"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029786"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029787"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029788"></A>&lt;FileSpecLink Usage=&quot;Input&quot; <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;A_FILE&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029789"></A>&lt;FileSpecLink Usage=&quot;Input&quot; <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;B_FILE&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029790"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029791"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027148"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024670"></A>Example M-10: FileSpec #10</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024671"></A>Package <SPAN CLASS="NoSpell">
+b.zip</SPAN>
+ contains two pdf files <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+, <SPAN CLASS="NoSpell">
+b.pdf</SPAN>
+ and a tiff, <SPAN CLASS="NoSpell">
+c.tiff</SPAN>
+ used by a Partitioned Resource</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029794"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029795"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029796"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029797"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_003&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029798"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/b.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029799"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ALL_FILES&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029800"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029801"></A><SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PartVersion&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029802"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029803"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_003&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029804"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029805"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029806"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;French&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029807"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/tif&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.tif&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029808"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029809"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029810"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029811"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;ALL_FILES&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029812"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029813"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027176"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024476"></A>Example M-11: FileSpec #11</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1024689"></A>Single <SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ PDF file, in <SPAN CLASS="NoSpell">
+b.zip</SPAN>
+ which is contained in <SPAN CLASS="NoSpell">
+c.tar</SPAN>
+ file:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029816"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029817"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029818"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029819"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_004_TAR&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029820"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/c.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029821"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_004_ZIP&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029822"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029823"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029824"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_004_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029825"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029826"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029827"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;C_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029828"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029829"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029830"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_004_ZIP&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029831"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029832"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029833"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029834"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029835"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;C_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029836"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029837"></A>&lt;/JDF&gt; </P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027198"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1025969"></A>Example M-12: FileSpec #11.1 -- No Partitioning </H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1017370"></A>Multiple files in several zip’s contained in a tar file, various examples with and without Partitioning, </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017371"></A> So the file layout looks like:</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1017372"></A>e.tar</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1017373"></A>c.zip</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017374"></A>a.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017375"></A>b.pdf</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1017376"></A>d.zip</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017377"></A>a.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017378"></A>b.pdf</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1047198"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029840"></A><SPAN CLASS="XMLCommon">
+</SPAN>
+&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029841"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029842"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029843"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029844"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/e.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029845"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029846"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029847"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029848"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029849"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029850"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029851"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029852"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029853"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029854"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029855"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029856"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029857"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;A_ENGLISH_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029858"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029859"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029860"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029861"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029862"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029863"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029864"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;B_ENGLISH_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029865"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029866"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029867"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029868"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029869"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029870"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029871"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;A_GERMAN_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029872"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029873"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029874"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029875"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029876"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029877"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029878"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;B_GERMAN_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029879"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029880"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029881"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029882"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029883"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029884"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029885"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029886"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029887"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;A_ENGLISH_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029888"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;B_ENGLISH_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029889"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;A_GERMAN_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029890"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;B_GERMAN_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029891"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029892"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027612"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024484"></A>Example M-13: FileSpec #11.2 -- <SPAN CLASS="Bold">
+ </SPAN>
+Intermediate container Partitioned</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029895"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029896"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029897"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029898"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029899"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/e.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029900"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029901"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PartVersion&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029902"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029903"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029904"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029905"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029906"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029907"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029908"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;A_ENGLISH_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029909"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029910"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029911"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029912"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029913"></A>&lt;<SPAN CLASS="XML-Tag">
+Part</SPAN>
+<SPAN CLASS="XMLAttrName">
+ PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029914"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029915"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029916"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029917"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;B_ENGLISH_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029918"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029919"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029920"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029921"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029922"></A>&lt;<SPAN CLASS="XML-Tag">
+Part</SPAN>
+<SPAN CLASS="XMLAttrName">
+ PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029923"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029924"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029925"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029926"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;A_GERMAN_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029927"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029928"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029929"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029930"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029931"></A>&lt;<SPAN CLASS="XML-Tag">
+Part</SPAN>
+<SPAN CLASS="XMLAttrName">
+ PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029932"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029933"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029934"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029935"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;B_GERMAN_FILE&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029936"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029937"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029938"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029939"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029940"></A>&lt;<SPAN CLASS="XML-Tag">
+Part</SPAN>
+<SPAN CLASS="XMLAttrName">
+ PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029941"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029942"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029943"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029944"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029945"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029946"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;A_ENGLISH_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029947"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;B_ENGLISH_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029948"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;A_GERMAN_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029949"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;B_GERMAN_FILE&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029950"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029951"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027289"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024488"></A>Example M-14: FileSpec #11.3 -- the pdf is Partitioned</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029954"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029955"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029956"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029957"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029958"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/e.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029959"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029960"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029961"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029962"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029963"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029964"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029965"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029966"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029967"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029968"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029969"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029970"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029971"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+<SPAN CLASS="XMLAttrName">
+ ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ALL_FILES&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029972"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PartVersion DocIndex&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029973"></A>&lt;!-- English Files --&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029974"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029975"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029976"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029977"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029978"></A>&lt;!-- English File A --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029979"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029980"></A>&lt;!-- English File B --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029981"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029982"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029983"></A>&lt;!-- German Files --&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029984"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029985"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1029986"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029987"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029988"></A>&lt;!-- German File A --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029989"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029990"></A>&lt;!-- German File B --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1029991"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1029992"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029993"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029994"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029995"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1029996"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;ALL_FILES&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1029997"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1029998"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027348"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024499"></A>Example M-15: FileSpec #11.3a -- the pdf is Partitioned, Different File Layout</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1017448"></A>As above but the file layout is not reflected in the container structure, the files are intermingled </P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030120"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030121"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030122"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030123"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030124"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/e.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030125"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030126"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030127"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030128"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030129"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030130"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030131"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030132"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030133"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030134"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030135"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030136"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030137"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ALL_FILES&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030138"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030139"></A><SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PartVersion DocIndex&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030140"></A>&lt;!-- English Files --&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030141"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030142"></A>&lt;!-- English File A --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030143"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030144"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030145"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030146"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030147"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030148"></A>&lt;!-- English File B --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030149"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030150"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030151"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030152"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030153"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030154"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030155"></A>&lt;!-- German Files --&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030156"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030157"></A>&lt;!-- German File A --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030158"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030159"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030160"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030161"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030162"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030163"></A>&lt;!-- German File B --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030164"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030165"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030166"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030167"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030168"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030169"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030170"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030171"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030172"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030173"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;ALL_FILES&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030174"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030175"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027395"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024503"></A>Example M-16: FileSpec #11.4 -- Both Partitioned</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030178"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030179"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030180"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030181"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030182"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/e.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030183"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030184"></A><SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PartVersion&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030185"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030186"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030187"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030188"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030189"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030190"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030191"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ALL_FILES&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030192"></A><SPAN CLASS="XMLAttrName">
+PartIDKeys</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PartVersion DocIndex&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030193"></A>&lt;!-- English Files --&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030194"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030195"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030196"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030197"></A>&lt;<SPAN CLASS="XML-Tag">
+Part</SPAN>
+<SPAN CLASS="XMLAttrName">
+ PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;English&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030198"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030199"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030200"></A>&lt;!-- English File A --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030201"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030202"></A>&lt;!-- English File B --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030203"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030204"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030205"></A>&lt;!-- German Files --&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030206"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030207"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030208"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIPS&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030209"></A>&lt;<SPAN CLASS="XML-Tag">
+Part</SPAN>
+<SPAN CLASS="XMLAttrName">
+ PartVersion</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;German&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030210"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030211"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030212"></A>&lt;!-- German File A --&gt; </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030213"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;a.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030214"></A>&lt;!-- German File B --&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030215"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocIndex</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;b.pdf&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030216"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030217"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030218"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030219"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030220"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;ALL_FILES&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030221"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030222"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027453"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024507"></A>Example M-17: FileSpec #12</H2>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1018286"></A>Multiple PDF and TIFF files in several zip's contained in a tar file. Use all PDF files in <SPAN CLASS="NoSpell">
+c.zip</SPAN>
+, using the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+FileFormat</SPAN>
+ mechanism and just Pictures/<SPAN CLASS="NoSpell">
+TIFS</SPAN>
+/<SPAN CLASS="NoSpell">
+a.pdf</SPAN>
+ in <SPAN CLASS="NoSpell">
+d.zip</SPAN>
+. File layout looks like:</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1017500"></A>e.tar</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1017501"></A>c.zip</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017502"></A>a.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017503"></A>a.tif</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017504"></A>b.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017505"></A>b.tif</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1017506"></A>d.zip</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017507"></A>PDFS/a.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017508"></A>PDFS/b.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017509"></A>Pictures/TIFS/a.pdf</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1017510"></A>Pictures/TIFS/b.pdf</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1017511"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030001"></A>&lt;JDF xmlns=&quot;http://www.CIP4.org/JDFSchema_1_1&quot; ID=&quot;A1&quot; Status=&quot;Waiting&quot; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030002"></A>Type=&quot;ProcessGroup&quot; JobPartID=&quot;ID300&quot; Version=&quot;1.4&quot;&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030003"></A>&lt;ResourcePool&gt; </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030004"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Tar&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030005"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ftp://www.any.com/e.tar&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030006"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030007"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;c.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030008"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030009"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030010"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030011"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030012"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030013"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;d.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030014"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030015"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_TAR&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030016"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030017"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030018"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;PDF_FILES&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030019"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+FileFormat</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;%s.pdf&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+FileTemplate</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;all&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030020"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030021"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030022"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_C&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030023"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030024"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030025"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Pictures&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030026"></A><SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Pictures/TIFS/a.pdf&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030027"></A>&lt;<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030028"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+<SPAN CLASS="XMLAttrName">
+ rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_005_ZIP_D&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030029"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container&gt;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030030"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030031"></A>&lt;/ResourcePool&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030032"></A>&lt;ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030033"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;PDF_FILES&quot;/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030034"></A>&lt;FileSpecLink Usage=&quot;Input&quot; rRef=&quot;Pictures&quot;/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030035"></A>&lt;/ResourceLinkPool&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030036"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1027500"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1017134"></A>M.4	Example of an Intent Job Ticket with a doubly nested ZIP packaging file</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1023857"></A>Here is a complete example of an intent Job ticket using <A HREF="Resources.html#0_ArtDeliveryIntent" CLASS="XRef"><SPAN CLASS="Link-Resource">
+ArtDeliveryIntent</SPAN>
+</A> with a doubly nested packaging file<SPAN CLASS="NoSpell">
+. T</SPAN>
+he example shows a <SPAN CLASS="NoSpell">
+myPictures.jpg</SPAN>
+ file that is contained in <SPAN CLASS="NoSpell">
+myNestedZip.zip</SPAN>
+ file which is contained in <SPAN CLASS="NoSpell">
+myZip.zip</SPAN>
+ file:</P>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1024511"></A>Example M-18: Intent Job Ticket</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030039"></A>&lt;<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal01&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;bookJob&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030040"></A><SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;bookJob-1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Waiting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Product&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030041"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030042"></A>&lt;<SPAN CLASS="XML-Tag">
+ArtDeliveryIntent</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Intent&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal02&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Draft&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030043"></A>&lt;<SPAN CLASS="XML-Tag">
+ArtDelivery</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ArtDeliveryType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;DigitalMedia&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030044"></A>&lt;<SPAN CLASS="XML-Tag">
+RunListRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal05&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030045"></A>&lt;/<SPAN CLASS="XML-Tag">
+ArtDelivery</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030046"></A>&lt;/<SPAN CLASS="XML-Tag">
+ArtDeliveryIntent</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030047"></A>&lt;<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal05&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030048"></A>&lt;<SPAN CLASS="XML-Tag">
+LayoutElement</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030049"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;image/jpeg&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030050"></A><SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;myFiles/myPicture.jpg&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030051"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1030052"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_002&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1030053"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030054"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030055"></A>&lt;/<SPAN CLASS="XML-Tag">
+LayoutElement</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030056"></A>&lt;/<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030057"></A>&lt;<SPAN CLASS="XML-Tag">
+Component</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Amount</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;100&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Quantity&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ComponentType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FinalProduct&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030058"></A><SPAN CLASS="XMLAttrName">
+DescriptiveName</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrValue">
+Test&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal03&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030059"></A><SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Unavailable&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030060"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_001&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030061"></A><SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/myZip.zip&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030062"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Deflate&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030063"></A><SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_002&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+MimeType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;application/zip&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;myNestedZip.zip&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030064"></A>&lt;<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1030065"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpecRef</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID_001&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1030066"></A>&lt;/<SPAN CLASS="XML-Tag">
+Container</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030067"></A>&lt;/<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030068"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030069"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030070"></A>&lt;<SPAN CLASS="XML-Tag">
+ComponentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Amount</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;100&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal03&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1030071"></A>&lt;<SPAN CLASS="XML-Tag">
+ArtDeliveryIntentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpecProposal02&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1030072"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1030073"></A> &lt;/<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026911"></A>&nbsp;</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1023888"></A>M.5	<A NAME="0_87780"></A>AppOS and OSVersion Attributes</H2>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1018423"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018424"></A>This section lists examples values for the following Attributes of the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> Resource: <SPAN CLASS="Attribute">
+AppOS</SPAN>
+ and <SPAN CLASS="Attribute">
+OSVersion</SPAN>
+. The listing is intended to be exhaustive for the most likely operating systems that are routinely used in JDF applications. However, other operating systems and combinations <SPAN CLASS="ConformWord">
+may</SPAN>
+ be used as well. When operating systems have new versions, they can be used and <SPAN CLASS="ConformWord">
+should</SPAN>
+ follow the patterns established in this the following table.</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1041429"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1018427"></A>Table M-2: AppOS and OSVersion Examples (Section 1 of 2)</H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1018433"></A>AppOS</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1018435"></A>OSVersion</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1018437"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018439"></A>Linux</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018441"></A><SPAN CLASS="NoSpell">
+2.2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018443"></A>Linux operation system</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018445"></A>Mac</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018447"></A><SPAN CLASS="NoSpell">
+10.2.4</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018449"></A>Macintosh operation system</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018451"></A>Solaris</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018453"></A><SPAN CLASS="NoSpell">
+4.0</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018455"></A>Sun Solaris operation system</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018457"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018459"></A><SPAN CLASS="NoSpell">
+BSD</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018461"></A>Berkeley UNIX</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018463"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018465"></A><SPAN CLASS="NoSpell">
+V</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018467"></A>System <SPAN CLASS="NoSpell">
+V</SPAN>
+ UNIX</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018469"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018471"></A><SPAN CLASS="NoSpell">
+V.1</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018473"></A>System <SPAN CLASS="NoSpell">
+V</SPAN>
+ UNIX</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018475"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018477"></A><SPAN CLASS="NoSpell">
+V.2</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018479"></A>System <SPAN CLASS="NoSpell">
+V</SPAN>
+ UNIX</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018481"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018483"></A><SPAN CLASS="NoSpell">
+V.3</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018485"></A>System <SPAN CLASS="NoSpell">
+V</SPAN>
+ UNIX</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018487"></A>UNIX</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018489"></A><SPAN CLASS="NoSpell">
+PC</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018491"></A>UNIX for the PC</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018493"></A>Windows</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018495"></A><SPAN CLASS="NoSpell">
+95</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018497"></A>Windows 95</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018499"></A>Windows</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018501"></A><SPAN CLASS="NoSpell">
+98</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018503"></A>Windows 98</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018505"></A>Windows</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018507"></A><SPAN CLASS="NoSpell">
+NT</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018509"></A>Windows <SPAN CLASS="NoSpell">
+NT</SPAN>
+</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018511"></A>Windows</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018513"></A><SPAN CLASS="NoSpell">
+NT-5</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018515"></A>Windows 2000</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018517"></A>Windows</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018519"></A><SPAN CLASS="NoSpell">
+NT-5.1</SPAN>
+</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1018521"></A><SPAN CLASS="NoSpell">
+XP</SPAN>
+ [not yet registered by Microsoft with IANA]</P>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1018421"></A>&nbsp;</P>
+</DIV>
+</DIV>
+<HR>
+<DIV CLASS="footnotes">
+<DIV CLASS="footnote">
+<P CLASS="TableFootnote">
+<SPAN CLASS="footnoteNumber">
+1.</SPAN>
+<A NAME="0_pgfId-1023772"></A>The UNIX Tar file packaging format is not registered with IANA as a MIME media type, so CIP4 has assigned the “Tar” file type to it for use in the <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+MimeType</SPAN>
+ Attribute.</P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

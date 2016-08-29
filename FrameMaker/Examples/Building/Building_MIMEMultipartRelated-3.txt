@@ -1,0 +1,5 @@
+--unique-boundary
+Content-Type: application/vnd.cip4-jdf+xml
+Content-Transfer-Encoding: 8bit
+Content-ID: <JDF1@hostname.com>
+Content-Disposition: attachment; filename="Ticket01.jdf";

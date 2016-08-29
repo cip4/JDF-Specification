@@ -1,0 +1,1315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="GENERATOR" CONTENT="Adobe FrameMaker 7.0/HTML Export Filter">
+<LINK REL="STYLESHEET" HREF="JDF.css" CHARSET="UTF-8" TYPE="text/css">
+<TITLE> Chapter 8	Building a System Around JDF</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<DIV>
+<H1 CLASS="ChapTitle">
+<A NAME="0_pgfId-1015605"></A>Chapter 8	<A NAME="0_43104"></A>Building a System Around JDF</H1>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1015606"></A>8.1	Implementation Considerations and Guidelines</H2>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1026252"></A><SPAN CLASS="RunInHeader">
+JDF parsing.</SPAN>
+ JDF Devices <SPAN CLASS="ConformWord">
+must</SPAN>
+ implement JDF parsing. At a minimum, a Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ be able to search the JDF to find a Node whose Process type it is able to execute. The details of the search algorithm are implementation dependent and can be as simple as searching only in the JDF Root Node. In addition, a Device <SPAN CLASS="ConformWord">
+must</SPAN>
+ be able to consume the inputs and produce the outputs for each Process type it is able to execute. See <SPAN CLASS="Link-internal">
+<A HREF="Life_Cycle_of_JDF.html#0_57200" CLASS="XRef">Section 4.2.1, “Determining Executable Nodes”</A></SPAN>
+.</P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1015625"></A><SPAN CLASS="RunInHeader">
+Test run.</SPAN>
+ To reduce failures during processing, it is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ that either individual Devices or their Controller support the test-run functionality. This prevents the case where a Device begins processing a Node that is incomplete or malformed.</P>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1015489"></A>8.2	JDF and JMF Interchange Protocol</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015490"></A>A system of vendor-independent elements <SPAN CLASS="ConformWord">
+should</SPAN>
+ define a protocol that allows them to interchange information based on JDF and JMF. In version JDF 1.2 and above, the restrictions on transport layer have been loosened.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1015497"></A>8.2.1	File-Based Protocol (JDF + JMF)</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020632"></A>The file-based protocol is a solution for JDF Job tickets and JMF Messages. A file-based protocol can be based on hot folders. A Device that implements hot holders <SPAN CLASS="ConformWord">
+must</SPAN>
+ define an input hot folder and an output folder for JDF. In addition, the <A HREF="JMF.html#0_SubmitQueueEntry" CLASS="XRef"><SPAN CLASS="Link-Message">
+SubmitQueueEntry</SPAN>
+</A> Message contains a URL Attribute that allows specification of arbitrary JDF locators. Implementation of JDF file-based protocol is simple, but it is important to note that the protocol does not support acknowledgement receipts for protocol error handling. It requires that the receiver polls the output folder of the processor. Finally, granting read/write access to your hot folder negates the security functions.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1024416"></A>8.2.1.1	JMF Transport Using a Hot Folder</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024428"></A>If a JDF (or a MIME package containing a JDF) is placed into a hot folder, this is an implicit submission to the Queue that watches the hot folder. See <A HREF="JMF.html#0_SubmitQueueEntry" CLASS="XRef"><SPAN CLASS="Link-Message">
+SubmitQueueEntry</SPAN>
+</A> and related JMF Messages for details on queues.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1017781"></A>8.2.1.2	<A NAME="0_59283"></A>JMF Transport Using the File Protocol</H4>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1017831"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017790"></A>In order to allow JMF messaging based on a file protocol, a set of additional conventions <SPAN CLASS="ConformWord">
+must</SPAN>
+ be defined. There are some important differences between http and file-based protocols that <SPAN CLASS="ConformWord">
+must</SPAN>
+ be taken into account:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017791"></A>HTTP provides a URL to which the sender sends the file, while with the file protocol, the sender provides the URL to the receiver that specifies a location that is accessible to the receiver. </LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018640"></A>HTTP is a synchronous protocol that ensures an immediate response, whereas the file protocol is asynchronous. Therefore, an application <SPAN CLASS="ConformWord">
+must</SPAN>
+ either poll for responses or react to operating system events that signal the existence of the response file.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017792"></A>HTTP provides a method for detecting that an incoming request is complete. Access to the file from the reading and writing application <SPAN CLASS="ConformWord">
+must</SPAN>
+ be synchronized, so the reader does not read an incomplete file that is still being written.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017793"></A>When the receiving end of an HTTP connection is unavailable, the sender is immediately aware that it is unable to connect. In case of a file, the file will simply be orphaned and the sender <SPAN CLASS="ConformWord">
+must</SPAN>
+ check whether the file has been retrieved by the receiver.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017794"></A>With HTTP the sender pushes the request. With the file protocol if the sender writes the file, the sender <SPAN CLASS="ConformWord">
+must</SPAN>
+ ensure that the path to the file does not clash with some other sender’s file, including any directories that the sender might have to create. </LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018404"></A>HTTP connections are transient. Files <SPAN CLASS="ConformWord">
+must</SPAN>
+ be removed by the receiver after reading them, depending on the supplied <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A>/<A HREF="Resources.html#0_Disposition" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Disposition</SPAN>
+</A>.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017795"></A>The response to an HTTP command is received on the same connection, whereas the response to a file query <SPAN CLASS="ConformWord">
+must</SPAN>
+ be placed into a new file. Therefore the expected location of the response file <SPAN CLASS="ConformWord">
+must</SPAN>
+ be specified by the application that generates the query.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017796"></A>An HTTP socket can accept multiple Acknowledge Messages on the same socket in sequence. Multiple Acknowledges as files <SPAN CLASS="ConformWord">
+must</SPAN>
+ follow a unique naming scheme in order to avoid overwriting existing Acknowledge files. </LI>
+</UL>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1015506"></A>8.2.2	HTTP-Based Protocol (JDF + JMF) </H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015507"></A>HTTP <A HREF="APPX_References.html#0_[RFC2616]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2616]</SPAN>
+</A> is a stable, vendor-independent protocol, and it supports a variety of advantageous features. For example, it offers a wide availability of tools. It is already a common technology among vendors who use HTTP, and it has a well defined query-response mechanism (HTTP post message). It also offers widespread firewall support and secure connections via SSL (see <A HREF="APPX_References.html#0_[SSL3]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[SSL3]</SPAN>
+</A>) when using HTTPS.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1015514"></A>8.2.2.1	Protocol Implementation Details</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015515"></A>JDF Messaging does not specify a standard port. </P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1015516"></A>Implementation of Messages</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024337"></A>Only HTTP servers <SPAN CLASS="ConformWord">
+must</SPAN>
+ be targeted by <A HREF="JMF.html#0_11190" CLASS="XRef"><SPAN CLASS="Link-Element">
+Query</SPAN>
+</A> Messages or <A HREF="JMF.html#0_65248" CLASS="XRef"><SPAN CLASS="Link-Element">
+Command</SPAN>
+</A> Messages. This is done with a standard HTTP Post request. The JMF is the body of the HTTP post message. The <A HREF="JMF.html#0_58537" CLASS="XRef"><SPAN CLASS="Link-Element">
+Response</SPAN>
+</A> Message is the body of the response to the initiated HTTP post. <A HREF="JMF.html#0_75990" CLASS="XRef"><SPAN CLASS="Link-Element">
+Signal</SPAN>
+</A> and <A HREF="JMF.html#0_98535" CLASS="XRef"><SPAN CLASS="Link-Element">
+Acknowledge</SPAN>
+</A> Messages are also implemented as HTTP post messages. The body of the HTTP response to these Messages is empty.</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1015518"></A>HTTP Push Mechanisms</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015519"></A>Since HTTP is a stateless protocol, push mechanisms, such as regular status bar updates, are non-trivial when communicating with a client. Workarounds can, however, be implemented. For example, a Java applet that polls the server in regular intervals can be used.</P>
+</DIV>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1019375"></A>8.2.3	<A NAME="0_84549"></A>HTTPS-Based Protocol - SSL with two-way authentication</H3>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1019380"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.3</SPAN>
+</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1019376"></A>8.2.3.1	Purpose</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1025708"></A>The addition of support for the HTTPS Protocol for use in JMF systems from JDF Spec version 1.3 onwards is not so much about Encryption as about Authentication. Customers of JMF based system have a need to be able to exchange Messages securely between systems in their facility without fear of intervention from outside sources or from malicious acts. The solution needs to be able to sustain authentication without having to exchange username and password on every call, is platform and implementation language independent and is capable of working across firewalls (though configuration of firewalls might be required in an individual installation). </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024495"></A>Support for JMF over HTTPS does not require the implementation of any additional JMF messages, though the <A HREF="JMF.html#0_RequestForAuthentication" CLASS="XRef"><SPAN CLASS="Link-Message">
+RequestForAuthentication</SPAN>
+</A> Message (which is new in 1.4) may be used to exchange certificates and establish a secure connection.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024496"></A>On a web server, the server provides its certificate to you. The client decides whether to accept communication. With two-way authentication client authentication is required.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1024498"></A>8.2.3.2	Certificates </H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024499"></A>JMF over HTTPS requires both parties to provide exchange and validate certificates. The certificates MUST contain the core four fields of the X.509 format and the UserID. Any additional fields are OPTIONAL. These fields are:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024500"></A>Common Name (Abbreviation CN) (i.e. hostname which could be an IP address or DNS name by which the receiver knows the sender), </LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024501"></A>Organization Unit (Abbreviation OU)</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024502"></A>Organization (Abbreviation O)</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024503"></A>Country (Abbreviation C)</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1025714"></A>UserID (Abbreviation UID) - this MUST be the SenderID that messages from the sender will be identified by. This would be the client's SenderID for commands, queries, and signals, and the server's SenderID for responses and acknowledges</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1025715"></A>givenName? - The vendor name, product name, and any other information about the product MAY be optionally included in the certificate using the givenName certificate field.</LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1024585"></A>Example for XYZ Software's XYZImpose product:</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1024586"></A>CN=impose7.printinginc.internal OU=Prepress O=Printing, Inc. </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1024592"></A>C=US UID=XYZImpose7 givenName=XYZ Software XYZImpose v7.0</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024508"></A>More information can be found at <SPAN CLASS="Link-External">
+http://www.rsasecurity.com/rsalabs/node.asp?id=2307</SPAN>
+</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024510"></A>Certificates can be generated by any certificate generation tool such as Sun Keytool. See <A HREF="Building_a_System_Around_JDF.html#0_46444" CLASS="XRef">Section 8.2.3.5.2, “Example of Sun Keytool Usage”</A>.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024511"></A>The certificates should be self-signed to remove the need to access third-party Certificate Authorities.</P>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1024512"></A>8.2.3.2.1	Verification of Certificates</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024513"></A>Certificates should be verified against the hostname of the machine. Therefore certificates should reference the ma-chine and may need to be generated on site. </P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1024514"></A><SPAN CLASS="NoteLeadIn">
+Note:</SPAN>
+ The difference between the hostname and the IP address is that if the IP address changes, this will effectively revoke the certificate. However, if the hostname is used, then the name MUST be resolvable by the receiver using either DNS or local name resolution.</P>
+</DIV>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1024515"></A>8.2.3.3	Exchange of Certificates</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024516"></A>Certificates may be exchanged and authenticated by the following sequence which makes use of the <A HREF="JMF.html#0_RequestForAuthentication" CLASS="XRef"><SPAN CLASS="Link-Message">
+RequestForAuthentication</SPAN>
+</A> Message.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024517"></A>The <A HREF="JMF.html#0_RequestForAuthentication" CLASS="XRef"><SPAN CLASS="Link-Message">
+RequestForAuthentication</SPAN>
+</A> Message includes a requirement that the recipient return its appropriate certificate on receipt of the sender's certificate, based on the value of the <SPAN CLASS="Attribute">
+AuthenticationType</SPAN>
+ Attribute.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024519"></A>The likely sequence of events between two parties, A and B, can be summarized as follows:</P>
+<P CLASS="AnchorFigure">
+<A NAME="0_pgfId-1025066"></A>&nbsp;</P>
+<TABLE>
+<CAPTION>
+<H6 CLASS="Caption-Figure">
+<A NAME="0_pgfId-1049412"></A>Figure 8-1: Example of Exchange of Certificates</H6>
+</CAPTION>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="AnchorOnlySmall">
+<A NAME="0_pgfId-1025063"></A>&nbsp;</P>
+<DIV>
+<IMG SRC="Building_a_System_Around_JDF-1.png">
+</DIV>
+</TD>
+</TR>
+</TABLE>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024631"></A>We now have 2 way authentication in one direction with <SPAN CLASS="Bold-italics">
+A</SPAN>
+ as the client, and <SPAN CLASS="Bold-italics">
+B</SPAN>
+ as the server. To complete the other direction, there are two possibilities:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024632"></A>The Process is repeated with <SPAN CLASS="Bold-italics">
+B</SPAN>
+ sending a <A HREF="JMF.html#0_RequestForAuthentication" CLASS="XRef"><SPAN CLASS="Link-Message">
+RequestForAuthentication</SPAN>
+</A> to <SPAN CLASS="Bold-italics">
+A</SPAN>
+ using the same steps.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1024633"></A><SPAN CLASS="Bold-italics">
+A</SPAN>
+ to initiate the same steps, but sets the <SPAN CLASS="Attribute">
+AuthenticationType</SPAN>
+ Attribute to <SPAN CLASS="Enumeration">
+&quot;AsServer&quot;</SPAN>
+, and provides its Secure URL in the <A HREF="JMF.html#0_AuthenticationCmdParams" CLASS="XRef"><SPAN CLASS="Link-Element">
+AuthenticationCmdParams</SPAN>
+</A> Element.</LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1024635"></A>If the certificate received by <SPAN CLASS="Bold-italics">
+A</SPAN>
+ in the response from <SPAN CLASS="Bold-italics">
+B</SPAN>
+ is bad, then <SPAN CLASS="Bold-italics">
+B</SPAN>
+'s trust of <SPAN CLASS="Bold-italics">
+A</SPAN>
+ must be manually deleted. Then <SPAN CLASS="Bold-italics">
+A</SPAN>
+ can repeat the above steps.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024636"></A>If the certificate received by <SPAN CLASS="Bold-italics">
+A</SPAN>
+ at some later time goes bad, then <SPAN CLASS="Bold-italics">
+A</SPAN>
+ can repeat the above steps over a secure channel, with the <SPAN CLASS="Attribute">
+Reason</SPAN>
+ Attribute set appropriately to indicate a problem. Effectively it is saying “I'm serving you notice that your certificate is bad; send me a new one”. <SPAN CLASS="Bold-italics">
+B</SPAN>
+'s response will be to present a certificate that should be different to the one previously sent. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024638"></A>If party <SPAN CLASS="Bold-italics">
+B</SPAN>
+ realizes that it needs to re-issue it's server certificate, it MAY send a <A HREF="JMF.html#0_RequestForAuthentication" CLASS="XRef"><SPAN CLASS="Link-Message">
+RequestForAuthentication</SPAN>
+</A> Command to party <SPAN CLASS="Bold-italics">
+A</SPAN>
+'s secure URL, with the <SPAN CLASS="Attribute">
+AuthenticationType</SPAN>
+ Attribute set to &quot;<SPAN CLASS="Enumeration">
+AsServer</SPAN>
+&quot;. <SPAN CLASS="Bold-italics">
+A</SPAN>
+ should then respond appropriately.</P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1024641"></A><SPAN CLASS="NoteLeadIn">
+Reconnection:</SPAN>
+ if certificates have been exchanged, but the secure URL has been lost, reconnection can be facilitated by sending a <A HREF="JMF.html#0_KnownControllers" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownControllers</SPAN>
+</A> Query to the system whose URL has been lost. If the signed certificate has been lost, then the existing trust relationships MUST be manually deleted, then a repeat of the above steps.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1024642"></A>8.2.3.4	Standards</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024643"></A>See <A HREF="APPX_References.html#0_[SSL3]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[SSL3]</SPAN>
+</A> and <A HREF="APPX_References.html#0_[X.509]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[X.509]</SPAN>
+</A>.</P>
+</DIV>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1024649"></A>8.2.3.5	Implementation</H4>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024650"></A>If a client communicates with a server over an HTTPS connection and at some point the client receives a “permission denied” HTTP response, this indicated that the secure connection has been revoked and that the client needs to resubmit the <A HREF="JMF.html#0_RequestForAuthentication" CLASS="XRef"><SPAN CLASS="Link-Message">
+RequestForAuthentication</SPAN>
+</A> message.</P>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1024651"></A>8.2.3.5.1	Discovery Messages</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024652"></A>The <A HREF="JMF.html#0_12961" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownDevices</SPAN>
+</A> Message has been extended so that <A HREF="Resources.html#0_Device" CLASS="XRef"><SPAN CLASS="Link-Resource">
+Device</SPAN>
+</A> Resource has a new Attribute <SPAN CLASS="Attribute">
+SecureJMFURL</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1024653"></A>The <A HREF="JMF.html#0_KnownMessages" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownMessages</SPAN>
+</A> Message has been extended to indicate which Messages are supported under which protocols, by adding the <SPAN CLASS="Attribute">
+URLSchemes</SPAN>
+ Attribute to the <A HREF="JMF.html#0_42531" CLASS="XRef"><SPAN CLASS="Link-Element">
+MessageService</SPAN>
+</A> Element. The <A HREF="JMF.html#0_KnownControllers" CLASS="XRef"><SPAN CLASS="Link-Message">
+KnownControllers</SPAN>
+</A> Message has been extended so that the <A HREF="JMF.html#0_18234" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDFController</SPAN>
+</A> Element has a new Attribute <SPAN CLASS="Attribute">
+URLType</SPAN>
+, allowing discovery of a Device or Controller's various URL's, and to be able to filter the response using a <A HREF="JMF.html#0_ControllerFilter" CLASS="XRef"><SPAN CLASS="Link-Element">
+ControllerFilter</SPAN>
+</A> that is new in JDF 1.4. The filter may specify a <SPAN CLASS="Attribute">
+ControllerID</SPAN>
+ or <SPAN CLASS="Attribute">
+DeviceID</SPAN>
+ in <A HREF="JMF.html#0_ControllerFilter" CLASS="XRef"><SPAN CLASS="Link-Element">
+ControllerFilter</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+ControllerID,</SPAN>
+ and/or the flitter may specify one or more <A HREF="JMF.html#0_18234" CLASS="XRef"><SPAN CLASS="Link-Element">
+JDFController</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URLType</SPAN>
+ values in <A HREF="JMF.html#0_ControllerFilter" CLASS="XRef"><SPAN CLASS="Link-Element">
+ControllerFilter</SPAN>
+</A>/@<SPAN CLASS="Attribute">
+URLTypes</SPAN>
+).</P>
+</DIV>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1024654"></A>8.2.3.5.2	<A NAME="0_46444"></A>Example of Sun Keytool Usage</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1024655"></A>A command line example of using the Java keytool:</P>
+<OL>
+<LI CLASS="Numbered1">
+<A NAME="0_pgfId-1024657"></A>1	Use Java keytool to generate a public/private key pair and wrap the public key into an X.509 v1 self-signed certificate. The private key and certificate are stored in a JKS key store.</LI>
+</OL>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1024658"></A>keytool -genkey -alias impose7 -dname &quot;CN=xyzimpose7.myCompany.internal </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1025028"></A>OU=Prepress O=Printing, Inc. C=US UID=XYZImpose7 </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1025029"></A>givenName=XYZ Software XYZImpose&quot; -validity 365 -keystore keystore.jks</P>
+<OL>
+<LI CLASS="Numbered">
+<A NAME="0_pgfId-1024660"></A>2	Export the self-signed certificate to the base64 encoded PEM format:</LI>
+</OL>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1025042"></A>keytool -export -keystore keystore.jks -rfc -alias impose7 -file impose7.cer</P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1025044"></A>For full documentation, see <SPAN CLASS="Link-External">
+http://java.sun.com/j2se/1.5.0/docs/tooldocs/windows/keytool.html</SPAN>
+</P>
+</DIV>
+</DIV>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1024489"></A>8.3	<A NAME="0_10646"></A>JDF Packaging</H2>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1018384"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018620"></A>JDF messaging supports combining into a single package the JMF Message, the JDF Job ticket(s) to which it refers, and the digital assets to which the JDF Job tickets refer. The following external data file types are identified, although any valid MIME file type <SPAN CLASS="ConformWord">
+may</SPAN>
+ be referenced:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018621"></A>Preview images (They are encoded using the PNG format.)</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018622"></A>ICC Profiles</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018623"></A>Preflight Profiles</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018624"></A>PDL (Page Description Language)</LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1018385"></A>Currently MIME Multipart/Related packaging is supported.<A HREF="APPX_References.html#0_[RFC2387]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2387]</SPAN>
+</A></P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1018386"></A>All packaging methods use a consistent design pattern. The package contains one or more parts and there <SPAN CLASS="ConformWord">
+must</SPAN>
+ be at least one JDF or JMF part. If a JMF part is included there <SPAN CLASS="ConformWord">
+must</SPAN>
+ be only one. If the packaging has ordered parts (Multipart/Related) the JMF part <SPAN CLASS="ConformWord">
+must</SPAN>
+ be first. The JDF parts <SPAN CLASS="ConformWord">
+must</SPAN>
+ follow the JMF part (if present) and any other parts follow the JDF parts.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1025620"></A>When the content parts of a JDF Package are extracted, the <A HREF="JMF.html#0_QueueSubmissionParams" CLASS="XRef"><SPAN CLASS="Link-Element">
+QueueSubmissionParams</SPAN>
+</A> (at a provided URL) or <A HREF="JMF.html#0_75510" CLASS="XRef"><SPAN CLASS="Link-Element">
+ResubmissionParams</SPAN>
+</A> (at a provided URL) within the JMF Message and <A HREF="Resources.html#0_FileSpec" CLASS="XRef"><SPAN CLASS="Link-Resource">
+FileSpec</SPAN>
+</A> (at a provided URL) within the JDF ticket(s) <SPAN CLASS="ConformWord">
+must</SPAN>
+ be updated with the URL at which the referenced items are stored.</P>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1018441"></A>8.3.1	MIME Basics </H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018482"></A>MIME (Multipurpose Internet Mail Extensions) <A HREF="APPX_References.html#0_[RFC2045]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2045]</SPAN>
+</A> is an Internet standard that defines mechanisms for specifying and describing the format of Internet message bodies. MIME is comprised of headers and content. In case of Multipart messages, the content consists of multiple body parts, each with its own MIME headers and content. A   unique boundary string precedes each body part and follows the last one. </P>
+</DIV>
+<DIV>
+<H3 CLASS="Heading3">
+<A NAME="0_pgfId-1018484"></A>8.3.2	<A NAME="0_83150"></A>MIME Types and File Extensions</H3>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015530"></A>The MIME type for JDF is not yet registered with IANA<SPAN CLASS="Link-External">
+<A HREF="http://www.iana.org/" CLASS="URL"> http://www.iana.org/</A></SPAN>
+. The registration process is ongoing and the MIME types will be registered as:</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1015531"></A>JDF -- <SPAN CLASS="NoSpell">
+application/vnd.cip4-jdf+xml</SPAN>
+</P>
+<P CLASS="BodyIndent">
+<A NAME="0_pgfId-1015532"></A>JMF -- <SPAN CLASS="NoSpell">
+application/vnd.cip4-jmf+xml</SPAN>
+</P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1015533"></A>It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ that the Controller use a file extension of “<SPAN CLASS="NoSpell">
+jdf</SPAN>
+” when using file-based JDF in an environment that supports file name extensions. Agents that serialize JMF to a file <SPAN CLASS="ConformWord">
+should</SPAN>
+ use a file extension of “<SPAN CLASS="NoSpell">
+jmf</SPAN>
+”.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1018375"></A>When a MIME package containing JDF or JMF is serialized to a file, it is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ to use the “mjd” file extension for packages where a JDF is the first entity. It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ to use the “mjm” file extension when a JMF Message is the first package. CIP4 will also register a mime type for CIP3 ppf: application<SPAN CLASS="NoSpell">
+/vnd.cip3-ppf</SPAN>
+. It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ that the Controller use a file extension of “ppf” when writing CIP3 ppf files.</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1018378"></A>8.3.2.1	<A NAME="0_77074"></A>MIME Headers</H4>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1017868"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017876"></A>This section defines the normative extensions when using MIME to package JMF or JDF.</P>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1017881"></A>8.3.2.1.1	Content-Type Header</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1017885"></A>This MIME header is <SPAN CLASS="ConformWord">
+required</SPAN>
+ for an individual JDF or JMF, the root, and the individual bodyparts of a MIME Multipart/Related package. <SPAN CLASS="Enumeration">
+Content-Type</SPAN>
+ identifies the MIME type of the message or body part). The <SPAN CLASS="Enumeration">
+Content-Type</SPAN>
+ header can identify a message as a MIME Multipart message and each body part also has a <SPAN CLASS="Enumeration">
+Content-Type</SPAN>
+ header to identify its content. The following <SPAN CLASS="Enumeration">
+Content-Type</SPAN>
+ are used with JDF.:</P>
+<P CLASS="AnchorTable">
+<A NAME="0_pgfId-1049434"></A>&nbsp;</P>
+<TABLE BORDER="1">
+<CAPTION>
+<H6 CLASS="Caption-Table">
+<A NAME="0_pgfId-1017895"></A>Table 8-1: MIME Content-Types </H6>
+</CAPTION>
+<TR>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1017899"></A>MIME Type</P>
+</TH>
+<TH ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellHeading">
+<A NAME="0_pgfId-1017901"></A>Description</P>
+</TH>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1017903"></A>application/vnd.cip4-jdf+xml</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1017905"></A>A JDF File. The root XML element <SPAN CLASS="ConformWord">
+must</SPAN>
+ be JDF.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1017907"></A>application/vnd.cip4-jmf+xml</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1017909"></A>A JMF File. The root XML element <SPAN CLASS="ConformWord">
+must</SPAN>
+ be JMF.</P>
+</TD>
+</TR>
+<TR>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1017911"></A>Multipart/Related</P>
+</TD>
+<TD ROWSPAN="1" COLSPAN="1">
+<P CLASS="CellBody">
+<A NAME="0_pgfId-1017913"></A>A package of a JDF or JMF file + optional additional referenced data<A HREF="APPX_References.html#0_[RFC2387]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2387]</SPAN>
+</A>. The root XML element of the first bodypart <SPAN CLASS="ConformWord">
+must</SPAN>
+ be JDF or JMF.</P>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1017944"></A>8.3.2.1.2	Content-ID Header</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020697"></A>This field is <SPAN CLASS="ConformWord">
+required</SPAN>
+ for every body part that is referenced from another body part in a Multipart/Related message. <SPAN CLASS="Enumeration">
+Content-ID</SPAN>
+ identifies each different body part within a MIME Multipart message. Its value <SPAN CLASS="ConformWord">
+must</SPAN>
+ be an Email address as long as it is defined using US-ASCII. Each value of <SPAN CLASS="Enumeration">
+Content-ID </SPAN>
+<SPAN CLASS="ConformWord">
+must</SPAN>
+ be unique within the message, but it need not be a working Email address. Thus <SPAN CLASS="Enumeration">
+Content-ID</SPAN>
+ can be a somewhat random sequence and need not be related to the original filename. It is good practice to limit yourself to using only alphanumeric characters or only the first 127 characters of the US-ASCII character set in order to avoid confusing less intelligent MIME Agents.</P>
+</DIV>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1020869"></A>8.3.2.1.3	Content-Transfer-Encoding</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020873"></A>This field is <SPAN CLASS="ConformWord">
+optional</SPAN>
+. <A HREF="APPX_References.html#0_[RFC2045]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2045]</SPAN>
+</A>. It defines the following different encodings: </P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1020874"></A><SPAN CLASS="Enumeration">
+&quot;7bit&quot;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017989"></A><SPAN CLASS="Enumeration">
+&quot;quoted-printable&quot;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017990"></A><SPAN CLASS="Enumeration">
+&quot;base64&quot;</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1017991"></A><SPAN CLASS="Enumeration">
+&quot;8bit&quot;</SPAN>
+: This specifies that no additional encoding is applied to the data. Use <SPAN CLASS="Enumeration">
+8bit</SPAN>
+ if the JDF stream contains CR or LF separators, e.g., for body parts containing JDF or JMF.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018816"></A><SPAN CLASS="Enumeration">
+&quot;binary&quot;</SPAN>
+: This specifies that no additional encoding is applied to the data. Use <SPAN CLASS="Enumeration">
+binary</SPAN>
+ if there is no CR or LF separators in the stream e.g., for body parts containing JPEG.</LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1020254"></A>Private encodings <SPAN CLASS="ConformWord">
+may</SPAN>
+ be defined and begin with the prefix <SPAN CLASS="Enumeration">
+&quot;X-&quot;</SPAN>
+. When no encoding is used, the data are only encapsulated by MIME headers. <SPAN CLASS="Enumeration">
+&quot;base64&quot;</SPAN>
+ and <SPAN CLASS="Enumeration">
+&quot;quoted-printable&quot; </SPAN>
+encodings are commonly used algorithms for converting eight-bit and binary data into seven-bit data and vice versa. Consumers that support MIME <SPAN CLASS="ConformWord">
+should</SPAN>
+ support <SPAN CLASS="Enumeration">
+&quot;8bit&quot; </SPAN>
+and<SPAN CLASS="Enumeration">
+ &quot;binary&quot; </SPAN>
+and <SPAN CLASS="ConformWord">
+must</SPAN>
+ support <SPAN CLASS="Enumeration">
+&quot;base64&quot;</SPAN>
+. The other encodings are <SPAN CLASS="ConformWord">
+optional</SPAN>
+.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019761"></A> It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ to also specify the encoding for the JDF/JMF parts of a Multipart/Related package.</P>
+</DIV>
+<DIV>
+<H5 CLASS="Heading5">
+<A NAME="0_pgfId-1018831"></A>8.3.2.1.4	Content-Disposition Header</H5>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018832"></A>This field is <SPAN CLASS="ConformWord">
+optional</SPAN>
+. See <A HREF="APPX_References.html#0_[RFC2231]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2231]</SPAN>
+</A> It allows a filename to be specified for a body part. The <SPAN CLASS="Enumeration">
+Disposition-Type</SPAN>
+ <SPAN CLASS="ConformWord">
+must</SPAN>
+ be set to “<SPAN CLASS="Enumeration">
+attachment</SPAN>
+”.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019792"></A>The Disposition filename parameter contains a suggested file name for storing the attachment. This file name <SPAN CLASS="ConformWord">
+may</SPAN>
+ be the original file name when creating the MIME file and can be visible to the operator. Note that the filename is a value that needs special MIME encoding rules, these are <A HREF="APPX_References.html#0_[RFC2822]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2822]</SPAN>
+</A>and <A HREF="APPX_References.html#0_[RFC2231]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2231]</SPAN>
+</A>.</P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019793"></A>It is <SPAN CLASS="ConformWord">
+recommended</SPAN>
+ to use quoted-strings for file names with only US-ASCII characters see <A HREF="APPX_References.html#0_[RFC2822]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2822]</SPAN>
+</A> and <A HREF="APPX_References.html#0_[RFC2231]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2231]</SPAN>
+</A>for file names with non-USASCII characters.</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1018836"></A>Example for <A HREF="APPX_References.html#0_[RFC2822]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2822]</SPAN>
+</A>: </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019828"></A>A name = &quot;<SPAN CLASS="Enumeration">
+Cover page.pdf</SPAN>
+&quot; becomes: </P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1019829"></A>Content-Disposition: attachment; filename=&quot;Cover page.pdf&quot;;</P>
+<P CLASS="Heading-Sub-head">
+<A NAME="0_pgfId-1019854"></A>Example for <A HREF="APPX_References.html#0_[RFC2231]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2231]</SPAN>
+</A>: </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1019855"></A>A name = &quot;<SPAN CLASS="Enumeration">
+Dolları_1.pdf</SPAN>
+&quot; becomes: </P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1019856"></A>Content-Disposition: Attachment; filename*=UTF-8''Dollar%E2%82%AC_1.pdf;</P>
+</DIV>
+</DIV>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1018824"></A>Example 8-1: <A NAME="0_83501"></A>Packaging of Individual JDF/JMF files in MIME</H2>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1018825"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="bodyBeforeSampleCode">
+<A NAME="0_pgfId-1025214"></A>The following example displays MIME packaging of a JDF file as an individual MIME object:</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025818"></A>MIME-Version: 1.0 </P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025823"></A>Content-Type: multipart/related; boundary=abcdefg0123456789</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025824"></A>Content-Transfer-Encoding: 8bit</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025825"></A>--abcdefg0123456789</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025826"></A>Content-Type: application/vnd.cip4-jdf+xml</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025827"></A>&lt;JDF ... &gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025828"></A>   &lt;PreviewImage Separation = “PANTONE 128” URL=”cid:123456.png” /&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025829"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025830"></A>--abcdefg0123456789--</P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1018057"></A>8.3.2.2	<A NAME="0_35618"></A>CID URL Scheme</H4>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1018069"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018144"></A>One of the benefits of the MIME Multipart/Related <SPAN CLASS="Attribute">
+MediaType</SPAN>
+ is the ability of a URL in one body part to refer to the content of another body part. This is done by using a “cid” scheme in a URL, specified in <A HREF="APPX_References.html#0_[RFC2392]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2392]</SPAN>
+</A>. Please look at the example to see how it is used.</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1018070"></A>Example 8-2: CID URL Scheme</H2>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025835"></A>MIME-Version: 1.0</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025840"></A>Content-Type: multipart/related; boundary=abcdefg0123456789</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025841"></A>Content-Transfer-Encoding: 8bit</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025842"></A>--abcdefg0123456789</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025843"></A>Content-Type: application/vnd.cip4-jdf+xml</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025844"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025845"></A>&lt;JDF ... &gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025846"></A>   &lt;PreviewImage Separation = “PANTONE 128” URL=”cid:123456.png@cip4.org” /&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025847"></A>&lt;/JDF&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025848"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025849"></A>--abcdefg0123456789</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025850"></A>Content-Type: image/png</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025851"></A>Content-Transfer-Encoding: base64</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025852"></A>Content-ID: &lt;123456.png@cip4.org&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025853"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025854"></A>BASE64DATA</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025855"></A>BASE64DATA</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025856"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025857"></A>--abcdefg0123456789--</P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1018566"></A><SPAN CLASS="Bold">
+Note:</SPAN>
+ <A HREF="APPX_References.html#0_[RFC2392]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2392]</SPAN>
+</A> <SPAN CLASS="Italics">
+requires</SPAN>
+ that the value of the Content-ID be enclosed in angle brackets (&lt;&gt;). Also the characters that <A HREF="APPX_References.html#0_[RFC2392]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC2392]</SPAN>
+</A> allows in Content-ID include characters that <A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+</A> does not permit in URLs; any such character (such as &quot;+&quot; or &quot;&amp;&quot;) <SPAN CLASS="ConformWord">
+must</SPAN>
+ be hex-encoded using the %hh escape mechanism in the URL (see <A HREF="APPX_References.html#0_[RFC3986]" CLASS="XRef"><SPAN CLASS="Link-internal">
+[RFC3986]</SPAN>
+</A>). Therefore, matching the cid URL with the Content-ID <SPAN CLASS="ConformWord">
+must</SPAN>
+ take account of the escaped equivalencies. Case-insensitive matching <SPAN CLASS="ConformWord">
+must</SPAN>
+ be used.<A NAME="0_85074"></A></P>
+<DIV>
+<H4 CLASS="Heading4">
+<A NAME="0_pgfId-1018558"></A>8.3.2.3	Ordering of Body Parts in MIME Multipart/Related</H4>
+<P CLASS="ChangeFlag">
+<A NAME="0_pgfId-1018120"></A><SPAN CLASS="Change-Flag">
+New in JDF 1.2</SPAN>
+ </P>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1020359"></A>The first body part of the MIME Multipart message <SPAN CLASS="ConformWord">
+must</SPAN>
+ be the JMF Message. Internal links are defined using the cid URL and a corresponding Content-ID MIME header. Subsequent sections are the JDF Jobs followed by the linked entities, such as the preview images shown in the following example:</P>
+</DIV>
+</DIV>
+<DIV>
+<H2 CLASS="HeadingOfExample">
+<A NAME="0_pgfId-1020360"></A>Example 8-3: MIME Multipart/Related</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1018310"></A>A Multipart/Related message is received that contains:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018311"></A><SPAN CLASS="NoSpell">
+Message.jmf</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018312"></A><SPAN CLASS="NoSpell">
+Ticket01.jdf</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018313"></A><SPAN CLASS="NoSpell">
+Pages.pdf</SPAN>
+</LI>
+</UL>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1077034"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025972"></A>MIME-Version: 1.0</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025977"></A>Content-Type: multipart/related; boundary=unique-boundary</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025978"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025979"></A>--unique-boundary</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025980"></A>Content-Type: application/vnd.cip4-jmf+xml</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025981"></A>Content-Transfer-Encoding: 8bit</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025982"></A>...</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1038234"></A>&lt;<SPAN CLASS="XML-Tag">
+JMF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+SenderID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;JMFClient&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038235"></A><SPAN CLASS="XMLAttrName">
+TimeStamp</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;2005-07-07T13:15:56+01:00&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038236"></A>&lt;<SPAN CLASS="XML-Tag">
+Command</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;C0001&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;SubmitQueueEntry&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xsi:type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;CommandSubmitQueueEntry&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038237"></A>&lt;<SPAN CLASS="XML-Tag">
+QueueSubmissionParams</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Hold</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;true&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;cid:JDF1@hostname.com&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038238"></A>&lt;/<SPAN CLASS="XML-Tag">
+Command</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1038239"></A>&lt;/<SPAN CLASS="XML-Tag">
+JMF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026348"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025943"></A>--unique-boundary</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026128"></A>Content-Type: application/vnd.cip4-jdf+xml</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026129"></A>Content-Transfer-Encoding: 8bit</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026130"></A>Content-ID: &lt;JDF1@hostname.com&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026131"></A>Content-Disposition: attachment; filename=”Ticket01.jdf”;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026132"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1038201"></A>&lt;?<SPAN CLASS="XML-Tag">
+xml</SPAN>
+ <SPAN CLASS="XMLAttrName">
+version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.0&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+encoding</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;UTF-8&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+standalone</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;no&quot;</SPAN>
+ ?&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1038202"></A>&lt;<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+xmlns</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;http://www.CIP4.org/JDFSchema_1_1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Activation</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Active&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;JDF_c&quot;</SPAN>
+</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038203"></A><SPAN CLASS="XMLAttrName">
+JobID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Geef62b72-0f6e-4195-a412-aaa3123d200b&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Waiting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Product&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038204"></A><SPAN CLASS="XMLAttrName">
+Version</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1.4&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;345&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038205"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038206"></A>&lt;<SPAN CLASS="XML-Tag">
+ComponentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038207"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038208"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038209"></A>&lt;<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+DocCopies</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+FirstPage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;0&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;RunList4&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1038210"></A><SPAN CLASS="XMLAttrName">
+IsPage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;true&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+NDoc</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+PageCopies</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;1&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1038211"></A>&lt;<SPAN CLASS="XML-Tag">
+LayoutElement</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ElementType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Document&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+HasBleeds</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;false&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;LayoutElement_1&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code05">
+<A NAME="0_pgfId-1038212"></A><SPAN CLASS="XMLAttrName">
+IgnorePDLCopies</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;true&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+IgnorePDLImposition</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;true&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+IsPrintable</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;true&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1038213"></A>&lt;<SPAN CLASS="XML-Tag">
+FileSpec</SPAN>
+ <SPAN CLASS="XMLAttrName">
+AppOS</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Windows&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Compression</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;None&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Disposition</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Retain&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1038214"></A><SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;FileSpec_9&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+URL</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;cid:Asset01@hostname.com&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code06">
+<A NAME="0_pgfId-1038215"></A><SPAN CLASS="XMLAttrName">
+UserFileName</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Christmas Cards&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1038216"></A>&lt;/<SPAN CLASS="XML-Tag">
+LayoutElement</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038217"></A>&lt;/<SPAN CLASS="XML-Tag">
+RunList</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038218"></A>&lt;<SPAN CLASS="XML-Tag">
+Component</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Quantity&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Unavailable&quot;</SPAN>
+ </P>
+<P CLASS="Sample-code04">
+<A NAME="0_pgfId-1038219"></A><SPAN CLASS="XMLAttrName">
+ComponentType</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Sheet&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038220"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038221"></A>&lt;<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;JDF-3&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Waiting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Type</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;DigitalPrinting&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+JobPartID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;400&quot;</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038222"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1038223"></A>&lt;<SPAN CLASS="XML-Tag">
+DigitalPrintingParamsLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1038224"></A>&lt;<SPAN CLASS="XML-Tag">
+RunListLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Input&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;RunList4&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1038225"></A>&lt;<SPAN CLASS="XML-Tag">
+ComponentLink</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Usage</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Output&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+rRef</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID125&quot;</SPAN>
+/&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038226"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourceLinkPool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038227"></A>&lt;<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code03">
+<A NAME="0_pgfId-1038228"></A>&lt;<SPAN CLASS="XML-Tag">
+DigitalPrintingParams</SPAN>
+ <SPAN CLASS="XMLAttrName">
+ID</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;ID123&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Class</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Parameter&quot;</SPAN>
+ <SPAN CLASS="XMLAttrName">
+Status</SPAN>
+=<SPAN CLASS="XMLAttrValue">
+&quot;Available&quot;</SPAN>
+ /&gt;</P>
+<P CLASS="Sample-code02">
+<A NAME="0_pgfId-1038229"></A>&lt;/<SPAN CLASS="XML-Tag">
+ResourcePool</SPAN>
+&gt;</P>
+<P CLASS="Sample-code01">
+<A NAME="0_pgfId-1038230"></A>&lt;/<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1038231"></A>&lt;/<SPAN CLASS="XML-Tag">
+JDF</SPAN>
+&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026356"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1025862"></A>--unique-boundary</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026134"></A>Content-type: application/pdf</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026135"></A>Content-ID: &lt;Asset01@hostname.com&gt;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026136"></A>Content-Transfer-Encoding: binary</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026137"></A>Content-Disposition: attachment; filename=”Pages 1.pdf”;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026138"></A>&nbsp;</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026139"></A>The pdf goes in here.</P>
+<P CLASS="Sample-code">
+<A NAME="0_pgfId-1026140"></A>--unique-boundary--</P>
+<P CLASS="BodyNoIndent">
+<A NAME="0_pgfId-1018351"></A>When such a stream arrives at the server, it is decoded and the parts stored locally either in memory or persistent storage. The contents of the stream are extracted. The designer of the Controller chose to save package contents into a uniquely named directory.</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018352"></A>Assets are saved first -- <SPAN CLASS="NoSpell">
+Pages.pdf</SPAN>
+ is placed in <SPAN CLASS="NoSpell">
+/root/temp/a39e9503-a96b-4e86-9c1d-f4188d19810e/Assets/</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018353"></A>The Controller then internally maps <SPAN CLASS="NoSpell">
+cid:Asset01@hostname.com</SPAN>
+ in the ticket into file<SPAN CLASS="NoSpell">
+:///root/temp/a39e9503-a96b-4e86-9c1d-f4188d19810e/Assets/Pages.pdf</SPAN>
+. </LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018354"></A>Then <SPAN CLASS="NoSpell">
+Ticket01.jdf</SPAN>
+ is placed in a directory <SPAN CLASS="NoSpell">
+/root/temp/a39e9503-a96b-4e86-9c1d-f4188d19810e/</SPAN>
+</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1018355"></A>The Controller then internally maps <SPAN CLASS="NoSpell">
+cid:JDF1@hostname.com</SPAN>
+ in the message into file:<SPAN CLASS="NoSpell">
+///root/temp/a39e9503-a96b-4e86-9c1d-f4188d19810e/Ticket01.jdf</SPAN>
+ and either executes or stores the Message.</LI>
+</UL>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1015541"></A>8.4	MIS Requirements</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1015542"></A>MIS systems <SPAN CLASS="ConformWord">
+may</SPAN>
+:</P>
+<UL>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1015543"></A>Ignore <A HREF="Structure_of_JDF_Nodes.html#0_36977" CLASS="XRef"><SPAN CLASS="Link-Element">
+Audit</SPAN>
+</A> Elements when they receive complete information about a Process execution via JMF.</LI>
+<LI CLASS="Bullets">
+<A NAME="0_pgfId-1015544"></A>Decompose JDF into an internal format such as database tables.</LI>
+</UL>
+</DIV>
+<DIV>
+<H2 CLASS="Heading2">
+<A NAME="0_pgfId-1016486"></A>8.5	<A NAME="0_79243"></A>Interoperability Conformance Specifications</H2>
+<P CLASS="Body-open-paragraph">
+<A NAME="0_pgfId-1016490"></A>Interoperability Conformance Specifications (i.e., ICS documents) are developed by CIP4 working committees. They establish the minimum JDF support requirements for Devices of a common class, including expected behavior. An ICS document can subset JDF but can not expand upon JDF. For instance, an ICS that covers desktop printers can either omit or prohibit all of the postpress Processes related to case binding. ICS documents can also establish minimum JMF support requirements for a class of Devices. </P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1016494"></A>Once published, ICS documents will form the basis for testing and certification by CIP4-sanctioned facilities. JDF-enabled products that pass these tests will be deemed “JDF Certified” to conform to an identified level of one or more ICS documents and will be permitted upon certification to use a “JDF Certified” logo in connection with certified JDF-enabled products.</P>
+<P CLASS="Body">
+<A NAME="0_pgfId-1019055"></A>The development of ICS documents are done in parallel, but not in synchronization, with the development of editions of the JDF specification, (e.g., an ICS is related to a specific edition of the JDF Specification, but might be released at a later date). Once approved, all published ICS documents will be available at <SPAN CLASS="Link-External">
+<A HREF="http://www.cip4.org/document_archive/ics.php" CLASS="URL">http://www.cip4.org/document_archive/ics.php</A></SPAN>
+. </P>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

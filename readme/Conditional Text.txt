@@ -1,0 +1,17 @@
+Conditonal Text markers
+
+'Normally' Shown
+CaptionWSheet			Used for Sheet X of Y in Tables			All
+Changed					Not used at all							n/a
+Comment					Used in some end of lines - removed		n/a
+Comment-1x				Used in some end of lines - removed		n/a
+Comment-2x				Used to highlight missing 2.x examples	Depends if you want to see these in the PDF
+JDF-1x					Used for 1.x text only					1.x
+JDF-1x-background		Used for 1.x examples only				1.x
+JDF-2x					Used for 2.x text only					2.x
+JDF-2x-background		Used for 2.x examples only				2.x
+JDF-neither				Used to clarify 1.x and 2.x overlap		Neither
+
+'Normally' Hidden
+CaptionWContinued		Used in one place - removed				n/a
+Hidden					Used in error - removed					n/a
