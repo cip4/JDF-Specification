@@ -1,0 +1,8 @@
+### The following  has been created for CIP4 framemaker GIT repositories
+
+# Ignore any project directories created 'in situ' by any build process
+#build/
+
+# Ignore files created by framemaker from source files
+*.lck
+*.backup.fm
