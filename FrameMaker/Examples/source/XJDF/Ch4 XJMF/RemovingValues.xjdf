@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Snippet -->
+<XJDF xmlns="http://www.CIP4.org/JDFSchema_2_0" 
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ResourceSet Name="VarnishingParams">
+		<Resource>
+			<Part SheetName="Body" />
+		</Resource>
+	</ResourceSet>
+</XJDF>
+<!--  Snippet -->
