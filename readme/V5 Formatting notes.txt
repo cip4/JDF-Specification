@@ -1,0 +1,21 @@
+Proposed XJDF Formatting Changes
+
+1. Bullets
+Change the left indent to line up with first letter thus
+   ->   Start of line continues on 
+   next line
+becomes
+   ->   Start of line continues on 
+        next line
+        
+2. Resource Properties
+These are a bit of a mess. They use two formats one for the header and one for the content. A simple TAB could be used instead.
+However the bad thing is the left alignment which needs to be changed so that
+Input of Processes:     Any Product Intent node (4Section 4.1.5 Product Intent Descriptions) Product Intent, 
+                            ConventionalPrinting, DigitalPrinting, Varnishing, BlockPreparation, BoxFolding, 
+                            BoxPacking, Bundling, CaseMaking, CasingIn, ... etc
+becomes                            
+Input of Processes:  Any Product Intent node (4Section 4.1.5 Product Intent Descriptions) Product Intent, 
+                     ConventionalPrinting, DigitalPrinting, Varnishing, BlockPreparation, BoxFolding, 
+                     BoxPacking, Bundling, CaseMaking, CasingIn, ... etc
+                            
