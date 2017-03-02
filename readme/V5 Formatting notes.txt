@@ -19,3 +19,12 @@ Input of Processes:  Any Product Intent node (4Section 4.1.5 Product Intent Desc
                      ConventionalPrinting, DigitalPrinting, Varnishing, BlockPreparation, BoxFolding, 
                      BoxPacking, Bundling, CaseMaking, CasingIn, ... etc
                             
+3. Use of whitespace when writing enumerations
+Change
+     @Usage = "Input"
+To
+     @Usage="Input"
+     
+4. Add 'thick' line to last cell on page for tables that overrun to a following page.
+
+5. IncludeBaseFonts should be appendix enumeration
