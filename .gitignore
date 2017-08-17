@@ -7,3 +7,7 @@
 *.lck
 *.backup.fm
 *.backup.book
+
+# Ignore stupid Windoze files that are notionally hidden
+desktop.ini
+thumbs.db
