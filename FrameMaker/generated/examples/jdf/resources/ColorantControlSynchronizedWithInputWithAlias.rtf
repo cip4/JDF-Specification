@@ -1,25 +1,26 @@
-{\rtf1\ansi \deff1{\fonttbl{\f1\fmodern\fprq1\fcharset0 Courier New;}}{\colortbl;\red255\green255\blue255;\red00\green00\blue00;\red00\green00\blue255;\red255\green00\blue255;\red00\green00\blue00;\red00\green00\blue00;\red255\green00\blue255;\red255\green00\blue255;\red255\green00\blue255;\red255\green00\blue255;\red255\green00\blue255;\red255\green00\blue255;\red128\green00\blue00;\red255\green00\blue00;\red255\green00\blue255;}
-\pard\sb0\sa0\sl0\slmult0\plain\f1\fs18
-{\cf2{}}        {\cf13{\b <ColorantControl\b0 }} {\cf2{}}{\cf14{\b Class\b0 }}{\cf2{=}}{\cf3{"Parameter"}}{\cf2{}} {\cf14{\b ID\b0 }}{\cf2{=}}{\cf3{"r{0}{0}{0}{0}{0}{4}"}}{\cf2{}} {\cf14{\b ProcessColorModel\b0 }}{\cf2{=}}{\cf3{"DeviceCMYK"}}{\cf2{}} \line
-                {\cf14{\b Status\b0 }}{\cf2{=}}{\cf3{"Available"}}{\cf2{}}{\cf13{\b >\b0 }}\line
-{\cf2{}}            {\cf6{<!--ColorantControl after prepress has correctly set ActualColorName based }}\line
-{\cf6{                on pdl content-->}}{\cf2{}}\line
-            {\cf6{<!--Note that all Strings in ColorantParams etc. use Color/@Name, }}\line
-{\cf6{                NOT Color/@ActualColorName-->}}{\cf2{}}\line
-            {\cf13{\b <ColorantParams>\b0 }}\line
-{\cf2{}}                {\cf13{\b <SeparationSpec\b0 }} {\cf2{}}{\cf14{\b Name\b0 }}{\cf2{=}}{\cf3{"Spot{1}"}}{\cf2{}}{\cf13{\b />\b0 }}\line
-{\cf2{}}                {\cf13{\b <SeparationSpec\b0 }} {\cf2{}}{\cf14{\b Name\b0 }}{\cf2{=}}{\cf3{"BlackText"}}{\cf2{}}{\cf13{\b />\b0 }}\line
-{\cf2{}}            {\cf13{\b </ColorantParams>\b0 }}\line
-{\cf2{}}            {\cf13{\b <ColorPoolRef\b0 }} {\cf2{}}{\cf14{\b rRef\b0 }}{\cf2{=}}{\cf3{"r{0}{0}{0}{0}{0}{5}"}}{\cf2{}}{\cf13{\b />\b0 }}\line
-{\cf2{}}            {\cf6{<!--ColorantAlias that maps the additional representations }}\line
-{\cf6{(               noir, schwarz) to the predefined separation Black-->}}{\cf2{}}\line
-            {\cf13{\b <ColorantAlias\b0 }} {\cf2{}}{\cf14{\b Class\b0 }}{\cf2{=}}{\cf3{"Parameter"}}{\cf2{}} {\cf14{\b RawNames\b0 }}{\cf2{=}}{\cf3{"{6}E{6}F{6}{9}{7}{2} {7}{3}{6}{3}{6}{8}{7}{7}E{4}{7}{2}{7}A"}}{\cf2{}} \line
-                    {\cf14{\b ReplacementColorantName\b0 }}{\cf2{=}}{\cf3{"Black"}}{\cf2{}}{\cf13{\b >\b0 }}\line
-{\cf2{}}                {\cf13{\b <SeparationSpec\b0 }} {\cf2{}}{\cf14{\b Name\b0 }}{\cf2{=}}{\cf3{"noir"}}{\cf2{}}{\cf13{\b />\b0 }}\line
-{\cf2{}}                {\cf13{\b <SeparationSpec\b0 }} {\cf2{}}{\cf14{\b Name\b0 }}{\cf2{=}}{\cf3{"schwarz"}}{\cf2{}}{\cf13{\b />\b0 }}\line
-{\cf2{}}            {\cf13{\b </ColorantAlias>\b0 }}\line
-{\cf2{}}        {\cf13{\b </ColorantControl>\b0 }}\line
-{\cf2{}}        {\cf13{\b <ColorPool\b0 }} {\cf2{}}{\cf14{\b Class\b0 }}{\cf2{=}}{\cf3{"Parameter"}}{\cf2{}} {\cf14{\b ID\b0 }}{\cf2{=}}{\cf3{"r{0}{0}{0}{0}{0}{5}"}}{\cf2{}} {\cf14{\b Status\b0 }}{\cf2{=}}{\cf3{"Available"}}{\cf2{}}{\cf13{\b >\b0 }}\line
-{\cf2{}}            {\cf6{<!-- ColorPool is same as previous example -->}}{\cf2{}}\line
-        {\cf13{\b </ColorPool>\b0 }}{\cf2{}}
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+        \cs1{<}\cs2{ColorantControl} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000004"} \cs3{ProcessColorModel}\cs1{=}\cs4{"DeviceCMYK"} \line
+                \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+            {\cs5<!--ColorantControl after prepress has correctly set ActualColorName based \line
+                on pdl content-->}\line
+            {\cs5<!--Note that all Strings in ColorantParams etc. use Color/@Name, \line
+                NOT Color/@ActualColorName-->}\line
+            \cs1{<}\cs2{ColorantParams}\cs1{>}\line
+                \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"Spot1"}\cs1{/>}\line
+                \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"BlackText"}\cs1{/>}\line
+            \cs1{</}\cs2{ColorantParams}\cs1{>}\line
+            \cs1{<}\cs2{ColorPoolRef} \cs3{rRef}\cs1{=}\cs4{"r000005"}\cs1{/>}\line
+            {\cs5<!--ColorantAlias that maps the additional representations \line
+(               noir, schwarz) to the predefined separation Black-->}\line
+            \cs1{<}\cs2{ColorantAlias} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{RawNames}\cs1{=}\cs4{"6E6F6972 73636877E4727A"} \line
+                    \cs3{ReplacementColorantName}\cs1{=}\cs4{"Black"}\cs1{>}\line
+                \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"noir"}\cs1{/>}\line
+                \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"schwarz"}\cs1{/>}\line
+            \cs1{</}\cs2{ColorantAlias}\cs1{>}\line
+        \cs1{</}\cs2{ColorantControl}\cs1{>}\line
+        \cs1{<}\cs2{ColorPool} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000005"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+            {\cs5<!-- ColorPool is same as previous example -->}\line
+        \cs1{</}\cs2{ColorPool}\cs1{>}\line
 }
