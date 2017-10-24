@@ -1,0 +1,37 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{JDF} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{ID}\cs1{=}\cs4{"J1"} \cs3{Status}\cs1{=}\cs4{"Waiting"}\line
+		\cs3{Type}\cs1{=}\cs4{"Product"} \cs3{JobPartID}\cs1{=}\cs4{"ID234"} \cs3{Version}\cs1{=}\cs4{"1.4"}\cs1{>}\line
+	\cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+		\cs1{<}\cs2{MediaIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"id"}\cs1{>}\line
+			\cs1{<}\cs2{Part} \cs3{Option}\cs1{=}\cs4{"Option2"}\cs1{/>}\line
+		\cs1{</}\cs2{MediaIntentLink}\cs1{>}\line
+		\cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"R02"}\cs1{/>}\line
+	\cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+	\cs1{<}\cs2{ResourcePool}\cs1{>}\line
+		\cs1{<}\cs2{MediaIntent} \cs3{ID}\cs1{=}\cs4{"id"} \cs3{PartIDKeys}\cs1{=}\cs4{"Option"}\cs1{>}\line
+			{\cs5<!-- the common MediaIntent resource details -->}\line
+			\cs1{<}\cs2{MediaIntent} \cs3{Option}\cs1{=}\cs4{"Option1"}\cs1{>}\line
+				\cs1{<}\cs2{Weight} \cs3{Preferred}\cs1{=}\cs4{"80"} \cs3{DataType}\cs1{=}\cs4{"NumberSpan"}\cs1{/>}\line
+			\cs1{</}\cs2{MediaIntent}\cs1{>}\line
+			\cs1{<}\cs2{MediaIntent} \cs3{Option}\cs1{=}\cs4{"Option2"}\cs1{>}\line
+				\cs1{<}\cs2{Weight} \cs3{Preferred}\cs1{=}\cs4{"90"} \cs3{DataType}\cs1{=}\cs4{"NumberSpan"}\cs1{/>}\line
+			\cs1{</}\cs2{MediaIntent}\cs1{>}\line
+		\cs1{</}\cs2{MediaIntent}\cs1{>}\line
+		\cs1{<}\cs2{Component} \cs3{ID}\cs1{=}\cs4{"R02"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{Status}\cs1{=}\cs4{"Unavailable"} \line
+				\cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
+	\cs1{</}\cs2{ResourcePool}\cs1{>}\line
+	\cs1{<}\cs2{AuditPool}\cs1{>}\line
+		\cs1{<}\cs2{ResourceAudit}\cs1{>}\line
+			{\cs5<!-- the actual MediaIntent ResourceLink -->}\line
+			\cs1{<}\cs2{MediaIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"id"}\cs1{>}\line
+				\cs1{<}\cs2{Part} \cs3{Option}\cs1{=}\cs4{"Option2"}\cs1{/>}\line
+			\cs1{</}\cs2{MediaIntentLink}\cs1{>}\line
+			{\cs5<!-- the original MediaIntent ResourceLink -->}\line
+			\cs1{<}\cs2{MediaIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"id"}\cs1{>}\line
+				\cs1{<}\cs2{Part} \cs3{Option}\cs1{=}\cs4{"Option1"}\cs1{/>}\line
+			\cs1{</}\cs2{MediaIntentLink}\cs1{>}\line
+		\cs1{</}\cs2{ResourceAudit}\cs1{>}\line
+	\cs1{</}\cs2{AuditPool}\cs1{>}\line
+\cs1{</}\cs2{JDF}\cs1{>}}
