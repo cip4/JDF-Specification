@@ -1,0 +1,28 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{RunList} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"L3"} \cs3{PartIDKeys}\cs1{=}\cs4{"Run"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+	\cs1{<}\cs2{MetadataMap} \cs3{DataType}\cs1{=}\cs4{"string"} \cs3{Name}\cs1{=}\cs4{"i1"} \cs3{ValueFormat}\cs1{=}\cs4{"%s"} \line
+			\cs3{ValueTemplate}\cs1{=}\cs4{"s1"}\cs1{>}\line
+		{\cs5<!--This expression maps the value of /Dokument/Rezipient/@Name to a \line
+			variable "s1"-->}\line
+		\cs1{<}\cs2{Expr} \cs3{Name}\cs1{=}\cs4{"s1"} \cs3{Path}\cs1{=}\cs4{"/Dokument/Rezipient/@Name"}\cs1{/>}\line
+	\cs1{</}\cs2{MetadataMap}\cs1{>}\line
+	\cs1{<}\cs2{LayoutElement} \cs3{ElementType}\cs1{=}\cs4{"Graphic"}\cs1{>}\line
+		\cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"File:///Variable.pdf"}\cs1{/>}\line
+	\cs1{</}\cs2{LayoutElement}\cs1{>}\line
+\cs1{</}\cs2{RunList}\cs1{>}\line
+\cs1{<}\cs2{Layout} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"Link0003"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+	{\cs5<!--The MarkObject in the Layout hierarchy: -->}\line
+	\cs1{<}\cs2{ContentObject} \cs3{CTM}\cs1{=}\cs4{"1 0 0 1 0 0"} \cs3{Ord}\cs1{=}\cs4{"0"}\cs1{/>}\line
+	\cs1{<}\cs2{MarkObject} \cs3{CTM}\cs1{=}\cs4{"1 0 0 1 10 10"}\cs1{>}\line
+		\cs1{<}\cs2{LayoutElement} \cs3{ElementType}\cs1{=}\cs4{"Graphic"}\cs1{>}\line
+			\cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"File:///MyReplace.pdf"}\cs1{/>}\line
+		\cs1{</}\cs2{LayoutElement}\cs1{>}\line
+		\cs1{<}\cs2{DynamicField} \line
+				\cs3{Format}\cs1{=}\cs4{"Replacement Text for %s goes in here at %s on %s"} \line
+				\cs3{Ord}\cs1{=}\cs4{"0"} \cs3{ReplaceField}\cs1{=}\cs4{"___xxx___"} \cs3{Template}\cs1{=}\cs4{"i1,Time,Date"}\cs1{/>}\line
+		\cs1{<}\cs2{DynamicField} \cs3{Format}\cs1{=}\cs4{"More Replacement Text for %s go in here"} \line
+				\cs3{Ord}\cs1{=}\cs4{"0"} \cs3{ReplaceField}\cs1{=}\cs4{"___yyy___"} \cs3{Template}\cs1{=}\cs4{"SignatureName"}\cs1{/>}\line
+	\cs1{</}\cs2{MarkObject}\cs1{>}\line
+\cs1{</}\cs2{Layout}\cs1{>}}
