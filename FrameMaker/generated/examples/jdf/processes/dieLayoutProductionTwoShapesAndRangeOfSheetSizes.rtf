@@ -1,44 +1,0 @@
-{\rtf1\ansi
-\deff0{\fonttbl\f0\fnil Courier New;}
-{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-{\cs5<!-- DieLayoutProduction Sample \line
-		Date:Sept 2007 Version: 1.00 \line
-		2 Shapes is repeated on a continuous range of sheet sizes.\line
--->}\line
-\cs1{<}\cs2{JDF} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{ID}\cs1{=}\cs4{"n001"}\line
-		\cs3{Type}\cs1{=}\cs4{"DieLayoutProduction"}\line
-		\cs3{Status}\cs1{=}\cs4{"Waiting"} \line
-		\cs3{DescriptiveName}\cs1{=}\cs4{"Single shape versus a set of sheet sizes"} \line
-		\cs3{Version}\cs1{=}\cs4{"1.4"}\cs1{>}\line
-	\cs1{<}\cs2{ResourcePool}\cs1{>}\line
-		\cs1{<}\cs2{ShapeDef} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"Shape1Up"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-			\cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"file://myserver/myshare/beef.dd3"}\cs1{/>}\line
-		\cs1{</}\cs2{ShapeDef}\cs1{>}\line
-		\cs1{<}\cs2{ShapeDef} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"Shape1Up2"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-			\cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"file://myserver/myshare/chicken.dd3"}\cs1{/>}\line
-		\cs1{</}\cs2{ShapeDef}\cs1{>}\line
-		{\cs5<!-- Layout can chose sheetsizes between 1200mm-1000mm wide and \line
-				1000mm-800mm high. Layout is optimized for an order \line
-				quantity of 300k boxes for beef and 700k boxes for chicken. \line
-				Gutters are 5mm and cross flute/grain rotation is not allowed. \line
-		-->}\line
-		\cs1{<}\cs2{DieLayoutProductionParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"LayParam"} \line
-				\cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-			\cs1{<}\cs2{ConvertingConfig} \cs3{SheetWidth}\cs1{=}\cs4{"3401.57 ~ 2834.64"} \line
-					\cs3{SheetHeight}\cs1{=}\cs4{"2834.64 ~ 2267.72"}\cs1{/>}\line
-			\cs1{<}\cs2{RepeatDesc} \cs3{OrderQuantity}\cs1{=}\cs4{"300000"} \cs3{GutterX}\cs1{=}\cs4{"14.17"} \cs3{GutterY}\cs1{=}\cs4{"14.17"}\line
-					\cs3{AllowedRotate}\cs1{=}\cs4{"None"}\cs1{/>}\line
-			\cs1{<}\cs2{RepeatDesc} \cs3{OrderQuantity}\cs1{=}\cs4{"700000"} \cs3{GutterX}\cs1{=}\cs4{"14.17"} \cs3{GutterY}\cs1{=}\cs4{"14.17"}\line
-					\cs3{AllowedRotate}\cs1{=}\cs4{"None"}\cs1{/>}\line
-		\cs1{</}\cs2{DieLayoutProductionParams}\cs1{>}\line
-		{\cs5<!-- The layout with minimum waste will be returned as the final \line
-				result. -->}\line
-		\cs1{<}\cs2{DieLayout} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"DieLay"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
-	\cs1{</}\cs2{ResourcePool}\cs1{>}\line
-	\cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
-		\cs1{<}\cs2{ShapeDefLink} \cs3{rRef}\cs1{=}\cs4{"Shape1Up"} \cs3{Usage}\cs1{=}\cs4{"Input"}\cs1{/>}\line
-		\cs1{<}\cs2{ShapeDefLink} \cs3{rRef}\cs1{=}\cs4{"Shape1Up2"} \cs3{Usage}\cs1{=}\cs4{"Input"}\cs1{/>}\line
-		\cs1{<}\cs2{DieLayoutProductionParamsLink} \cs3{rRef}\cs1{=}\cs4{"LayParam"} \cs3{Usage}\cs1{=}\cs4{"Input"}\cs1{/>}\line
-		\cs1{<}\cs2{DieLayoutLink} \cs3{rRef}\cs1{=}\cs4{"DieLay"} \cs3{Usage}\cs1{=}\cs4{"Output"}\cs1{/>}\line
-	\cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
-\cs1{</}\cs2{JDF}\cs1{>}}

@@ -14,28 +14,28 @@
         \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
         {\cs5<!-- The BoxPacking Process has the following local resources -->}\line
         \cs1{<}\cs2{ResourcePool}\cs1{>}\line
-            \cs1{<}\cs2{BoxPackingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"BoxParamsID"}\line
-            \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
-            \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"BoxID"}\line
-            \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
+            \cs1{<}\cs2{BoxPackingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"BoxParamsID"} \line
+\cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+            \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"BoxID"} \line
+\cs3{Status}\cs1{=}\cs4{"Available"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
         \cs1{</}\cs2{ResourcePool}\cs1{>}\line
     \cs1{</}\cs2{JDF}\cs1{>}\line
     \cs1{<}\cs2{ResourcePool}\cs1{>}\line
         {\cs5<!-- This Component describes a Box with 42 Books -->}\line
-        \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"PackedBoxID"}\line
-        \cs3{Status}\cs1{=}\cs4{"Unavailable"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{>}\line
+        \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"PackedBoxID"} \line
+\cs3{Status}\cs1{=}\cs4{"Unavailable"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{>}\line
             \cs1{<}\cs2{Bundle} \cs3{BundleType}\cs1{=}\cs4{"Box"} \cs3{TotalAmount}\cs1{=}\cs4{"42"}\cs1{>}\line
                 \cs1{<}\cs2{BundleItem} \cs3{Amount}\cs1{=}\cs4{"42"}\cs1{>}\line
                     \cs1{<}\cs2{ComponentRef} \cs3{rRef}\cs1{=}\cs4{"ComponentID"}\cs1{/>}\line
                 \cs1{</}\cs2{BundleItem}\cs1{>}\line
             \cs1{</}\cs2{Bundle}\cs1{>}\line
         \cs1{</}\cs2{Component}\cs1{>}\line
-        \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"4200"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"ComponentID"}\line
-        \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
-        {\cs5<!-- This Component describes the contents of the pallet: 100\line
-        Boxes w. 42 Books -->}\line
-        \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"10"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"palletContentsID"}\line
-        \cs3{Status}\cs1{=}\cs4{"Unavailable"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{>}\line
+        \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"4200"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"ComponentID"} \line
+\cs3{Status}\cs1{=}\cs4{"Available"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
+        {\cs5<!-- This Component describes the contents of the pallet: 100 \line
+Boxes w. 42 Books -->}\line
+        \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"10"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"palletContentsID"} \line
+\cs3{Status}\cs1{=}\cs4{"Unavailable"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{>}\line
             \cs1{<}\cs2{Bundle} \cs3{BundleType}\cs1{=}\cs4{"Pallet"} \cs3{TotalAmount}\cs1{=}\cs4{"420"}\cs1{>}\line
                 \cs1{<}\cs2{BundleItem} \cs3{Amount}\cs1{=}\cs4{"10"}\cs1{>}\line
                     \cs1{<}\cs2{ComponentRef} \cs3{rRef}\cs1{=}\cs4{"PackedBoxID"}\cs1{/>}\line
@@ -51,10 +51,11 @@
             \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"palletContentsID"}\cs1{/>}\line
         \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
         \cs1{<}\cs2{ResourcePool}\cs1{>}\line
-            \cs1{<}\cs2{Pallet} \cs3{Amount}\cs1{=}\cs4{"10"} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"palletID"}\line
-            \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{PalletType}\cs1{=}\cs4{"Euro800x600"}\cs1{/>}\line
-            \cs1{<}\cs2{PalletizingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"palletParamsID"}\line
-            \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+            \cs1{<}\cs2{Pallet} \cs3{Amount}\cs1{=}\cs4{"10"} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"palletID"} \line
+\cs3{Status}\cs1{=}\cs4{"Available"} \cs3{PalletType}\cs1{=}\cs4{"Euro800x600"}\cs1{/>}\line
+            \cs1{<}\cs2{PalletizingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"palletParamsID"} \line
+\cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
         \cs1{</}\cs2{ResourcePool}\cs1{>}\line
     \cs1{</}\cs2{JDF}\cs1{>}\line
-\cs1{</}\cs2{JDF}\cs1{>}}
+\cs1{</}\cs2{JDF}\cs1{>}\line
+}
