@@ -1,0 +1,40 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{FileSpec} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{ID}\cs1{=}\cs4{"ID_005_TAR"} \cs3{MimeType}\cs1{=}\cs4{"Tar"} \line
+\cs3{URL}\cs1{=}\cs4{"ftp://www.any.com/e.tar"}\cs1{/>}\line
+\cs1{<}\cs2{FileSpec} \cs3{ID}\cs1{=}\cs4{"ID_005_ZIPS"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"}\line
+    \cs3{MimeType}\cs1{=}\cs4{"application/zip"} \cs3{PartIDKeys}\cs1{=}\cs4{"PartVersion"}\cs1{>}\line
+  \cs1{<}\cs2{Container}\cs1{>} \line
+    \cs1{<}\cs2{FileSpecRef} \cs3{rRef}\cs1{=}\cs4{"ID_005_TAR"}\cs1{/>}\line
+  \cs1{</}\cs2{Container}\cs1{>} \line
+  \cs1{<}\cs2{FileSpec} \cs3{PartVersion}\cs1{=}\cs4{"English"} \cs3{URL}\cs1{=}\cs4{"c.zip"}\cs1{/>}\line
+  \cs1{<}\cs2{FileSpec} \cs3{PartVersion}\cs1{=}\cs4{"German"} \cs3{URL}\cs1{=}\cs4{"d.zip"}\cs1{/>}\line
+\cs1{</}\cs2{FileSpec}\cs1{>}\line
+\cs1{<}\cs2{FileSpec} \cs3{ID}\cs1{=}\cs4{"ALL_FILES"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"}\line
+    \cs3{Compression}\cs1{=}\cs4{"Deflate"} \cs3{PartIDKeys}\cs1{=}\cs4{"PartVersion DocIndex"}\cs1{>}\line
+  {\cs5<!-- English Files -->}\line
+  \cs1{<}\cs2{FileSpec} \cs3{PartVersion}\cs1{=}\cs4{"English"}\cs1{>}\line
+    \cs1{<}\cs2{Container}\cs1{>} \line
+      \cs1{<}\cs2{FileSpecRef} \cs3{rRef}\cs1{=}\cs4{"ID_005_ZIPS"}\cs1{>}\line
+        \cs1{<}\cs2{Part} \cs3{PartVersion}\cs1{=}\cs4{"English"}\cs1{/>}\line
+      \cs1{</}\cs2{FileSpecRef}\cs1{>}\line
+    \cs1{</}\cs2{Container}\cs1{>} \line
+    {\cs5<!-- English File A -->}\line
+    \cs1{<}\cs2{FileSpec} \cs3{DocIndex}\cs1{=}\cs4{"1"} \cs3{MimeType}\cs1{=}\cs4{"application/pdf"} \cs3{URL}\cs1{=}\cs4{"a.pdf"}\cs1{/>}\line
+    {\cs5<!-- English File B -->}\line
+    \cs1{<}\cs2{FileSpec} \cs3{DocIndex}\cs1{=}\cs4{"2"} \cs3{MimeType}\cs1{=}\cs4{"application/pdf"} \cs3{URL}\cs1{=}\cs4{"b.pdf"}\cs1{/>}\line
+  \cs1{</}\cs2{FileSpec}\cs1{>}\line
+  {\cs5<!-- German Files -->}\line
+  \cs1{<}\cs2{FileSpec} \cs3{PartVersion}\cs1{=}\cs4{"German"}\cs1{>}\line
+    \cs1{<}\cs2{Container}\cs1{>} \line
+      \cs1{<}\cs2{FileSpecRef} \cs3{rRef}\cs1{=}\cs4{"ID_005_ZIPS"}\cs1{>}\line
+        \cs1{<}\cs2{Part} \cs3{PartVersion}\cs1{=}\cs4{"German"}\cs1{/>}\line
+      \cs1{</}\cs2{FileSpecRef}\cs1{>}\line
+    \cs1{</}\cs2{Container}\cs1{>}\line
+    {\cs5<!-- German File A -->} \line
+    \cs1{<}\cs2{FileSpec} \cs3{DocIndex}\cs1{=}\cs4{"1"} \cs3{MimeType}\cs1{=}\cs4{"application/pdf"} \cs3{URL}\cs1{=}\cs4{"a.pdf"}\cs1{/>}\line
+    {\cs5<!-- German File B -->}\line
+    \cs1{<}\cs2{FileSpec} \cs3{DocIndex}\cs1{=}\cs4{"2"} \cs3{MimeType}\cs1{=}\cs4{"application/pdf"} \cs3{URL}\cs1{=}\cs4{"b.pdf"}\cs1{/>}\line
+  \cs1{</}\cs2{FileSpec}\cs1{>}\line
+\cs1{</}\cs2{FileSpec}\cs1{>}}
