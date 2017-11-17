@@ -1,0 +1,28 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{Device} \cs3{Class}\cs1{=}\cs4{"Implementation"} \cs3{ID}\cs1{=}\cs4{"Link0003"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  \cs1{<}\cs2{DeviceCap}\cs1{>}\line
+    \cs1{<}\cs2{ActionPool}\cs1{>}\line
+      \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"MyAction"} \cs3{TestRef}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
+        \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Only select CCITTFaxEncoding for 1 bit documents"}\line
+          \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
+          \cs3{Value}\cs1{=}\cs4{"CCITTFaxEncoding not supported on grayscale images"}\cs1{/>}\line
+      \cs1{</}\cs2{Action}\cs1{>}\line
+    \cs1{</}\cs2{ActionPool}\cs1{>}\line
+    \cs1{<}\cs2{TestPool}\cs1{>}\line
+      \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
+        {\cs5<!-- Can't CCITT compress anything but 1 bit grayscale -->}\line
+        \cs1{<}\cs2{and}\cs1{>}\line
+          \cs1{<}\cs2{not}\cs1{>}\line
+            \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"is1bit"}\cs1{/>}\line
+          \cs1{</}\cs2{not}\cs1{>}\line
+          \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"CCITTFaxEncode"} \cs3{rRef}\cs1{=}\cs4{"cmp"}\cs1{/>}\line
+        \cs1{</}\cs2{and}\cs1{>}\line
+      \cs1{</}\cs2{Test}\cs1{>}\line
+      \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"is1bit"}\cs1{>}\line
+        \cs1{<}\cs2{IntegerEvaluation} \cs3{ValueList}\cs1{=}\cs4{"1"} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{/>}\line
+      \cs1{</}\cs2{Test}\cs1{>}\line
+    \cs1{</}\cs2{TestPool}\cs1{>}\line
+  \cs1{</}\cs2{DeviceCap}\cs1{>}\line
+\cs1{</}\cs2{Device}\cs1{>}}
