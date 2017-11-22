@@ -2,52 +2,52 @@
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
 \cs1{<}\cs2{JDF} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{ID}\cs1{=}\cs4{"n20020626134204"} \line
-		\cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{JobPartID}\cs1{=}\cs4{"ID345"} \cs3{Type}\cs1{=}\cs4{"DigitalPrinting"} \cs3{Version}\cs1{=}\cs4{"1.4"}\cs1{>}\line
-	\cs1{<}\cs2{ResourcePool}\cs1{>}\line
-		{\cs5<!-- Media is partitioned so that it can be referenced \line
-			from the AmountPool\line
-		-->} \line
-		\cs1{<}\cs2{Media} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"r0006"} \cs3{PartIDKeys}\cs1{=}\cs4{"RunIndex"} \line
-				\cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-			\cs1{<}\cs2{Media} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{/>}\line
-			\cs1{<}\cs2{Media} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{/>}\line
-		\cs1{</}\cs2{Media}\cs1{>}\line
-		\cs1{<}\cs2{DigitalPrintingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r0007"} \cs3{PartIDKeys}\cs1{=}\cs4{"RunIndex"} \line
-				\cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-			\cs1{<}\cs2{DigitalPrintingParams} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{>}\line
-				{\cs5<!-- PartAmount with <Part RunIndex="0 -1"/> contains \line
-					the partition details for this MediaRef -->}\line
-				\cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r0006"}\cs1{>}\line
-					\cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{/>}\line
-				\cs1{</}\cs2{MediaRef}\cs1{>}\line
-			\cs1{</}\cs2{DigitalPrintingParams}\cs1{>}\line
-			\cs1{<}\cs2{DigitalPrintingParams} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{>}\line
-				{\cs5<!-- PartAmount with <Part RunIndex="1 ~ -2"/> \line
-					contains the partition details for this MediaRef \line
-				-->}\line
-				\cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r0006"}\cs1{>}\line
-					\cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{/>}\line
-				\cs1{</}\cs2{MediaRef}\cs1{>}\line
-			\cs1{</}\cs2{DigitalPrintingParams}\cs1{>}\line
-		\cs1{</}\cs2{DigitalPrintingParams}\cs1{>}\line
-		\cs1{<}\cs2{RunList} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r0008"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
-		\cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"c0008"} \cs3{Status}\cs1{=}\cs4{"Unavailable"} \line
-				\cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
-	\cs1{</}\cs2{ResourcePool}\cs1{>}\line
-	\cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
-		\cs1{<}\cs2{MediaLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r0006"}\cs1{>}\line
-			{\cs5<!-- the AmountPool contains the ResourceLink partition details -->}\line
-			\cs1{<}\cs2{AmountPool}\cs1{>}\line
-				\cs1{<}\cs2{PartAmount} \cs3{Orientation}\cs1{=}\cs4{"Flip180"}\cs1{>}\line
-					\cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{/>}\line
-				\cs1{</}\cs2{PartAmount}\cs1{>}\line
-				\cs1{<}\cs2{PartAmount} \cs3{Orientation}\cs1{=}\cs4{"Rotate0"}\cs1{>}\line
-					\cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{/>}\line
-				\cs1{</}\cs2{PartAmount}\cs1{>}\line
-			\cs1{</}\cs2{AmountPool}\cs1{>}\line
-		\cs1{</}\cs2{MediaLink}\cs1{>}\line
-		\cs1{<}\cs2{DigitalPrintingParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r0007"}\cs1{/>}\line
-		\cs1{<}\cs2{RunListLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r0008"}\cs1{/>}\line
-		\cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"c0008"}\cs1{/>}\line
-	\cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{JobPartID}\cs1{=}\cs4{"ID345"} \cs3{Type}\cs1{=}\cs4{"DigitalPrinting"} \cs3{Version}\cs1{=}\cs4{"1.4"}\cs1{>}\line
+  \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+    {\cs5<!-- Media is partitioned so that it can be referenced \line
+      from the AmountPool\line
+    -->} \line
+    \cs1{<}\cs2{Media} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"r0006"} \cs3{PartIDKeys}\cs1{=}\cs4{"RunIndex"} \line
+        \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{Media} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{/>}\line
+      \cs1{<}\cs2{Media} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{/>}\line
+    \cs1{</}\cs2{Media}\cs1{>}\line
+    \cs1{<}\cs2{DigitalPrintingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r0007"} \cs3{PartIDKeys}\cs1{=}\cs4{"RunIndex"} \line
+        \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{DigitalPrintingParams} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{>}\line
+        {\cs5<!-- PartAmount with <Part RunIndex="0 -1"/> contains \line
+          the partition details for this MediaRef -->}\line
+        \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r0006"}\cs1{>}\line
+          \cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{/>}\line
+        \cs1{</}\cs2{MediaRef}\cs1{>}\line
+      \cs1{</}\cs2{DigitalPrintingParams}\cs1{>}\line
+      \cs1{<}\cs2{DigitalPrintingParams} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{>}\line
+        {\cs5<!-- PartAmount with <Part RunIndex="1 ~ -2"/> \line
+          contains the partition details for this MediaRef \line
+        -->}\line
+        \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r0006"}\cs1{>}\line
+          \cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{/>}\line
+        \cs1{</}\cs2{MediaRef}\cs1{>}\line
+      \cs1{</}\cs2{DigitalPrintingParams}\cs1{>}\line
+    \cs1{</}\cs2{DigitalPrintingParams}\cs1{>}\line
+    \cs1{<}\cs2{RunList} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r0008"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ID}\cs1{=}\cs4{"c0008"} \cs3{Status}\cs1{=}\cs4{"Unavailable"} \line
+        \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{MediaLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r0006"}\cs1{>}\line
+      {\cs5<!-- the AmountPool contains the ResourceLink partition details -->}\line
+      \cs1{<}\cs2{AmountPool}\cs1{>}\line
+        \cs1{<}\cs2{PartAmount} \cs3{Orientation}\cs1{=}\cs4{"Flip180"}\cs1{>}\line
+          \cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"0 -1"}\cs1{/>}\line
+        \cs1{</}\cs2{PartAmount}\cs1{>}\line
+        \cs1{<}\cs2{PartAmount} \cs3{Orientation}\cs1{=}\cs4{"Rotate0"}\cs1{>}\line
+          \cs1{<}\cs2{Part} \cs3{RunIndex}\cs1{=}\cs4{"1 ~ -2"}\cs1{/>}\line
+        \cs1{</}\cs2{PartAmount}\cs1{>}\line
+      \cs1{</}\cs2{AmountPool}\cs1{>}\line
+    \cs1{</}\cs2{MediaLink}\cs1{>}\line
+    \cs1{<}\cs2{DigitalPrintingParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r0007"}\cs1{/>}\line
+    \cs1{<}\cs2{RunListLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r0008"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"c0008"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
 \cs1{</}\cs2{JDF}\cs1{>}}
