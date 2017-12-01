@@ -3,62 +3,61 @@
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
 {\cs5<!-- Information about the input (file, author) -->}\line
 \cs1{<}\cs2{RunList} \cs3{ID}\cs1{=}\cs4{"NodeIDRunList"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{Class}\cs1{=}\cs4{"Parameter"}\cs1{>}\line
-    \cs1{<}\cs2{LayoutElementRef} \cs3{rRef}\cs1{=}\cs4{"NodeIDLE"}\cs1{/>}\line
-    \cs1{<}\cs2{PageList}\cs1{>}\line
-        \cs1{<}\cs2{ContentList}\cs1{>}\line
-            \cs1{<}\cs2{ContentData}\cs1{>}\line
-                {\cs5<!-- String for title -->}\line
-                \cs1{<}\cs2{new:DocumentInfo} \cs3{Title}\cs1{=}\cs4{"This is the title of the book"}\line
-                        \cs3{ISBN}\cs1{=}\cs4{"0123456789"} \cs3{xmlns:new}\cs1{=}\cs4{"new_schema_URI"}\cs1{>}\line
-                    {\cs5<!-- Multi-lines string for Abstract -->}\line
-                    \cs1{<}\cs2{new:DocumentAbstract}\cs1{>}\line
-                        This is the abstract of the book\line
-                        It has several lines...\line
-                    \cs1{</}\cs2{new:DocumentAbstract}\cs1{>}\line
-                    {\cs5<!-- List of authors. Using a PersonRef allows reusing the same\line
-                        Person element -->}\line
-                    \cs1{<}\cs2{new:Author} \cs3{Subject}\cs1{=}\cs4{"Preface"}\cs1{>}\line
-                        \cs1{<}\cs2{PersonRef} \cs3{rRef}\cs1{=}\cs4{"AuthorID1"}\cs1{/>}\line
-                    \cs1{</}\cs2{new:Author}\cs1{>}\line
-                    \cs1{<}\cs2{new:Author} \cs3{Subject}\cs1{=}\cs4{"Content"}\cs1{>}\line
-                        \cs1{<}\cs2{new:PersonRef} \cs3{rRef}\cs1{=}\cs4{"AuthorID2"}\cs1{/>}\line
-                        \cs1{<}\cs2{new:PersonRef} \cs3{rRef}\cs1{=}\cs4{"AuthorID3"}\cs1{/>}\line
-                    \cs1{</}\cs2{new:Author}\cs1{>}\line
-                \cs1{</}\cs2{new:DocumentInfo}\cs1{>}\line
-            \cs1{</}\cs2{ContentData}\cs1{>}\line
-        \cs1{</}\cs2{ContentList}\cs1{>}\line
-    \cs1{</}\cs2{PageList}\cs1{>}\line
+  \cs1{<}\cs2{LayoutElementRef} \cs3{rRef}\cs1{=}\cs4{"NodeIDLE"}\cs1{/>}\line
+  \cs1{<}\cs2{PageList}\cs1{>}\line
+    \cs1{<}\cs2{ContentList}\cs1{>}\line
+      \cs1{<}\cs2{ContentData}\cs1{>}\line
+        {\cs5<!-- String for title -->}\line
+        \cs1{<}\cs2{new:DocumentInfo} \cs3{Title}\cs1{=}\cs4{"This is the title of the book"}\line
+                            \cs3{ISBN}\cs1{=}\cs4{"0123456789"} \cs3{xmlns:new}\cs1{=}\cs4{"new_schema_URI"}\cs1{>}\line
+          {\cs5<!-- Multi-lines string for Abstract -->}\line
+          \cs1{<}\cs2{new:DocumentAbstract}\cs1{>}\line
+              This is the abstract of the book\line
+              It has several lines...\line
+          \cs1{</}\cs2{new:DocumentAbstract}\cs1{>}\line
+          {\cs5<!-- List of authors. Using a PersonRef allows reusing the same Person element -->}\line
+          \cs1{<}\cs2{new:Author} \cs3{Subject}\cs1{=}\cs4{"Preface"}\cs1{>}\line
+            \cs1{<}\cs2{PersonRef} \cs3{rRef}\cs1{=}\cs4{"AuthorID1"}\cs1{/>}\line
+          \cs1{</}\cs2{new:Author}\cs1{>}\line
+          \cs1{<}\cs2{new:Author} \cs3{Subject}\cs1{=}\cs4{"Content"}\cs1{>}\line
+            \cs1{<}\cs2{new:PersonRef} \cs3{rRef}\cs1{=}\cs4{"AuthorID2"}\cs1{/>}\line
+            \cs1{<}\cs2{new:PersonRef} \cs3{rRef}\cs1{=}\cs4{"AuthorID3"}\cs1{/>}\line
+          \cs1{</}\cs2{new:Author}\cs1{>}\line
+        \cs1{</}\cs2{new:DocumentInfo}\cs1{>}\line
+      \cs1{</}\cs2{ContentData}\cs1{>}\line
+    \cs1{</}\cs2{ContentList}\cs1{>}\line
+  \cs1{</}\cs2{PageList}\cs1{>}\line
 \cs1{</}\cs2{RunList}\cs1{>}\line
 \cs1{<}\cs2{LayoutElement} \cs3{ID}\cs1{=}\cs4{"NodeIDLE"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{Class}\cs1{=}\cs4{"Parameter"}\cs1{>}\line
-    \cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"file:////hotfolder/files/Document2747.pdf"}\line
-        \cs3{MimeType}\cs1{=}\cs4{"application/pdf"} \cs3{UserFileName}\cs1{=}\cs4{"JDF1.3.pdf"}\cs1{/>}\line
+  \cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"file:////hotfolder/files/Document2747.pdf"}\line
+            \cs3{MimeType}\cs1{=}\cs4{"application/pdf"} \cs3{UserFileName}\cs1{=}\cs4{"JDF1.3.pdf"}\cs1{/>}\line
 \cs1{</}\cs2{LayoutElement}\cs1{>}\line
 {\cs5<!-- Information about the authors -->}\line
 \cs1{<}\cs2{Person} \cs3{ID}\cs1{=}\cs4{"AuthorID1"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{FirstName}\cs1{=}\cs4{"James"}\line
-    \cs3{FamilyName}\cs1{=}\cs4{"Smith"} \cs3{JobTitle}\cs1{=}\cs4{"Author"}\cs1{/>}\line
+        \cs3{FamilyName}\cs1{=}\cs4{"Smith"} \cs3{JobTitle}\cs1{=}\cs4{"Author"}\cs1{/>}\line
 \cs1{<}\cs2{Person} \cs3{ID}\cs1{=}\cs4{"AuthorID2"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{FirstName}\cs1{=}\cs4{"John"}\line
-    \cs3{FamilyName}\cs1{=}\cs4{"Smith"} \cs3{JobTitle}\cs1{=}\cs4{"Author"}\cs1{/>}\line
+        \cs3{FamilyName}\cs1{=}\cs4{"Smith"} \cs3{JobTitle}\cs1{=}\cs4{"Author"}\cs1{/>}\line
 \cs1{<}\cs2{Person} \cs3{ID}\cs1{=}\cs4{"AuthorID3"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{FirstName}\cs1{=}\cs4{"William"}\line
-    \cs3{FamilyName}\cs1{=}\cs4{"Smith"} \cs3{JobTitle}\cs1{=}\cs4{"Author"}\cs1{/>}\line
+        \cs3{FamilyName}\cs1{=}\cs4{"Smith"} \cs3{JobTitle}\cs1{=}\cs4{"Author"}\cs1{/>}\line
 {\cs5<!-- Media: A3 white paper coated on both sides, 70 gr/m2 -->}\line
 \cs1{<}\cs2{Media} \cs3{ID}\cs1{=}\cs4{"MediaID"} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{Weight}\cs1{=}\cs4{"70"}\line
-    \cs3{Dimension}\cs1{=}\cs4{"1190 842"} \cs3{MediaType}\cs1{=}\cs4{"Paper"} \cs3{MediaColorName}\cs1{=}\cs4{"White"}\line
-    \cs3{FrontCoatings}\cs1{=}\cs4{"Coated"} \cs3{BackCoatings}\cs1{=}\cs4{"Coated"}\cs1{/>}\line
+        \cs3{Dimension}\cs1{=}\cs4{"1190 842"} \cs3{MediaType}\cs1{=}\cs4{"Paper"} \cs3{MediaColorName}\cs1{=}\cs4{"White"}\line
+        \cs3{FrontCoatings}\cs1{=}\cs4{"Coated"} \cs3{BackCoatings}\cs1{=}\cs4{"Coated"}\cs1{/>}\line
 {\cs5<!-- Media: A4 yellow paper for Banner Page -->}\line
 \cs1{<}\cs2{Media} \cs3{ID}\cs1{=}\cs4{"MediaID2"} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{Status}\cs1{=}\cs4{"Available"} \cs3{Weight}\cs1{=}\cs4{"70"}\line
-    \cs3{Dimension}\cs1{=}\cs4{"595 842"} \cs3{MediaType}\cs1{=}\cs4{"Paper"} \cs3{MediaColorName}\cs1{=}\cs4{"Yellow"}\cs1{/>}\line
+        \cs3{Dimension}\cs1{=}\cs4{"595 842"} \cs3{MediaType}\cs1{=}\cs4{"Paper"} \cs3{MediaColorName}\cs1{=}\cs4{"Yellow"}\cs1{/>}\line
 {\cs5<!-- Booklet layout + banner page with ISBN and Authors printed on it -->}\line
 \cs1{<}\cs2{LayoutPreparationParams} \cs3{ID}\cs1{=}\cs4{"NodeIDLPP"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Status}\cs1{=}\cs4{"Available"}\line
-    \cs3{Sides}\cs1{=}\cs4{"TwoSidedFlipY"} \cs3{NumberUp}\cs1{=}\cs4{"2 1"} \cs3{BindingEdge}\cs1{=}\cs4{"Left"}\line
-    \cs3{PresentationDirection}\cs1{=}\cs4{"FoldCatalog"} \cs3{FoldCatalog}\cs1{=}\cs4{"F4-1"}\line
-    \cs3{FinishingOrder}\cs1{=}\cs4{"GatherFold"} \cs3{PageDistributionScheme}\cs1{=}\cs4{"Saddle"}\cs1{>}\line
-    \cs1{<}\cs2{InsertSheet} \cs3{SheetType}\cs1{=}\cs4{"JobSheet"} \cs3{SheetUsage}\cs1{=}\cs4{"Header"} \cs3{IsWaste}\cs1{=}\cs4{"true"}\line
-        \cs3{SheetFormat}\cs1{=}\cs4{"Standard"}\cs1{>}\line
-        \cs1{<}\cs2{Layout}\cs1{>}\line
-            \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"MediaID2"}\cs1{/>}\line
-            \cs1{<}\cs2{MarkObject} \cs3{CTM}\cs1{=}\cs4{"1 0 0 1 0 0"}\cs1{>}\line
-                \cs1{<}\cs2{JobField} \cs3{ShowList}\cs1{=}\cs4{"new:ISBN new:Authors"}\cs1{/>}\line
-            \cs1{</}\cs2{MarkObject}\cs1{>}\line
-        \cs1{</}\cs2{Layout}\cs1{>}\line
-    \cs1{</}\cs2{InsertSheet}\cs1{>}\line
+        \cs3{Sides}\cs1{=}\cs4{"TwoSidedFlipY"} \cs3{NumberUp}\cs1{=}\cs4{"2 1"} \cs3{BindingEdge}\cs1{=}\cs4{"Left"}\line
+        \cs3{PresentationDirection}\cs1{=}\cs4{"FoldCatalog"} \cs3{FoldCatalog}\cs1{=}\cs4{"F4-1"}\line
+        \cs3{FinishingOrder}\cs1{=}\cs4{"GatherFold"} \cs3{PageDistributionScheme}\cs1{=}\cs4{"Saddle"}\cs1{>}\line
+  \cs1{<}\cs2{InsertSheet} \cs3{SheetType}\cs1{=}\cs4{"JobSheet"} \cs3{SheetUsage}\cs1{=}\cs4{"Header"} \cs3{IsWaste}\cs1{=}\cs4{"true"}\line
+            \cs3{SheetFormat}\cs1{=}\cs4{"Standard"}\cs1{>}\line
+    \cs1{<}\cs2{Layout}\cs1{>}\line
+      \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"MediaID2"}\cs1{/>}\line
+      \cs1{<}\cs2{MarkObject} \cs3{CTM}\cs1{=}\cs4{"1 0 0 1 0 0"}\cs1{>}\line
+        \cs1{<}\cs2{JobField} \cs3{ShowList}\cs1{=}\cs4{"new:ISBN new:Authors"}\cs1{/>}\line
+      \cs1{</}\cs2{MarkObject}\cs1{>}\line
+    \cs1{</}\cs2{Layout}\cs1{>}\line
+  \cs1{</}\cs2{InsertSheet}\cs1{>}\line
 \cs1{</}\cs2{LayoutPreparationParams}\cs1{>}}
