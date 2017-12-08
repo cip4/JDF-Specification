@@ -1,0 +1,6 @@
+# This file set global attributes to files
+# Originally intended to make illustrator files treated as binary - thus no merge
+
+# Binary files
+*.ai binary
+*.fm binary
