@@ -1,31 +1,29 @@
 {\rtf1\ansi
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-{\cs5<!--ColorantControl after prepress has correctly set ActualColorName based \line
-            on pdl content-->}\line
-    \cs1{<}\cs2{ColorantControl} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000004"} \cs3{ProcessColorModel}\cs1{=}\cs4{"DeviceCMYK"} \line
-\cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-      {\cs5<!--Note that all Strings in ColorantParams etc. use Color/@Name, \line
-                NOT Color/@ActualColorName-->}\line
-      \cs1{<}\cs2{ColorantParams}\cs1{>}\line
-        \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"Spot1"}\cs1{/>}\line
-        \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"BlackText"}\cs1{/>}\line
-      \cs1{</}\cs2{ColorantParams}\cs1{>}\line
-      \cs1{<}\cs2{ColorPoolRef} \cs3{rRef}\cs1{=}\cs4{"r000005"}\cs1{/>}\line
-    \cs1{</}\cs2{ColorantControl}\cs1{>}\line
-    \cs1{<}\cs2{ColorPool} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000005"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-      {\cs5<!--Color that maps the predefined separation Black\line
-                ActualColorName is the new attribute that replaces \line
-                ExposedMedia/@DescriptiveName as the "Main" PDL color-->}\line
-      \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"Schwarz"} \cs3{CMYK}\cs1{=}\cs4{"0 0 0 1"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \line
-                \cs3{Name}\cs1{=}\cs4{"Black"}\cs1{/>}\line
-      \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"Gelb"} \cs3{CMYK}\cs1{=}\cs4{"0 0 1 0"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \line
-                \cs3{Name}\cs1{=}\cs4{"Yellow"}\cs1{/>}\line
-      {\cs5<!--ActualColorName defaults to Name if not specified-->}\line
-      \cs1{<}\cs2{Color} \cs3{CMYK}\cs1{=}\cs4{"1 0 0 0"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Cyan"}\cs1{/>}\line
-      \cs1{<}\cs2{Color} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Magenta"}\cs1{/>}\line
-      \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"Acme Aqua"} \cs3{CMYK}\cs1{=}\cs4{"0.7 0.2 0.03 0.1"} \line
-                \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Spot1"}\cs1{/>}\line
-      \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"VersionsText"} \cs3{CMYK}\cs1{=}\cs4{"0 0 0 1"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \line
-                \cs3{Name}\cs1{=}\cs4{"BlackText"}\cs1{/>}\line
-    \cs1{</}\cs2{ColorPool}\cs1{>}}
+{\cs5<!--ColorantControl after prepress has correctly set ActualColorName based \line
+        on pdl content-->}\line
+\cs1{<}\cs2{ColorantControl} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000004"}\line
+  \cs3{ProcessColorModel}\cs1{=}\cs4{"DeviceCMYK"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  {\cs5<!--Note that all Strings in ColorantParams etc. use Color/@Name, \line
+            NOT Color/@ActualColorName-->}\line
+  \cs1{<}\cs2{ColorantParams}\cs1{>}\line
+    \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"Spot1"}\cs1{/>}\line
+    \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"BlackText"}\cs1{/>}\line
+  \cs1{</}\cs2{ColorantParams}\cs1{>}\line
+  \cs1{<}\cs2{ColorPoolRef} \cs3{rRef}\cs1{=}\cs4{"r000005"}\cs1{/>}\line
+\cs1{</}\cs2{ColorantControl}\cs1{>}\line
+\cs1{<}\cs2{ColorPool} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000005"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  {\cs5<!--Color that maps the predefined separation Black\line
+            ActualColorName is the new attribute that replaces \line
+            ExposedMedia/@DescriptiveName as the "Main" PDL color-->}\line
+  \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"Schwarz"} \cs3{CMYK}\cs1{=}\cs4{"0 0 0 1"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Black"}\cs1{/>}\line
+  \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"Gelb"} \cs3{CMYK}\cs1{=}\cs4{"0 0 1 0"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Yellow"}\cs1{/>}\line
+  {\cs5<!--ActualColorName defaults to Name if not specified-->}\line
+  \cs1{<}\cs2{Color} \cs3{CMYK}\cs1{=}\cs4{"1 0 0 0"} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Cyan"}\cs1{/>}\line
+  \cs1{<}\cs2{Color} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Magenta"}\cs1{/>}\line
+  \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"Acme Aqua"} \cs3{CMYK}\cs1{=}\cs4{"0.7 0.2 0.03 0.1"}\line
+    \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"Spot1"}\cs1{/>}\line
+  \cs1{<}\cs2{Color} \cs3{ActualColorName}\cs1{=}\cs4{"VersionsText"} \cs3{CMYK}\cs1{=}\cs4{"0 0 0 1"}\line
+    \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{Name}\cs1{=}\cs4{"BlackText"}\cs1{/>}\line
+\cs1{</}\cs2{ColorPool}\cs1{>}}

@@ -1,26 +1,25 @@
 {\rtf1\ansi
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-\cs1{<}\cs2{JMF} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{SenderID}\cs1{=}\cs4{"Scanner"}\line
-\cs3{TimeStamp}\cs1{=}\cs4{"2005-06-05T16:45:43+02:00"} \cs3{MaxVersion}\cs1{=}\cs4{"1.4"} \cs3{Version}\cs1{=}\cs4{"1.4"}\line
-\cs3{xmlns:xsi}\cs1{=}\cs4{"http://www.w3.org/2001/XMLSchema-instance"}\cs1{>}\line
-  \cs1{<}\cs2{Response} \cs3{ID}\cs1{=}\cs4{"xyz"} \cs3{Type}\cs1{=}\cs4{"KnownDevices"} \cs3{refID}\cs1{=}\cs4{"DeviceQuery"}\line
-      \cs3{xsi:type}\cs1{=}\cs4{"ResponseKnownDevices"}\cs1{>}\line
+\cs1{<}\cs2{JMF} \cs3{MaxVersion}\cs1{=}\cs4{"1.6"} \cs3{SenderID}\cs1{=}\cs4{"Scanner"}\line
+  \cs3{TimeStamp}\cs1{=}\cs4{"2005-06-05T16:45:43+02:00"} \cs3{Version}\cs1{=}\cs4{"1.6"}\line
+  \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{xmlns:xsi}\cs1{=}\cs4{"http://www.w3.org/2001/XMLSchema-instance"}\cs1{>}\line
+  \cs1{<}\cs2{Response} \cs3{ID}\cs1{=}\cs4{"xyz"} \cs3{Type}\cs1{=}\cs4{"KnownDevices"} \cs3{refID}\cs1{=}\cs4{"DeviceQuery"} \cs3{xsi:type}\cs1{=}\cs4{"ResponseKnownDevices"}\cs1{>}\line
     \cs1{<}\cs2{DeviceList}\cs1{>}\line
       \cs1{<}\cs2{DeviceInfo} \cs3{DeviceStatus}\cs1{=}\cs4{"Idle"}\cs1{>}\line
-        \cs1{<}\cs2{Device} \cs3{Class}\cs1{=}\cs4{"Implementation"} \cs3{DeviceID}\cs1{=}\cs4{"Joe the Drum"} \line
-            \cs3{KnownLocalizations}\cs1{=}\cs4{"En Fre"} \cs3{ModelName}\cs1{=}\cs4{"Bongo"}\cs1{>}\line
-          \cs1{<}\cs2{DeviceCap} \cs3{GenericAttributes}\cs1{=}\cs4{"ID Class SettingsPolicy BestEffortExceptions
-              OperatorInterventionExceptions MustHonorExceptions PartIDKeys DocIndex"}\line
-               \cs3{Lang}\cs1{=}\cs4{"Fre"} \cs3{Type}\cs1{=}\cs4{"Scanning"}\cs1{>}\line
+        \cs1{<}\cs2{Device} \cs3{Class}\cs1{=}\cs4{"Implementation"} \cs3{DeviceID}\cs1{=}\cs4{"Joe the Drum"}\line
+          \cs3{KnownLocalizations}\cs1{=}\cs4{"En Fre"} \cs3{ModelName}\cs1{=}\cs4{"Bongo"}\cs1{>}\line
+          \cs1{<}\cs2{DeviceCap}\line
+            \cs3{GenericAttributes}\cs1{=}\cs4{"ID Class SettingsPolicy BestEffortExceptions               OperatorInterventionExceptions MustHonorExceptions PartIDKeys DocIndex"}\line
+            \cs3{Lang}\cs1{=}\cs4{"Fre"} \cs3{Type}\cs1{=}\cs4{"Scanning"}\cs1{>}\line
             {\cs5<!-- the scanner takes a minute to set up and scans an average\line
                   of 2 sheets a min. -->}\line
             \cs1{<}\cs2{Performance} \cs3{AverageAmount}\cs1{=}\cs4{"120"} \cs3{AverageSetup}\cs1{=}\cs4{"PT2M"} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{/>}\line
             \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"NodeInfo"}\cs1{>}\line
               \cs1{<}\cs2{DevCap}\cs1{>}\line
                 {\cs5<!--NodeInfo only supports JobPriority and TargetRoute Attributes -->}\line
-                \cs1{<}\cs2{StringState} \cs3{Name}\cs1{=}\cs4{"TargetRoute"} \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{/>}\line
-                \cs1{<}\cs2{IntegerState} \cs3{Name}\cs1{=}\cs4{"JobPriority"} \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{/>}\line
+                \cs1{<}\cs2{StringState} \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"TargetRoute"}\cs1{/>}\line
+                \cs1{<}\cs2{IntegerState} \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"JobPriority"}\cs1{/>}\line
               \cs1{</}\cs2{DevCap}\cs1{>}\line
             \cs1{</}\cs2{DevCaps}\cs1{>}\line
             \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{>}\line
@@ -28,22 +27,22 @@
                 {\cs5<!-- ExposedMedia restrictions -->}\line
                 \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"Media"}\cs1{>}\line
                   \cs1{<}\cs2{NameState} \cs3{DefaultValue}\cs1{=}\cs4{"Sheet"} \cs3{Name}\cs1{=}\cs4{"MediaUnit"}\cs1{/>}\line
-                  \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"600 1200"} \cs3{AllowedValueMin}\cs1{=}\cs4{"0 0"}\line
-                    \cs3{Name}\cs1{=}\cs4{"Dimension"} \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{/>}\line
+                  \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"600 1200"}\line
+                    \cs3{AllowedValueMin}\cs1{=}\cs4{"0 0"} \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"Dimension"}\cs1{/>}\line
                 \cs1{</}\cs2{DevCap}\cs1{>}\line
               \cs1{</}\cs2{DevCap}\cs1{>}\line
             \cs1{</}\cs2{DevCaps}\cs1{>}\line
             \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"ScanParams"}\cs1{>}\line
-              \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Les parametres pour commander le procede de balayage."}\line
-                \cs3{Value}\cs1{=}\cs4{"Les parametres de module de balayage"}\cs1{/>}\line
+              \cs1{<}\cs2{Loc}\line
+                \cs3{HelpText}\cs1{=}\cs4{"Les parametres pour commander le procede de balayage."} \cs3{Value}\cs1{=}\cs4{"Les parametres de module de balayage"}\cs1{/>}\line
               \cs1{<}\cs2{DevCap}\cs1{>}\line
                 {\cs5<!-- Black and white 1 bit mode -->}\line
                 \cs1{<}\cs2{IntegerState} \cs3{AllowedValueMax}\cs1{=}\cs4{"1"} \cs3{AllowedValueMin}\cs1{=}\cs4{"1"}\line
-                    \cs3{DefaultValue}\cs1{=}\cs4{"8"} \cs3{Name}\cs1{=}\cs4{"BitDepth"}\cs1{/>}\line
+                  \cs3{DefaultValue}\cs1{=}\cs4{"8"} \cs3{Name}\cs1{=}\cs4{"BitDepth"}\cs1{/>}\line
                 \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"CCITTFaxEncode None"}\line
-                    \cs3{Name}\cs1{=}\cs4{"CompressionFilter"} \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{>}\line
-                  \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Choisissez la compression pour reduire la taille de donnees."}\line
-                      \cs3{Value}\cs1{=}\cs4{"La compression de donnees"}\cs1{/>}\line
+                  \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"CompressionFilter"}\cs1{>}\line
+                  \cs1{<}\cs2{Loc}\line
+                    \cs3{HelpText}\cs1{=}\cs4{"Choisissez la compression pour reduire la taille de donnees."} \cs3{Value}\cs1{=}\cs4{"La compression de donnees"}\cs1{/>}\line
                   \cs1{<}\cs2{ValueLoc} \cs3{Value}\cs1{=}\cs4{"CCITTFaxEncode"}\cs1{>}\line
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Compression de CCITT Fax"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
@@ -51,14 +50,13 @@
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Aucun compression"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
                 \cs1{</}\cs2{EnumerationState}\cs1{>}\line
-                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"} \cs3{AllowedValueMin}\cs1{=}\cs4{"1.e-002"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\line
-                    \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{>}\line
+                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"}\line
+                  \cs3{AllowedValueMin}\cs1{=}\cs4{"1.e-002"} \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Rapport optique"} \cs3{Value}\cs1{=}\cs4{"Rapport de rapport optique d'image"}\cs1{/>}\line
                 \cs1{</}\cs2{NumberState}\cs1{>}\line
-                \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\line
-                    \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{>}\line
-                  \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Format de couleur"} \line
-                    \cs3{Value}\cs1{=}\cs4{"Configurez le format de couleur de module de balayage"}\cs1{/>}\line
+                \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale"}\line
+                  \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\cs1{>}\line
+                  \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Format de couleur"} \cs3{Value}\cs1{=}\cs4{"Configurez le format de couleur de module de balayage"}\cs1{/>}\line
                   \cs1{<}\cs2{ValueLoc} \cs3{Value}\cs1{=}\cs4{"GrayScale"}\cs1{>}\line
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"echelle de gris"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
@@ -69,14 +67,15 @@
               \cs1{</}\cs2{DevCap}\cs1{>}\line
               \cs1{<}\cs2{DevCap}\cs1{>}\line
                 {\cs5<!-- Grayscale 12 bit mode -->}\line
-                \cs1{<}\cs2{IntegerState} \cs3{AllowedValueMax}\cs1{=}\cs4{"12"} \cs3{AllowedValueMin}\cs1{=}\cs4{"12"} \line
-                    \cs3{DefaultValue}\cs1{=}\cs4{"8"} \cs3{Name}\cs1{=}\cs4{"BitDepth"}\cs1{>}\line
+                \cs1{<}\cs2{IntegerState} \cs3{AllowedValueMax}\cs1{=}\cs4{"12"} \cs3{AllowedValueMin}\cs1{=}\cs4{"12"}\line
+                  \cs3{DefaultValue}\cs1{=}\cs4{"8"} \cs3{Name}\cs1{=}\cs4{"BitDepth"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Le profondeur de bit"}\cs1{/>}\line
                 \cs1{</}\cs2{IntegerState}\cs1{>}\line
-                \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"FlateEncode DCTEncode None"}\line
-                    \cs3{Name}\cs1{=}\cs4{"CompressionFilter"} \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{>}\line
-                  \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Choisissez la compression pour reduire la taille de donnees."}\line
-                      \cs3{Value}\cs1{=}\cs4{"La compression de donnees"}\cs1{/>}\line
+                \cs1{<}\cs2{EnumerationState}\line
+                  \cs3{AllowedValueList}\cs1{=}\cs4{"FlateEncode DCTEncode None"}\line
+                  \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"CompressionFilter"}\cs1{>}\line
+                  \cs1{<}\cs2{Loc}\line
+                    \cs3{HelpText}\cs1{=}\cs4{"Choisissez la compression pour reduire la taille de donnees."} \cs3{Value}\cs1{=}\cs4{"La compression de donnees"}\cs1{/>}\line
                   \cs1{<}\cs2{ValueLoc} \cs3{Value}\cs1{=}\cs4{"FlateEncode"}\cs1{>}\line
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Compression de Flate"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
@@ -87,33 +86,32 @@
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Aucun compression"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
                 \cs1{</}\cs2{EnumerationState}\cs1{>}\line
-                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"} \cs3{AllowedValueMin}\cs1{=}\cs4{"0.001"}\line
-                    \cs3{Name}\cs1{=}\cs4{"Magnification"} \cs3{DefaultValue}\cs1{=}\cs4{"1.0"}\cs1{>}\line
+                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"}\line
+                  \cs3{AllowedValueMin}\cs1{=}\cs4{"0.001"} \cs3{DefaultValue}\cs1{=}\cs4{"1.0"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Rapport optique"} \cs3{Value}\cs1{=}\cs4{"Rapport de rapport optique d'image"}\cs1{/>}\line
                 \cs1{</}\cs2{NumberState}\cs1{>}\line
-                \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale"} \line
-                    \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"} \cs3{HasDefault}\cs1{=}\cs4{"false"}\cs1{>}\line
-                  \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Format de couleur"} \line
-                      \cs3{Value}\cs1{=}\cs4{"Configurez le format de couleur de module de balayage"}\cs1{/>}\line
+                \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale"}\line
+                  \cs3{HasDefault}\cs1{=}\cs4{"false"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\cs1{>}\line
+                  \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Format de couleur"} \cs3{Value}\cs1{=}\cs4{"Configurez le format de couleur de module de balayage"}\cs1{/>}\line
                   \cs1{<}\cs2{ValueLoc} \cs3{Value}\cs1{=}\cs4{"GrayScale"}\cs1{>}\line
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Echelle de gris"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
                 \cs1{</}\cs2{EnumerationState}\cs1{>}\line
-                \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"2400 2400"} \cs3{AllowedValueMin}\cs1{=}\cs4{"100 100"}\line
-                    \cs3{DefaultValue}\cs1{=}\cs4{"600 600"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\cs1{>}\line
+                \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"2400 2400"}\line
+                  \cs3{AllowedValueMin}\cs1{=}\cs4{"100 100"} \cs3{DefaultValue}\cs1{=}\cs4{"600 600"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"resolution"} \cs3{Value}\cs1{=}\cs4{"Resolution de module de balayage"}\cs1{/>}\line
                 \cs1{</}\cs2{XYPairState}\cs1{>}\line
               \cs1{</}\cs2{DevCap}\cs1{>}\line
               \cs1{<}\cs2{DevCap}\cs1{>}\line
                 {\cs5<!-- Color 10 bit mode -->}\line
                 \cs1{<}\cs2{IntegerState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"} \cs3{AllowedValueMin}\cs1{=}\cs4{"10"}\line
-                    \cs3{DefaultValue}\cs1{=}\cs4{"8"} \cs3{Name}\cs1{=}\cs4{"BitDepth"}\cs1{>}\line
+                  \cs3{DefaultValue}\cs1{=}\cs4{"8"} \cs3{Name}\cs1{=}\cs4{"BitDepth"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Le profondeur de bit"}\cs1{/>}\line
                 \cs1{</}\cs2{IntegerState}\cs1{>}\line
-                \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"FlateEncode DCTEncode None"}\line
-                    \cs3{Name}\cs1{=}\cs4{"CompressionFilter"}\cs1{>}\line
-                  \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Choisissez la compression pour reduire la taille de donnees."}\line
-                      \cs3{Value}\cs1{=}\cs4{"La compression de donnees"}\cs1{/>}\line
+                \cs1{<}\cs2{EnumerationState}\line
+                  \cs3{AllowedValueList}\cs1{=}\cs4{"FlateEncode DCTEncode None"} \cs3{Name}\cs1{=}\cs4{"CompressionFilter"}\cs1{>}\line
+                  \cs1{<}\cs2{Loc}\line
+                    \cs3{HelpText}\cs1{=}\cs4{"Choisissez la compression pour reduire la taille de donnees."} \cs3{Value}\cs1{=}\cs4{"La compression de donnees"}\cs1{/>}\line
                   \cs1{<}\cs2{ValueLoc} \cs3{Value}\cs1{=}\cs4{"FlateEncode"}\cs1{>}\line
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Compression de Flate"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
@@ -124,12 +122,12 @@
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Aucun compression"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
                 \cs1{</}\cs2{EnumerationState}\cs1{>}\line
-                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"} \cs3{AllowedValueMin}\cs1{=}\cs4{"1.e-002"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\cs1{>}\line
+                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"10"}\line
+                  \cs3{AllowedValueMin}\cs1{=}\cs4{"1.e-002"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Rapport optique"} \cs3{Value}\cs1{=}\cs4{"Rapport de rapport optique d'image"}\cs1{/>}\line
                 \cs1{</}\cs2{NumberState}\cs1{>}\line
                 \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"CMYK RGB LAB"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\cs1{>}\line
-                  \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Format de couleur"} \line
-                      \cs3{Value}\cs1{=}\cs4{"Configurez le format de couleur de module de balayage"}\cs1{/>}\line
+                  \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Format de couleur"} \cs3{Value}\cs1{=}\cs4{"Configurez le format de couleur de module de balayage"}\cs1{/>}\line
                   \cs1{<}\cs2{ValueLoc} \cs3{Value}\cs1{=}\cs4{"CMYK"}\cs1{>}\line
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Couleur de CMYK"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
@@ -140,8 +138,8 @@
                     \cs1{<}\cs2{Loc} \cs3{Value}\cs1{=}\cs4{"Couleur de LAB"}\cs1{/>}\line
                   \cs1{</}\cs2{ValueLoc}\cs1{>}\line
                 \cs1{</}\cs2{EnumerationState}\cs1{>}\line
-                \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"2400 2400"} \cs3{AllowedValueMin}\cs1{=}\cs4{"100 100"} \cs3{DefaultValue}\cs1{=}\cs4{"600 600"}\line
-                    \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\cs1{>}\line
+                \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"2400 2400"}\line
+                  \cs3{AllowedValueMin}\cs1{=}\cs4{"100 100"} \cs3{DefaultValue}\cs1{=}\cs4{"600 600"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\cs1{>}\line
                   \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"resolution"} \cs3{Value}\cs1{=}\cs4{"Resolution de module de balayage"}\cs1{/>}\line
                 \cs1{</}\cs2{XYPairState}\cs1{>}\line
               \cs1{</}\cs2{DevCap}\cs1{>}\line

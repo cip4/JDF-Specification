@@ -5,10 +5,9 @@
     Date:Sept 2007 Version: 1.00 \line
     Single Shape is repeated on a range of alternative sheet sizes. \line
 -->}\line
-\cs1{<}\cs2{JDF} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{ID}\cs1{=}\cs4{"n001"}\line
-    \cs3{Type}\cs1{=}\cs4{"DieLayoutProduction"} \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{JobPartID}\cs1{=}\cs4{"ID234"}\line
-    \cs3{DescriptiveName}\cs1{=}\cs4{"Single shape versus a set of sheet sizes"}\line
-    \cs3{Version}\cs1{=}\cs4{"1.4"}\cs1{>}\line
+\cs1{<}\cs2{JDF} \cs3{DescriptiveName}\cs1{=}\cs4{"Single shape versus a set of sheet sizes"}\line
+  \cs3{ID}\cs1{=}\cs4{"n001"} \cs3{JobPartID}\cs1{=}\cs4{"ID234"} \cs3{Status}\cs1{=}\cs4{"Waiting"}\line
+  \cs3{Type}\cs1{=}\cs4{"DieLayoutProduction"} \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\cs1{>}\line
   \cs1{<}\cs2{ResourcePool}\cs1{>}\line
     \cs1{<}\cs2{ShapeDef} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"Shape1Up"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
       \cs1{<}\cs2{FileSpec} \cs3{URL}\cs1{=}\cs4{"file://myserver/myshare/olive.dd3"}\cs1{/>}\line
@@ -17,21 +16,17 @@
         rotated and secondary gutters. Rotate against grain/flute \line
         is not allowed.\line
     -->}\line
-    \cs1{<}\cs2{DieLayoutProductionParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"LayParam"} \line
-        \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
-      \cs1{<}\cs2{ConvertingConfig} \cs3{SheetWidth}\cs1{=}\cs4{"2834.64 ~ 2834.64"} \line
-          \cs3{SheetHeight}\cs1{=}\cs4{"2267.72 ~ 2267.72"}\cs1{/>}\line
-      \cs1{<}\cs2{ConvertingConfig} \cs3{SheetWidth}\cs1{=}\cs4{"3401.57 ~ 3401.57"} \line
-          \cs3{SheetHeight}\cs1{=}\cs4{"2834.64 ~ 2834.64"}\cs1{/>}\line
-      \cs1{<}\cs2{RepeatDesc} \cs3{GutterY}\cs1{=}\cs4{"0.0"} \cs3{GutterY2}\cs1{=}\cs4{"14.17"} \cs3{AllowedRotate}\cs1{=}\cs4{"None"} \line
-          \cs3{LayoutStyle}\cs1{=}\cs4{"Reverse2ndRow"}\cs1{/>}\line
+    \cs1{<}\cs2{DieLayoutProductionParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"LayParam"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{ConvertingConfig} \cs3{SheetHeight}\cs1{=}\cs4{"2267.72 ~ 2267.72"} \cs3{SheetWidth}\cs1{=}\cs4{"2834.64 ~ 2834.64"}\cs1{/>}\line
+      \cs1{<}\cs2{ConvertingConfig} \cs3{SheetHeight}\cs1{=}\cs4{"2834.64 ~ 2834.64"} \cs3{SheetWidth}\cs1{=}\cs4{"3401.57 ~ 3401.57"}\cs1{/>}\line
+      \cs1{<}\cs2{RepeatDesc} \cs3{AllowedRotate}\cs1{=}\cs4{"None"} \cs3{GutterY}\cs1{=}\cs4{"0.0"} \cs3{GutterY2}\cs1{=}\cs4{"14.17"} \cs3{LayoutStyle}\cs1{=}\cs4{"Reverse2ndRow"}\cs1{/>}\line
     \cs1{</}\cs2{DieLayoutProductionParams}\cs1{>}\line
     {\cs5<!-- The layout with minimum waste will be returned as the final result. -->}\line
     \cs1{<}\cs2{DieLayout} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"DieLay"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
   \cs1{</}\cs2{ResourcePool}\cs1{>}\line
   \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
-    \cs1{<}\cs2{ShapeDefLink} \cs3{rRef}\cs1{=}\cs4{"Shape1Up"} \cs3{Usage}\cs1{=}\cs4{"Input"}\cs1{/>}\line
-    \cs1{<}\cs2{DieLayoutProductionParamsLink} \cs3{rRef}\cs1{=}\cs4{"LayParam"} \cs3{Usage}\cs1{=}\cs4{"Input"}\cs1{/>}\line
-    \cs1{<}\cs2{DieLayoutLink} \cs3{rRef}\cs1{=}\cs4{"DieLay"} \cs3{Usage}\cs1{=}\cs4{"Output"}\cs1{/>}\line
+    \cs1{<}\cs2{ShapeDefLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Shape1Up"}\cs1{/>}\line
+    \cs1{<}\cs2{DieLayoutProductionParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"LayParam"}\cs1{/>}\line
+    \cs1{<}\cs2{DieLayoutLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"DieLay"}\cs1{/>}\line
   \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
 \cs1{</}\cs2{JDF}\cs1{>}}
