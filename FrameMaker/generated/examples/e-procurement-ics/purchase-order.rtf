@@ -1,0 +1,85 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{ptk:PrintTalk} \cs3{Timestamp}\cs1{=}\cs4{"2018-08-23T09:28:00+02:00"} \cs3{xmlns:ptk}\cs1{=}\cs4{"http://www.print-talk.org/schema_20"}\line
+               \cs3{xmlns:xjdf}\cs1{=}\cs4{"www.CIP4.org/JDFSchema_2_0"}\cs1{>}\line
+    \cs1{<}\cs2{ptk:Header}\cs1{>}\line
+        \cs1{<}\cs2{ptk:From}\cs1{>}\line
+            \cs1{<}\cs2{ptk:Credential} \cs3{domain}\cs1{=}\cs4{"xjdf:CustomerID"}\cs1{>}42\cs1{</}\cs2{ptk:Credential}\cs1{>}\line
+            \cs1{<}\cs2{ptk:Credential} \cs3{domain}\cs1{=}\cs4{"xjdf:URL"}\cs1{>}https://m.example.org/XJDF\cs1{</}\cs2{ptk:Credential}\cs1{>}\line
+        \cs1{</}\cs2{ptk:From}\cs1{>}\line
+        \cs1{<}\cs2{ptk:To}\cs1{>}\line
+            \cs1{<}\cs2{ptk:Credential} \cs3{domain}\cs1{=}\cs4{"xjdf:URL"}\cs1{>}https://w.example.org/XJDF\cs1{</}\cs2{ptk:Credential}\cs1{>}\line
+        \cs1{</}\cs2{ptk:To}\cs1{>}\line
+    \cs1{</}\cs2{ptk:Header}\cs1{>}\line
+    \cs1{<}\cs2{ptk:Request} \cs3{BusinessID}\cs1{=}\cs4{"B-42"} \cs3{Expires}\cs1{=}\cs4{"2018-08-24T10:00:00+02:00"}\cs1{>}\line
+        \cs1{<}\cs2{ptk:PurchaseOrder} \cs3{Currency}\cs1{=}\cs4{"EUR"}\cs1{>}\line
+            \cs1{<}\cs2{ptk:Pricing}\cs1{>}\line
+                \cs1{<}\cs2{ptk:Price} \cs3{DescriptiveName}\cs1{=}\cs4{"1000 Flyer DIN A6"} \cs3{PriceType}\cs1{=}\cs4{"Product"}\line
+                           \cs3{TaxType}\cs1{=}\cs4{"Net"} \cs3{LineID}\cs1{=}\cs4{"L-1"} \cs3{Price}\cs1{=}\cs4{"100.00"}\cs1{/>}\line
+                \cs1{<}\cs2{ptk:Price} \cs3{DescriptiveName}\cs1{=}\cs4{"Tax 19 %"} \cs3{PriceType}\cs1{=}\cs4{"Product"}\line
+                           \cs3{TaxType}\cs1{=}\cs4{"Tax"} \cs3{LineID}\cs1{=}\cs4{"L-2"} \cs3{Price}\cs1{=}\cs4{"19.00"}\cs1{/>}\line
+                \cs1{<}\cs2{ptk:Price} \cs3{DescriptiveName}\cs1{=}\cs4{"Total Price"} \cs3{PriceType}\cs1{=}\cs4{"Total"}\line
+                           \cs3{TaxType}\cs1{=}\cs4{"Gross"} \cs3{LineID}\cs1{=}\cs4{"L-3"} \cs3{LineIDRefs}\cs1{=}\cs4{"L-1 L-2"} \cs3{Price}\cs1{=}\cs4{"119.00"}\cs1{/>}\line
+            \cs1{</}\cs2{ptk:Pricing}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:XJDF} \cs3{ICSVersions}\cs1{=}\cs4{"CusEP_L1-2.0"} \cs3{JobID}\cs1{=}\cs4{"JOB-22"} \cs3{Types}\cs1{=}\cs4{"Product"}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:ProductList}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:Product} \cs3{Amount}\cs1{=}\cs4{"1000"}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:GeneralID} \cs3{IDUsage}\cs1{=}\cs4{"LineID"} \cs3{IDValue}\cs1{=}\cs4{"L-1"}\cs1{/>}\line
+                        \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"ColorIntent"}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:ColorIntent}\cs1{>}\line
+                                \cs1{<}\cs2{xjdf:SurfaceColor} \cs3{ColorsUsed}\cs1{=}\cs4{"Cyan Magenta Yellow Black"}\line
+                                                   \cs3{Surface}\cs1{=}\cs4{"Front"} \cs3{PrintStandard}\cs1{=}\cs4{"FOGRA51"}\cs1{/>}\line
+                                \cs1{<}\cs2{xjdf:SurfaceColor} \cs3{ColorsUsed}\cs1{=}\cs4{"Cyan Magenta Yellow Black"}\line
+                                                   \cs3{Surface}\cs1{=}\cs4{"Back"} \cs3{PrintStandard}\cs1{=}\cs4{"FOGRA51"}\cs1{/>}\line
+                            \cs1{</}\cs2{xjdf:ColorIntent}\cs1{>}\line
+                        \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"LayoutIntent"}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:LayoutIntent} \cs3{FinishedDimensions}\cs1{=}\cs4{"297.64 419.53"} \cs3{Pages}\cs1{=}\cs4{"2"}\line
+                                               \cs3{Sides}\cs1{=}\cs4{"TwoSidedHeadToHead"} \cs3{SpreadType}\cs1{=}\cs4{"SinglePage"}\cs1{/>}\line
+                        \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"MediaIntent"}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:MediaIntent} \cs3{MediaQuality}\cs1{=}\cs4{"IPG_135"} \cs3{MediaType}\cs1{=}\cs4{"Paper"}\cs1{/>}\line
+                        \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+                    \cs1{</}\cs2{xjdf:Product}\cs1{>}\line
+                \cs1{</}\cs2{xjdf:ProductList}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:ResourceSet} \cs3{Name}\cs1{=}\cs4{"Contact"}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:Part} \cs3{ContactType}\cs1{=}\cs4{"Customer"}\cs1{/>}\line
+                        \cs1{<}\cs2{xjdf:Contact}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:Address} \cs3{City}\cs1{=}\cs4{"Boston"}\cs1{/>}\line
+                            \cs1{<}\cs2{xjdf:Company} \cs3{OrganizationName}\cs1{=}\cs4{"My Organization Ltd."}\cs1{/>}\line
+                        \cs1{</}\cs2{xjdf:Contact}\cs1{>}\line
+                    \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:Part} \cs3{ContactType}\cs1{=}\cs4{"Delivery"}\cs1{/>}\line
+                        \cs1{<}\cs2{xjdf:Contact}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:Address} \cs3{City}\cs1{=}\cs4{"Boston"}\cs1{/>}\line
+                            \cs1{<}\cs2{xjdf:Person} \cs3{FamilyName}\cs1{=}\cs4{"Mustermann"} \cs3{FirstName}\cs1{=}\cs4{"Max"}\cs1{/>}\line
+                        \cs1{</}\cs2{xjdf:Contact}\cs1{>}\line
+                    \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:Part} \cs3{ContactType}\cs1{=}\cs4{"SenderAlias"}\cs1{/>}\line
+                        \cs1{<}\cs2{xjdf:Contact}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:Address} \cs3{City}\cs1{=}\cs4{"New York"}\cs1{/>}\line
+                            \cs1{<}\cs2{xjdf:Company} \cs3{OrganizationName}\cs1{=}\cs4{"The PrintShop Ltd."}\cs1{/>}\line
+                        \cs1{</}\cs2{xjdf:Contact}\cs1{>}\line
+                    \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+                \cs1{</}\cs2{xjdf:ResourceSet}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:ResourceSet} \cs3{Name}\cs1{=}\cs4{"DeliveryParams"}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+                        \cs1{<}\cs2{DeliveryParams} \cs3{Required}\cs1{=}\cs4{"2018-08-28T16:00:00+02:00"}\cs1{/>}\line
+                    \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+                \cs1{</}\cs2{xjdf:ResourceSet}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:ResourceSet} \cs3{Name}\cs1{=}\cs4{"RunList"}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+                        \cs1{<}\cs2{xjdf:RunList}\cs1{>}\line
+                            \cs1{<}\cs2{xjdf:FileSpec} \cs3{MimeType}\cs1{=}\cs4{"application/pdf"}\line
+                                           \cs3{URL}\cs1{=}\cs4{"http://example.org/artwork.pdf"}\cs1{/>}\line
+                        \cs1{</}\cs2{xjdf:RunList}\cs1{>}\line
+                    \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+                \cs1{</}\cs2{xjdf:ResourceSet}\cs1{>}\line
+            \cs1{</}\cs2{xjdf:XJDF}\cs1{>}\line
+        \cs1{</}\cs2{ptk:PurchaseOrder}\cs1{>}\line
+    \cs1{</}\cs2{ptk:Request}\cs1{>}\line
+\cs1{</}\cs2{ptk:PrintTalk}\cs1{>}}
