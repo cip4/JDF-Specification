@@ -3,21 +3,28 @@
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
 <?xml version="1.0" encoding="UTF-8"?>\line
 \cs1{<}\cs2{PrintTalk} \cs3{xmlns}\cs1{=}\cs4{"http://www.printtalk.org/schema_20"}\line
-  \cs3{Timestamp}\cs1{=}\cs4{"2018-12-10T15:51:23+01:00"} \cs3{payloadID}\cs1{=}\cs4{"P_000154"}\cs1{>}\line
+  \cs3{Timestamp}\cs1{=}\cs4{"2019-01-30T21:37:13+01:00"} \cs3{payloadID}\cs1{=}\cs4{"P_000000"}\cs1{>}\line
   \cs1{<}\cs2{Header}\cs1{>}\line
-    \cs1{<}\cs2{To}\cs1{>}\line
-      \cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"xjdf:URL"}\cs1{>}\line
+    \cs1{<}\cs2{From}\cs1{>}\line
+      \cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"URL"}\cs1{>}\line
         \cs1{<}\cs2{Identity}\cs1{>}https://customer.com\cs1{</}\cs2{Identity}\cs1{>}\line
       \cs1{</}\cs2{Credential}\cs1{>}\line
-    \cs1{</}\cs2{To}\cs1{>}\line
-    \cs1{<}\cs2{From}\cs1{>}\line
-      \cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"xjdf:URL"}\cs1{>}\line
+    \cs1{</}\cs2{From}\cs1{>}\line
+    \cs1{<}\cs2{To}\cs1{>}\line
+      \cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"URL"}\cs1{>}\line
         \cs1{<}\cs2{Identity}\cs1{>}https://printer.com\cs1{</}\cs2{Identity}\cs1{>}\line
       \cs1{</}\cs2{Credential}\cs1{>}\line
-    \cs1{</}\cs2{From}\cs1{>}\line
+    \cs1{</}\cs2{To}\cs1{>}\line
   \cs1{</}\cs2{Header}\cs1{>}\line
   \cs1{<}\cs2{Request} \cs3{BusinessID}\cs1{=}\cs4{"q1"}\cs1{>}\line
-    \cs1{<}\cs2{Quotation} \cs3{Estimate}\cs1{=}\cs4{"false"} \cs3{Expires}\cs1{=}\cs4{"2018-12-24T18:00:00+01:00"}\cs1{/>}\line
+    \cs1{<}\cs2{Quotation} \cs3{Estimate}\cs1{=}\cs4{"false"} \cs3{Expires}\cs1{=}\cs4{"2019-02-13T18:00:00+01:00"}\cs1{>}\line
+      \cs1{<}\cs2{Quote} \cs3{QuoteID}\cs1{=}\cs4{"q1"}\cs1{>}\line
+        \cs1{<}\cs2{Pricing} \cs3{Currency}\cs1{=}\cs4{"GBP"}\cs1{>}\line
+          \cs1{<}\cs2{Price} \cs3{DescriptiveName}\cs1{=}\cs4{"100 business cards"} \cs3{Price}\cs1{=}\cs4{"420000"}\line
+            \cs3{PriceType}\cs1{=}\cs4{"Total"} \cs3{TaxType}\cs1{=}\cs4{"Net"}\cs1{/>}\line
+        \cs1{</}\cs2{Pricing}\cs1{>}\line
+      \cs1{</}\cs2{Quote}\cs1{>}\line
+    \cs1{</}\cs2{Quotation}\cs1{>}\line
   \cs1{</}\cs2{Request}\cs1{>}\line
 \cs1{</}\cs2{PrintTalk}\cs1{>}\line
 }
