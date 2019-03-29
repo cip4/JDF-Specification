@@ -1,0 +1,81 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{xjdf:XJDF} \cs3{JobID}\cs1{=}\cs4{"JOB-1234"}\line
+           \cs3{Types}\cs1{=}\cs4{"Stripping Imposition Interpreting Rendering"}\line
+           \cs3{xmlns:xjdf}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_2_0"}\cs1{>}\line
+    \cs1{<}\cs2{xjdf:AuditPool}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:AuditCreated}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Header} \cs3{AgentName}\cs1{=}\cs4{"MIS"} \cs3{AgentVersion}\cs1{=}\cs4{"1.0"} \cs3{DeviceID}\cs1{=}\cs4{"myID"}\line
+                         \cs3{Time}\cs1{=}\cs4{"2016-11-02T09:52:24Z"}\cs1{/>}\line
+        \cs1{</}\cs2{xjdf:AuditCreated}\cs1{>}\line
+    \cs1{</}\cs2{xjdf:AuditPool}\cs1{>}\line
+    \cs1{<}\cs2{xjdf:ProductList}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Product} \cs3{Amount}\cs1{=}\cs4{"2500"} \cs3{DescriptiveName}\cs1{=}\cs4{"My Folded Leaflet"}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"LayoutIntent"}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:LayoutIntent} \cs3{Dimensions}\cs1{=}\cs4{"841.88 595.27"}\line
+                                   \cs3{Sides}\cs1{=}\cs4{"TwoSidedHeadToHead"} \cs3{Pages}\cs1{=}\cs4{"2"}\line
+                                   \cs3{FinishedDimensions}\cs1{=}\cs4{"280.69 595.27 0.0"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"FoldingIntent"}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:FoldingIntent} \cs3{FoldCatalog}\cs1{=}\cs4{"F6-2"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"ColorIntent"}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:ColorIntent}\cs1{>}\line
+                    \cs1{<}\cs2{xjdf:SurfaceColor} \cs3{Surface}\cs1{=}\cs4{"Front"}\line
+                                       \cs3{ColorsUsed}\cs1{=}\cs4{"Cyan Magenta Yellow Black"}\cs1{/>}\line
+                    \cs1{<}\cs2{xjdf:SurfaceColor} \cs3{Surface}\cs1{=}\cs4{"Back"}\line
+                                       \cs3{ColorsUsed}\cs1{=}\cs4{"Cyan Magenta Yellow Black"}\cs1{/>}\line
+                \cs1{</}\cs2{xjdf:ColorIntent}\cs1{>}\line
+            \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Intent} \cs3{Name}\cs1{=}\cs4{"MediaIntent"}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:MediaIntent} \cs3{MediaQuality}\cs1{=}\cs4{"135_MATT"} \cs3{MediaType}\cs1{=}\cs4{"Paper"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:Intent}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Product}\cs1{>}\line
+    \cs1{</}\cs2{xjdf:ProductList}\cs1{>}\line
+    \cs1{<}\cs2{xjdf:ResourceSet} \cs3{Name}\cs1{=}\cs4{"Layout"} \cs3{Usage}\cs1{=}\cs4{"Input"}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Layout} \cs3{SurfaceContentsBox}\cs1{=}\cs4{"0.0 0.0 1293.31 907.09"}\line
+                         \cs3{WorkStyle}\cs1{=}\cs4{"WorkAndBack"}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:Position} \cs3{RelativeBox}\cs1{=}\cs4{"0.0 0.0 0.5 1.0"}\line
+                               \cs3{Orientation}\cs1{=}\cs4{"Rotate90"} \cs3{BinderySignatureID}\cs1{=}\cs4{"BS-1"}\cs1{/>}\line
+                \cs1{<}\cs2{xjdf:Position} \cs3{RelativeBox}\cs1{=}\cs4{"0.5 0.0 1.0 1.0"}\line
+                               \cs3{Orientation}\cs1{=}\cs4{"Rotate90"} \cs3{BinderySignatureID}\cs1{=}\cs4{"BS-1"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:Layout}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+    \cs1{</}\cs2{xjdf:ResourceSet}\cs1{>}\line
+    \cs1{<}\cs2{xjdf:ResourceSet} \cs3{Name}\cs1{=}\cs4{"RunList"} \cs3{Usage}\cs1{=}\cs4{"Input"}\line
+                      \cs3{ProcessUsage}\cs1{=}\cs4{"Document"}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:RunList}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:FileSpec} \cs3{URL}\cs1{=}\cs4{"http://example.org/artwork/my.pdf"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:RunList}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+    \cs1{</}\cs2{xjdf:ResourceSet}\cs1{>}\line
+    \cs1{<}\cs2{xjdf:ResourceSet} \cs3{Name}\cs1{=}\cs4{"RunList"} \cs3{Usage}\cs1{=}\cs4{"Output"}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Part} \cs3{Separation}\cs1{=}\cs4{"Cyan"}\cs1{/>}\line
+            \cs1{<}\cs2{xjdf:RunList}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:FileSpec} \cs3{URL}\cs1{=}\cs4{"http://example.org/cyan.tif"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:RunList}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Part} \cs3{Separation}\cs1{=}\cs4{"Magenta"}\cs1{/>}\line
+            \cs1{<}\cs2{xjdf:RunList}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:FileSpec} \cs3{URL}\cs1{=}\cs4{"http://example.org/magenta.tif"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:RunList}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Part} \cs3{Separation}\cs1{=}\cs4{"Yellow"}\cs1{/>}\line
+            \cs1{<}\cs2{xjdf:RunList}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:FileSpec} \cs3{URL}\cs1{=}\cs4{"http://example.org/yellow.tif"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:RunList}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:Resource}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Part} \cs3{Separation}\cs1{=}\cs4{"Black"}\cs1{/>}\line
+            \cs1{<}\cs2{xjdf:RunList}\cs1{>}\line
+                \cs1{<}\cs2{xjdf:FileSpec} \cs3{URL}\cs1{=}\cs4{"http://example.org/black.tif"}\cs1{/>}\line
+            \cs1{</}\cs2{xjdf:RunList}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:Resource}\cs1{>}\line
+    \cs1{</}\cs2{xjdf:ResourceSet}\cs1{>}\line
+\cs1{</}\cs2{xjdf:XJDF}\cs1{>}}
