@@ -1,0 +1,84 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+<?xml version="1.0" encoding="UTF-8"?>\line
+{\cs5<!--begin spec-->}\line
+\cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"bookTest"} \cs3{JobID}\cs1{=}\cs4{"bookJob"} \cs3{JobPartID}\cs1{=}\cs4{"ID455"} \cs3{Status}\cs1{=}\cs4{"Waiting"}\line
+  \cs3{Type}\cs1{=}\cs4{"Product"} \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\cs1{>}\line
+  \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{DescriptiveName}\cs1{=}\cs4{"Teacher's Book"} \cs3{ID}\cs1{=}\cs4{"Link0003"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"2000"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{DescriptiveName}\cs1{=}\cs4{"Cover"} \cs3{ID}\cs1{=}\cs4{"Link0005"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{>}\line
+      {\cs5<!--This cover is reused by both-->}\line
+    \cs1{</}\cs2{Component}\cs1{>}\line
+    \cs1{<}\cs2{LayoutIntent} \cs3{Class}\cs1{=}\cs4{"Intent"} \cs3{ID}\cs1{=}\cs4{"Link0006"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{Dimensions} \cs3{DataType}\cs1{=}\cs4{"XYPairSpan"} \cs3{Preferred}\cs1{=}\cs4{"612 792"} \cs3{Range}\cs1{=}\cs4{"576 756 ~ 648 828"}\cs1{/>}\line
+    \cs1{</}\cs2{LayoutIntent}\cs1{>}\line
+    \cs1{<}\cs2{LayoutIntent} \cs3{Class}\cs1{=}\cs4{"Intent"} \cs3{ID}\cs1{=}\cs4{"Link0008"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{Dimensions} \cs3{DataType}\cs1{=}\cs4{"XYPairSpan"} \cs3{Preferred}\cs1{=}\cs4{"612 792"} \cs3{Range}\cs1{=}\cs4{"576 756 ~ 648 828"}\cs1{/>}\line
+      \cs1{<}\cs2{Pages} \cs3{DataType}\cs1{=}\cs4{"IntegerSpan"} \cs3{Preferred}\cs1{=}\cs4{"240"}\cs1{/>}\line
+    \cs1{</}\cs2{LayoutIntent}\cs1{>}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{DescriptiveName}\cs1{=}\cs4{"Student's Book"} \cs3{ID}\cs1{=}\cs4{"Link0011"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{>}\line
+      {\cs5<!--Students Book Intent-->}\line
+    \cs1{</}\cs2{Component}\cs1{>}\line
+    \cs1{<}\cs2{LayoutIntent} \cs3{Class}\cs1{=}\cs4{"Intent"} \cs3{ID}\cs1{=}\cs4{"Link0014"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{Dimensions} \cs3{DataType}\cs1{=}\cs4{"XYPairSpan"} \cs3{Preferred}\cs1{=}\cs4{"612 792"} \cs3{Range}\cs1{=}\cs4{"576 756 ~ 648 828"}\cs1{/>}\line
+      \cs1{<}\cs2{Pages} \cs3{DataType}\cs1{=}\cs4{"IntegerSpan"} \cs3{Preferred}\cs1{=}\cs4{"198"}\cs1{/>}\line
+    \cs1{</}\cs2{LayoutIntent}\cs1{>}\line
+  \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{<}\cs2{AuditPool}\cs1{>}\line
+    \cs1{<}\cs2{Created} \cs3{Author}\cs1{=}\cs4{"Rainer's JDFWriter 0.2000"} \cs3{TimeStamp}\cs1{=}\cs4{"2000-11-01T12:46:56+01:00"}\cs1{/>}\line
+  \cs1{</}\cs2{AuditPool}\cs1{>}\line
+  \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0011"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+  \cs1{<}\cs2{JDF} \cs3{DescriptiveName}\cs1{=}\cs4{"Teacher's Edition"} \cs3{ID}\cs1{=}\cs4{"Link0002"} \cs3{JobPartID}\cs1{=}\cs4{"0"}\line
+    \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Product"}\cs1{>}\line
+    \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+      \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+        \cs3{DescriptiveName}\cs1{=}\cs4{"Insert"} \cs3{ID}\cs1{=}\cs4{"Link0009"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+    \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0003"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0009"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0005"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{JDF} \cs3{DescriptiveName}\cs1{=}\cs4{"Teacher's Insert"} \cs3{ID}\cs1{=}\cs4{"Link0007"} \cs3{JobPartID}\cs1{=}\cs4{"2"}\line
+      \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Product"}\cs1{>}\line
+      \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+        \cs1{<}\cs2{LayoutIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0008"}\cs1{/>}\line
+        \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0009"}\cs1{/>}\line
+      \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{</}\cs2{JDF}\cs1{>}\line
+  \cs1{</}\cs2{JDF}\cs1{>}\line
+  \cs1{<}\cs2{JDF} \cs3{DescriptiveName}\cs1{=}\cs4{"Cover"} \cs3{ID}\cs1{=}\cs4{"Link0004"} \cs3{JobPartID}\cs1{=}\cs4{"1"}\line
+    \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Product"}\cs1{>}\line
+    \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"2000"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0005"}\cs1{/>}\line
+      \cs1{<}\cs2{LayoutIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0006"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+  \cs1{</}\cs2{JDF}\cs1{>}\line
+  \cs1{<}\cs2{JDF} \cs3{DescriptiveName}\cs1{=}\cs4{"Student's Edition"} \cs3{ID}\cs1{=}\cs4{"Link0010"} \cs3{JobPartID}\cs1{=}\cs4{"3"}\line
+    \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Product"}\cs1{>}\line
+    \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+      \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+        \cs3{DescriptiveName}\cs1{=}\cs4{"Insert"} \cs3{ID}\cs1{=}\cs4{"Link0013"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+    \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0011"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0013"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0005"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{JDF} \cs3{DescriptiveName}\cs1{=}\cs4{"Student's Insert"} \cs3{ID}\cs1{=}\cs4{"Link0012"} \cs3{JobPartID}\cs1{=}\cs4{"4"}\line
+      \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Product"}\cs1{>}\line
+      \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+        \cs1{<}\cs2{ComponentLink} \cs3{Amount}\cs1{=}\cs4{"1000"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0013"}\cs1{/>}\line
+        \cs1{<}\cs2{LayoutIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0014"}\cs1{/>}\line
+      \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{</}\cs2{JDF}\cs1{>}\line
+  \cs1{</}\cs2{JDF}\cs1{>}\line
+\cs1{</}\cs2{JDF}\cs1{>}\line
+{\cs5<!--end spec-->}\line
+}

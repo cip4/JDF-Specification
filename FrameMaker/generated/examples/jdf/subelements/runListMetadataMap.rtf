@@ -1,0 +1,66 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+{\cs5<!--this runlist points to a structured pdl with arbitrary structural \line
+  tagging-->}\line
+\cs1{<}\cs2{RunList} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000004"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  \cs1{<}\cs2{MetadataMap} \cs3{DataType}\cs1{=}\cs4{"PartIDKeys"} \cs3{Name}\cs1{=}\cs4{"RunTags"}\line
+    \cs3{ValueFormat}\cs1{=}\cs4{"%s%s"} \cs3{ValueTemplate}\cs1{=}\cs4{"sex,section"}\cs1{>}\line
+    {\cs5<!--This expression maps the value of /Dokument/Rezipient/@Sex \line
+      to a variable "sex"-->}\line
+    \cs1{<}\cs2{Expr} \cs3{Name}\cs1{=}\cs4{"sex"} \cs3{Path}\cs1{=}\cs4{"/Dokument/Rezipient/@Sex"}\cs1{/>}\line
+    {\cs5<!--Maps all elements with /Dokument/@Sektion=Einband to Cover-->}\line
+    \cs1{<}\cs2{Expr} \cs3{Name}\cs1{=}\cs4{"section"} \cs3{Value}\cs1{=}\cs4{"Cover"}\cs1{>}\line
+      \cs1{<}\cs2{NameEvaluation} \cs3{Path}\cs1{=}\cs4{"/Dokument/@Sektion"} \cs3{RegExp}\cs1{=}\cs4{"Einband"}\cs1{/>}\line
+    \cs1{</}\cs2{Expr}\cs1{>}\line
+    {\cs5<!--Maps all elements with /Dokument/@Sektion=HauptTeil and >50 pages \line
+      to BigBody-->}\line
+    \cs1{<}\cs2{Expr} \cs3{Name}\cs1{=}\cs4{"section"} \cs3{Value}\cs1{=}\cs4{"BigBody"}\cs1{>}\line
+      \cs1{<}\cs2{and}\cs1{>}\line
+        \cs1{<}\cs2{NameEvaluation} \cs3{Path}\cs1{=}\cs4{"/Dokument/@Sektion"} \cs3{RegExp}\cs1{=}\cs4{"HauptTeil"}\cs1{/>}\line
+        \cs1{<}\cs2{IntegerEvaluation} \cs3{Path}\cs1{=}\cs4{"count(PAGE)"} \cs3{ValueList}\cs1{=}\cs4{"51 ~ INF"}\cs1{/>}\line
+      \cs1{</}\cs2{and}\cs1{>}\line
+    \cs1{</}\cs2{Expr}\cs1{>}\line
+    {\cs5<!--Maps all elements with /Dokument/Sektion=HauptTeil and <=50 pages \line
+      to SmallBody-->}\line
+    \cs1{<}\cs2{Expr} \cs3{Name}\cs1{=}\cs4{"section"} \cs3{Value}\cs1{=}\cs4{"SmallBody"}\cs1{>}\line
+      \cs1{<}\cs2{and}\cs1{>}\line
+        \cs1{<}\cs2{NameEvaluation} \cs3{Path}\cs1{=}\cs4{"/Dokument/Sektion"} \cs3{RegExp}\cs1{=}\cs4{"HauptTeil"}\cs1{/>}\line
+        \cs1{<}\cs2{IntegerEvaluation} \cs3{Path}\cs1{=}\cs4{"count(PAGE)"} \cs3{ValueList}\cs1{=}\cs4{"0 ~ 50"}\cs1{/>}\line
+      \cs1{</}\cs2{and}\cs1{>}\line
+    \cs1{</}\cs2{Expr}\cs1{>}\line
+  \cs1{</}\cs2{MetadataMap}\cs1{>}\line
+  \cs1{<}\cs2{LayoutElement} \cs3{Class}\cs1{=}\cs4{"Parameter"}\cs1{>}\line
+    \cs1{<}\cs2{FileSpec} \cs3{Class}\cs1{=}\cs4{"Parameter"}\line
+      \cs3{MimeType}\cs1{=}\cs4{"application/vnd.foobar+xml"} \cs3{URL}\cs1{=}\cs4{"bigVariable.foo"}\cs1{/>}\line
+  \cs1{</}\cs2{LayoutElement}\cs1{>}\line
+\cs1{</}\cs2{RunList}\cs1{>}\line
+{\cs5<!--Layout for versioned product-->}\line
+\cs1{<}\cs2{Layout} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000005"} \cs3{PartIDKeys}\cs1{=}\cs4{"RunTags"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  \cs1{<}\cs2{Layout} \cs3{RunTags}\cs1{=}\cs4{"MaleCover"}\cs1{>}\line
+    \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r000006"}\cs1{>}\line
+      \cs1{<}\cs2{Part} \cs3{RunTags}\cs1{=}\cs4{"MaleCover"}\cs1{/>}\line
+    \cs1{</}\cs2{MediaRef}\cs1{>}\line
+  \cs1{</}\cs2{Layout}\cs1{>}\line
+  \cs1{<}\cs2{Layout} \cs3{RunTags}\cs1{=}\cs4{"FemaleCover"}\cs1{>}\line
+    \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r000006"}\cs1{>}\line
+      \cs1{<}\cs2{Part} \cs3{RunTags}\cs1{=}\cs4{"FemaleCover"}\cs1{/>}\line
+    \cs1{</}\cs2{MediaRef}\cs1{>}\line
+  \cs1{</}\cs2{Layout}\cs1{>}\line
+  \cs1{<}\cs2{Layout} \cs3{RunTags}\cs1{=}\cs4{"MaleBigBody FemaleBigBody"}\cs1{>}\line
+    \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r000006"}\cs1{>}\line
+      \cs1{<}\cs2{Part} \cs3{RunTags}\cs1{=}\cs4{"MaleBigBody MaleSmallBody FemaleBigBody                FemaleSmallBody"}\cs1{/>}\line
+    \cs1{</}\cs2{MediaRef}\cs1{>}\line
+  \cs1{</}\cs2{Layout}\cs1{>}\line
+  \cs1{<}\cs2{Layout} \cs3{RunTags}\cs1{=}\cs4{"MaleSmallBody FemaleSmallBody"}\cs1{>}\line
+    \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"r000006"}\cs1{>}\line
+      \cs1{<}\cs2{Part} \cs3{RunTags}\cs1{=}\cs4{"MaleBigBody MaleSmallBody FemaleBigBody                FemaleSmallBody"}\cs1{/>}\line
+    \cs1{</}\cs2{MediaRef}\cs1{>}\line
+  \cs1{</}\cs2{Layout}\cs1{>}\line
+\cs1{</}\cs2{Layout}\cs1{>}\line
+\cs1{<}\cs2{Media} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"r000006"} \cs3{PartIDKeys}\cs1{=}\cs4{"RunTags"}\line
+  \cs3{PartUsage}\cs1{=}\cs4{"Implicit"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  \cs1{<}\cs2{Media} \cs3{RunTags}\cs1{=}\cs4{"MaleCover"}\cs1{/>}\line
+  \cs1{<}\cs2{Media} \cs3{RunTags}\cs1{=}\cs4{"FemaleCover"}\cs1{/>}\line
+  \cs1{<}\cs2{Media} \cs3{RunTags}\cs1{=}\cs4{"MaleBigBody MaleSmallBody FemaleBigBody FemaleSmallBody"}\cs1{/>}\line
+\cs1{</}\cs2{Media}\cs1{>}}

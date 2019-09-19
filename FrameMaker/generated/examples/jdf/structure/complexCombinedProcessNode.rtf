@@ -1,0 +1,30 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"ID"} \cs3{JobPartID}\cs1{=}\cs4{"ID345"} \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Combined"}\line
+  \cs3{Types}\cs1{=}\cs4{"Collecting Gathering Folding"} \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\cs1{>}\line
+  \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+    \cs1{<}\cs2{GatheringParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"gp1"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{FoldingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"fp1"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"} \cs3{ID}\cs1{=}\cs4{"in1"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"} \cs3{ID}\cs1{=}\cs4{"in2"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"} \cs3{ID}\cs1{=}\cs4{"in3"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"} \cs3{ID}\cs1{=}\cs4{"ex1"}\line
+      \cs3{PipeID}\cs1{=}\cs4{"ex1"} \cs3{PipeProtocol}\cs1{=}\cs4{"Internal"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"} \cs3{ID}\cs1{=}\cs4{"ex2"}\line
+      \cs3{PipeID}\cs1{=}\cs4{"ex2"} \cs3{PipeProtocol}\cs1{=}\cs4{"Internal"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"} \cs3{ID}\cs1{=}\cs4{"Out"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{GatheringParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"gp1"}\cs1{/>}\line
+    \cs1{<}\cs2{FoldingParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"fp1"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"0"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"in1"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"0"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"in2"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"2"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"in3"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"0"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"ex1"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"2"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"ex2"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"1"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"ex1"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"1"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"ex2"}\cs1{/>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"1"} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Out"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+\cs1{</}\cs2{JDF}\cs1{>}}

@@ -1,0 +1,33 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"Job1"} \cs3{JobID}\cs1{=}\cs4{"J1"} \cs3{JobPartID}\cs1{=}\cs4{"P1"} \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Product"}\line
+  \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\cs1{>}\line
+  \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"10000"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{DescriptiveName}\cs1{=}\cs4{"Complete 16-page Brochure"} \cs3{ID}\cs1{=}\cs4{"Link0003"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+    \cs1{<}\cs2{LayoutIntent} \cs3{Class}\cs1{=}\cs4{"Intent"} \cs3{ID}\cs1{=}\cs4{"Link0004"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{Dimensions} \cs3{DataType}\cs1{=}\cs4{"XYPairSpan"} \cs3{Preferred}\cs1{=}\cs4{"612 792"} \cs3{Range}\cs1{=}\cs4{"576 648 720 864"}\cs1{/>}\line
+      \cs1{<}\cs2{Pages} \cs3{DataType}\cs1{=}\cs4{"IntegerSpan"} \cs3{Preferred}\cs1{=}\cs4{"16"}\cs1{/>}\line
+    \cs1{</}\cs2{LayoutIntent}\cs1{>}\line
+    \cs1{<}\cs2{MediaIntent} \cs3{Class}\cs1{=}\cs4{"Intent"} \cs3{ID}\cs1{=}\cs4{"Link0005"} \cs3{PartIDKeys}\cs1{=}\cs4{"Option"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{FrontCoatings} \cs3{DataType}\cs1{=}\cs4{"EnumerationSpan"} \cs3{Preferred}\cs1{=}\cs4{"None"}\cs1{/>}\line
+      \cs1{<}\cs2{MediaIntent} \cs3{Option}\cs1{=}\cs4{"1"}\cs1{>}\line
+        \cs1{<}\cs2{FrontCoatings} \cs3{DataType}\cs1{=}\cs4{"EnumerationSpan"} \cs3{Preferred}\cs1{=}\cs4{"Glossy"}\cs1{/>}\line
+      \cs1{</}\cs2{MediaIntent}\cs1{>}\line
+      \cs1{<}\cs2{BackCoatings} \cs3{DataType}\cs1{=}\cs4{"EnumerationSpan"} \cs3{Preferred}\cs1{=}\cs4{"None"}\cs1{/>}\line
+    \cs1{</}\cs2{MediaIntent}\cs1{>}\line
+    \cs1{<}\cs2{ProductionIntent} \cs3{Class}\cs1{=}\cs4{"Intent"} \cs3{ID}\cs1{=}\cs4{"ID_PI"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      \cs1{<}\cs2{ScreeningParamsRef} \cs3{rRef}\cs1{=}\cs4{"ScreenID"}\cs1{/>}\line
+    \cs1{</}\cs2{ProductionIntent}\cs1{>}\line
+    \cs1{<}\cs2{ScreeningParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"ScreenID"} \cs3{Status}\cs1{=}\cs4{"Incomplete"}\cs1{>}\line
+      \cs1{<}\cs2{ScreenSelector} \cs3{ScreeningFamily}\cs1{=}\cs4{"My favorite screen"} \cs3{SpotFunction}\cs1{=}\cs4{"Ellipse"}\cs1{/>}\line
+    \cs1{</}\cs2{ScreeningParams}\cs1{>}\line
+  \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"Link0003"}\cs1{/>}\line
+    \cs1{<}\cs2{LayoutIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0004"}\cs1{/>}\line
+    \cs1{<}\cs2{MediaIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"Link0005"}\cs1{/>}\line
+    \cs1{<}\cs2{ProductionIntentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"ID_PI"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+\cs1{</}\cs2{JDF}\cs1{>}}

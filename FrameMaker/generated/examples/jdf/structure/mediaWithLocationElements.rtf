@@ -1,0 +1,20 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{Media} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"TopMedia"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  \cs1{<}\cs2{Location} \cs3{LocationName}\cs1{=}\cs4{"Top"}\cs1{/>}\line
+\cs1{</}\cs2{Media}\cs1{>}\line
+\cs1{<}\cs2{Media} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"BottomMedia"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  \cs1{<}\cs2{Location} \cs3{LocationName}\cs1{=}\cs4{"Bottom"}\cs1{/>}\line
+\cs1{</}\cs2{Media}\cs1{>}\line
+\cs1{<}\cs2{LayoutPreparationParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"L1"}\line
+  \cs3{PartIDKeys}\cs1{=}\cs4{"RunIndex"} \cs3{Sides}\cs1{=}\cs4{"TwoSidedFlipY"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+  {\cs5<!-- Partition that defines the first and last page of the document -->}\line
+  \cs1{<}\cs2{LayoutPreparationParams} \cs3{RunIndex}\cs1{=}\cs4{"0 1 -2 -1"}\cs1{>}\line
+    \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"TopMedia"}\cs1{/>}\line
+  \cs1{</}\cs2{LayoutPreparationParams}\cs1{>}\line
+  {\cs5<!-- Partition that defines the inside pages of the document -->}\line
+  \cs1{<}\cs2{LayoutPreparationParams} \cs3{RunIndex}\cs1{=}\cs4{"2 ~ -3"}\cs1{>}\line
+    \cs1{<}\cs2{MediaRef} \cs3{rRef}\cs1{=}\cs4{"BottomMedia"}\cs1{/>}\line
+  \cs1{</}\cs2{LayoutPreparationParams}\cs1{>}\line
+\cs1{</}\cs2{LayoutPreparationParams}\cs1{>}}

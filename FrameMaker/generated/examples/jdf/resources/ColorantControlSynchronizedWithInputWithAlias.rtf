@@ -1,0 +1,25 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{ColorantControl} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000004"}\line
+      \cs3{ProcessColorModel}\cs1{=}\cs4{"DeviceCMYK"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      {\cs5<!--ColorantControl after prepress has correctly set ActualColorName based \line
+                on pdl content-->}\line
+      {\cs5<!--Note that all Strings in ColorantParams etc. use Color/@Name, \line
+                NOT Color/@ActualColorName-->}\line
+      \cs1{<}\cs2{ColorantParams}\cs1{>}\line
+        \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"Spot1"}\cs1{/>}\line
+        \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"BlackText"}\cs1{/>}\line
+      \cs1{</}\cs2{ColorantParams}\cs1{>}\line
+      \cs1{<}\cs2{ColorPoolRef} \cs3{rRef}\cs1{=}\cs4{"r000005"}\cs1{/>}\line
+      {\cs5<!--ColorantAlias that maps the additional representations \line
+(               noir, schwarz) to the predefined separation Black-->}\line
+      \cs1{<}\cs2{ColorantAlias} \cs3{Class}\cs1{=}\cs4{"Parameter"}\line
+        \cs3{RawNames}\cs1{=}\cs4{"6E6F6972 73636877E4727A"} \cs3{ReplacementColorantName}\cs1{=}\cs4{"Black"}\cs1{>}\line
+        \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"noir"}\cs1{/>}\line
+        \cs1{<}\cs2{SeparationSpec} \cs3{Name}\cs1{=}\cs4{"schwarz"}\cs1{/>}\line
+      \cs1{</}\cs2{ColorantAlias}\cs1{>}\line
+    \cs1{</}\cs2{ColorantControl}\cs1{>}\line
+    \cs1{<}\cs2{ColorPool} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r000005"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{>}\line
+      {\cs5<!-- ColorPool is same as previous example -->}\line
+    \cs1{</}\cs2{ColorPool}\cs1{>}}
