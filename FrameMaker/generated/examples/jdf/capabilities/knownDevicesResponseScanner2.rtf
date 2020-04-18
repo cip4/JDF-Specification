@@ -1,19 +1,19 @@
 {\rtf1\ansi
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-\cs1{<}\cs2{JMF} \cs3{DescriptiveName}\cs1{=}\cs4{"Example from JDF 1.2 Spec Document"}\line
-  \cs3{MaxVersion}\cs1{=}\cs4{"1.6"} \cs3{SenderID}\cs1{=}\cs4{"Scanner"} \cs3{TimeStamp}\cs1{=}\cs4{"2018-10-17T14:30:47Z"}\line
-  \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{xmlns:xsi}\cs1{=}\cs4{"http://www.w3.org/2001/XMLSchema-instance"}\cs1{>}\line
+\cs1{<}\cs2{JMF} \cs3{DescriptiveName}\cs1{=}\cs4{"Example from JDF 1.2 Spec Document"} \cs3{MaxVersion}\cs1{=}\cs4{"1.6"} \cs3{SenderID}\cs1{=}\cs4{"Scanner"}\line
+  \cs3{TimeStamp}\cs1{=}\cs4{"2018-10-17T14:30:47Z"} \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\line
+  \cs3{xmlns:xsi}\cs1{=}\cs4{"http://www.w3.org/2001/XMLSchema-instance"}\cs1{>}\line
   \cs1{<}\cs2{Response} \cs3{ID}\cs1{=}\cs4{"xyz"} \cs3{Type}\cs1{=}\cs4{"KnownDevices"} \cs3{refID}\cs1{=}\cs4{"DeviceQuery"} \cs3{xsi:type}\cs1{=}\cs4{"ResponseKnownDevices"}\cs1{>}\line
     \cs1{<}\cs2{DeviceList}\cs1{>}\line
       \cs1{<}\cs2{DeviceInfo} \cs3{DeviceStatus}\cs1{=}\cs4{"Idle"}\cs1{>}\line
         \cs1{<}\cs2{Device} \cs3{DeviceID}\cs1{=}\cs4{"Joe the Drum"} \cs3{ModelName}\cs1{=}\cs4{"Bongo"}\cs1{>}\line
-          \cs1{<}\cs2{DeviceCap}\line
-            \cs3{GenericAttributes}\cs1{=}\cs4{"ID Class SettingsPolicy BestEffortExceptions OperatorInterventionExceptions MustHonorExceptions PartIDKeys DocIndex"} \cs3{Types}\cs1{=}\cs4{"Scanning"}\cs1{>}\line
+          \cs1{<}\cs2{DeviceCap} \cs3{Types}\cs1{=}\cs4{"Scanning"}\line
+            \cs3{GenericAttributes}\cs1{=}\cs4{"ID Class SettingsPolicy BestEffortExceptions
+                OperatorInterventionExceptions MustHonorExceptions"}\cs1{>}\line
             \cs1{<}\cs2{Performance} \cs3{AverageAmount}\cs1{=}\cs4{"120.0"} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{/>}\line
             \cs1{<}\cs2{FeaturePool}\cs1{>}\line
-              \cs1{<}\cs2{EnumerationState}\line
-                \cs3{AllowedValueList}\cs1{=}\cs4{"Mono ColorTransparency Photo"} \cs3{ID}\cs1{=}\cs4{"sm"}\line
+              \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"Mono ColorTransparency Photo"} \cs3{ID}\cs1{=}\cs4{"sm"}\line
                 \cs3{MacroRefs}\cs1{=}\cs4{"ScanModeMacro"} \cs3{Name}\cs1{=}\cs4{"ScanMode"}\cs1{/>}\line
             \cs1{</}\cs2{FeaturePool}\cs1{>}\line
             \cs1{<}\cs2{DisplayGroupPool}\cs1{>}\line
@@ -24,19 +24,19 @@
             \cs1{</}\cs2{DisplayGroupPool}\cs1{>}\line
             \cs1{<}\cs2{ActionPool}\cs1{>}\line
               \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"BD-bw-action"} \cs3{TestRef}\cs1{=}\cs4{"BD-bw"}\cs1{>}\line
-                \cs1{<}\cs2{Loc}\line
-                  \cs3{HelpText}\cs1{=}\cs4{"For 1 bit grayscale, please select CCITTFaxEncoding"}\line
-                  \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"} \cs3{Value}\cs1{=}\cs4{"Flate and DCT Encoding not allowed on 1 bit images"}\cs1{/>}\line
+                \cs1{<}\cs2{Loc} \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
+                \cs3{HelpText}\cs1{=}\cs4{"For 1 bit grayscale, please select CCITTFaxEncoding"}\line
+                \cs3{Value}\cs1{=}\cs4{"Flate and DCT Encoding not allowed on 1 bit images"}\cs1{/>}\line
               \cs1{</}\cs2{Action}\cs1{>}\line
               \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"ctcmp-action"} \cs3{TestRef}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
-                \cs1{<}\cs2{Loc}\line
-                  \cs3{HelpText}\cs1{=}\cs4{"Only select CCITTFaxEncoding for 1 bit documents"}\line
-                  \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"} \cs3{Value}\cs1{=}\cs4{"CCITTFaxEncoding not supported on grayscale images"}\cs1{/>}\line
+                \cs1{<}\cs2{Loc} \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
+                \cs3{HelpText}\cs1{=}\cs4{"Only select CCITTFaxEncoding for 1 bit documents"}\line
+                \cs3{Value}\cs1{=}\cs4{"CCITTFaxEncoding not supported on grayscale images"}\cs1{/>}\line
               \cs1{</}\cs2{Action}\cs1{>}\line
               \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"cd-action"} \cs3{TestRef}\cs1{=}\cs4{"cd"}\cs1{>}\line
-                \cs1{<}\cs2{Loc}\line
+                \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"} \cs3{Lang}\cs1{=}\cs4{"en"}\line
                   \cs3{HelpText}\cs1{=}\cs4{"Choose a bit depth of 10 or less for color images"}\line
-                  \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"} \cs3{Value}\cs1{=}\cs4{"Bit depths higher than 10 are not supported for color"}\cs1{/>}\line
+                  \cs3{Value}\cs1{=}\cs4{"Bit depths higher than 10 are not supported for color"}\cs1{/>}\line
               \cs1{</}\cs2{Action}\cs1{>}\line
             \cs1{</}\cs2{ActionPool}\cs1{>}\line
             \cs1{<}\cs2{TestPool}\cs1{>}\line
@@ -138,9 +138,9 @@
                 \cs1{<}\cs2{EnumerationState} \cs3{ActionRefs}\cs1{=}\cs4{"cd"}\line
                   \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale CMYK RGB LAB"}\line
                   \cs3{ID}\cs1{=}\cs4{"colorspace"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\cs1{/>}\line
-                \cs1{<}\cs2{XYPairState}\line
-                  \cs3{AllowedValueList}\cs1{=}\cs4{"100.0 100.0 300.0 300.0 600.0 600.0 1200.0 1200.0 2400.0 2400.0"}\line
-                  \cs3{DefaultValue}\cs1{=}\cs4{"600.0 600.0"} \cs3{ID}\cs1{=}\cs4{"outputres"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\cs1{/>}\line
+                \cs1{<}\cs2{XYPairState} \cs3{DefaultValue}\cs1{=}\cs4{"600.0 600.0"} \cs3{ID}\cs1{=}\cs4{"outputres"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\line
+                  \cs3{AllowedValueList}\cs1{=}\cs4{"100.0 100.0 300.0 300.0 600.0 600.0
+                        1200.0 1200.0 2400.0 2400.0"}\cs1{/>}\line
               \cs1{</}\cs2{DevCap}\cs1{>}\line
             \cs1{</}\cs2{DevCaps}\cs1{>}\line
           \cs1{</}\cs2{DeviceCap}\cs1{>}\line
