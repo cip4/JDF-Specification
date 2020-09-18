@@ -1,0 +1,111 @@
+# This is the basic workflow to build the release versions of the JDF & XJDF Specifications
+
+name: Release Build
+# The VERSION is the main release number i.e. 1.7 or 2.1
+env:      
+  BUILD_NAME:       JDF-Specifications
+  JDF_VERSION:      '1.7'
+  XJDF_VERSION:     '2.2'
+  JDF_FILE_NAME:    JDF Specification
+  JDF_CONFIG_FILE:  JDF_Specification.ini
+  XJDF_FILE_NAME:   XJDF Specification
+  XJDF_CONFIG_FILE: XJDF_Specification.ini
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    tags:
+      - '*'
+
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Manual Run'  
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains multiple jobs
+
+  build-jdf:
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, framemaker-2015]
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      # Get the date 
+      - name: Get date
+        run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
+        
+      # Use the build tag as the document version
+      - name: Get build tag
+        run: echo "::set-env name=VERSION::$($env:GITHUB_REF.replace('refs/tags/', ''))"        
+
+      # Build test - only required to 'see' github's variables.
+      - name: Check Build Variables
+        run:  >
+          python Build\buildtest.py $env:JDF_CONFIG_FILE
+          "$env:JDF_FILE_NAME $env:VERSION"
+          "Release: $env:VERSION"
+          "Run-$env:GITHUB_RUN_NUMBER"
+
+      # Uses the remote self-host to build the ICS
+      - name: Build ICS-Base Specification
+        run:  >
+          python Build\specbuilder.py $env:JDF_CONFIG_FILE
+          "$env:JDF_FILE_NAME $env:VERSION"
+          "Release: $env:VERSION"
+          "Run-$env:GITHUB_RUN_NUMER"
+
+      # Upload any artefact produced.
+      - name: Upload ICS Specification artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.BUILD_NAME }}-artifact
+          path: target/*.pdf
+          
+  build-xjdf:
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, framemaker-2015]
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      # Get the date 
+      - name: Get date
+        run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
+        
+      # Use the build tag as the document version
+      - name: Get build tag
+        run: echo "::set-env name=VERSION::$($env:GITHUB_REF.replace('refs/tags/', ''))"
+
+      # Build test - only required to 'see' github's variables.
+      - name: Check Build Variables
+        run:  >
+          python Build\buildtest.py $env:XJDF_CONFIG_FILE
+          "$env:XJDF_FILE_NAME $env:VERSION"
+          "Release: $env:VERSION"
+          "Run-$env:GITHUB_RUN_NUMBER"
+
+      # Uses the remote self-host to build the ICS
+      - name: Build ICS-Base Specification
+        run:  >
+          python Build\specbuilder.py $env:XJDF_CONFIG_FILE
+          "$env:XJDF_FILE_NAME $env:VERSION"
+          "Release: $env:VERSION"
+          "Run-$env:GITHUB_RUN_NUMER"
+
+      # Upload any artefact produced.
+      - name: Upload ICS Specification artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.BUILD_NAME }}-artifact
+          path: target/*.pdf
+          
