@@ -1,10 +1,10 @@
 # This is the basic workflow to build the release versions of the JDF & XJDF Specifications
 
 name: Release Build
-# The VERSION is the main release number i.e. 1.7 or 2.1
+# The VERSION is the main release number i.e. 1.8 or 2.1
 env:      
   BUILD_NAME:       JDF-Specifications
-  JDF_VERSION:      '1.7'
+  JDF_VERSION:      '1.8'
   XJDF_VERSION:     '2.2'
   JDF_FILE_NAME:    JDF Specification
   JDF_CONFIG_FILE:  JDF_Specification.ini
