@@ -1,5 +1,5 @@
 # XJDF & JDF Specifications
-TBD
+This is the documentation repository for the CIP4 JDF and XJDF Specifications.
 
 <br />
 
@@ -10,7 +10,7 @@ TBD
 
 
 ### Build Artefacts
-Each build process produces a single PDF. This is either a release version for public distribution, or a continuous integration (CI) build for use internally by CIP4 as part of the normal release cycle.
+Each build process produces a single artefacts (zip). This contains the resultant PDFs for each type of build.
 
 ### Build Process
 
