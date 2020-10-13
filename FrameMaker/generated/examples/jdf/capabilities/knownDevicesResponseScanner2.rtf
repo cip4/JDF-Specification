@@ -1,151 +1,151 @@
 {\rtf1\ansi
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-\cs1{<}\cs2{JMF} \cs3{DescriptiveName}\cs1{=}\cs4{"Example from JDF 1.2 Spec Document"} \cs3{MaxVersion}\cs1{=}\cs4{"1.6"} \cs3{SenderID}\cs1{=}\cs4{"Scanner"}\line
-  \cs3{TimeStamp}\cs1{=}\cs4{"2018-10-17T14:30:47Z"} \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\line
-  \cs3{xmlns:xsi}\cs1{=}\cs4{"http://www.w3.org/2001/XMLSchema-instance"}\cs1{>}\line
-  \cs1{<}\cs2{Response} \cs3{ID}\cs1{=}\cs4{"xyz"} \cs3{Type}\cs1{=}\cs4{"KnownDevices"} \cs3{refID}\cs1{=}\cs4{"DeviceQuery"} \cs3{xsi:type}\cs1{=}\cs4{"ResponseKnownDevices"}\cs1{>}\line
-    \cs1{<}\cs2{DeviceList}\cs1{>}\line
-      \cs1{<}\cs2{DeviceInfo} \cs3{DeviceStatus}\cs1{=}\cs4{"Idle"}\cs1{>}\line
-        \cs1{<}\cs2{Device} \cs3{DeviceID}\cs1{=}\cs4{"Joe the Drum"} \cs3{ModelName}\cs1{=}\cs4{"Bongo"}\cs1{>}\line
-          \cs1{<}\cs2{DeviceCap} \cs3{Types}\cs1{=}\cs4{"Scanning"}\line
+\cs1{<}\cs2{JMF} \cs3{DescriptiveName}\cs1{=}\cs4{"Example from JDF 1.2 Spec Document"} \cs3{MaxVersion}\cs1{=}\cs4{"1.6"} \cs3{SenderID}\cs1{=}\cs4{"Scanner"}\line
+  \cs3{TimeStamp}\cs1{=}\cs4{"2018-10-17T14:30:47Z"} \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\line
+  \cs3{xmlns:xsi}\cs1{=}\cs4{"http://www.w3.org/2001/XMLSchema-instance"}\cs1{>}\line
+  \cs1{<}\cs2{Response} \cs3{ID}\cs1{=}\cs4{"xyz"} \cs3{Type}\cs1{=}\cs4{"KnownDevices"} \cs3{refID}\cs1{=}\cs4{"DeviceQuery"} \cs3{xsi:type}\cs1{=}\cs4{"ResponseKnownDevices"}\cs1{>}\line
+    \cs1{<}\cs2{DeviceList}\cs1{>}\line
+      \cs1{<}\cs2{DeviceInfo} \cs3{DeviceStatus}\cs1{=}\cs4{"Idle"}\cs1{>}\line
+        \cs1{<}\cs2{Device} \cs3{DeviceID}\cs1{=}\cs4{"Joe the Drum"} \cs3{ModelName}\cs1{=}\cs4{"Bongo"}\cs1{>}\line
+          \cs1{<}\cs2{DeviceCap} \cs3{Types}\cs1{=}\cs4{"Scanning"}\line
             \cs3{GenericAttributes}\cs1{=}\cs4{"ID Class SettingsPolicy BestEffortExceptions
-                OperatorInterventionExceptions MustHonorExceptions"}\cs1{>}\line
-            \cs1{<}\cs2{Performance} \cs3{AverageAmount}\cs1{=}\cs4{"120.0"} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{/>}\line
-            \cs1{<}\cs2{FeaturePool}\cs1{>}\line
-              \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"Mono ColorTransparency Photo"} \cs3{ID}\cs1{=}\cs4{"sm"}\line
-                \cs3{MacroRefs}\cs1{=}\cs4{"ScanModeMacro"} \cs3{Name}\cs1{=}\cs4{"ScanMode"}\cs1{/>}\line
-            \cs1{</}\cs2{FeaturePool}\cs1{>}\line
-            \cs1{<}\cs2{DisplayGroupPool}\cs1{>}\line
-              \cs1{<}\cs2{DisplayGroup} \cs3{rRefs}\cs1{=}\cs4{"btd cmp mag colorspace outputres"}\cs1{>}\line
-                \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Parameters for scanning configuration"}\line
-                  \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"ScanningParameters"}\cs1{/>}\line
-              \cs1{</}\cs2{DisplayGroup}\cs1{>}\line
-            \cs1{</}\cs2{DisplayGroupPool}\cs1{>}\line
-            \cs1{<}\cs2{ActionPool}\cs1{>}\line
-              \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"BD-bw-action"} \cs3{TestRef}\cs1{=}\cs4{"BD-bw"}\cs1{>}\line
-                \cs1{<}\cs2{Loc} \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
-                \cs3{HelpText}\cs1{=}\cs4{"For 1 bit grayscale, please select CCITTFaxEncoding"}\line
-                \cs3{Value}\cs1{=}\cs4{"Flate and DCT Encoding not allowed on 1 bit images"}\cs1{/>}\line
-              \cs1{</}\cs2{Action}\cs1{>}\line
-              \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"ctcmp-action"} \cs3{TestRef}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
-                \cs1{<}\cs2{Loc} \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
-                \cs3{HelpText}\cs1{=}\cs4{"Only select CCITTFaxEncoding for 1 bit documents"}\line
-                \cs3{Value}\cs1{=}\cs4{"CCITTFaxEncoding not supported on grayscale images"}\cs1{/>}\line
-              \cs1{</}\cs2{Action}\cs1{>}\line
-              \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"cd-action"} \cs3{TestRef}\cs1{=}\cs4{"cd"}\cs1{>}\line
-                \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"} \cs3{Lang}\cs1{=}\cs4{"en"}\line
-                  \cs3{HelpText}\cs1{=}\cs4{"Choose a bit depth of 10 or less for color images"}\line
-                  \cs3{Value}\cs1{=}\cs4{"Bit depths higher than 10 are not supported for color"}\cs1{/>}\line
-              \cs1{</}\cs2{Action}\cs1{>}\line
-            \cs1{</}\cs2{ActionPool}\cs1{>}\line
-            \cs1{<}\cs2{TestPool}\cs1{>}\line
-              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"iscolor"}\cs1{>}\line
-                \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"RGB LAB CMYK"} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{/>}\line
-              \cs1{</}\cs2{Test}\cs1{>}\line
-              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"is1bit"}\cs1{>}\line
-                \cs1{<}\cs2{IntegerEvaluation} \cs3{ValueList}\cs1{=}\cs4{"1"} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{/>}\line
-              \cs1{</}\cs2{Test}\cs1{>}\line
-              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"BD-bw"}\cs1{>}\line
-                \cs1{<}\cs2{and}\cs1{>}\line
-                  \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"is1bit"}\cs1{/>}\line
-                  \cs1{<}\cs2{EnumerationEvaluation}\line
-                    \cs3{ValueList}\cs1{=}\cs4{"FlateEncode DCTEncode"} \cs3{rRef}\cs1{=}\cs4{"cmp"}\cs1{/>}\line
-                \cs1{</}\cs2{and}\cs1{>}\line
-              \cs1{</}\cs2{Test}\cs1{>}\line
-              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
-                \cs1{<}\cs2{and}\cs1{>}\line
-                  \cs1{<}\cs2{not}\cs1{>}\line
-                    \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"is1bit"}\cs1{/>}\line
-                  \cs1{</}\cs2{not}\cs1{>}\line
-                  \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"CCITTFaxEncode"} \cs3{rRef}\cs1{=}\cs4{"cmp"}\cs1{/>}\line
-                \cs1{</}\cs2{and}\cs1{>}\line
-              \cs1{</}\cs2{Test}\cs1{>}\line
-              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"cd"}\cs1{>}\line
-                \cs1{<}\cs2{and}\cs1{>}\line
-                  \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"iscolor"}\cs1{/>}\line
-                  \cs1{<}\cs2{IntegerEvaluation} \cs3{ValueList}\cs1{=}\cs4{"1 10"} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{/>}\line
-                \cs1{</}\cs2{and}\cs1{>}\line
-              \cs1{</}\cs2{Test}\cs1{>}\line
-            \cs1{</}\cs2{TestPool}\cs1{>}\line
-            \cs1{<}\cs2{MacroPool}\cs1{>}\line
-              \cs1{<}\cs2{macro} \cs3{ID}\cs1{=}\cs4{"ScanModeMacro"}\cs1{>}\line
-                \cs1{<}\cs2{choice}\cs1{>}\line
-                  \cs1{<}\cs2{when}\cs1{>}\line
-                    \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"Mono"} \cs3{rRef}\cs1{=}\cs4{"sm"}\cs1{/>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"1"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"GrayScale"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"outputres"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"1200 1200"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                  \cs1{</}\cs2{when}\cs1{>}\line
-                  \cs1{<}\cs2{when}\cs1{>}\line
-                    \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"ColorTransparency"} \cs3{rRef}\cs1{=}\cs4{"sm"}\cs1{/>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"8"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"RGB"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"outputres"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"600 600"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                  \cs1{</}\cs2{when}\cs1{>}\line
-                  \cs1{<}\cs2{when}\cs1{>}\line
-                    \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"Photo"} \cs3{rRef}\cs1{=}\cs4{"sm"}\cs1{/>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"10"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"LAB"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"outputres"}\cs1{>}\line
-                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"200 200"}\cs1{/>}\line
-                    \cs1{</}\cs2{set}\cs1{>}\line
-                  \cs1{</}\cs2{when}\cs1{>}\line
-                \cs1{</}\cs2{choice}\cs1{>}\line
-              \cs1{</}\cs2{macro}\cs1{>}\line
-            \cs1{</}\cs2{MacroPool}\cs1{>}\line
-            \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"NodeInfo"} \cs3{ResourceUpdate}\cs1{=}\cs4{"None"}\cs1{>}\line
-              \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"NodeInfo"}\cs1{>}\line
-                \cs1{<}\cs2{StringState} \cs3{Name}\cs1{=}\cs4{"TargetRoute"}\cs1{/>}\line
-                \cs1{<}\cs2{IntegerState} \cs3{Name}\cs1{=}\cs4{"JobPriority"}\cs1{/>}\line
-              \cs1{</}\cs2{DevCap}\cs1{>}\line
-            \cs1{</}\cs2{DevCaps}\cs1{>}\line
-            \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"} \cs3{ResourceUpdate}\cs1{=}\cs4{"None"}\cs1{>}\line
-              \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{>}\line
-                \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"Media"}\cs1{>}\line
-                  \cs1{<}\cs2{NameState} \cs3{DefaultValue}\cs1{=}\cs4{"Sheet"} \cs3{Name}\cs1{=}\cs4{"MediaUnit"}\cs1{/>}\line
-                  \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"600.0 1200.0"}\line
-                    \cs3{AllowedValueMin}\cs1{=}\cs4{"0.0 0.0"} \cs3{Name}\cs1{=}\cs4{"Dimension"}\cs1{/>}\line
-                \cs1{</}\cs2{DevCap}\cs1{>}\line
-              \cs1{</}\cs2{DevCap}\cs1{>}\line
-            \cs1{</}\cs2{DevCaps}\cs1{>}\line
-            \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"ScanParams"} \cs3{ResourceUpdate}\cs1{=}\cs4{"None"}\cs1{>}\line
-              \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"ScanParams"}\cs1{>}\line
-                \cs1{<}\cs2{IntegerState} \cs3{ActionRefs}\cs1{=}\cs4{"BD-bw ctcmp cd"}\line
-                  \cs3{AllowedValueList}\cs1{=}\cs4{"1 4 8 10 12"} \cs3{DefaultValue}\cs1{=}\cs4{"1"}\line
-                  \cs3{ID}\cs1{=}\cs4{"btd"} \cs3{Name}\cs1{=}\cs4{"BitDepth"} \cs3{UserDisplay}\cs1{=}\cs4{"Hide"}\cs1{/>}\line
-                \cs1{<}\cs2{EnumerationState} \cs3{ActionRefs}\cs1{=}\cs4{"BD-bw ctcmp"}\line
-                  \cs3{AllowedValueList}\cs1{=}\cs4{"CCITTFaxEncode FlateEncode DCTEncode None"}\line
-                  \cs3{ID}\cs1{=}\cs4{"cmp"} \cs3{Name}\cs1{=}\cs4{"CompressionFilter"} \cs3{UserDisplay}\cs1{=}\cs4{"Hide"}\cs1{/>}\line
-                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"100.0"}\line
-                  \cs3{AllowedValueMin}\cs1{=}\cs4{"0.01"} \cs3{ID}\cs1{=}\cs4{"mag"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\cs1{/>}\line
-                \cs1{<}\cs2{EnumerationState} \cs3{ActionRefs}\cs1{=}\cs4{"cd"}\line
-                  \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale CMYK RGB LAB"}\line
-                  \cs3{ID}\cs1{=}\cs4{"colorspace"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\cs1{/>}\line
-                \cs1{<}\cs2{XYPairState} \cs3{DefaultValue}\cs1{=}\cs4{"600.0 600.0"} \cs3{ID}\cs1{=}\cs4{"outputres"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\line
+                OperatorInterventionExceptions MustHonorExceptions"}\cs1{>}\line
+            \cs1{<}\cs2{Performance} \cs3{AverageAmount}\cs1{=}\cs4{"120.0"} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{/>}\line
+            \cs1{<}\cs2{FeaturePool}\cs1{>}\line
+              \cs1{<}\cs2{EnumerationState} \cs3{AllowedValueList}\cs1{=}\cs4{"Mono ColorTransparency Photo"} \cs3{ID}\cs1{=}\cs4{"sm"}\line
+                \cs3{MacroRefs}\cs1{=}\cs4{"ScanModeMacro"} \cs3{Name}\cs1{=}\cs4{"ScanMode"}\cs1{/>}\line
+            \cs1{</}\cs2{FeaturePool}\cs1{>}\line
+            \cs1{<}\cs2{DisplayGroupPool}\cs1{>}\line
+              \cs1{<}\cs2{DisplayGroup} \cs3{rRefs}\cs1{=}\cs4{"btd cmp mag colorspace outputres"}\cs1{>}\line
+                \cs1{<}\cs2{Loc} \cs3{HelpText}\cs1{=}\cs4{"Parameters for scanning configuration"}\line
+                  \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"ScanningParameters"}\cs1{/>}\line
+              \cs1{</}\cs2{DisplayGroup}\cs1{>}\line
+            \cs1{</}\cs2{DisplayGroupPool}\cs1{>}\line
+            \cs1{<}\cs2{ActionPool}\cs1{>}\line
+              \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"BD-bw-action"} \cs3{TestRef}\cs1{=}\cs4{"BD-bw"}\cs1{>}\line
+                \cs1{<}\cs2{Loc} \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
+                \cs3{HelpText}\cs1{=}\cs4{"For 1 bit grayscale, please select CCITTFaxEncoding"}\line
+                \cs3{Value}\cs1{=}\cs4{"Flate and DCT Encoding not allowed on 1 bit images"}\cs1{/>}\line
+              \cs1{</}\cs2{Action}\cs1{>}\line
+              \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"ctcmp-action"} \cs3{TestRef}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
+                \cs1{<}\cs2{Loc} \cs3{Lang}\cs1{=}\cs4{"en"} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"}\line
+                \cs3{HelpText}\cs1{=}\cs4{"Only select CCITTFaxEncoding for 1 bit documents"}\line
+                \cs3{Value}\cs1{=}\cs4{"CCITTFaxEncoding not supported on grayscale images"}\cs1{/>}\line
+              \cs1{</}\cs2{Action}\cs1{>}\line
+              \cs1{<}\cs2{Action} \cs3{ID}\cs1{=}\cs4{"cd-action"} \cs3{TestRef}\cs1{=}\cs4{"cd"}\cs1{>}\line
+                \cs1{<}\cs2{Loc} \cs3{ShortValue}\cs1{=}\cs4{"Ouch!"} \cs3{Lang}\cs1{=}\cs4{"en"}\line
+                  \cs3{HelpText}\cs1{=}\cs4{"Choose a bit depth of 10 or less for color images"}\line
+                  \cs3{Value}\cs1{=}\cs4{"Bit depths higher than 10 are not supported for color"}\cs1{/>}\line
+              \cs1{</}\cs2{Action}\cs1{>}\line
+            \cs1{</}\cs2{ActionPool}\cs1{>}\line
+            \cs1{<}\cs2{TestPool}\cs1{>}\line
+              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"iscolor"}\cs1{>}\line
+                \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"RGB LAB CMYK"} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{/>}\line
+              \cs1{</}\cs2{Test}\cs1{>}\line
+              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"is1bit"}\cs1{>}\line
+                \cs1{<}\cs2{IntegerEvaluation} \cs3{ValueList}\cs1{=}\cs4{"1"} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{/>}\line
+              \cs1{</}\cs2{Test}\cs1{>}\line
+              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"BD-bw"}\cs1{>}\line
+                \cs1{<}\cs2{and}\cs1{>}\line
+                  \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"is1bit"}\cs1{/>}\line
+                  \cs1{<}\cs2{EnumerationEvaluation}\line
+                    \cs3{ValueList}\cs1{=}\cs4{"FlateEncode DCTEncode"} \cs3{rRef}\cs1{=}\cs4{"cmp"}\cs1{/>}\line
+                \cs1{</}\cs2{and}\cs1{>}\line
+              \cs1{</}\cs2{Test}\cs1{>}\line
+              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"ctcmp"}\cs1{>}\line
+                \cs1{<}\cs2{and}\cs1{>}\line
+                  \cs1{<}\cs2{not}\cs1{>}\line
+                    \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"is1bit"}\cs1{/>}\line
+                  \cs1{</}\cs2{not}\cs1{>}\line
+                  \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"CCITTFaxEncode"} \cs3{rRef}\cs1{=}\cs4{"cmp"}\cs1{/>}\line
+                \cs1{</}\cs2{and}\cs1{>}\line
+              \cs1{</}\cs2{Test}\cs1{>}\line
+              \cs1{<}\cs2{Test} \cs3{ID}\cs1{=}\cs4{"cd"}\cs1{>}\line
+                \cs1{<}\cs2{and}\cs1{>}\line
+                  \cs1{<}\cs2{TestRef} \cs3{rRef}\cs1{=}\cs4{"iscolor"}\cs1{/>}\line
+                  \cs1{<}\cs2{IntegerEvaluation} \cs3{ValueList}\cs1{=}\cs4{"1 10"} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{/>}\line
+                \cs1{</}\cs2{and}\cs1{>}\line
+              \cs1{</}\cs2{Test}\cs1{>}\line
+            \cs1{</}\cs2{TestPool}\cs1{>}\line
+            \cs1{<}\cs2{MacroPool}\cs1{>}\line
+              \cs1{<}\cs2{macro} \cs3{ID}\cs1{=}\cs4{"ScanModeMacro"}\cs1{>}\line
+                \cs1{<}\cs2{choice}\cs1{>}\line
+                  \cs1{<}\cs2{when}\cs1{>}\line
+                    \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"Mono"} \cs3{rRef}\cs1{=}\cs4{"sm"}\cs1{/>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"1"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"GrayScale"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"outputres"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"1200 1200"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                  \cs1{</}\cs2{when}\cs1{>}\line
+                  \cs1{<}\cs2{when}\cs1{>}\line
+                    \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"ColorTransparency"} \cs3{rRef}\cs1{=}\cs4{"sm"}\cs1{/>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"8"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"RGB"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"outputres"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"600 600"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                  \cs1{</}\cs2{when}\cs1{>}\line
+                  \cs1{<}\cs2{when}\cs1{>}\line
+                    \cs1{<}\cs2{EnumerationEvaluation} \cs3{ValueList}\cs1{=}\cs4{"Photo"} \cs3{rRef}\cs1{=}\cs4{"sm"}\cs1{/>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"btd"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"10"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"colorspace"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"LAB"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                    \cs1{<}\cs2{set} \cs3{rRef}\cs1{=}\cs4{"outputres"}\cs1{>}\line
+                      \cs1{<}\cs2{FeatureAttribute} \cs3{CurrentValue}\cs1{=}\cs4{"200 200"}\cs1{/>}\line
+                    \cs1{</}\cs2{set}\cs1{>}\line
+                  \cs1{</}\cs2{when}\cs1{>}\line
+                \cs1{</}\cs2{choice}\cs1{>}\line
+              \cs1{</}\cs2{macro}\cs1{>}\line
+            \cs1{</}\cs2{MacroPool}\cs1{>}\line
+            \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"NodeInfo"} \cs3{ResourceUpdate}\cs1{=}\cs4{"None"}\cs1{>}\line
+              \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"NodeInfo"}\cs1{>}\line
+                \cs1{<}\cs2{StringState} \cs3{Name}\cs1{=}\cs4{"TargetRoute"}\cs1{/>}\line
+                \cs1{<}\cs2{IntegerState} \cs3{Name}\cs1{=}\cs4{"JobPriority"}\cs1{/>}\line
+              \cs1{</}\cs2{DevCap}\cs1{>}\line
+            \cs1{</}\cs2{DevCaps}\cs1{>}\line
+            \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"} \cs3{ResourceUpdate}\cs1{=}\cs4{"None"}\cs1{>}\line
+              \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"ExposedMedia"}\cs1{>}\line
+                \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"Media"}\cs1{>}\line
+                  \cs1{<}\cs2{NameState} \cs3{DefaultValue}\cs1{=}\cs4{"Sheet"} \cs3{Name}\cs1{=}\cs4{"MediaUnit"}\cs1{/>}\line
+                  \cs1{<}\cs2{XYPairState} \cs3{AllowedValueMax}\cs1{=}\cs4{"600.0 1200.0"}\line
+                    \cs3{AllowedValueMin}\cs1{=}\cs4{"0.0 0.0"} \cs3{Name}\cs1{=}\cs4{"Dimension"}\cs1{/>}\line
+                \cs1{</}\cs2{DevCap}\cs1{>}\line
+              \cs1{</}\cs2{DevCap}\cs1{>}\line
+            \cs1{</}\cs2{DevCaps}\cs1{>}\line
+            \cs1{<}\cs2{DevCaps} \cs3{Name}\cs1{=}\cs4{"ScanParams"} \cs3{ResourceUpdate}\cs1{=}\cs4{"None"}\cs1{>}\line
+              \cs1{<}\cs2{DevCap} \cs3{Name}\cs1{=}\cs4{"ScanParams"}\cs1{>}\line
+                \cs1{<}\cs2{IntegerState} \cs3{ActionRefs}\cs1{=}\cs4{"BD-bw ctcmp cd"}\line
+                  \cs3{AllowedValueList}\cs1{=}\cs4{"1 4 8 10 12"} \cs3{DefaultValue}\cs1{=}\cs4{"1"}\line
+                  \cs3{ID}\cs1{=}\cs4{"btd"} \cs3{Name}\cs1{=}\cs4{"BitDepth"} \cs3{UserDisplay}\cs1{=}\cs4{"Hide"}\cs1{/>}\line
+                \cs1{<}\cs2{EnumerationState} \cs3{ActionRefs}\cs1{=}\cs4{"BD-bw ctcmp"}\line
+                  \cs3{AllowedValueList}\cs1{=}\cs4{"CCITTFaxEncode FlateEncode DCTEncode None"}\line
+                  \cs3{ID}\cs1{=}\cs4{"cmp"} \cs3{Name}\cs1{=}\cs4{"CompressionFilter"} \cs3{UserDisplay}\cs1{=}\cs4{"Hide"}\cs1{/>}\line
+                \cs1{<}\cs2{NumberState} \cs3{AllowedValueMax}\cs1{=}\cs4{"100.0"}\line
+                  \cs3{AllowedValueMin}\cs1{=}\cs4{"0.01"} \cs3{ID}\cs1{=}\cs4{"mag"} \cs3{Name}\cs1{=}\cs4{"Magnification"}\cs1{/>}\line
+                \cs1{<}\cs2{EnumerationState} \cs3{ActionRefs}\cs1{=}\cs4{"cd"}\line
+                  \cs3{AllowedValueList}\cs1{=}\cs4{"GrayScale CMYK RGB LAB"}\line
+                  \cs3{ID}\cs1{=}\cs4{"colorspace"} \cs3{Name}\cs1{=}\cs4{"OutputColorSpace"}\cs1{/>}\line
+                \cs1{<}\cs2{XYPairState} \cs3{DefaultValue}\cs1{=}\cs4{"600.0 600.0"} \cs3{ID}\cs1{=}\cs4{"outputres"} \cs3{Name}\cs1{=}\cs4{"OutputResolution"}\line
                   \cs3{AllowedValueList}\cs1{=}\cs4{"100.0 100.0 300.0 300.0 600.0 600.0
-                        1200.0 1200.0 2400.0 2400.0"}\cs1{/>}\line
-              \cs1{</}\cs2{DevCap}\cs1{>}\line
-            \cs1{</}\cs2{DevCaps}\cs1{>}\line
-          \cs1{</}\cs2{DeviceCap}\cs1{>}\line
-        \cs1{</}\cs2{Device}\cs1{>}\line
-      \cs1{</}\cs2{DeviceInfo}\cs1{>}\line
-    \cs1{</}\cs2{DeviceList}\cs1{>}\line
-  \cs1{</}\cs2{Response}\cs1{>}\line
+                        1200.0 1200.0 2400.0 2400.0"}\cs1{/>}\line
+              \cs1{</}\cs2{DevCap}\cs1{>}\line
+            \cs1{</}\cs2{DevCaps}\cs1{>}\line
+          \cs1{</}\cs2{DeviceCap}\cs1{>}\line
+        \cs1{</}\cs2{Device}\cs1{>}\line
+      \cs1{</}\cs2{DeviceInfo}\cs1{>}\line
+    \cs1{</}\cs2{DeviceList}\cs1{>}\line
+  \cs1{</}\cs2{Response}\cs1{>}\line
 \cs1{</}\cs2{JMF}\cs1{>}}
