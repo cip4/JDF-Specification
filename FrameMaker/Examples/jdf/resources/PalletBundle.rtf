@@ -1,0 +1,60 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+<?xml version="1.0" encoding="UTF-8"?>\line
+\cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"Bundle"} \cs3{JobPartID}\cs1{=}\cs4{"ID20"} \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"ProcessGroup"}\line
+  \cs3{Version}\cs1{=}\cs4{"1.6"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"}\cs1{>}\line
+  {\cs5<!-- The BoxPacking Process consumes the thing to pack and the boxes-->}\line
+  {\cs5<!-- The BoxPacking Process creates packed boxes -->}\line
+  \cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"n0235"} \cs3{JobPartID}\cs1{=}\cs4{"ID21"} \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"BoxPacking"}\cs1{>}\line
+    \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{ProcessUsage}\cs1{=}\cs4{"Box"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"BoxID"}\cs1{/>}\line
+      \cs1{<}\cs2{BoxPackingParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"BoxParamsID"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"ComponentID"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"PackedBoxID"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    {\cs5<!-- The BoxPacking Process has the following local resources -->}\line
+    \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+      \cs1{<}\cs2{BoxPackingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"BoxParamsID"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+      \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+        \cs3{ID}\cs1{=}\cs4{"BoxID"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{</}\cs2{JDF}\cs1{>}\line
+  \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+    {\cs5<!-- This Component describes a Box with 42 Books -->}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{ID}\cs1{=}\cs4{"PackedBoxID"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{>}\line
+      \cs1{<}\cs2{Bundle} \cs3{BundleType}\cs1{=}\cs4{"Box"} \cs3{TotalAmount}\cs1{=}\cs4{"42"}\cs1{>}\line
+        \cs1{<}\cs2{BundleItem} \cs3{Amount}\cs1{=}\cs4{"42"}\cs1{>}\line
+          \cs1{<}\cs2{ComponentRef} \cs3{rRef}\cs1{=}\cs4{"ComponentID"}\cs1{/>}\line
+        \cs1{</}\cs2{BundleItem}\cs1{>}\line
+      \cs1{</}\cs2{Bundle}\cs1{>}\line
+    \cs1{</}\cs2{Component}\cs1{>}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"4200"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{ID}\cs1{=}\cs4{"ComponentID"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    {\cs5<!-- This Component describes the contents of the pallet: 100\line
+        Boxes w. 42 Books -->}\line
+    \cs1{<}\cs2{Component} \cs3{Amount}\cs1{=}\cs4{"10"} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"Sheet"}\line
+      \cs3{ID}\cs1{=}\cs4{"palletContentsID"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{>}\line
+      \cs1{<}\cs2{Bundle} \cs3{BundleType}\cs1{=}\cs4{"Pallet"} \cs3{TotalAmount}\cs1{=}\cs4{"420"}\cs1{>}\line
+        \cs1{<}\cs2{BundleItem} \cs3{Amount}\cs1{=}\cs4{"10"}\cs1{>}\line
+          \cs1{<}\cs2{ComponentRef} \cs3{rRef}\cs1{=}\cs4{"PackedBoxID"}\cs1{/>}\line
+        \cs1{</}\cs2{BundleItem}\cs1{>}\line
+      \cs1{</}\cs2{Bundle}\cs1{>}\line
+    \cs1{</}\cs2{Component}\cs1{>}\line
+  \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"n0239"} \cs3{JobPartID}\cs1{=}\cs4{"ID22"} \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Palletizing"}\cs1{>}\line
+    \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"PackedBoxID"}\cs1{/>}\line
+      \cs1{<}\cs2{PalletLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"palletID"}\cs1{/>}\line
+      \cs1{<}\cs2{PalletizingParamsLink} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"palletParamsID"}\cs1{/>}\line
+      \cs1{<}\cs2{ComponentLink} \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"palletContentsID"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+      \cs1{<}\cs2{Pallet} \cs3{Amount}\cs1{=}\cs4{"10"} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"palletID"}\line
+        \cs3{PalletType}\cs1{=}\cs4{"Euro800x600"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+      \cs1{<}\cs2{PalletizingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"palletParamsID"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{</}\cs2{JDF}\cs1{>}\line
+\cs1{</}\cs2{JDF}\cs1{>}\line
+}
