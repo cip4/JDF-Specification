@@ -4,7 +4,7 @@ name: Snapshot Build
 # The VERSION is the main release number i.e. 1.8 or 2.1
 env:      
   BUILD_NAME:       JDF-Specifications
-  BOTH_VERSIONS:    '1.8_2.2'
+  BOTH_VERSIONS:    '1.8+2.2'
   JDF_VERSION:      '1.8'
   XJDF_VERSION:     '2.2'
   BOTH_FILE_NAME:   BOTH Specifications
@@ -71,7 +71,7 @@ jobs:
  
   build-jdf:
     # The type of runner that the job will run on
-    runs-on: [self-hosted, framemaker-2015]
+    runs-on: [framemaker-2015]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -111,7 +111,7 @@ jobs:
           
   build-xjdf:
     # The type of runner that the job will run on
-    runs-on: [self-hosted, framemaker-2015]
+    runs-on: [framemaker-2015]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
