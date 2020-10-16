@@ -31,7 +31,7 @@ jobs:
   
   build-both:
     # The type of runner that the job will run on
-    runs-on: [self-hosted, framemaker-2015]
+    runs-on: [framemaker-2015]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -52,7 +52,7 @@ jobs:
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
-      - name: Build ICS-Base Specification
+      - name: Build Both Specification
         run:  >
           python Build\specbuilder.py $env:BOTH_CONFIG_FILE
           "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
@@ -60,12 +60,23 @@ jobs:
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
-      - name: Upload ICS Specification artifact
+      - name: Upload Specification
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: target/*.pdf
           
+      # Upload to Confluence
+      - name: Confluence Upload
+        uses: cip4/action-confluence-upload@master
+        with:
+          url: 'https://confluence.cip4.org'
+          username: ${{ secrets.CONFLUENCE_USER }}
+          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          contentId: 15663320
+          label: 'both-specificaion,spec-draft'
+          filePattern: 'target/*.pdf'
+ 
   build-jdf:
     # The type of runner that the job will run on
     runs-on: [self-hosted, framemaker-2015]
@@ -89,7 +100,7 @@ jobs:
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
-      - name: Build ICS-Base Specification
+      - name: Build JDF Specification
         run:  >
           python Build\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_FILE_NAME $env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
@@ -97,11 +108,22 @@ jobs:
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
-      - name: Upload ICS Specification artifact
+      - name: Upload Specification
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: target/*.pdf
+          
+      # Upload to Confluence
+      - name: Confluence Upload
+        uses: cip4/action-confluence-upload@master
+        with:
+          url: 'https://confluence.cip4.org'
+          username: ${{ secrets.CONFLUENCE_USER }}
+          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          contentId: 15663320
+          label: 'jdf-specificaion,spec-draft'
+          filePattern: 'target/*.pdf'        
           
   build-xjdf:
     # The type of runner that the job will run on
@@ -126,7 +148,7 @@ jobs:
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
-      - name: Build ICS-Base Specification
+      - name: Build XJDF Specification
         run:  >
           python Build\specbuilder.py $env:BOTH_CONFIG_FILE
           "$env:XJDF_FILE_NAME $env:XJDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
@@ -134,9 +156,19 @@ jobs:
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
-      - name: Upload ICS Specification artifact
+      - name: Upload Specification
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: target/*.pdf
           
+      # Upload to Confluence
+      - name: Confluence Upload
+        uses: cip4/action-confluence-upload@master
+        with:
+          url: 'https://confluence.cip4.org'
+          username: ${{ secrets.CONFLUENCE_USER }}
+          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          contentId: 15663320
+          label: 'xjdf-specificaion,spec-draft'
+          filePattern: 'target/*.pdf'
