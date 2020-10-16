@@ -43,14 +43,6 @@ jobs:
       - name: Get date
         run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
 
-      # Build test - only required to 'see' github's variables.
-      - name: Check Build Variables
-        run:  >
-          python Build\buildtest.py $env:BOTH_CONFIG_FILE
-          "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "$env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMBER"
-
       # Uses the remote self-host to build the ICS
       - name: Build Both Specification
         run:  >
@@ -90,14 +82,6 @@ jobs:
       # Get the date 
       - name: Get date
         run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
-
-      # Build test - only required to 'see' github's variables.
-      - name: Check Build Variables
-        run:  >
-          python Build\buildtest.py $env:JDF_CONFIG_FILE
-          "$env:JDF_FILE_NAME $env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "$env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
       - name: Build JDF Specification
@@ -139,18 +123,10 @@ jobs:
       - name: Get date
         run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
 
-      # Build test - only required to 'see' github's variables.
-      - name: Check Build Variables
-        run:  >
-          python Build\buildtest.py $env:BOTH_CONFIG_FILE
-          "$env:XJDF_FILE_NAME $env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "$env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMBER"
-
       # Uses the remote self-host to build the ICS
       - name: Build XJDF Specification
         run:  >
-          python Build\specbuilder.py $env:BOTH_CONFIG_FILE
+          python Build\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_FILE_NAME $env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "$env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMER"
