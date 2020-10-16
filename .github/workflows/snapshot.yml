@@ -47,16 +47,16 @@ jobs:
       - name: Check Build Variables
         run:  >
           python Build\buildtest.py $env:BOTH_CONFIG_FILE
-          "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:BOTH_VERSIONS Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
       - name: Build Both Specification
         run:  >
           python Build\specbuilder.py $env:BOTH_CONFIG_FILE
-          "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:BOTH_VERSIONS Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
@@ -95,16 +95,16 @@ jobs:
       - name: Check Build Variables
         run:  >
           python Build\buildtest.py $env:JDF_CONFIG_FILE
-          "$env:JDF_FILE_NAME $env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_FILE_NAME $env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
       - name: Build JDF Specification
         run:  >
           python Build\specbuilder.py $env:JDF_CONFIG_FILE
-          "$env:JDF_FILE_NAME $env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_FILE_NAME $env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
@@ -143,16 +143,16 @@ jobs:
       - name: Check Build Variables
         run:  >
           python Build\buildtest.py $env:BOTH_CONFIG_FILE
-          "$env:XJDF_FILE_NAME $env:XJDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:XJDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:XJDF_FILE_NAME $env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
       - name: Build XJDF Specification
         run:  >
           python Build\specbuilder.py $env:BOTH_CONFIG_FILE
-          "$env:XJDF_FILE_NAME $env:XJDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:XJDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:XJDF_FILE_NAME $env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
