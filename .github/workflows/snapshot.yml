@@ -40,16 +40,25 @@ jobs:
         uses: actions/checkout@v2
 
       # Get the date 
-      - name: Get date
-        run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
+      - name: Get current time/date
+        uses: srfrnk/current-time@master
+        id: current-time
+        with:
+          format: YYYYMMDD
 
       # Uses the remote self-host to build the ICS
       - name: Build Both Specification
+        # Set local environment variables - of course these could be set directly, but...
+        env:
+          NOW: "${{ steps.current-time.outputs.formattedTime }}"
+          version:      ${{env.BOTH_VERSIONS}}
+          filename:     ${{env.BOTH_FILE_NAME}} 
+          configfile:   ${{env.BOTH_CONFIG_FILE}}
         run:  >
-          python Build\specbuilder.py $env:BOTH_CONFIG_FILE
-          "$env:BOTH_FILE_NAME $env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "$env:BOTH_VERSIONS DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMER"
+          python Build\buildtest.py $env:configfile
+          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
 
       # Upload any artefact produced.
       - name: Upload Specification
@@ -80,16 +89,24 @@ jobs:
         uses: actions/checkout@v2
 
       # Get the date 
-      - name: Get date
-        run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
+      - name: Get current time/date
+        uses: srfrnk/current-time@master
+        id: current-time
+        with:
+          format: YYYYMMDD
 
       # Uses the remote self-host to build the ICS
       - name: Build JDF Specification
-        run:  >
-          python Build\specbuilder.py $env:JDF_CONFIG_FILE
-          "$env:JDF_FILE_NAME $env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "$env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMER"
+        env:
+          NOW: "${{ steps.current-time.outputs.formattedTime }}"
+          version:      ${{env.JDF_VERSION}}
+          filename:     ${{env.JDF_FILE_NAME}} 
+          configfile:   ${{env.JDF_CONFIG_FILE}}
+        run: >
+          python Build\buildtest.py $env:configfile
+          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
 
       # Upload any artefact produced.
       - name: Upload Specification
@@ -121,15 +138,24 @@ jobs:
 
       # Get the date 
       - name: Get date
-        run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
+      - name: Get current time/date
+        uses: srfrnk/current-time@master
+        id: current-time
+        with:
+          format: YYYYMMDD
 
       # Uses the remote self-host to build the ICS
       - name: Build XJDF Specification
-        run:  >
-          python Build\specbuilder.py $env:XJDF_CONFIG_FILE
-          "$env:XJDF_FILE_NAME $env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "$env:XJDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMER"
+        env:
+          NOW: "${{ steps.current-time.outputs.formattedTime }}"
+          version:      ${{env.XJDF_VERSION}}
+          filename:     ${{env.XJDF_FILE_NAME}} 
+          configfile:   ${{env.XJDF_CONFIG_FILE}}
+        run: >
+          python Build\buildtest.py $env:configfile
+          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
 
       # Upload any artefact produced.
       - name: Upload Specification
