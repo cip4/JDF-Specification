@@ -137,7 +137,6 @@ jobs:
         uses: actions/checkout@v2
 
       # Get the date 
-      - name: Get date
       - name: Get current time/date
         uses: srfrnk/current-time@master
         id: current-time
