@@ -56,7 +56,7 @@ jobs:
           filename:     ${{env.JDF_FILE_NAME}} 
           configfile:   ${{env.JDF_CONFIG_FILE}}
         run: >
-          python Build\buildtest.py $env:configfile
+          python Build\specbuilder.py $env:configfile
           "$env:filename $env:version"
           "Release $env:version"
           "Run-$env:GITHUB_RUN_NUMBER"
@@ -97,7 +97,7 @@ jobs:
           filename:     ${{env.XJDF_FILE_NAME}} 
           configfile:   ${{env.XJDF_CONFIG_FILE}}
         run: >
-          python Build\buildtest.py $env:configfile
+          python Build\specbuilder.py $env:configfile
           "$env:filename $env:version"
           "Release $env:version"
           "Run-$env:GITHUB_RUN_NUMBER"

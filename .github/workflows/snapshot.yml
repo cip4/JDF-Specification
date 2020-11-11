@@ -55,7 +55,7 @@ jobs:
           filename:     ${{env.BOTH_FILE_NAME}} 
           configfile:   ${{env.BOTH_CONFIG_FILE}}
         run:  >
-          python Build\buildtest.py $env:configfile
+          python Build\specbuilder.py $env:configfile
           "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
           "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
@@ -103,7 +103,7 @@ jobs:
           filename:     ${{env.JDF_FILE_NAME}} 
           configfile:   ${{env.JDF_CONFIG_FILE}}
         run: >
-          python Build\buildtest.py $env:configfile
+          python Build\specbuilder.py $env:configfile
           "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
           "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
@@ -151,7 +151,7 @@ jobs:
           filename:     ${{env.XJDF_FILE_NAME}} 
           configfile:   ${{env.XJDF_CONFIG_FILE}}
         run: >
-          python Build\buildtest.py $env:configfile
+          python Build\specbuilder.py $env:configfile
           "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
           "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
