@@ -4,7 +4,7 @@ JDF (Job Definition Format) is an interchange data format to be used by a system
 ## Download
 Here are the direct links to the appropriate releases at github.com:
 - [XJDF Specificaion 2.1](https://github.com/cip4/JDF-Specification/releases/download/2.1/XJDF-Specification-2.1.pdf)
-- [JDF Specificaion 1.7](https://github.com/cip4/JDF-Specification/releases/download/1.7/XJDF-Specification-1.7.pdf)
+- [JDF Specificaion 1.7](https://github.com/cip4/JDF-Specification/releases/download/1.7/JDF-Specification-1.7.pdf)
 
 More released versions can be found on the [releases page](https://github.com/cip4/JDF-Specification/releases).
   
