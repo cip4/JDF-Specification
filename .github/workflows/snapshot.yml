@@ -1,21 +1,35 @@
-# This is the basic workflow to build the draft JDF, XJDF & Both Specifications
+# This is the basic workflow to build draft documentation
+
+# !NOTE:
+# This build produces multiple versions of this document!!
 
 name: Snapshot Build
 # The VERSION is the main release number i.e. 1.8 or 2.1
-env:      
-  BUILD_NAME:       JDF-Specifications
-  BOTH_VERSIONS:    '1.8+2.2'
-  JDF_VERSION:      '1.8'
-  XJDF_VERSION:     '2.2'
-  BOTH_FILE_NAME:   BOTH Specifications
-  BOTH_CONFIG_FILE: BOTH_Specifications.ini  
-  JDF_FILE_NAME:    JDF Specification
-  JDF_CONFIG_FILE:  JDF_Specification.ini
-  XJDF_FILE_NAME:   XJDF Specification
-  XJDF_CONFIG_FILE: XJDF_Specification.ini
+env:
+# Common to all builds    
+  BUILD_NAME:       JDF-SPECIFICATION
+# 'BOTH' parameters
+  BOTH_DOCUMENT_VERSION:    '1.8+2.2'
+  BOTH_DOCUMENT_FILE_NAME:   BOTH Specifications
+  BOTH_CONFIG_FILE:          Build\BOTH_Specifications.ini
+  BOTH_CONFLUENCE_LABELS:    'both-specification,spec-draft'
+# 'JDF' parameters
+  JDF_DOCUMENT_VERSION:     '1.8'
+  JDF_DOCUMENT_FILE_NAME:   JDF Specification
+  JDF_CONFIG_FILE:          Build\JDF_Specification.ini
+  JDF_CONFLUENCE_LABELS:    'jdf-specification,spec-draft'
+# 'XJDF' parameters
+  XDF_DOCUMENT_VERSION:     '2.2'
+  XJDF_DOCUMENT_FILE_NAME:  XJDF Specification
+  XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
+  XJDF_CONFLUENCE_LABELS:   'xjdf-specification,spec-draft'
+# Same ID for all builds  
+  CONFLUENCE_ID:        '15663320'
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+## The remaining section is based upon those common to all draft documentation builds
+## It has been modified to allow for three slightly different builds.
+
+# Controls when the action will run
 on:
   push:
     branches: [ master ]
@@ -24,96 +38,56 @@ on:
     inputs:
       tags:
         description: 'Manual Run'  
-    
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains multiple jobs
-  
-  build-both:
-    # The type of runner that the job will run on
-    runs-on: [framemaker-2015]
+  build_both:
+    runs-on: [framemaker-2020]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # For access to other Git repositories - an access token is required. 
+      - name: Get GitHub Access Token
+        id: access_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_ID }}
+          private_key: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_KEY }} 
+      
+      # Clean up working directory
+      - name: Clean up working directory
+        run:  rm -r -fo *
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source
         uses: actions/checkout@v2
-
-      # Get the date 
-      - name: Get current time/date
-        uses: srfrnk/current-time@master
-        id: current-time
         with:
-          format: YYYYMMDD
+          path: document
 
-      # Uses the remote self-host to build the ICS
-      - name: Build Both Specification
-        # Set local environment variables - of course these could be set directly, but...
-        env:
-          NOW: "${{ steps.current-time.outputs.formattedTime }}"
-          version:      ${{env.BOTH_VERSIONS}}
-          filename:     ${{env.BOTH_FILE_NAME}} 
-          configfile:   ${{env.BOTH_CONFIG_FILE}}
-        run:  >
-          python Build\specbuilder.py $env:configfile
-          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "Run-$env:GITHUB_RUN_NUMBER"
-
-      # Upload any artefact produced.
-      - name: Upload Specification
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ env.BUILD_NAME }}-artifact
-          path: target/*.pdf
-          
-      # Upload to Confluence
-      - name: Confluence Upload
-        uses: cip4/action-confluence-upload@master
-        with:
-          url: 'https://confluence.cip4.org'
-          username: ${{ secrets.CONFLUENCE_USER }}
-          password: ${{ secrets.CONFLUENCE_PASSWORD }}
-          contentId: 15663320
-          label: 'both-specificaion,spec-draft'
-          filePattern: 'target/*.pdf'
- 
-  build-jdf:
-    # The type of runner that the job will run on
-    runs-on: [framemaker-2015]
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout source
+      # Check out the build scripts
+      - name: Checkout build scripts
         uses: actions/checkout@v2
-
-      # Get the date 
-      - name: Get current time/date
-        uses: srfrnk/current-time@master
-        id: current-time
         with:
-          format: YYYYMMDD
+          repository: cip4/cip4-document-builder
+          token: ${{ steps.access_token.outputs.token }}
+          path: builder
 
-      # Uses the remote self-host to build the ICS
-      - name: Build JDF Specification
-        env:
-          NOW: "${{ steps.current-time.outputs.formattedTime }}"
-          version:      ${{env.JDF_VERSION}}
-          filename:     ${{env.JDF_FILE_NAME}} 
-          configfile:   ${{env.JDF_CONFIG_FILE}}
+      # Build the document parameters
+      - name: Build Document
+        timeout-minutes: 30
         run: >
-          python Build\specbuilder.py $env:configfile
-          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          python ..\builder\specbuilder.py $env:BOTH_CONFIG_FILE
+          "$env:BOTH_DOCUMENT_FILE_NAME $env:BOTH_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:BOTH_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
 
       # Upload any artefact produced.
-      - name: Upload Specification
+      - name: Upload Document
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.BUILD_NAME }}-artifact
-          path: target/*.pdf
+          path: document/target/*.pdf
           
       # Upload to Confluence
       - name: Confluence Upload
@@ -122,46 +96,57 @@ jobs:
           url: 'https://confluence.cip4.org'
           username: ${{ secrets.CONFLUENCE_USER }}
           password: ${{ secrets.CONFLUENCE_PASSWORD }}
-          contentId: 15663320
-          label: 'jdf-specificaion,spec-draft'
-          filePattern: 'target/*.pdf'        
-          
-  build-xjdf:
-    # The type of runner that the job will run on
-    runs-on: [framemaker-2015]
+          contentId: ${{ env.CONFLUENCE_ID }}
+          label: ${{ env.BOTH_CONFLUENCE_LABELS }}
+          filePattern: 'document/target/*.pdf'
+
+  build_jdf:
+    runs-on: [framemaker-2020]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # For access to other Git repositories - an access token is required. 
+      - name: Get GitHub Access Token
+        id: access_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_ID }}
+          private_key: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_KEY }} 
+      
+      # Clean up working directory
+      - name: Clean up working directory
+        run:  rm -r -fo *
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source
         uses: actions/checkout@v2
-
-      # Get the date 
-      - name: Get current time/date
-        uses: srfrnk/current-time@master
-        id: current-time
         with:
-          format: YYYYMMDD
+          path: document
 
-      # Uses the remote self-host to build the ICS
-      - name: Build XJDF Specification
-        env:
-          NOW: "${{ steps.current-time.outputs.formattedTime }}"
-          version:      ${{env.XJDF_VERSION}}
-          filename:     ${{env.XJDF_FILE_NAME}} 
-          configfile:   ${{env.XJDF_CONFIG_FILE}}
+      # Check out the build scripts
+      - name: Checkout build scripts
+        uses: actions/checkout@v2
+        with:
+          repository: cip4/cip4-document-builder
+          token: ${{ steps.access_token.outputs.token }}
+          path: builder
+
+      # Build the document parameters
+      - name: Build Document
+        timeout-minutes: 30
         run: >
-          python Build\specbuilder.py $env:configfile
-          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          python ..\builder\specbuilder.py $env:JDF_CONFIG_FILE
+          "$env:JDF_DOCUMENT_FILE_NAME $env:JDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
 
       # Upload any artefact produced.
-      - name: Upload Specification
+      - name: Upload Document
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.BUILD_NAME }}-artifact
-          path: target/*.pdf
+          path: document/target/*.pdf
           
       # Upload to Confluence
       - name: Confluence Upload
@@ -170,6 +155,65 @@ jobs:
           url: 'https://confluence.cip4.org'
           username: ${{ secrets.CONFLUENCE_USER }}
           password: ${{ secrets.CONFLUENCE_PASSWORD }}
-          contentId: 15663320
-          label: 'xjdf-specificaion,spec-draft'
-          filePattern: 'target/*.pdf'
+          contentId: ${{ env.CONFLUENCE_ID }}
+          label: ${{ env.JDF_CONFLUENCE_LABELS }}
+          filePattern: 'document/target/*.pdf'
+
+  build_xjdf:
+    runs-on: [framemaker-2020]
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # For access to other Git repositories - an access token is required. 
+      - name: Get GitHub Access Token
+        id: access_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_ID }}
+          private_key: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_KEY }} 
+      
+      # Clean up working directory
+      - name: Clean up working directory
+        run:  rm -r -fo *
+        
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          path: document
+
+      # Check out the build scripts
+      - name: Checkout build scripts
+        uses: actions/checkout@v2
+        with:
+          repository: cip4/cip4-document-builder
+          token: ${{ steps.access_token.outputs.token }}
+          path: builder
+
+      # Build the document parameters
+      - name: Build Document
+        timeout-minutes: 30
+        run: >
+          python ..\builder\specbuilder.py $env:XJDF_CONFIG_FILE
+          "$env:XJDF_DOCUMENT_FILE_NAME $env:XDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:XDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
+
+      # Upload any artefact produced.
+      - name: Upload Document
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.BUILD_NAME }}-artifact
+          path: document/target/*.pdf
+          
+      # Upload to Confluence
+      - name: Confluence Upload
+        uses: cip4/action-confluence-upload@master
+        with:
+          url: 'https://confluence.cip4.org'
+          username: ${{ secrets.CONFLUENCE_USER }}
+          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          contentId: ${{ env.CONFLUENCE_ID }}
+          label: ${{ env.XJDF_CONFLUENCE_LABELS }}
+          filePattern: 'document/target/*.pdf'
