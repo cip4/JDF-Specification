@@ -66,7 +66,7 @@ jobs:
           path: builder
 
       - name: Build Document
-        timeout-minutes: 30
+        timeout-minutes: 60
         run: >
           python ..\builder\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
@@ -130,7 +130,7 @@ jobs:
           path: builder
 
       - name: Build Document
-        timeout-minutes: 30
+        timeout-minutes: 60
         run: >
           python ..\builder\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
