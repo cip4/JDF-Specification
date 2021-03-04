@@ -68,7 +68,7 @@ jobs:
       - name: Build Document
         timeout-minutes: 120
         run: >
-          python ..\builder\specbuilder.py $env:JDF_CONFIG_FILE
+          python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "Release $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "Run-$env:GITHUB_RUN_NUMBER"
@@ -132,7 +132,7 @@ jobs:
       - name: Build Document
         timeout-minutes: 120
         run: >
-          python ..\builder\specbuilder.py $env:XJDF_CONFIG_FILE
+          python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "Release $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "Run-$env:GITHUB_RUN_NUMBER"

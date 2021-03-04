@@ -76,7 +76,7 @@ jobs:
       - name: Build Document
         timeout-minutes: 120
         run: >
-          python ..\builder\specbuilder.py $env:BOTH_CONFIG_FILE
+          python ..\builder\scripts\specbuilder.py $env:BOTH_CONFIG_FILE
           "$env:BOTH_DOCUMENT_FILE_NAME $env:BOTH_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:BOTH_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
@@ -135,7 +135,7 @@ jobs:
       - name: Build Document
         timeout-minutes: 120
         run: >
-          python ..\builder\specbuilder.py $env:JDF_CONFIG_FILE
+          python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_DOCUMENT_FILE_NAME $env:JDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:JDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
@@ -194,7 +194,7 @@ jobs:
       - name: Build Document
         timeout-minutes: 120
         run: >
-          python ..\builder\specbuilder.py $env:XJDF_CONFIG_FILE
+          python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_FILE_NAME $env:XDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:XDF_DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
