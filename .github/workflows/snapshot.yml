@@ -110,9 +110,9 @@ jobs:
       - name: Confluence Upload
         uses: cip4/action-confluence-upload@master
         with:
-          url: 'https://confluence.cip4.org'
-          username: ${{ secrets.CONFLUENCE_USER }}
-          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          url: 'https://cip4.atlassian.net/wiki'
+          username: ${{ secrets.ATLASSIAN_USER }}
+          password: ${{ secrets.ATLASSIAN_TOKEN }}
           contentId: ${{ env.CONFLUENCE_ID }}
           label: ${{ env.BOTH_CONFLUENCE_LABELS }}
           filePattern: 'document/target/*.pdf'
@@ -182,9 +182,9 @@ jobs:
       - name: Confluence Upload
         uses: cip4/action-confluence-upload@master
         with:
-          url: 'https://confluence.cip4.org'
-          username: ${{ secrets.CONFLUENCE_USER }}
-          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          url: 'https://cip4.atlassian.net/wiki'
+          username: ${{ secrets.ATLASSIAN_USER }}
+          password: ${{ secrets.ATLASSIAN_TOKEN }}
           contentId: ${{ env.CONFLUENCE_ID }}
           label: ${{ env.JDF_CONFLUENCE_LABELS }}
           filePattern: 'document/target/*.pdf'
