@@ -21,7 +21,7 @@ env:
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
   XJDF_CONFLUENCE_LABELS:   'xjdf-specification,milestone'
 # Same ID for all builds  
-  CONFLUENCE_ID:        '15663320'
+  CONFLUENCE_ID:        '1560313992'
   
   DOCUMENT_COPYRIGHT:   'CIP4 Organization, all rights reserved'
 
