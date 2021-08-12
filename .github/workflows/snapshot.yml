@@ -24,7 +24,7 @@ env:
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
   XJDF_CONFLUENCE_LABELS:   'xjdf-specification,spec-draft'
 # Same ID for all builds  
-  CONFLUENCE_ID:        '15663320'
+  CONFLUENCE_ID:        '1560313992'
   
   DOCUMENT_COPYRIGHT:   'CIP4 Organization, all rights reserved'
 
@@ -254,9 +254,9 @@ jobs:
       - name: Confluence Upload
         uses: cip4/action-confluence-upload@master
         with:
-          url: 'https://confluence.cip4.org'
-          username: ${{ secrets.CONFLUENCE_USER }}
-          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          url: 'https://cip4.atlassian.net/wiki'
+          username: ${{ secrets.ATLASSIAN_USER }}
+          password: ${{ secrets.ATLASSIAN_TOKEN }}
           contentId: ${{ env.CONFLUENCE_ID }}
           label: ${{ env.XJDF_CONFLUENCE_LABELS }}
           filePattern: 'document/target/*.pdf'
