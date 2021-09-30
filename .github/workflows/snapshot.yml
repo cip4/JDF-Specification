@@ -106,7 +106,7 @@ jobs:
         run: >
           ${{ env.BUILD_UTILITY_EXE }} info "$env:BOTH_DOCUMENT_COVER_TITLE*.pdf"
           --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_BOTH_METADATA_TITLE $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
+          --title     "$env:DOCUMENT_BOTH_METADATA_TITLE $env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
           --subject   "$env:DOCUMENT_BOTH_METADATA_SUBJECT"
           --author    "$env:DOCUMENT_METADATA_AUTHOR"
           --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
@@ -184,7 +184,7 @@ jobs:
         run: >
           ${{ env.BUILD_UTILITY_EXE }} info "$env:JDF_DOCUMENT_COVER_TITLE*.pdf"
           --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_JDF_METADATA_TITLE $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
+          --title     "$env:DOCUMENT_JDF_METADATA_TITLE $env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
           --subject   "$env:DOCUMENT_JDF_METADATA_SUBJECT"
           --author    "$env:DOCUMENT_METADATA_AUTHOR"
           --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
@@ -262,7 +262,7 @@ jobs:
         run: >
           ${{ env.BUILD_UTILITY_EXE }} info "$env:XJDF_DOCUMENT_COVER_TITLE*.pdf"
           --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_XJDF_METADATA_TITLE $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
+          --title     "$env:DOCUMENT_XJDF_METADATA_TITLE $env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
           --subject   "$env:DOCUMENT_XJDF_METADATA_SUBJECT"
           --author    "$env:DOCUMENT_METADATA_AUTHOR"
           --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
