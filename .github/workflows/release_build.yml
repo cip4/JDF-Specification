@@ -12,18 +12,24 @@ env:
 #
 # 'JDF' parameters
   JDF_DOCUMENT_VERSION:     '1.8'
-  JDF_DOCUMENT_FILE_NAME:   JDF Specification
+  JDF_DOCUMENT_COVER_TITLE:   JDF Specification
   JDF_CONFIG_FILE:          Build\JDF_Specification.ini
   JDF_CONFLUENCE_LABELS:    'jdf-specification,milestone'
 # 'XJDF' parameters
   XDF_DOCUMENT_VERSION:     '2.2'
-  XJDF_DOCUMENT_FILE_NAME:  XJDF Specification
+  XJDF_DOCUMENT_COVER_TITLE:  XJDF Specification
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
   XJDF_CONFLUENCE_LABELS:   'xjdf-specification,milestone'
 # Same ID for all builds  
   CONFLUENCE_ID:        '1560313992'
   
-  DOCUMENT_COPYRIGHT:   'CIP4 Organization, all rights reserved'
+  DOCUMENT_METADATA_COPYRIGHT:  'CIP4 Organization, all rights reserved'
+  DOCUMENT_JDF_METADATA_TITLE:  'JDF Specification'
+  DOCUMENT_XJDF_METADATA_TITLE: 'XJDF Specification'
+  DOCUMENT_JDF_METADATA_SUBJECT:  'Job Definition Specification for Print Automation'
+  DOCUMENT_XJDF_METADATA_SUBJECT: 'Exchange Job Definition Format for Print Automation'
+  DOCUMENT_METADATA_AUTHOR:     'CIP4 Organization'
+  DOCUMENT_METADATA_KEYWORDS:   'Automation;CIM;CIP4;Graphic Arts;Graphics;Interface;Printing;Specification;Standard;Workflow;XML'
 
   BUILD_UTILITY_EXE: c:\actions-runner\_work\_tool\document-processing\document-processing.exe   
 
@@ -70,19 +76,25 @@ jobs:
           path: builder
 
       - name: Build Document
-        timeout-minutes: 120
+        timeout-minutes: 45
         run: >
           python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
-          "$env:JDF_DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
-          "Release $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$env:JDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$env:JDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          " "
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
-      # Update document properties copyright
-      - name: Update copyright
+     # Update document meta-data properties
+      - name: Update Document Metadata
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:JDF_DOCUMENT_FILE_NAME*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_COPYRIGHT"
+          ${{ env.BUILD_UTILITY_EXE }} info "$env:JDF_DOCUMENT_COVER_TITLE*.pdf"
+          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          --title     "$env:DOCUMENT_JDF_METADATA_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          --subject   "$env:DOCUMENT_JDF_METADATA_SUBJECT"
+          --author    "$env:DOCUMENT_METADATA_AUTHOR"
+          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
+          --version   "$(${env:GITHUB_REF}.replace('refs/tags/',''))"
         working-directory: ./document/target
 
       # Upload any artefact produced.
@@ -141,19 +153,25 @@ jobs:
           path: builder
 
       - name: Build Document
-        timeout-minutes: 120
+        timeout-minutes: 45
         run: >
-          python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
-          "$env:XJDF_DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
-          "Release $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
+          "$env:XJDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$env:XJDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          " "
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
-      # Update document properties copyright
-      - name: Update copyright
+     # Update document meta-data properties
+      - name: Update Document Metadata
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:XJDF_DOCUMENT_FILE_NAME*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_COPYRIGHT"
+          ${{ env.BUILD_UTILITY_EXE }} info "$env:XJDF_DOCUMENT_COVER_TITLE*.pdf"
+          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          --title     "$env:DOCUMENT_XJDF_METADATA_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          --subject   "$env:DOCUMENT_XJDF_METADATA_SUBJECT"
+          --author    "$env:DOCUMENT_METADATA_AUTHOR"
+          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
+          --version   "$(${env:GITHUB_REF}.replace('refs/tags/',''))"
         working-directory: ./document/target
 
       # Upload any artefact produced.
