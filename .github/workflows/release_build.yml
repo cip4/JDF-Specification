@@ -11,12 +11,12 @@ env:
 # 'BOTH' version is not built for release
 #
 # 'JDF' parameters
-  JDF_DOCUMENT_VERSION:     '1.8'
+  #JDF_DOCUMENT_VERSION:     '1.8' not required for release build. Uses Tag of build.
   JDF_DOCUMENT_COVER_TITLE:   JDF Specification
   JDF_CONFIG_FILE:          Build\JDF_Specification.ini
   JDF_CONFLUENCE_LABELS:    'jdf-specification,milestone'
 # 'XJDF' parameters
-  XDF_DOCUMENT_VERSION:     '2.2'
+  #XJDF_DOCUMENT_VERSION:     '2.2' not required for release build. Uses Tag of build.
   XJDF_DOCUMENT_COVER_TITLE:  XJDF Specification
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
   XJDF_CONFLUENCE_LABELS:   'xjdf-specification,milestone'
