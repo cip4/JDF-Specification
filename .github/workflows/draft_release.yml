@@ -3,7 +3,7 @@
 # !NOTE:
 # This build produces multiple versions of this document!!
 
-name: Snapshot Build
+name: Draft Release Build
 # The VERSION is the main release number i.e. 1.8 or 2.1
 env:
 # Common to all builds    
