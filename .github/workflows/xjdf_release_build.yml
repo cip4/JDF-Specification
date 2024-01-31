@@ -6,7 +6,7 @@
 name: XJDF Release Build
 
 ## This section contains ALL variables specific for this project
- env:
+env:
   BUILD_NAME:       XJDF-SPECIFICATION
   #XJDF_DOCUMENT_VERSION:     '2.2' not required for release build. Uses Tag of build.
   XJDF_DOCUMENT_COVER_TITLE:  XJDF Specification
