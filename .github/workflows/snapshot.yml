@@ -30,11 +30,6 @@ env:
   DOCUMENT_BOTH_METADATA_TITLE: 'BOTH Specifications'
   DOCUMENT_JDF_METADATA_TITLE:  'JDF Specification'
   DOCUMENT_XJDF_METADATA_TITLE: 'XJDF Specification'
-  DOCUMENT_BOTH_METADATA_SUBJECT: 'Combined Original and Exchange Job Definition Specification for Print Automation'
-  DOCUMENT_JDF_METADATA_SUBJECT:  'Job Definition Specification for Print Automation'
-  DOCUMENT_XJDF_METADATA_SUBJECT: 'Exchange Job Definition Format for Print Automation'
-  DOCUMENT_METADATA_AUTHOR:     'CIP4 Organization'
-  DOCUMENT_METADATA_KEYWORDS:   'Automation;CIM;CIP4;Graphic Arts;Graphics;Interface;Printing;Specification;Standard;Workflow;XML'
 
   BUILD_UTILITY_EXE: c:\actions-runner\_work\_tool\document-processing\document-processing.exe  
 
@@ -92,6 +87,10 @@ jobs:
           "$env:BOTH_DOCUMENT_COVER_TITLE $env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:BOTH_DOCUMENT_COVER_TITLE"
           "$env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:DOCUMENT_BOTH_METADATA_TITLE $env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
+          "$env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          "2000-$((Get-Date).ToString('yyyy'))"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
@@ -99,18 +98,6 @@ jobs:
       - name: Watermark pages
         run: >
           ${{ env.BUILD_UTILITY_EXE }} draft "$env:BOTH_DOCUMENT_COVER_TITLE*.pdf"
-        working-directory: ./document/target
-        
-      # Update document meta-data properties
-      - name: Update Document Metadata
-        run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:BOTH_DOCUMENT_COVER_TITLE*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_BOTH_METADATA_TITLE $env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
-          --subject   "$env:DOCUMENT_BOTH_METADATA_SUBJECT"
-          --author    "$env:DOCUMENT_METADATA_AUTHOR"
-          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
-          --version   "$env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document/target
 
       # Upload any artefact produced.
@@ -170,6 +157,10 @@ jobs:
           "$env:JDF_DOCUMENT_COVER_TITLE $env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:JDF_DOCUMENT_COVER_TITLE"
           "$env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:DOCUMENT_JDF_METADATA_TITLE $env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          "2000-$((Get-Date).ToString('yyyy'))"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
@@ -179,18 +170,6 @@ jobs:
           ${{ env.BUILD_UTILITY_EXE }} draft "$env:JDF_DOCUMENT_COVER_TITLE*.pdf"
         working-directory: ./document/target
         
-      # Update document meta-data properties
-      - name: Update Document Metadata
-        run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:JDF_DOCUMENT_COVER_TITLE*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_JDF_METADATA_TITLE $env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
-          --subject   "$env:DOCUMENT_JDF_METADATA_SUBJECT"
-          --author    "$env:DOCUMENT_METADATA_AUTHOR"
-          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
-          --version   "$env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
-        working-directory: ./document/target
-
       # Upload any artefact produced.
       - name: Upload Document
         uses: actions/upload-artifact@v2
@@ -248,6 +227,10 @@ jobs:
           "$env:XJDF_DOCUMENT_COVER_TITLE $env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:XJDF_DOCUMENT_COVER_TITLE"
           "$env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$env:DOCUMENT_XJDF_METADATA_TITLE $env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"           
+          "$env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          "2000-$((Get-Date).ToString('yyyy'))"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
@@ -257,18 +240,6 @@ jobs:
           ${{ env.BUILD_UTILITY_EXE }} draft "$env:XJDF_DOCUMENT_COVER_TITLE*.pdf"
         working-directory: ./document/target
         
-      # Update document meta-data properties
-      - name: Update Document Metadata
-        run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:XJDF_DOCUMENT_COVER_TITLE*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_XJDF_METADATA_TITLE $env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
-          --subject   "$env:DOCUMENT_XJDF_METADATA_SUBJECT"
-          --author    "$env:DOCUMENT_METADATA_AUTHOR"
-          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
-          --version   "$env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
-        working-directory: ./document/target
-
       # Upload any artefact produced.
       - name: Upload Document
         uses: actions/upload-artifact@v2
