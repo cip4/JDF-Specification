@@ -78,7 +78,7 @@ jobs:
           python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_DOCUMENT_COVER_TITLE $env:JDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:JDF_DOCUMENT_COVER_TITLE"
-          "$env:JDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "Version $env:JDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_JDF_METADATA_TITLE $env:JDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))" 
           "$env:JDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
@@ -154,7 +154,7 @@ jobs:
           python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_COVER_TITLE $env:XJDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:XJDF_DOCUMENT_COVER_TITLE"
-          "$env:XJDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "Version $env:XJDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_XJDF_METADATA_TITLE $env:XJDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))" 
           "$env:XJDF_DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"

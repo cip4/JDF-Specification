@@ -66,7 +66,7 @@ jobs:
           python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:XJDF_DOCUMENT_COVER_TITLE"
-          "Release: $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "Version $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_XJDF_METADATA_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
