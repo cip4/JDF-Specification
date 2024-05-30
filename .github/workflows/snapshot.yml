@@ -9,17 +9,17 @@ env:
 # Common to all builds    
   BUILD_NAME:       JDF-SPECIFICATION
 # 'BOTH' parameters
-  BOTH_DOCUMENT_VERSION:    '1.8+2.2'
+  BOTH_DOCUMENT_VERSION:    '1.9+2.3'
   BOTH_DOCUMENT_COVER_TITLE:   BOTH Specifications
   BOTH_CONFIG_FILE:          Build\BOTH_Specifications.ini
   BOTH_CONFLUENCE_LABELS:    'both-specification,spec-draft'
 # 'JDF' parameters
-  JDF_DOCUMENT_VERSION:     '1.8'
+  JDF_DOCUMENT_VERSION:     '1.9'
   JDF_DOCUMENT_COVER_TITLE:   JDF Specification
   JDF_CONFIG_FILE:          Build\JDF_Specification.ini
   JDF_CONFLUENCE_LABELS:    'jdf-specification,spec-draft'
 # 'XJDF' parameters
-  XJDF_DOCUMENT_VERSION:     '2.2'
+  XJDF_DOCUMENT_VERSION:     '2.3'
   XJDF_DOCUMENT_COVER_TITLE:  XJDF Specification
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
   XJDF_CONFLUENCE_LABELS:   'xjdf-specification,spec-draft'

@@ -2,13 +2,13 @@
 
 # !NOTE:
 # This build is specifically for Version 1 i.e. JDF 
-# It is triggered by a push of a tag that starts with '1', i.e. 1.8, or 1.14-IP3 etc
+# It is triggered by a push of a tag that starts with '1', i.e. 1.9, or 1.14-IP3 etc
 name: JDF Release Build
 
 ## This section contains ALL variable specific for this project
 env:
   BUILD_NAME:       JDF-SPECIFICATION
-  #JDF_DOCUMENT_VERSION:     '1.8' not required for release build. Uses Tag of build.
+  #JDF_DOCUMENT_VERSION:     '1.9' not required for release build. Uses Tag of build.
   JDF_DOCUMENT_COVER_TITLE:   JDF Specification
   JDF_CONFIG_FILE:          Build\JDF_Specification.ini
 

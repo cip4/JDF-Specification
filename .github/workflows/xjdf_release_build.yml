@@ -2,13 +2,13 @@
 
 # !NOTE: 
 # This build is specifically for Version 2 i.e. XJDF 
-# It is triggered by a push of a tag that starts with '2', i.e. 2.2, or 2.14-IP3 etc
+# It is triggered by a push of a tag that starts with '2', i.e. 2.3, or 2.14-IP3 etc
 name: XJDF Release Build
 
 ## This section contains ALL variables specific for this project
 env:
   BUILD_NAME:       XJDF-SPECIFICATION
-  #XJDF_DOCUMENT_VERSION:     '2.2' not required for release build. Uses Tag of build.
+  #XJDF_DOCUMENT_VERSION:     '2.3' not required for release build. Uses Tag of build.
   XJDF_DOCUMENT_COVER_TITLE:  XJDF Specification
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
 

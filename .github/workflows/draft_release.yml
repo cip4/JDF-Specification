@@ -4,18 +4,18 @@
 # This build produces multiple versions of this document!!
 
 name: Draft Release Build
-# The VERSION is the main release number i.e. 1.8 or 2.1
+# The VERSION is the main release number i.e. 1.9 or 2.3
 env:
 # Common to all builds    
   BUILD_NAME:       JDF-SPECIFICATION
 
 # 'JDF' parameters
-  JDF_DOCUMENT_VERSION:     '1.8'
+  JDF_DOCUMENT_VERSION:     '1.9'
   JDF_DOCUMENT_COVER_TITLE:   JDF Specification
   JDF_CONFIG_FILE:          Build\JDF_Specification.ini
   JDF_CONFLUENCE_LABELS:    'jdf-specification,milestone'
 # 'XJDF' parameters
-  XJDF_DOCUMENT_VERSION:     '2.2'
+  XJDF_DOCUMENT_VERSION:     '2.3'
   XJDF_DOCUMENT_COVER_TITLE:  XJDF Specification
   XJDF_CONFIG_FILE:         Build\XJDF_Specification.ini
   XJDF_CONFLUENCE_LABELS:   'xjdf-specification,milestone'
