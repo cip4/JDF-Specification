@@ -36,7 +36,7 @@ jobs:
       # For access to other Git repositories - an access token is required. 
       - name: Get GitHub Access Token
         id: access_token
-        uses: tibdex/github-app-token@v1
+        uses: tibdex/github-app-token@v2
         with:
           app_id: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_ID }}
           private_key: ${{ secrets.CIP4_GITHUB_ACTIONS_APP_KEY }} 
