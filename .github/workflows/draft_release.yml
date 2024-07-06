@@ -94,7 +94,7 @@ jobs:
         
       # Upload any artefact produced.
       - name: Upload Document
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: document/target/*.pdf
@@ -170,7 +170,7 @@ jobs:
 
       # Upload any artefact produced.
       - name: Upload Document
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: document/target/*.pdf
