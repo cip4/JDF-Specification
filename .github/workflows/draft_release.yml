@@ -96,7 +96,7 @@ jobs:
       - name: Upload Document
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.BUILD_NAME }}-artifact
+          name: ${{ env.BUILD_NAME }}-build_jdf-artifact
           path: document/target/*.pdf
 
       # Generate full Confluence Labels List
@@ -172,7 +172,7 @@ jobs:
       - name: Upload Document
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.BUILD_NAME }}-artifact
+          name: ${{ env.BUILD_NAME }}-build_xjdf-artifact
           path: document/target/*.pdf
 
       # Generate full Confluence Labels List
