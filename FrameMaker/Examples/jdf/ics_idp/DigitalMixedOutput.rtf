@@ -1,0 +1,39 @@
+{\rtf1\ansi
+\deff0{\fonttbl\f0\fnil Courier New;}
+{\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
+\cs1{<}\cs2{JDF} \cs3{ID}\cs1{=}\cs4{"n_000000"} \cs3{JobPartID}\cs1{=}\cs4{"n_000002"} \cs3{MaxVersion}\cs1{=}\cs4{"1.8"}\line
+  \cs3{Status}\cs1{=}\cs4{"Waiting"} \cs3{Type}\cs1{=}\cs4{"Combined"}\line
+  \cs3{Types}\cs1{=}\cs4{"Interpreting Rendering DigitalPrinting Stitching"}\line
+  \cs3{Version}\cs1{=}\cs4{"1.8"} \cs3{xmlns}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_1_1"} \cs3{xsi:type}\cs1{=}\cs4{"Combined"}\cs1{>}\line
+  \cs1{<}\cs2{ResourcePool}\cs1{>}\line
+    \cs1{<}\cs2{Component} \cs3{Class}\cs1{=}\cs4{"Quantity"} \cs3{ComponentType}\cs1{=}\cs4{"FinalProduct"}\line
+      \cs3{ID}\cs1{=}\cs4{"r_000003"} \cs3{PartIDKeys}\cs1{=}\cs4{"SignatureName SheetName"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{>}\line
+      \cs1{<}\cs2{Component} \cs3{SignatureName}\cs1{=}\cs4{"cover"}\cs1{>}\line
+        \cs1{<}\cs2{Component} \cs3{SheetName}\cs1{=}\cs4{"cover"}\cs1{/>}\line
+      \cs1{</}\cs2{Component}\cs1{>}\line
+      \cs1{<}\cs2{Component} \cs3{SignatureName}\cs1{=}\cs4{"body"}\cs1{>}\line
+        \cs1{<}\cs2{Component} \cs3{SheetName}\cs1{=}\cs4{"body"}\cs1{/>}\line
+      \cs1{</}\cs2{Component}\cs1{>}\line
+    \cs1{</}\cs2{Component}\cs1{>}\line
+    \cs1{<}\cs2{DigitalPrintingParams} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r_000004"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{Media} \cs3{Class}\cs1{=}\cs4{"Consumable"} \cs3{ID}\cs1{=}\cs4{"r_000005"} \cs3{Status}\cs1{=}\cs4{"Available"}\cs1{/>}\line
+    \cs1{<}\cs2{RunList} \cs3{Class}\cs1{=}\cs4{"Parameter"} \cs3{ID}\cs1{=}\cs4{"r_000006"} \cs3{Status}\cs1{=}\cs4{"Unavailable"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourcePool}\cs1{>}\line
+  \cs1{<}\cs2{ResourceLinkPool}\cs1{>}\line
+    \cs1{<}\cs2{ComponentLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"3"}\line
+      \cs3{DescriptiveName}\cs1{=}\cs4{"The link points to 20 planned and 20 good + 2 Waste brochures"}\line
+      \cs3{Usage}\cs1{=}\cs4{"Output"} \cs3{rRef}\cs1{=}\cs4{"r_000003"}\cs1{>}\line
+      \cs1{<}\cs2{AmountPool}\cs1{>}\line
+        \cs1{<}\cs2{PartAmount} \cs3{Amount}\cs1{=}\cs4{"10"}\cs1{>}\line
+          \cs1{<}\cs2{Part} \cs3{SheetName}\cs1{=}\cs4{"cover"} \cs3{SignatureName}\cs1{=}\cs4{"cover"}\cs1{/>}\line
+        \cs1{</}\cs2{PartAmount}\cs1{>}\line
+        \cs1{<}\cs2{PartAmount} \cs3{Amount}\cs1{=}\cs4{"100"}\cs1{>}\line
+          \cs1{<}\cs2{Part} \cs3{SheetName}\cs1{=}\cs4{"body"} \cs3{SignatureName}\cs1{=}\cs4{"body"}\cs1{/>}\line
+        \cs1{</}\cs2{PartAmount}\cs1{>}\line
+      \cs1{</}\cs2{AmountPool}\cs1{>}\line
+    \cs1{</}\cs2{ComponentLink}\cs1{>}\line
+    \cs1{<}\cs2{DigitalPrintingParamsLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"2"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r_000004"}\cs1{/>}\line
+    \cs1{<}\cs2{MediaLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"1 2"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r_000005"}\cs1{/>}\line
+    \cs1{<}\cs2{RunListLink} \cs3{CombinedProcessIndex}\cs1{=}\cs4{"0 2"} \cs3{Usage}\cs1{=}\cs4{"Input"} \cs3{rRef}\cs1{=}\cs4{"r_000006"}\cs1{/>}\line
+  \cs1{</}\cs2{ResourceLinkPool}\cs1{>}\line
+\cs1{</}\cs2{JDF}\cs1{>}}
