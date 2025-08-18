@@ -47,13 +47,13 @@ jobs:
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: document
 
       # Check out the build scripts
       - name: Checkout build scripts
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: cip4/cip4-document-builder
           token: ${{ steps.access_token.outputs.token }}
