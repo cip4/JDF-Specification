@@ -106,17 +106,7 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}-build_both-artifact
           path: document/target/*.pdf
-          
-      # Upload to Confluence
-      - name: Confluence Upload
-        uses: cip4/action-confluence-upload@master
-        with:
-          url: 'https://cip4.atlassian.net/wiki'
-          username: ${{ secrets.ATLASSIAN_USER }}
-          password: ${{ secrets.ATLASSIAN_TOKEN }}
-          contentId: ${{ env.CONFLUENCE_ID }}
-          label: ${{ env.BOTH_CONFLUENCE_LABELS }}
-          filePattern: 'document/target/*.pdf'
+ 
 
   build_jdf:
     runs-on: [framemaker-2020]
@@ -176,17 +166,6 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}-build_jdf-artifact
           path: document/target/*.pdf
-          
-      # Upload to Confluence
-      - name: Confluence Upload
-        uses: cip4/action-confluence-upload@master
-        with:
-          url: 'https://cip4.atlassian.net/wiki'
-          username: ${{ secrets.ATLASSIAN_USER }}
-          password: ${{ secrets.ATLASSIAN_TOKEN }}
-          contentId: ${{ env.CONFLUENCE_ID }}
-          label: ${{ env.JDF_CONFLUENCE_LABELS }}
-          filePattern: 'document/target/*.pdf'
 
   build_xjdf:
     runs-on: [framemaker-2020]
@@ -246,14 +225,4 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}-build_xjdf-artifact
           path: document/target/*.pdf
-          
-      # Upload to Confluence
-      - name: Confluence Upload
-        uses: cip4/action-confluence-upload@master
-        with:
-          url: 'https://cip4.atlassian.net/wiki'
-          username: ${{ secrets.ATLASSIAN_USER }}
-          password: ${{ secrets.ATLASSIAN_TOKEN }}
-          contentId: ${{ env.CONFLUENCE_ID }}
-          label: ${{ env.XJDF_CONFLUENCE_LABELS }}
-          filePattern: 'document/target/*.pdf'
+ 
