@@ -80,10 +80,4 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: document/target/*.pdf
-
-      # Generate full Confluence Labels List
-      - name: Generate Full Confluence Labels List
-        run: >
-          echo "FULL_CONFLUENCE_LABELS=${env:JDF_CONFLUENCE_LABELS},$(${env:GITHUB_REF}.replace('refs/tags/',''))" | 
-          Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           

@@ -97,8 +97,10 @@ jobs:
       # Mark pages with draft watermark
       - name: Watermark pages
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} draft "$env:BOTH_DOCUMENT_COVER_TITLE*.pdf"
-        working-directory: ./document/target
+          python ..\builder\scripts\watermark.py
+          "$env:BOTH_DOCUMENT_COVER_TITLE $env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
 
       # Upload any artefact produced.
       - name: Upload Document
@@ -157,8 +159,10 @@ jobs:
       # Mark pages with draft watermark
       - name: Watermark pages
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} draft "$env:JDF_DOCUMENT_COVER_TITLE*.pdf"
-        working-directory: ./document/target
+          python ..\builder\scripts\watermark.py
+          "$env:JDF_DOCUMENT_COVER_TITLE $env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
         
       # Upload any artefact produced.
       - name: Upload Document
@@ -216,8 +220,10 @@ jobs:
       # Mark pages with draft watermark
       - name: Watermark pages
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} draft "$env:XJDF_DOCUMENT_COVER_TITLE*.pdf"
-        working-directory: ./document/target
+          python ..\builder\scripts\watermark.py
+          "$env:XJDF_DOCUMENT_COVER_TITLE $env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
         
       # Upload any artefact produced.
       - name: Upload Document
