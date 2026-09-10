@@ -49,7 +49,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build_both:
-    runs-on: [framemaker-2020]
+    runs-on: [framemaker-2026]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -109,7 +109,7 @@ jobs:
  
 
   build_jdf:
-    runs-on: [framemaker-2020]
+    runs-on: [framemaker-2026]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -168,7 +168,7 @@ jobs:
           path: document/target/*.pdf
 
   build_xjdf:
-    runs-on: [framemaker-2020]
+    runs-on: [framemaker-2026]
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
