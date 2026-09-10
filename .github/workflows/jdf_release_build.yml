@@ -61,7 +61,7 @@ jobs:
 
       # Build the release document
       - name: Build Document
-        timeout-minutes: 45
+        timeout-minutes: 90
         run: >
           python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"

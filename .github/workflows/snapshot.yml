@@ -81,7 +81,7 @@ jobs:
 
       # Build the document parameters
       - name: Build Document
-        timeout-minutes: 45
+        timeout-minutes: 90
         run: >
           python ..\builder\scripts\specbuilder.py $env:BOTH_CONFIG_FILE
           "$env:BOTH_DOCUMENT_COVER_TITLE $env:BOTH_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
@@ -143,7 +143,7 @@ jobs:
 
       # Build the document parameters
       - name: Build Document
-        timeout-minutes: 45
+        timeout-minutes: 90
         run: >
           python ..\builder\scripts\specbuilder.py $env:JDF_CONFIG_FILE
           "$env:JDF_DOCUMENT_COVER_TITLE $env:JDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
@@ -204,7 +204,7 @@ jobs:
 
       # Build the document parameters
       - name: Build Document
-        timeout-minutes: 45
+        timeout-minutes: 90
         run: >
           python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_COVER_TITLE $env:XJDF_DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"

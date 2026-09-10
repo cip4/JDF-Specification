@@ -61,7 +61,7 @@ jobs:
 
       # Build the release document
       - name: Build Document
-        timeout-minutes: 45
+        timeout-minutes: 90
         run: >
           python ..\builder\scripts\specbuilder.py $env:XJDF_CONFIG_FILE
           "$env:XJDF_DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
